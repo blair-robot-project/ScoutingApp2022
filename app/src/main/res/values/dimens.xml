@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--Spacing-->
+  <dimen name="edgeMargin">16dp</dimen>
+  <dimen name="verticalFieldSpacing">30dp</dimen>
+  <dimen name="radioButtonSpacing">25dp</dimen>
+
+  <!--Text-->
+  <dimen name="primaryTextSize">24sp</dimen>
+  <dimen name="titleTextSize">40sp</dimen>
+
+  <!--Elements-->
+  <dimen name="textBoxMaxLines">3</dimen>
+  <dimen name="helpPadding">13dp</dimen>
+</resources>

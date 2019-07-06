@@ -1,11 +1,77 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+    <!--Containers-->
+    <style name="Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="Background">
+        <item name="android:background">@color/background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+
+    <!--Text-->
+    <style name="Text" parent="Wrap">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColorHint">@color/hintText</item>
+        <item name="android:textSize">@dimen/primaryTextSize</item>
+    </style>
+
+    <style name="Text.Title" parent="Text">
+        <item name="android:textColor">@color/primaryLightColor</item>
+        <item name="android:textSize">@dimen/titleTextSize</item>
+    </style>
+
+
+    <!--Elements-->
+    <style name="Checkbox" parent="Wrap">
+        <item name="android:buttonTint">@color/fieldsColor</item>
+        <item name="android:padding">15dp</item>
+    </style>
+
+    <style name="Checkbox.LongHitbox" parent="Checkbox">
+        <item name="android:text">----------------------------------------</item>
+        <item name="android:textColor">@color/background</item>
+    </style>
+
+    <style name="RadioButton" parent="Text">
+        <item name="android:buttonTint">@color/fieldsColor</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:layout_marginEnd">@dimen/radioButtonSpacing</item>
+        <item name="android:layout_marginStart">@dimen/radioButtonSpacing</item>
+    </style>
+
+    <style name="EditText" parent="Text">
+        <item name="android:backgroundTint">@color/secondaryLightColor</item>
+    </style>
+
+    <style name="TextBox" parent="EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:maxLines">@dimen/textBoxMaxLines</item>
+    </style>
+
+    <style name="Help">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/helpPadding</item>
+        <item name="android:src">@drawable/ic_help</item>
+        <item name="android:contentDescription">\?</item>
+        <item name="android:onClick">help</item>
+        <item name="android:tint">@color/helpIcColor</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
 </resources>

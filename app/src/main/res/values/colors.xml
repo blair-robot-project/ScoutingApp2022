@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+  <!--Theme-->
+  <color name="primaryColor">#b71c1c</color>
+  <color name="primaryLightColor">#f05545</color>
+  <color name="primaryDarkColor">#7f0000</color>
+  <color name="secondaryColor">#00838f</color>
+  <color name="secondaryLightColor">#4fb3bf</color>
+  <color name="secondaryDarkColor">#005662</color>
+
+  <!--Dark-->
+  <color name="background">#121212</color>
+  <color name="surface">#121212</color>
+  <color name="error">#cf6679</color>
+
+  <!--Light-->
+  <!--TODO: Add light theme option-->
+
+  <!--On-->
+  <color name="onDark">@color/white</color>
+  <color name="onLight">@color/black</color>
+
+  <!--Text-->
+  <color name="primaryTextColor">@color/white</color>
+  <color name="darkTextColor">@color/black</color>
+  <color name="hintText">#9fff</color>
+
+  <!--Elements-->
+  <color name="buttonBg">@color/secondaryColor</color>
+  <color name="fieldsColor">@color/secondaryLightColor</color>
+  <color name="helpIcColor">#eee</color>
+
+  <!--Named colors-->
+  <color name="white">#fff</color>
+  <color name="black">#000</color>
+  <color name="transparent">#0000</color>
+  <color name="red">#a7000a</color>
+  <color name="blue">#0a00a7</color>
+  <color name="teamColor">#a7000a</color>
+  <!--add some more-->
+
+
+  <!--Icon-->
+  <color name="ic_launcher_background">@color/teamColor</color>
+
 </resources>
