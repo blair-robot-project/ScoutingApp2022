@@ -12,12 +12,19 @@
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-  <fragment
-    android:id="@+id/garden_nav_fragment"
-    android:name="androidx.navigation.fragment.NavHostFragment"
-    android:layout_width="match_parent"
-    android:layout_height="500dp"
+  <androidx.viewpager.widget.ViewPager
     app:layout_constraintBottom_toBottomOf="parent"
-    app:defaultNavHost="true"
-    app:navGraph="@navigation/navigation"/>
+    android:id="@+id/pager"
+    android:layout_width="match_parent"
+    android:layout_height="400dp" />
+
+  <!--<fragment-->
+    <!--android:id="@+id/garden_nav_fragment"-->
+    <!--android:name="androidx.navigation.fragment.NavHostFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="100dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:defaultNavHost="true"-->
+    <!--app:navGraph="@navigation/navigation"/>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
