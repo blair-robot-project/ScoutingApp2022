@@ -5,12 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
+import team449.frc.scoutingappbase.databinding.TestFragmentBinding
 
 class TestFragment : Fragment() {
 
     private lateinit var pagerAdapter: testPagerAdapter
     private lateinit var viewPager: ViewPager
+    private lateinit var binding: TestFragmentBinding
 
     companion object {
         fun newInstance() = TestFragment()
@@ -22,19 +26,21 @@ class TestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.test_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.test_fragment, container, false)
+        val view: View = binding.root
+        binding.lifecycleOwner = this
+        return view
+//        return inflater.inflate(R.layout.test_fragment, container, false)
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(TestViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val act = activity
+        if (act != null) {
+            viewModel = ViewModelProviders.of(act).get(TestViewModel::class.java)
+        }
+        binding.vm = viewModel
+        // TODO: Use the ViewModel
+    }
 
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        pagerAdapter = testPagerAdapter(childFragmentManager)
-//        viewPager = view.findViewById(R.id.pager)
-//        viewPager.adapter = pagerAdapter
-//    }
 }

@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  tools:context=".MainActivity"
-  style="@style/Background">
+  tools:context=".MainActivity">
 
-  <TextView
-    style="@style/Text"
-    android:text="Hello World!"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+  <data>
+    <variable
+      name="vm"
+      type="team449.frc.scoutingappbase.TestViewModel" />
+  </data>
 
-  <androidx.viewpager.widget.ViewPager
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:id="@+id/pager"
-    android:layout_width="match_parent"
-    android:layout_height="400dp" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+    style="@style/Background">
 
-  <!--<fragment-->
-    <!--android:id="@+id/garden_nav_fragment"-->
-    <!--android:name="androidx.navigation.fragment.NavHostFragment"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="100dp"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:defaultNavHost="true"-->
-    <!--app:navGraph="@navigation/navigation"/>-->
+    <TextView
+      style="@style/Text"
+      android:id="@+id/t"
+      android:text="@{vm.name}"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+      style="@style/Text"
+      android:text="@={vm.name}"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/t" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.viewpager.widget.ViewPager
+      app:layout_constraintBottom_toBottomOf="parent"
+      android:id="@+id/pager"
+      android:layout_width="match_parent"
+      android:layout_height="600dp" />
+
+    <!--<fragment-->
+      <!--android:id="@+id/garden_nav_fragment"-->
+      <!--android:name="androidx.navigation.fragment.NavHostFragment"-->
+      <!--android:layout_width="match_parent"-->
+      <!--android:layout_height="100dp"-->
+      <!--app:layout_constraintBottom_toBottomOf="parent"-->
+      <!--app:defaultNavHost="true"-->
+      <!--app:navGraph="@navigation/navigation"/>-->
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
