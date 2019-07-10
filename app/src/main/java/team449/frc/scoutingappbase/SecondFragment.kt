@@ -1,24 +1,20 @@
 package team449.frc.scoutingappbase
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager.widget.ViewPager
+import team449.frc.scoutingappbase.databinding.FragmentSecondBinding
 import team449.frc.scoutingappbase.databinding.TestFragmentBinding
 
-class TestFragment : Fragment() {
 
-    private lateinit var testPagerAdapter: TestPagerAdapter
-    private lateinit var viewPager: ViewPager
-    private lateinit var binding: TestFragmentBinding
+class SecondFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = TestFragment()
-    }
+    private lateinit var binding: FragmentSecondBinding
 
     private lateinit var viewModel: TestViewModel
 
@@ -26,11 +22,10 @@ class TestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.test_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second, container, false)
         val view: View = binding.root
         binding.lifecycleOwner = this
         return view
-//        return inflater.inflate(R.layout.test_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -40,7 +35,5 @@ class TestFragment : Fragment() {
             viewModel = ViewModelProviders.of(act).get(TestViewModel::class.java)
         }
         binding.vm = viewModel
-        // TODO: Use the ViewModel
     }
-
 }

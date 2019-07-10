@@ -55,6 +55,7 @@
 
     <style name="EditText" parent="Text">
         <item name="android:backgroundTint">@color/secondaryLightColor</item>
+        <item name="android:layout_width">@dimen/editTextWidth</item>
     </style>
 
     <style name="TextBox" parent="EditText">

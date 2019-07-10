@@ -12,4 +12,5 @@
   <!--Elements-->
   <dimen name="textBoxMaxLines">3</dimen>
   <dimen name="helpPadding">13dp</dimen>
+  <dimen name="editTextWidth">100dp</dimen>
 </resources>

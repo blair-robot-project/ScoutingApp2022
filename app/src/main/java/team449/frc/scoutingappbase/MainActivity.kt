@@ -2,10 +2,13 @@ package team449.frc.scoutingappbase
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.CheckBox
+import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager.widget.ViewPager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
 import team449.frc.scoutingappbase.databinding.ActivityMainBinding
 
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding.vm = model
 
         val vpPager: ViewPager = findViewById(R.id.pager)
-		adapterViewPager = testPagerAdapter(getSupportFragmentManager())
+		adapterViewPager = TestPagerAdapter(getSupportFragmentManager())
 		vpPager.adapter = adapterViewPager
     }
 }
