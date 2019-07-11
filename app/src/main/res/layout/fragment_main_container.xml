@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   tools:context=".Fragment.MainContainer">
 
@@ -20,11 +21,43 @@
       android:id="@+id/pager"
       android:layout_width="match_parent"
       android:layout_height="500dp" />
-
     <Button
       style="@style/Wrap"
-      android:onClick="@{handler::next}"
-      android:text="@{vm.name}" />
+      android:onClick="@{handler::other}"
+      android:text="other" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <ImageView
+        style="@style/Wrap"
+        android:src="@drawable/ic_prev"/>
+
+      <TextView
+        style="@style/Text"
+        android:onClick="@{handler::prev}"
+        android:text="Prev" />
+
+      <com.google.android.material.tabs.TabLayout
+        android:id="@+id/pageDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tabBackground="@drawable/page_selector"
+        app:tabGravity="center"
+        android:layout_weight="1"
+        app:tabIndicatorHeight="0dp"/>
+
+      <TextView
+        style="@style/Text"
+        android:onClick="@{handler::next}"
+        android:text="Next" />
+
+      <ImageView
+        style="@style/Wrap"
+        android:src="@drawable/ic_next"/>
+    </LinearLayout>
+
 
   </LinearLayout>
 </layout>
