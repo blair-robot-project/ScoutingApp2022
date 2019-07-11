@@ -19,17 +19,24 @@ class MainContainerFragment : VMBaseFragment<FragmentMainContainerBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.handler = Handler(findNavController())
 
         val vpPager: ViewPager = view.findViewById(R.id.pager)
-        adapterViewPager = TestPagerAdapter(childFragmentManager)
+
+        val handler = Handler(findNavController(), vpPager)
+        binding.handler = handler
+
+        adapterViewPager = TestPagerAdapter(childFragmentManager, handler)
         vpPager.adapter = adapterViewPager
+
     }
 
-    class Handler(navController: NavController) {
-        val navController = navController
+    class Handler(val navController: NavController, val viewPager: ViewPager) {
 
-        fun onClick(view: View) {
+        fun home(view: View) {
+            viewPager.setCurrentItem(0)
+        }
+
+        fun next(view: View) {
             navController.navigate(R.id.action_mainContainerFragment_to_altFragment)
         }
     }

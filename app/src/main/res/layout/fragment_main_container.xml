@@ -23,7 +23,7 @@
 
     <Button
       style="@style/Wrap"
-      android:onClick="@{handler::onClick}"
+      android:onClick="@{handler::next}"
       android:text="@{vm.name}" />
 
   </LinearLayout>

@@ -9,6 +9,9 @@
     <variable
       name="vm"
       type="team449.frc.scoutingappbase.TestViewModel" />
+    <variable
+      name="handler"
+      type="team449.frc.scoutingappbase.fragment.MainContainerFragment.Handler" />
   </data>
 
   <androidx.appcompat.widget.LinearLayoutCompat
@@ -19,6 +22,11 @@
       style="@style/Checkbox"
       android:text="@{vm.name}"
       android:checked="@={Conversions.unbox(vm.checkbox)}"/>
+
+    <Button
+      style="@style/Wrap"
+      android:onClick="@{handler::home}"
+      android:text="@{vm.name}" />
 
   </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
