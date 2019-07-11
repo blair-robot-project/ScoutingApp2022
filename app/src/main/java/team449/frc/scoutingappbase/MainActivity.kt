@@ -6,36 +6,33 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentFactory
 import androidx.viewpager.widget.ViewPager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import team449.frc.scoutingappbase.databinding.ActivityMainBinding
+import team449.frc.scoutingappbase.fragment.MainContainerFragment
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var adapterViewPager: FragmentPagerAdapter
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-//        setContentView(R.layout.activity_main)
-//
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, TestFragment.newInstance())
-//                .commitNow()
-//        }
-
         binding.lifecycleOwner = this
 
+        navController = findNavController(R.id.navhost)
 
         val model = ViewModelProviders.of(this).get(TestViewModel::class.java)
         binding.vm = model
 
-        val vpPager: ViewPager = findViewById(R.id.pager)
-		adapterViewPager = TestPagerAdapter(getSupportFragmentManager())
-		vpPager.adapter = adapterViewPager
     }
+
+    override fun onSupportNavigateUp() =
+        navController.navigateUp()
 }

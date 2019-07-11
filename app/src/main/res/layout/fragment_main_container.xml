@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context=".Fragment.MainContainer">
+
+  <data>
+    <variable
+      name="vm"
+      type="team449.frc.scoutingappbase.TestViewModel" />
+    <variable
+      name="handler"
+      type="team449.frc.scoutingappbase.fragment.MainContainerFragment.Handler" />
+  </data>
+
+  <LinearLayout
+    style="@style/Background"
+    android:orientation="vertical">
+
+    <androidx.viewpager.widget.ViewPager
+      android:id="@+id/pager"
+      android:layout_width="match_parent"
+      android:layout_height="500dp" />
+
+    <Button
+      style="@style/Wrap"
+      android:onClick="@{handler::onClick}"
+      android:text="@{vm.name}" />
+
+  </LinearLayout>
+</layout>

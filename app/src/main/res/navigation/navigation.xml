@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation.xml">
+  xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation.xml"
+  app:startDestination="@id/mainContainerFragment">
 
+  <fragment
+    android:id="@+id/mainContainerFragment"
+    android:name="team449.frc.scoutingappbase.fragment.MainContainerFragment"
+    android:label="MainContainerFragment" >
+    <action
+      android:id="@+id/action_mainContainerFragment_to_altFragment"
+      app:destination="@id/altFragment"
+      app:enterAnim="@anim/nav_default_pop_enter_anim" />
+  </fragment>
+  <fragment
+    android:id="@+id/altFragment"
+    android:name="team449.frc.scoutingappbase.fragment.AltFragment"
+    android:label="AltFragment" >
+    <action
+      android:id="@+id/action_altFragment_to_mainContainerFragment"
+      app:destination="@id/mainContainerFragment" />
+  </fragment>
 </navigation>

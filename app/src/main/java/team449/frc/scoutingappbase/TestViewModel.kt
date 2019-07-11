@@ -10,4 +10,5 @@ class TestViewModel : ViewModel(){
     val checkbox: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>().apply { value = false }
     }
+    val team: MutableLiveData<Int> = MutableLiveData<Int>().apply { value = 5 }
 }
