@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import team449.frc.scoutingappbase.KeyboardHider.setupKeyboard
 
 abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
 
@@ -19,9 +20,14 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        val view: View = binding.root
         binding.lifecycleOwner = this
-        return view
+
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupKeyboard(view, activity)
+    }
 }

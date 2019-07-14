@@ -5,12 +5,16 @@
   tools:context=".Fragment.MainContainer">
 
   <data>
+    <import type="team449.frc.scoutingappbase.Conversions" />
     <variable
       name="vm"
-      type="team449.frc.scoutingappbase.TestViewModel" />
+      type="team449.frc.scoutingappbase.model.TestViewModel" />
     <variable
       name="handler"
       type="team449.frc.scoutingappbase.fragment.MainContainerFragment.Handler" />
+    <variable
+      name="page"
+      type="int" />
   </data>
 
   <LinearLayout
@@ -18,9 +22,11 @@
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
-      android:id="@+id/pager"
+      android:id="@+id/viewPager"
       android:layout_width="match_parent"
-      android:layout_height="500dp" />
+      android:layout_height="0dp"
+      android:layout_weight="1"/>
+
     <Button
       style="@style/Wrap"
       android:onClick="@{handler::other}"
@@ -28,16 +34,28 @@
 
     <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="@dimen/bottomNavHeight"
+      android:elevation="8dp"
+      android:background="#282828"
+      android:gravity="center_vertical"
       android:orientation="horizontal">
-      <ImageView
-        style="@style/Wrap"
-        android:src="@drawable/ic_prev"/>
 
-      <TextView
-        style="@style/Text"
+      <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:onClick="@{handler::prev}"
-        android:text="Prev" />
+        android:visibility="@{Conversions.visibliltyByString(Conversions.prevPage(page))}">
+        <ImageView
+          style="@style/Wrap"
+          android:src="@drawable/ic_prev"
+          android:tint="@color/primaryLightColor"/>
+        <TextView
+          style="@style/Text"
+          android:textColor="@color/primaryLightColor"
+          android:text="@{Conversions.prevPage(page)}" />
+      </LinearLayout>
 
       <com.google.android.material.tabs.TabLayout
         android:id="@+id/pageDots"
@@ -45,17 +63,24 @@
         android:layout_height="wrap_content"
         app:tabBackground="@drawable/page_selector"
         app:tabGravity="center"
-        android:layout_weight="1"
         app:tabIndicatorHeight="0dp"/>
 
-      <TextView
-        style="@style/Text"
+      <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical|end"
         android:onClick="@{handler::next}"
-        android:text="Next" />
-
-      <ImageView
-        style="@style/Wrap"
-        android:src="@drawable/ic_next"/>
+        android:visibility="@{Conversions.visibliltyByString(Conversions.nextPage(page))}">
+        <TextView
+          style="@style/Text"
+          android:textColor="@color/secondaryLightColor"
+          android:text="@{Conversions.nextPage(page)}" />
+        <ImageView
+          style="@style/Wrap"
+          android:src="@drawable/ic_next"
+          android:tint="@color/secondaryLightColor"/>
+      </LinearLayout>
     </LinearLayout>
 
 

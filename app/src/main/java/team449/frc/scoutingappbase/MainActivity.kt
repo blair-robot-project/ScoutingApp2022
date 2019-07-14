@@ -1,20 +1,13 @@
 package team449.frc.scoutingappbase
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CheckBox
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentFactory
-import androidx.viewpager.widget.ViewPager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import team449.frc.scoutingappbase.databinding.ActivityMainBinding
-import team449.frc.scoutingappbase.fragment.MainContainerFragment
+import team449.frc.scoutingappbase.model.TestViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val model = ViewModelProviders.of(this).get(TestViewModel::class.java)
         binding.vm = model
 
+        KeyboardHider.setupKeyboard(binding.root, this)
     }
 
     override fun onSupportNavigateUp() =

@@ -1,5 +1,6 @@
 package team449.frc.scoutingappbase;
 
+import android.view.View;
 import androidx.databinding.InverseMethod;
 
 public class Conversions {
@@ -13,4 +14,16 @@ public class Conversions {
         return b;
     }
 
+    private static String[] pageNames = {"Prematch","Auto","Teleop","Endgame"};
+
+    public static String prevPage(int currPage) {
+        return currPage > 0 ? pageNames[currPage - 1] : "";
+    }
+    public static String nextPage(int currPage) {
+        return currPage < pageNames.length - 1 ? pageNames[currPage + 1] : "";
+    }
+
+    public static int visibliltyByString(String s) {
+        return s.isEmpty() ? View.INVISIBLE : View.VISIBLE;
+    }
 }

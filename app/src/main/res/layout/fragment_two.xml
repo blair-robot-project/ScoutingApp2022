@@ -8,7 +8,7 @@
     <import type="team449.frc.scoutingappbase.Conversions"/>
     <variable
       name="vm"
-      type="team449.frc.scoutingappbase.TestViewModel" />
+      type="team449.frc.scoutingappbase.model.TestViewModel" />
   </data>
 
   <androidx.appcompat.widget.LinearLayoutCompat

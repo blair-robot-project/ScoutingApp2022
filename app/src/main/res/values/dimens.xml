@@ -9,6 +9,9 @@
   <dimen name="primaryTextSize">24sp</dimen>
   <dimen name="titleTextSize">40sp</dimen>
 
+  <!--Sizing-->
+  <dimen name="bottomNavHeight">50dp</dimen>
+
   <!--Elements-->
   <dimen name="textBoxMaxLines">3</dimen>
   <dimen name="helpPadding">13dp</dimen>

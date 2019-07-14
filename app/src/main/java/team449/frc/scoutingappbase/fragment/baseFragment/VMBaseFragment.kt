@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProviders
 import team449.frc.scoutingappbase.BR
-import team449.frc.scoutingappbase.TestViewModel
+import team449.frc.scoutingappbase.model.TestViewModel
 
 
 abstract class VMBaseFragment<B: ViewDataBinding> : BaseFragment<B>() {
@@ -19,5 +19,4 @@ abstract class VMBaseFragment<B: ViewDataBinding> : BaseFragment<B>() {
         }
         binding.setVariable(BR.vm,viewModel)
     }
-
 }
