@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context=".fragment.AutoFragment">
+
+  <data>
+    <import type="team449.frc.scoutingappbase.Conversions"/>
+    <variable
+      name="vm"
+      type="team449.frc.scoutingappbase.model.MatchViewModel" />
+  </data>
+
+  <LinearLayout
+    style="@style/Match"
+    android:orientation="vertical">
+
+    <CheckBox
+      style="@style/Checkbox"
+      android:text="@{vm.name}"
+      android:checked="@={Conversions.unbox(vm.checkbox)}"/>
+
+  </LinearLayout>
+</layout>

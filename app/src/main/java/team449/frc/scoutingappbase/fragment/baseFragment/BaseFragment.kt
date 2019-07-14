@@ -22,12 +22,10 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val view: View = binding.root
 
         setupKeyboard(view, activity)
+
+        return view
     }
 }

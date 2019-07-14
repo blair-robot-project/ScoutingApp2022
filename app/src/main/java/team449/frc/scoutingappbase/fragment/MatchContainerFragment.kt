@@ -7,16 +7,21 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.google.android.material.tabs.TabLayout
+import team449.frc.scoutingappbase.MatchPagerAdapter
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.TestPagerAdapter
-import team449.frc.scoutingappbase.databinding.FragmentMainContainerBinding
+import team449.frc.scoutingappbase.databinding.FragmentMatchContainerBinding
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment
 import kotlin.math.max
 import kotlin.math.min
 
+interface MatchContainerFragmentClickHandler {
+    fun next(view: View)
+    fun prev(view: View)
+    fun other(view: View)
+}
 
-class MainContainerFragment : VMBaseFragment<FragmentMainContainerBinding>() {
-    override val layoutId: Int = R.layout.fragment_main_container
+class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), MatchContainerFragmentClickHandler {
+    override val layoutId: Int = R.layout.fragment_match_container
 
     private lateinit var viewPagerAdapter: FragmentPagerAdapter
     private lateinit var viewPager: ViewPager
@@ -26,9 +31,9 @@ class MainContainerFragment : VMBaseFragment<FragmentMainContainerBinding>() {
 
         viewPager = view.findViewById(R.id.viewPager)
 
-        binding.handler = Handler(this)
+        binding.handler = this
 
-        viewPagerAdapter = TestPagerAdapter(childFragmentManager)
+        viewPagerAdapter = MatchPagerAdapter(childFragmentManager)
         viewPager.adapter = viewPagerAdapter
         viewPager.addOnPageChangeListener(object : OnPageChangeListener {
             override fun onPageSelected(position: Int) { binding.page = position }
@@ -41,14 +46,7 @@ class MainContainerFragment : VMBaseFragment<FragmentMainContainerBinding>() {
     }
 
     private fun changePage(page: Int) { viewPager.currentItem = page }
-    fun next() = changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1))
-    fun prev() = changePage(max(viewPager.currentItem - 1, 0))
-    fun other() = findNavController().navigate(R.id.action_mainContainerFragment_to_altFragment)
-
-    @Suppress("UNUSED_PARAMETER")
-    class Handler(private val frag: MainContainerFragment) {
-        fun next(view: View) = frag.next()
-        fun prev(view: View) = frag.prev()
-        fun other(view: View) = frag.other()
-    }
+    override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1)) }
+    override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
+    override fun other(view: View) { findNavController().navigate(R.id.action_mainContainerFragment_to_altFragment) }
 }

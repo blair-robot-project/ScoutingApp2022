@@ -2,16 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  tools:context=".Fragment.MainContainer">
+  tools:context=".fragment.MatchContainerFragment">
 
   <data>
     <import type="team449.frc.scoutingappbase.Conversions" />
     <variable
       name="vm"
-      type="team449.frc.scoutingappbase.model.TestViewModel" />
+      type="team449.frc.scoutingappbase.model.MatchViewModel" />
     <variable
       name="handler"
-      type="team449.frc.scoutingappbase.fragment.MainContainerFragment.Handler" />
+      type="team449.frc.scoutingappbase.fragment.MatchContainerFragmentClickHandler" />
     <variable
       name="page"
       type="int" />
@@ -21,16 +21,28 @@
     style="@style/Background"
     android:orientation="vertical">
 
-    <androidx.viewpager.widget.ViewPager
-      android:id="@+id/viewPager"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"/>
+    <TextView
+      style="@style/Text"
+      android:text="@{vm.name}"/>
+
+    <EditText
+      style="@style/EditText"
+      android:text="@={vm.name}" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+      style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.checkbox)}" />
 
     <Button
       style="@style/Wrap"
       android:onClick="@{handler::other}"
       android:text="other" />
+
+    <androidx.viewpager.widget.ViewPager
+      android:id="@+id/viewPager"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"/>
 
     <LinearLayout
       android:layout_width="match_parent"
@@ -81,8 +93,8 @@
           android:src="@drawable/ic_next"
           android:tint="@color/secondaryLightColor"/>
       </LinearLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
   </LinearLayout>
 </layout>

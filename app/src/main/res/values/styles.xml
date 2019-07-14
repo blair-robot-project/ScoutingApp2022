@@ -14,6 +14,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="Match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 
     <style name="Background">
         <item name="android:background">@color/background</item>
@@ -36,7 +41,7 @@
 
 
     <!--Elements-->
-    <style name="Checkbox" parent="Wrap">
+    <style name="Checkbox" parent="Text">
         <item name="android:buttonTint">@color/fieldsColor</item>
         <item name="android:padding">15dp</item>
     </style>
@@ -64,9 +69,7 @@
         <item name="android:maxLines">@dimen/textBoxMaxLines</item>
     </style>
 
-    <style name="Help">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="Help" parent="Wrap">
         <item name="android:padding">@dimen/helpPadding</item>
         <item name="android:src">@drawable/ic_help</item>
         <item name="android:contentDescription">\?</item>
