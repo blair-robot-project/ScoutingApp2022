@@ -16,8 +16,8 @@
 
     <CheckBox
       style="@style/Checkbox"
-      android:text="@{vm.name}"
-      android:checked="@={Conversions.unbox(vm.checkbox)}"/>
+      android:text="Moved forward?"
+      android:checked="@={Conversions.unbox(vm.autoMove)}"/>
 
   </LinearLayout>
 </layout>

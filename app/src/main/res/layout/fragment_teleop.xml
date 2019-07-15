@@ -14,14 +14,10 @@
     style="@style/Match"
     android:orientation="vertical">
 
-    <TextView
-      style="@style/Text"
-      android:text="@{vm.team.toString()}"/>
-
     <CheckBox
       style="@style/Checkbox"
-      android:text="@{vm.name}"
-      android:checked="@={Conversions.unbox(vm.checkbox)}"/>
+      android:text="Placed a piece?"
+      android:checked="@={Conversions.unbox(vm.placedAThing)}"/>
 
   </LinearLayout>
 </layout>

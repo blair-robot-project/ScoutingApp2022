@@ -21,23 +21,27 @@
     style="@style/Background"
     android:orientation="vertical">
 
-    <TextView
-      style="@style/Text"
-      android:text="@{vm.name}"/>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal" >
 
-    <EditText
-      style="@style/EditText"
-      android:text="@={vm.name}" />
+      <TextView
+        style="@style/Text"
+        android:text="@{vm.teamId.toString()}"/>
+      <TextView
+        style="@style/Text"
+        android:text="@{vm.matchId.toString()}"/>
+      <Button
+        style="@style/Wrap"
+        android:onClick="@{handler::sumbit}"
+        android:text="sumbit" />
+    </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-      style="@style/Checkbox"
-      android:checked="@={Conversions.unbox(vm.checkbox)}" />
-
-    <Button
-      style="@style/Wrap"
-      android:onClick="@{handler::other}"
-      android:text="other" />
-
+    <!--To make the overscroll ripple not get clipped by the header:
+          Put this all in a constraint layout. Put the view pager first, constrain it to parent top and top of bottom nav
+          Add enough paddingTop to clear the header
+          Make custom ViewPager class that fixes onDraw to fake out padding so height calculations are accurate-->
     <androidx.viewpager.widget.ViewPager
       android:id="@+id/viewPager"
       android:layout_width="match_parent"
@@ -93,7 +97,6 @@
           android:src="@drawable/ic_next"
           android:tint="@color/secondaryLightColor"/>
       </LinearLayout>
-
     </LinearLayout>
 
   </LinearLayout>

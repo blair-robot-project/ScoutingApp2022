@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.NumberPicker
 
 object KeyboardHider {
     // Hide keyboard when user clicks outside edit text
@@ -19,7 +20,7 @@ object KeyboardHider {
 
     fun setupKeyboard(view: View, activity: Activity?) {
         // Set up touch listener for non-text box views to hide keyboard.
-        if (view !is EditText) view.setOnTouchListener { _, _ -> hideSoftKeyboard(activity); false }
+        if (view !is EditText && view !is NumberPicker) view.setOnTouchListener { _, _ -> hideSoftKeyboard(activity); false }
 
         // If a layout container, iterate over children and seed recursion.
         if (view is ViewGroup) for (i in 0 until view.childCount) setupKeyboard(view.getChildAt(i), activity)

@@ -14,7 +14,8 @@ public class Conversions {
         return b;
     }
 
-    private static String[] pageNames = {"Prematch","Auto","Teleop","Endgame"};
+    // This should probably be a resource, but then that requires having context
+    private static String[] pageNames = {"Prematch","Auto","Teleop","Endgame","General"};
 
     public static String prevPage(int currPage) {
         return currPage > 0 ? pageNames[currPage - 1] : "";

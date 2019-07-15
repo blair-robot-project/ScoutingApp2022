@@ -4,6 +4,7 @@
   tools:context=".fragment.PrematchFragment" >
 
   <data>
+    <import type="team449.frc.scoutingappbase.Conversions" />
     <variable
       name="vm"
       type="team449.frc.scoutingappbase.model.MatchViewModel" />
@@ -13,14 +14,33 @@
     style="@style/Match"
     android:orientation="vertical">
 
-    <TextView
-      style="@style/Text"
-      android:text="@{vm.name}"/>
-
     <EditText
       style="@style/EditText"
       android:id="@+id/message"
-      android:text="@={vm.name}"/>
+      android:text="@={vm.scoutName}"/>
+
+    <TextView
+      style="@style/Text"
+      android:text="Team:"/>
+
+    <Spinner
+      style="@style/Wrap"
+      android:entries="@array/teams"
+      android:selectedItemPosition="@={vm.teamId}"/>
+
+    <TextView
+      style="@style/Text"
+      android:text="Match:"/>
+
+    <Spinner
+      style="@style/Wrap"
+      android:entries="@array/matches"
+      android:selectedItemPosition="@={vm.matchId}"/>
+
+    <CheckBox
+      style="@style/Checkbox"
+      android:text="No show?"
+      android:checked="@={Conversions.unbox(vm.noShow)}"/>
 
   </LinearLayout>
 </layout>
