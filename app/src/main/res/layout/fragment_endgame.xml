@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  tools:context=".fragment.AutoFragment">
+  tools:context=".fragment.EndgameFragment">
 
   <data>
     <import type="team449.frc.scoutingappbase.databinding.Conversions"/>
@@ -15,8 +15,8 @@
 
     <CheckBox
       style="@style/Checkbox"
-      android:text="@string/moved_prompt"
-      android:checked="@={Conversions.unbox(vm.autoMove)}"/>
+      android:text="@string/climbed_prompt"
+      android:checked="@={Conversions.unbox(vm.climbed)}"/>
 
   </LinearLayout>
 </layout>

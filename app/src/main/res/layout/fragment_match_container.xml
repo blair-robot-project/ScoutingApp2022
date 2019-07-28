@@ -22,20 +22,27 @@
     android:orientation="vertical">
 
     <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal" >
+      style="@style/MatchWidth"
+      android:orientation="horizontal"
+      android:layout_margin="@dimen/edgeMargin" >
 
       <TextView
-        style="@style/Text"
-        android:text="@{Conversions.spinnerToTeam(vm.teamId)}"/>
-      <Button
-        style="@style/Wrap"
-        android:onClick="@{handler::sumbit}"
-        android:text="sumbit" />
-      <TextView
-        style="@style/Text"
+        style="@style/Text.Title"
         android:text="@{Conversions.spinnerToMatch(vm.matchId)}"/>
+
+      <!--<Button-->
+        <!--style="@style/Wrap"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:onClick="@{handler::sumbit}"-->
+        <!--android:text="sumbit" />-->
+      <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+      <TextView
+        style="@style/Text.Title"
+        android:text="@{Conversions.spinnerToTeam(vm.teamId)}"/>
     </LinearLayout>
 
     <!--To make the overscroll ripple not get clipped by the header:
@@ -66,17 +73,16 @@
         <ImageView
           style="@style/Wrap"
           android:src="@drawable/ic_prev"
-          android:tint="@color/primaryLightColor"/>
+          android:tint="@color/secondaryLightColor"/>
         <TextView
           style="@style/Text"
-          android:textColor="@color/primaryLightColor"
+          android:textColor="@color/secondaryLightColor"
           android:text="@{Conversions.prevPage(page)}" />
       </LinearLayout>
 
       <com.google.android.material.tabs.TabLayout
         android:id="@+id/pageDots"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Wrap"
         app:tabBackground="@drawable/page_selector"
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp"/>

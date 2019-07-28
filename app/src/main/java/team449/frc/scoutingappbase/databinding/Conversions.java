@@ -46,10 +46,15 @@ public class Conversions {
         return -1;
     }
 
+    private static String spinnerToLabel(Integer ind, String[] arr, String ifNumeric){
+        String label = arr[unbox(ind)];
+        if (label.matches("\\d+(?:\\.\\d+)?")) return ifNumeric + label;
+        return label;
+    }
     public static String spinnerToTeam(Integer ind) {
-        return StaticResources.teams[unbox(ind)];
+        return spinnerToLabel(ind, StaticResources.teams, "Team ");
     }
     public static String spinnerToMatch(Integer ind) {
-        return StaticResources.matches[unbox(ind)];
+        return spinnerToLabel(ind, StaticResources.matches, "Match ");
     }
 }

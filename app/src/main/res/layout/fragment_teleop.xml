@@ -11,12 +11,11 @@
   </data>
 
   <LinearLayout
-    style="@style/Match"
-    android:orientation="vertical">
+    style="@style/PageContainer">
 
     <CheckBox
       style="@style/Checkbox"
-      android:text="Placed a piece?"
+      android:text="@string/placed_prompt"
       android:checked="@={Conversions.unbox(vm.placedAThing)}"/>
 
   </LinearLayout>

@@ -12,13 +12,12 @@
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    style="@style/Match"
-    android:padding="@dimen/edgeMargin">
+    style="@style/PageContainer">
 
     <EditText
       android:id="@+id/scoutName"
       style="@style/EditText"
-      android:hint="Scout Name"
+      android:hint="@string/name_hint"
       android:text="@={vm.scoutName}"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +32,7 @@
     <TextView
       android:id="@+id/teamText"
       style="@style/Text"
-      android:text="Team:"
+      android:text="@string/team_prompt"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/scoutNameDiv" />
 
@@ -57,7 +56,7 @@
     <TextView
       android:id="@+id/matchText"
       style="@style/Text"
-      android:text="Match:"
+      android:text="@string/match_prompt"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/teamDiv" />
 
@@ -80,28 +79,28 @@
     <TextView
       android:id="@+id/allianceColorText"
       style="@style/Text"
-      android:text="Alliance Color"
+      android:text="@string/alliance_prompt"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/matchDiv" />
 
     <RadioGroup
       android:id="@+id/allianceColor"
-      style="@style/Wrap"
-      android:orientation="horizontal"
+      style="@style/RadioGroup"
+      android:checkedButton="@={Conversions.radioIndexToId(vm.alliance)}"
       app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
-      app:layout_constraintStart_toStartOf="@id/team"
+      app:layout_constraintStart_toEndOf="@id/allianceColorText"
       app:layout_constraintTop_toTopOf="@id/allianceColorText">
 
       <RadioButton
-        android:id="@+id/redAlliance"
+        android:id="@+id/r0"
         style="@style/RadioButton"
-        android:text="RED"
+        android:text="@string/alliance_red"
         android:textColor="@color/red" />
 
       <RadioButton
-        android:id="@+id/blueAlliance"
+        android:id="@+id/r1"
         style="@style/RadioButton"
-        android:text="BLUE"
+        android:text="@string/alliance_blue"
         android:textColor="@color/blue" />
     </RadioGroup>
 
@@ -115,7 +114,7 @@
       android:id="@+id/noShow"
       style="@style/Checkbox"
       android:checked="@={Conversions.unbox(vm.noShow)}"
-      android:text="No show?"
+      android:text="@string/noshow_prompt"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/allianceColorDiv" />
 
@@ -128,14 +127,13 @@
     <TextView
       android:id="@+id/preloadText"
       style="@style/Text"
-      android:text="Preloaded Piece"
+      android:text="@string/preload_prompt"
       app:layout_constraintTop_toBottomOf="@id/noShowDiv"
       app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
-      style="@style/Wrap"
+      style="@style/RadioGroup"
       android:id="@+id/preload"
-      android:orientation="horizontal"
       android:checkedButton="@={Conversions.radioIndexToId(vm.preload)}"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -143,18 +141,18 @@
 
       <RadioButton
         style="@style/RadioButton"
-        android:id="@+id/r0"
-        android:text="None" />
+        android:id="@id/r0"
+        android:text="@string/preload_none" />
 
       <RadioButton
         style="@style/RadioButton"
-        android:id="@+id/r1"
-        android:text="Hatch" />
+        android:id="@id/r1"
+        android:text="@string/preload_A" />
 
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/r2"
-        android:text="Cargo" />
+        android:text="@string/preload_B" />
     </RadioGroup>
 
   </androidx.constraintlayout.widget.ConstraintLayout>

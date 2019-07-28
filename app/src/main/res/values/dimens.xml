@@ -3,12 +3,12 @@
   <!--Spacing-->
   <dimen name="edgeMargin">16dp</dimen>
   <dimen name="verticalFieldSpacing">30dp</dimen>
-  <dimen name="prematchFieldStartMargin">250dp</dimen>
+  <dimen name="prematchFieldStartMargin">150dp</dimen>
   <dimen name="radioButtonSpacing">25dp</dimen>
 
   <!--Text-->
   <dimen name="primaryTextSize">34sp</dimen>
-  <dimen name="titleTextSize">40sp</dimen>
+  <dimen name="titleTextSize">36sp</dimen>
 
   <!--Sizing-->
   <dimen name="bottomNavHeight">65dp</dimen>

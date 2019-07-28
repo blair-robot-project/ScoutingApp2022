@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  tools:context=".fragment.AutoFragment">
+  tools:context=".fragmentGeneralFragment">
 
   <data>
     <import type="team449.frc.scoutingappbase.databinding.Conversions"/>
@@ -13,10 +13,12 @@
   <LinearLayout
     style="@style/PageContainer">
 
-    <CheckBox
-      style="@style/Checkbox"
-      android:text="@string/moved_prompt"
-      android:checked="@={Conversions.unbox(vm.autoMove)}"/>
+    <EditText
+      android:id="@+id/comments"
+      style="@style/EditText"
+      android:hint="@string/comments_hint"
+      android:text="@={vm.comments}"
+      android:inputType="text"/>
 
   </LinearLayout>
 </layout>

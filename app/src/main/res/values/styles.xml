@@ -25,10 +25,14 @@
     </style>
 
 
-    <style name="Background">
+    <style name="PageContainer" parent="Match">
+        <item name="android:padding">@dimen/edgeMargin</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+
+    <style name="Background" parent="Match">
         <item name="android:background">@color/background</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
     </style>
 
 
@@ -53,6 +57,10 @@
     <style name="Checkbox.LongHitbox" parent="Checkbox">
         <item name="android:text">----------------------------------------</item>
         <item name="android:textColor">@color/background</item>
+    </style>
+
+    <style name="RadioGroup" parent="Wrap">
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="RadioButton" parent="Text">
