@@ -9,8 +9,9 @@
   <color name="secondaryDarkColor">#005662</color>
 
   <!--Dark-->
-  <color name="background">#121212</color>
-  <color name="surface">#121212</color>
+  <color name="background">#0a0a0a</color>
+  <color name="surface">#0a0a0a</color>
+  <color name="elevated">#1a1a1a</color>
   <color name="error">#cf6679</color>
 
   <!--Light-->
@@ -21,14 +22,17 @@
   <color name="onLight">@color/black</color>
 
   <!--Text-->
-  <color name="primaryTextColor">@color/white</color>
-  <color name="darkTextColor">@color/black</color>
+  <color name="primaryTextColor">@color/onDark</color>
+  <color name="darkTextColor">@color/onLight</color>
   <color name="hintText">#9fff</color>
 
   <!--Elements-->
+  <color name="bottomNavColor">@color/elevated</color>
   <color name="buttonBg">@color/secondaryColor</color>
   <color name="fieldsColor">@color/secondaryLightColor</color>
-  <color name="helpIcColor">#eee</color>
+  <color name="helpIcColor">@color/white</color>
+  <color name="spinnerBg">@color/elevated</color>
+  <color name="spinnerArrow">@color/secondaryColor</color>
 
   <!--Named colors-->
   <color name="white">#fff</color>

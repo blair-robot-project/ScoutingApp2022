@@ -5,7 +5,7 @@
   tools:context=".fragment.MatchContainerFragment">
 
   <data>
-    <import type="team449.frc.scoutingappbase.Conversions" />
+    <import type="team449.frc.scoutingappbase.databinding.Conversions" />
     <variable
       name="vm"
       type="team449.frc.scoutingappbase.model.MatchViewModel" />
@@ -51,8 +51,8 @@
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="@dimen/bottomNavHeight"
-      android:elevation="8dp"
-      android:background="#282828"
+      android:elevation="@dimen/bottomNavElev"
+      android:background="@color/bottomNavColor"
       android:gravity="center_vertical"
       android:orientation="horizontal">
 

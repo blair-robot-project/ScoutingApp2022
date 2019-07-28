@@ -11,6 +11,7 @@ class MatchViewModel : ViewModel(){
     val matchId by lazy { mutableLiveData(0) }
     val alliance by lazy { mutableLiveData(0) }
     val noShow by lazy { mutableLiveData(false) }
+    val preload by lazy { mutableLiveData(-1) }
     val autoMove by lazy { mutableLiveData(false) }
     val placedAThing by lazy { mutableLiveData(false) }
 }

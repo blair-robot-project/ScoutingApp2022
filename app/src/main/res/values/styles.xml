@@ -19,6 +19,11 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="MatchWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 
     <style name="Background">
         <item name="android:background">@color/background</item>
@@ -43,7 +48,6 @@
     <!--Elements-->
     <style name="Checkbox" parent="Text">
         <item name="android:buttonTint">@color/fieldsColor</item>
-        <item name="android:padding">15dp</item>
     </style>
 
     <style name="Checkbox.LongHitbox" parent="Checkbox">
@@ -53,9 +57,7 @@
 
     <style name="RadioButton" parent="Text">
         <item name="android:buttonTint">@color/fieldsColor</item>
-        <item name="android:paddingLeft">5dp</item>
         <item name="android:layout_marginEnd">@dimen/radioButtonSpacing</item>
-        <item name="android:layout_marginStart">@dimen/radioButtonSpacing</item>
     </style>
 
     <style name="EditText" parent="Text">
@@ -67,6 +69,23 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:inputType">textMultiLine</item>
         <item name="android:maxLines">@dimen/textBoxMaxLines</item>
+    </style>
+
+    <style name="SpinnerStyle" parent="Wrap">
+        <item name="android:layout_width">@dimen/spinnerWidth</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/primaryTextSize</item>
+    </style>
+
+    <style name="SpinnerTheme">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/primaryTextSize</item>
+        <item name="android:backgroundTint">@color/spinnerBg</item>
+        <item name="backgroundTint">@color/spinnerArrow</item>
+    </style>
+
+    <style name="Divider" parent="MatchWidth">
+        <item name="android:layout_height">@dimen/verticalFieldSpacing</item>
     </style>
 
     <style name="Help" parent="Wrap">
