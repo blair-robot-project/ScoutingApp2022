@@ -7,4 +7,10 @@
     <item>Endgame</item>
     <item>General</item>
   </string-array>
+
+  <array name="radioIds">
+    <item>@id/r0</item>
+    <item>@id/r1</item>
+    <item>@id/r2</item>
+  </array>
 </resources>

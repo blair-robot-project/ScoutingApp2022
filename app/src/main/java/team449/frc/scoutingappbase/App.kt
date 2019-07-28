@@ -10,5 +10,6 @@ class App: Application() {
         StaticResources.pages = resources.getStringArray(R.array.pages)
         StaticResources.teams = resources.getStringArray(R.array.teams)
         StaticResources.matches = resources.getStringArray(R.array.matches)
+        StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
     }
 }

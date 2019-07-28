@@ -2,7 +2,6 @@ package team449.frc.scoutingappbase.databinding;
 
 import android.view.View;
 import androidx.databinding.InverseMethod;
-import team449.frc.scoutingappbase.R;
 import team449.frc.scoutingappbase.StaticResources;
 
 public class Conversions {
@@ -35,16 +34,22 @@ public class Conversions {
         return s.isEmpty() ? View.INVISIBLE : View.VISIBLE;
     }
 
-    private static int[] radioIds = {R.id.r0, R.id.r1, R.id.r2};
     @InverseMethod("radioIdToIndex")
-    public static int radioIndexToId(int ind) {
-        if (ind == -1) return 0;
-        return radioIds[ind];
+    public static int radioIndexToId(Integer ind) {
+        if (ind == null || ind == -1) return 0;
+        return StaticResources.radioIds.getResourceId(ind, 0);
     }
-    public static int radioIdToIndex(int id) {
-        for (int i=0; i < radioIds.length; i++) {
-            if (radioIds[i] == id) return i;
+    public static Integer radioIdToIndex(int id) {
+        for (int i=0; i < StaticResources.radioIds.length(); i++) {
+            if (StaticResources.radioIds.getResourceId(i, -1) == id) return i;
         }
         return -1;
+    }
+
+    public static String spinnerToTeam(Integer ind) {
+        return StaticResources.teams[unbox(ind)];
+    }
+    public static String spinnerToMatch(Integer ind) {
+        return StaticResources.matches[unbox(ind)];
     }
 }

@@ -136,7 +136,7 @@
       style="@style/Wrap"
       android:id="@+id/preload"
       android:orientation="horizontal"
-      android:checkedButton="@={Conversions.radioIndexToId(Conversions.unbox(vm.preload))}"
+      android:checkedButton="@={Conversions.radioIndexToId(vm.preload)}"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/preloadText">

@@ -28,14 +28,14 @@
 
       <TextView
         style="@style/Text"
-        android:text="@{vm.teamId.toString()}"/>
-      <TextView
-        style="@style/Text"
-        android:text="@{vm.matchId.toString()}"/>
+        android:text="@{Conversions.spinnerToTeam(vm.teamId)}"/>
       <Button
         style="@style/Wrap"
         android:onClick="@{handler::sumbit}"
         android:text="sumbit" />
+      <TextView
+        style="@style/Text"
+        android:text="@{Conversions.spinnerToMatch(vm.matchId)}"/>
     </LinearLayout>
 
     <!--To make the overscroll ripple not get clipped by the header:
