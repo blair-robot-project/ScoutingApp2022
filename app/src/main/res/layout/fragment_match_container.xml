@@ -30,11 +30,6 @@
         style="@style/Text.Title"
         android:text="@{Conversions.spinnerToMatch(vm.matchId)}"/>
 
-      <!--<Button-->
-        <!--style="@style/Wrap"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:onClick="@{handler::sumbit}"-->
-        <!--android:text="sumbit" />-->
       <View
         android:layout_width="0dp"
         android:layout_height="0dp"

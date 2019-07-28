@@ -68,6 +68,14 @@
         <item name="android:layout_marginEnd">@dimen/radioButtonSpacing</item>
     </style>
 
+    <style name="Button" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/primaryDarkColor</item>
+        <item name="android:textColor">@color/onDark</item>
+        <item name="android:textSize">@dimen/primaryTextSize</item>
+    </style>
+
     <style name="EditText" parent="Text">
         <item name="android:backgroundTint">@color/secondaryLightColor</item>
         <item name="android:layout_width">@dimen/editTextWidth</item>

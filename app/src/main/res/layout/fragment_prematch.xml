@@ -42,10 +42,10 @@
       android:entries="@array/teams"
       android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
       android:theme="@style/SpinnerTheme"
-      android:layout_marginStart="@dimen/prematchFieldStartMargin"
+      android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/teamText"
       app:layout_constraintTop_toTopOf="@id/teamText"
-      app:layout_constraintStart_toStartOf="parent"/>
+      app:layout_constraintStart_toEndOf="@id/teamText"/>
 
     <View
       android:id="@+id/teamDiv"
@@ -87,6 +87,7 @@
       android:id="@+id/allianceColor"
       style="@style/RadioGroup"
       android:checkedButton="@={Conversions.radioIndexToId(vm.alliance)}"
+      android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
       app:layout_constraintStart_toEndOf="@id/allianceColorText"
       app:layout_constraintTop_toTopOf="@id/allianceColorText">

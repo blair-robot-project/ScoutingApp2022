@@ -3,7 +3,7 @@
   <!--Spacing-->
   <dimen name="edgeMargin">16dp</dimen>
   <dimen name="verticalFieldSpacing">30dp</dimen>
-  <dimen name="prematchFieldStartMargin">150dp</dimen>
+  <dimen name="horizontalFieldSpacing">40dp</dimen>
   <dimen name="radioButtonSpacing">25dp</dimen>
 
   <!--Text-->

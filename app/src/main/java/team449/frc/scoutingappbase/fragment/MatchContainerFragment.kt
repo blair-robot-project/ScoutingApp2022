@@ -17,7 +17,6 @@ import kotlin.math.min
 interface MatchContainerFragmentClickHandler {
     fun next(view: View)
     fun prev(view: View)
-    fun sumbit(view: View)
 }
 
 class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), MatchContainerFragmentClickHandler {
@@ -48,5 +47,4 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
     private fun changePage(page: Int) { viewPager.currentItem = page }
     override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1)) }
     override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
-    override fun sumbit(view: View) { findNavController().navigate(R.id.action_mainContainerFragment_to_altFragment) }
 }
