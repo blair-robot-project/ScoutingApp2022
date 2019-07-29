@@ -30,7 +30,7 @@
   <color name="bottomNavColor">@color/elevated</color>
   <color name="buttonBg">@color/secondaryColor</color>
   <color name="fieldsColor">@color/secondaryLightColor</color>
-  <color name="helpIcColor">@color/white</color>
+  <color name="icColor">@color/white</color>
   <color name="spinnerBg">@color/elevated</color>
   <color name="spinnerArrow">@color/secondaryColor</color>
 
