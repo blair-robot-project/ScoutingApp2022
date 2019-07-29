@@ -32,4 +32,9 @@
 
 
   <!--Help-->
+
+
+  <!--Menu-->
+  <string name="action_bluetooth">Bluetooth</string>
+  <string name="action_settings">Settings</string>
 </resources>
