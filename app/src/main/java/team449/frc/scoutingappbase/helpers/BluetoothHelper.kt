@@ -4,19 +4,29 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothSocket
 import android.util.Log
 import java.io.IOException
+import java.io.InputStream
 import java.io.OutputStream
-import java.util.*
+import java.lang.Exception
+import java.lang.reflect.InvocationTargetException
 
-class BluetoothHelper {
+object BluetoothHelper {
+
+    private const val BUFFER_SIZE = 1024
 
     private val blueAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
     private var socket: BluetoothSocket? = null
     private var outputStream: OutputStream? = null
+    private var inputStream: InputStream? = null
 
     private var defaultMaster: String? = null //make this part of settings
 
     val isConnected: Boolean
-        get() = write(" ")
+        get() = try {
+            outputStream!!.write(" ".toByteArray())
+            true
+        } catch (e: Exception) {
+            false
+        }
 
     //These are the devices that the tablet is paired with
     val pairedDevices: List<String>
@@ -36,7 +46,7 @@ class BluetoothHelper {
         }
 
 //    @Throws(IOException::class)
-    @JvmOverloads //get rid of the overload to only connect to master
+    @JvmOverloads //get rid of the overload to only connect to master set in settings
     fun initializeConnection(targetMasterName: String? = defaultMaster) {
         defaultMaster = targetMasterName
         if (blueAdapter != null) {
@@ -45,23 +55,43 @@ class BluetoothHelper {
                 try {
                     val device = blueAdapter.bondedDevices.single { it.name == targetMasterName }
 
-                    Log.i("BTH.initConnection", "Attempting to connect to " + device.name)
-                    val uuids = device.uuids
+                    if (isConnected){
+                        Log.i("BTH.initConnection", "Closing old socket ...")
+                        socket?.close()
+                        socket = null
+                        Thread.sleep(500) // Wait for it to disconnect
+                    }
 
-                    //BluetoothSocket socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
+                    Log.i("BTH.initConnection", "Attempting to connect to " + device.name)
+
+                    //val uuids = device.uuids
+                    //device.createRfcommSocketToServiceRecord(uuids[0].uuid)
                     //Can't use this because it gives port of -1
                     //https://stackoverflow.com/questions/18657427/ioexception-read-failed-socket-might-closed-bluetooth-on-android-4-3
                     //See second answer
-                    socket = try {
-                        device.createRfcommSocketToServiceRecord(uuids[0].uuid)
-                    } catch (e: IOException) {
-                        device.javaClass.getMethod("createRfcommSocket", Integer::class.javaPrimitiveType).invoke(device, 1) as BluetoothSocket
-                    }
-                    //Errors that might come up (based on old app): IllegalAccessException, InvocationTargetException, NoSuchMethodException
+                    try {
+                        socket = device.javaClass.getMethod("createRfcommSocket", Integer::class.javaPrimitiveType).invoke(
+                            device,
+                            1
+                        ) as BluetoothSocket
+                        socket?.connect()
+                        outputStream = socket?.outputStream
+                        inputStream = socket?.inputStream
+                        if (socket != null) Log.i("BTH.initConnection", "Connected to " + device.name)
 
-                    socket?.connect()
-                    outputStream = socket?.outputStream
-                    if (socket != null) Log.i("BTH.initConnection", "Connected to " + device.name)
+                    } catch (e: InvocationTargetException) { // This raps another error from an invoke, I think it won't catch and the wrapped error is what would
+                        e.printStackTrace()
+                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (InvocationTargetException)")
+                    } catch (e: IllegalArgumentException) { // not seen yet
+                        e.printStackTrace()
+                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (IllegalArgumentException)")
+                    } catch (e: NoSuchElementException) { // not seen yet
+                        e.printStackTrace()
+                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (NoSuchElementException)")
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (IOException)")
+                    }
 
                 } catch (e: NoSuchElementException) {
                     Log.i("BTH.initConnection", "Target master device not found in paired devices")
@@ -89,14 +119,39 @@ class BluetoothHelper {
                 return true
             } catch (e: NullPointerException) {
                 e.printStackTrace()
-                Log.e("BTH.write", "outputStream is null")
+                Log.e("BTH.write", "Socket closed while writing (outputStream is null)")
+                socket?.close()
             } catch (e: IOException) {
                 e.printStackTrace()
-                Log.e("BTH.write", "IOExecption, socket is probably closed on the other end")
+                Log.e("BTH.write", "Socket closed while writing (IOException)")
+                socket?.close()
             }
         } else {
             Log.e("BTH.write", "Not connected to a device.")
         }
         return false
+    }
+
+    fun receive() {
+        Log.i("BTH.receive", "Receiving")
+        val buffer = ByteArray(BUFFER_SIZE)
+        var bytes = 0
+        var reading = true
+
+        while (reading) {
+            try {
+                bytes = inputStream!!.read(buffer, 0, BUFFER_SIZE - 0)
+                Log.i("num bytes",bytes.toString())
+                Log.i("buffer", String(buffer.copyOfRange(0, bytes)))
+            } catch (e: IOException) {
+                reading = false
+                e.printStackTrace()
+                Log.e("BTH.receive", "Socket disconnected while reading (IOE)")
+            } catch (e: NullPointerException) {
+                reading = false
+                e.printStackTrace()
+                Log.e("BTH.receive", "Socket disconnected while reading (NPE)")
+            }
+        }
     }
 }
