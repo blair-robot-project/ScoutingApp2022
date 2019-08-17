@@ -20,9 +20,11 @@ object BluetoothHelper {
 
     private var defaultMaster: String? = null //make this part of settings
 
+    private val connectionTest: ByteArray = ByteArray(1) {0}
+
     val isConnected: Boolean
         get() = try {
-            outputStream!!.write(" ".toByteArray())
+            outputStream!!.write(connectionTest)
             true
         } catch (e: Exception) {
             false

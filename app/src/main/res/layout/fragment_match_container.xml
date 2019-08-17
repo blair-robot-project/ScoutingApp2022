@@ -28,7 +28,7 @@
 
       <TextView
         style="@style/Text.Title"
-        android:text="@{Conversions.spinnerToMatch(vm.matchId)}"/>
+        android:text="@{Conversions.spinnerToMatch(vm.match.matchId)}"/>
 
       <View
         android:layout_width="0dp"
@@ -37,7 +37,7 @@
 
       <TextView
         style="@style/Text.Title"
-        android:text="@{Conversions.spinnerToTeam(vm.teamId)}"/>
+        android:text="@{Conversions.spinnerToTeam(vm.match.teamId)}"/>
     </LinearLayout>
 
     <!--To make the overscroll ripple not get clipped by the header:

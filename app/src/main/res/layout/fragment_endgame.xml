@@ -16,7 +16,7 @@
     <CheckBox
       style="@style/Checkbox"
       android:text="@string/climbed_prompt"
-      android:checked="@={Conversions.unbox(vm.climbed)}"/>
+      android:checked="@={Conversions.unbox(vm.match.climbed)}"/>
 
   </LinearLayout>
 </layout>

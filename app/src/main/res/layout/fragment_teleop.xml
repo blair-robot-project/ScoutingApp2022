@@ -16,7 +16,7 @@
     <CheckBox
       style="@style/Checkbox"
       android:text="@string/placed_prompt"
-      android:checked="@={Conversions.unbox(vm.placedAThing)}"/>
+      android:checked="@={Conversions.unbox(vm.match.placedAThing)}"/>
 
   </LinearLayout>
 </layout>

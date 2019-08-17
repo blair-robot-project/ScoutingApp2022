@@ -6,6 +6,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import team449.frc.scoutingappbase.helpers.BluetoothHelper
 import android.os.AsyncTask
+import android.util.Log
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import team449.frc.scoutingappbase.model.MatchViewModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +34,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_help -> {
             AsyncTask.execute {
-                BluetoothHelper.receive()
+                //BluetoothHelper.receive()
+                Log.i("Serialized",MessageFactory.serialize(ViewModelProviders.of(this).get(MatchViewModel::class.java)))
             }
             true
         }
