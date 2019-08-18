@@ -20,7 +20,7 @@ object BluetoothHelper {
 
     private var defaultMaster: String? = null //make this part of settings
 
-    private val connectionTest: ByteArray = ByteArray(1) {0}
+    private val connectionTest: ByteArray = ByteArray(0) {0}
 
     val isConnected: Boolean
         get() = try {
@@ -135,25 +135,29 @@ object BluetoothHelper {
     }
 
     fun receive() {
-        Log.i("BTH.receive", "Receiving")
-        val buffer = ByteArray(BUFFER_SIZE)
-        var bytes = 0
-        var reading = true
+        if (isConnected) {
+            Log.i("BTH.receive", "Receiving")
+            val buffer = ByteArray(BUFFER_SIZE)
+            var bytes: Int
+            var reading = true
 
-        while (reading) {
-            try {
-                bytes = inputStream!!.read(buffer, 0, BUFFER_SIZE - 0)
-                Log.i("num bytes",bytes.toString())
-                Log.i("buffer", String(buffer.copyOfRange(0, bytes)))
-            } catch (e: IOException) {
-                reading = false
-                e.printStackTrace()
-                Log.e("BTH.receive", "Socket disconnected while reading (IOE)")
-            } catch (e: NullPointerException) {
-                reading = false
-                e.printStackTrace()
-                Log.e("BTH.receive", "Socket disconnected while reading (NPE)")
+            while (reading) {
+                try {
+                    bytes = inputStream!!.read(buffer, 0, BUFFER_SIZE - 0)
+                    Log.i("num bytes", bytes.toString())
+                    Log.i("buffer", String(buffer.copyOfRange(0, bytes)))
+                } catch (e: IOException) {
+                    reading = false
+                    e.printStackTrace()
+                    Log.e("BTH.receive", "Socket disconnected while listening (IOE)")
+                } catch (e: NullPointerException) {
+                    reading = false
+                    e.printStackTrace()
+                    Log.e("BTH.receive", "Socket disconnected while listening (NPE)")
+                }
             }
+        } else {
+            Log.e("BTH.receive", "Bluetooth not connected")
         }
     }
 }

@@ -16,7 +16,7 @@
     <CheckBox
       style="@style/Checkbox"
       android:text="@string/moved_prompt"
-      android:checked="@={Conversions.unbox(vm.match.autoMove)}"/>
+      android:checked="@={Conversions.unbox(vm.autoMove)}"/>
 
   </LinearLayout>
 </layout>

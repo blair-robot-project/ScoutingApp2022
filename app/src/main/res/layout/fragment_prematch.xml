@@ -18,7 +18,7 @@
       android:id="@+id/scoutName"
       style="@style/EditText"
       android:hint="@string/name_hint"
-      android:text="@={vm.match.scoutName}"
+      android:text="@={vm.scoutName}"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
       android:id="@+id/team"
       style="@style/SpinnerStyle"
       android:entries="@array/teams"
-      android:selectedItemPosition="@={Conversions.unbox(vm.match.teamId)}"
+      android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
       android:theme="@style/SpinnerTheme"
       android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/teamText"
@@ -64,7 +64,7 @@
       android:id="@+id/match"
       style="@style/SpinnerStyle"
       android:entries="@array/matches"
-      android:selectedItemPosition="@={Conversions.unbox(vm.match.matchId)}"
+      android:selectedItemPosition="@={Conversions.unbox(vm.matchId)}"
       android:theme="@style/SpinnerTheme"
       app:layout_constraintBottom_toBottomOf="@id/matchText"
       app:layout_constraintStart_toStartOf="@id/team"
@@ -86,7 +86,7 @@
     <RadioGroup
       android:id="@+id/allianceColor"
       style="@style/RadioGroup"
-      android:checkedButton="@={Conversions.radioIndexToId(vm.match.alliance)}"
+      android:checkedButton="@={Conversions.radioIndexToId(vm.alliance)}"
       android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
       app:layout_constraintStart_toEndOf="@id/allianceColorText"
@@ -114,7 +114,7 @@
     <CheckBox
       android:id="@+id/noShow"
       style="@style/Checkbox"
-      android:checked="@={Conversions.unbox(vm.match.noShow)}"
+      android:checked="@={Conversions.unbox(vm.noShow)}"
       android:text="@string/noshow_prompt"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/allianceColorDiv" />
@@ -135,7 +135,7 @@
     <RadioGroup
       style="@style/RadioGroup"
       android:id="@+id/preload"
-      android:checkedButton="@={Conversions.radioIndexToId(vm.match.preload)}"
+      android:checkedButton="@={Conversions.radioIndexToId(vm.preload)}"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/preloadText">

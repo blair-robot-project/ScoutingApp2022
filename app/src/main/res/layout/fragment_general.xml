@@ -21,7 +21,7 @@
       android:id="@+id/comments"
       style="@style/EditText"
       android:hint="@string/comments_hint"
-      android:text="@={vm.match.comments}"
+      android:text="@={vm.comments}"
       android:inputType="text"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintStart_toStartOf="parent"/>
