@@ -13,12 +13,13 @@ import android.widget.NumberPicker
 object KeyboardHider {
     // Hide keyboard when user clicks outside edit text
     // https://stackoverflow.com/questions/4165414/how-to-hide-soft-keyboard-on-android-after-clicking-outside-edittext
-    private fun hideSoftKeyboard(activity: Activity?) {
+    private fun hideSoftKeyboard(activity: MainActivity?) {
         val inputMethodManager: InputMethodManager? = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
         inputMethodManager?.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+        activity?.hideNav()
     }
 
-    fun setupKeyboard(view: View, activity: Activity?) {
+    fun setupKeyboard(view: View, activity: MainActivity?) {
         // Set up touch listener for non-text box views to hide keyboard.
         if (view !is EditText && view !is NumberPicker) view.setOnTouchListener { _, _ -> hideSoftKeyboard(activity); false }
 

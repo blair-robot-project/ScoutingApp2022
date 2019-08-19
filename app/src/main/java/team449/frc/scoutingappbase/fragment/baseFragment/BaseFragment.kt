@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import team449.frc.scoutingappbase.KeyboardHider.setupKeyboard
+import team449.frc.scoutingappbase.MainActivity
 
 abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
 
@@ -24,7 +25,7 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
 
         val view: View = binding.root
 
-        setupKeyboard(view, activity)
+        setupKeyboard(view, activity as MainActivity?)
 
         return view
     }
