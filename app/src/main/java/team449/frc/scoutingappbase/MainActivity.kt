@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import team449.frc.scoutingappbase.helpers.BluetoothHelper
 import android.os.AsyncTask
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import team449.frc.scoutingappbase.model.MatchViewModel
 import team449.frc.scoutingappbase.model.MessageFactory
@@ -17,8 +16,8 @@ import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 import android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-
-
+import team449.frc.scoutingappbase.helpers.SubmitHelper
+import team449.frc.scoutingappbase.model.MatchShadow
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,9 +57,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_help -> {
-            AsyncTask.execute {
-                BluetoothHelper.receive()
-            }
+//            AsyncTask.execute {
+//                BluetoothHelper.receive()
+//            }
+            DataManager.logSerialized()
             true
         }
         R.id.action_bluetooth -> {
@@ -70,17 +70,16 @@ class MainActivity : AppCompatActivity() {
             true
         }
         R.id.action_settings -> {
-            AsyncTask.execute {
-                Log.i("Message",currentMatchMessage)
-                BluetoothHelper.write(currentMatchMessage)
-            }
+            SubmitHelper.submitMatch(matchViewModel, Runnable { Log.i("mainactivity","submitted data") })
             true
         }
         else -> super.onOptionsItemSelected(item)
     }
 
-    private val currentMatchMessage: String
-        get() = MessageFactory.makeModelMessage(ViewModelProviders.of(this).get(MatchViewModel::class.java))
+
+    private val matchViewModel: MatchViewModel
+        get() = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+
 
     override fun onBackPressed() {}
 

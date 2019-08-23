@@ -5,47 +5,44 @@ import androidx.lifecycle.ViewModel
 
 fun <T: Any?> mutableLiveData(initialValue: T) = MutableLiveData<T>().apply { postValue(initialValue) }
 
-class MatchViewModel : ViewModel(){
-    var timestamp: Long = 0
+class MatchViewModel : ViewModel() {
+    var timestamp = System.currentTimeMillis()
+    var revision = 0
 
-    lateinit var scoutName: MutableLiveData<String>
-    lateinit var teamId : MutableLiveData<Int>
-    lateinit var matchId: MutableLiveData<Int>
-    lateinit var alliance: MutableLiveData<Int>
-    lateinit var noShow: MutableLiveData<Boolean>
-    lateinit var preload: MutableLiveData<Int>
-    lateinit var autoMove: MutableLiveData<Boolean>
-    lateinit var placedAThing: MutableLiveData<Boolean>
-    lateinit var climbed: MutableLiveData<Boolean>
-    lateinit var comments: MutableLiveData<String>
+    // Prematch
+    val scoutName by lazy { mutableLiveData("") }
+    val teamId by lazy { mutableLiveData(0) }
+    val matchId by lazy { mutableLiveData(0) }
+    val alliance by lazy { mutableLiveData(-1) }
+    val noShow by lazy { mutableLiveData(false) }
+    val preload by lazy { mutableLiveData(-1) }
+    // Auto
+    val autoMove by lazy { mutableLiveData(false) }
+    // Teleop
+    val placedAThing by lazy { mutableLiveData(false) }
+    // Endgame
+    val climbed by lazy { mutableLiveData(false) }
+    // General
+    val comments by lazy { mutableLiveData("") }
 
-    init {
-        scoutName = mutableLiveData("")
-        matchId = mutableLiveData(0)
-        alliance = mutableLiveData(-1)
-        reset()
-    }
 
     fun reset() {
         timestamp = System.currentTimeMillis()
+        revision = 0
 
         // Prematch
-        teamId = mutableLiveData(0)
+        teamId.value = 0
         matchId.value = matchId.value?.plus(1)
-        noShow = mutableLiveData(false)
-        preload = mutableLiveData(-1)
-
+        noShow.value = false
+        preload.value = -1
         // Auto
-        autoMove = mutableLiveData(false)
-
+        autoMove.value = false
         // Teleop
-        placedAThing = mutableLiveData(false)
-
+        placedAThing.value = false
         // Endgame
-        climbed = mutableLiveData(false)
-
+        climbed.value = false
         // General
-        comments = mutableLiveData("")
+        comments.value = ""
     }
 }
 
@@ -53,6 +50,7 @@ class MatchViewModel : ViewModel(){
 // For serialization
 class MatchShadow (match: MatchViewModel) {
     val timestamp = match.timestamp
+    val revision = match.revision
 
     val scoutName = match.scoutName.value
     val teamId = match.teamId.value

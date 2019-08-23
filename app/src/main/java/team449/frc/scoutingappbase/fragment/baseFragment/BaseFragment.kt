@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import team449.frc.scoutingappbase.KeyboardHider.setupKeyboard
+import team449.frc.scoutingappbase.helpers.KeyboardHider.setupKeyboard
 import team449.frc.scoutingappbase.MainActivity
 
 abstract class BaseFragment<B: ViewDataBinding> : Fragment() {

@@ -19,9 +19,10 @@ object MessageFactory {
         return BigInteger(1, enc.digest()).toString(16)
     }
 
-    fun makeSerializedMessage(type: MessageType, body: String): String =
-        Gson().toJson(Message(type.name, body, genChecksum(body)))
+    fun serialize(data: Any) = Gson().toJson(data)
 
-    private fun serializeModel(model: MatchViewModel) = Gson().toJson(MatchShadow(model))
-    fun makeModelMessage(model: MatchViewModel) = makeSerializedMessage(MessageType.DATA, serializeModel(model))
+    fun makeSerializedMessage(type: MessageType, body: String): String =
+        serialize(Message(type.name, body, genChecksum(body)))
+
+    fun makeMatchDataMessage(model: MatchShadow) = makeSerializedMessage(MessageType.DATA, serialize(model))
 }
