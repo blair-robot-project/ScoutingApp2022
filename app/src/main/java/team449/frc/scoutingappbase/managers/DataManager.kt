@@ -6,34 +6,35 @@ import team449.frc.scoutingappbase.helpers.deserialize
 import team449.frc.scoutingappbase.helpers.readFromFile
 import team449.frc.scoutingappbase.helpers.serialize
 import team449.frc.scoutingappbase.helpers.writeToFile
+import team449.frc.scoutingappbase.model.Data
 import team449.frc.scoutingappbase.model.MatchShadow
 
 
 object DataManager {
-    private val saveFile = "data.json"
-    private var submittedData: MutableMap<String, MutableMap<String, MatchShadow>> = HashMap()
+    private const val saveFile = "data.json"
+    private var data = Data(HashMap(), ArrayList())
 
-    fun submit(data: MatchShadow) {
-        val key = data.timestamp.toString()
-        var match = submittedData[key]
-        if (match == null) {
-            match = HashMap()
-            submittedData[key] = match
+    fun submit(match: MatchShadow) {
+        val key = match.timestamp.toString()
+        var revMap = data.submitted[key]
+        if (revMap == null) {
+            revMap = HashMap()
+            data.submitted[key] = revMap
         }
-        match[data.revision.toString()] = data
+        revMap[match.revision.toString()] = match
         AsyncTask.execute(this::save)
     }
 
     fun logSerialized() {
-        Log.i("submittedData", serialize(submittedData))
+        Log.i("submittedData", serialize(data))
     }
 
     fun save() {
-        writeToFile(saveFile, serialize(submittedData))
+        writeToFile(saveFile, serialize(data))
     }
 
     fun load() {
-        val data = readFromFile(saveFile)
-        if (data != null) submittedData = deserialize(data)
+        val f = readFromFile(saveFile)
+        if (f != null) data = deserialize(f)
     }
 }
