@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         StaticResources.teams = resources.getStringArray(R.array.teams)
         StaticResources.matches = resources.getStringArray(R.array.matches)
         StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
+        StaticResources.filesDir = filesDir
 
         hideNav()
     }

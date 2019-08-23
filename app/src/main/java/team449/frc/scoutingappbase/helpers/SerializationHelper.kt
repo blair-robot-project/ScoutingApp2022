@@ -7,8 +7,8 @@ import team449.frc.scoutingappbase.model.MatchShadow
 
 fun serialize(data: Any) = Gson().toJson(data)
 
-private val type = object : TypeToken<MutableMap<String, MutableSet<MatchShadow>>>() { }.type
+private val type = object : TypeToken<MutableMap<String, MutableMap<String, MatchShadow>>>() { }.type
 
-fun deserialize(json: String): MutableMap<String, MutableSet<MatchShadow>> {
+fun deserialize(json: String): MutableMap<String, MutableMap<String, MatchShadow>> {
     return Gson().fromJson(json, type)
 }
