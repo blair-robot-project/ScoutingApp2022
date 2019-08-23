@@ -1,4 +1,4 @@
-package team449.frc.scoutingappbase.helpers
+package team449.frc.scoutingappbase.managers
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothSocket
@@ -9,7 +9,7 @@ import java.io.OutputStream
 import java.lang.Exception
 import java.lang.reflect.InvocationTargetException
 
-object BluetoothHelper {
+object BluetoothManager {
 
     private const val BUFFER_SIZE = 1024
 

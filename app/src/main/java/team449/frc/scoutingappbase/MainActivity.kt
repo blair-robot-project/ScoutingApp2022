@@ -1,23 +1,17 @@
 package team449.frc.scoutingappbase
 
+import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.*
 import androidx.appcompat.app.AppCompatActivity
-import team449.frc.scoutingappbase.helpers.BluetoothHelper
-import android.os.AsyncTask
-import android.util.Log
 import androidx.lifecycle.ViewModelProviders
+import team449.frc.scoutingappbase.managers.BluetoothManager
+import team449.frc.scoutingappbase.helpers.submitMatch
+import team449.frc.scoutingappbase.managers.DataManager
 import team449.frc.scoutingappbase.model.MatchViewModel
-import team449.frc.scoutingappbase.model.MessageFactory
-import android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
-import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-import team449.frc.scoutingappbase.helpers.SubmitHelper
-import team449.frc.scoutingappbase.model.MatchShadow
 
 
 class MainActivity : AppCompatActivity() {
@@ -58,19 +52,21 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_help -> {
 //            AsyncTask.execute {
-//                BluetoothHelper.receive()
+//                BluetoothManager.receive()
 //            }
+            DataManager.logSerialized()
+            DataManager.load()
             DataManager.logSerialized()
             true
         }
         R.id.action_bluetooth -> {
             AsyncTask.execute {
-                BluetoothHelper.initializeConnection("essuomelpmap")
+                BluetoothManager.initializeConnection("essuomelpmap")
             }
             true
         }
         R.id.action_settings -> {
-            SubmitHelper.submitMatch(matchViewModel, Runnable { Log.i("mainactivity","submitted data") })
+            submitMatch(matchViewModel, Runnable { Log.i("mainactivity","submitted data") })
             true
         }
         else -> super.onOptionsItemSelected(item)

@@ -1,12 +1,13 @@
-package team449.frc.scoutingappbase
+package team449.frc.scoutingappbase.managers
 
 import android.util.Log
+import team449.frc.scoutingappbase.helpers.deserialize
+import team449.frc.scoutingappbase.helpers.serialize
 import team449.frc.scoutingappbase.model.MatchShadow
-import team449.frc.scoutingappbase.model.MessageFactory
 
 
 object DataManager {
-    private val submittedData: MutableMap<String, MutableSet<MatchShadow>> = HashMap()
+    private var submittedData: MutableMap<String, MutableSet<MatchShadow>> = HashMap()
 
     fun submit(data: MatchShadow) {
         val key = data.timestamp.toString()
@@ -19,6 +20,10 @@ object DataManager {
     }
 
     fun logSerialized() {
-        Log.i("submittedData", MessageFactory.serialize(submittedData))
+        Log.i("submittedData", serialize(submittedData))
+    }
+
+    fun load() {
+        submittedData = deserialize(serialize(submittedData))
     }
 }
