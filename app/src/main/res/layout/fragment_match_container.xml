@@ -80,7 +80,11 @@
         style="@style/Wrap"
         app:tabBackground="@drawable/page_selector"
         app:tabGravity="center"
-        app:tabIndicatorHeight="0dp"/>
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingStart="@dimen/tabDotSpacing"
+        app:tabPaddingEnd="@dimen/tabDotSpacing"
+        app:tabUnboundedRipple="true"
+        app:tabRippleColor="@color/secondaryDarkColor"/>
 
       <LinearLayout
         android:layout_height="wrap_content"

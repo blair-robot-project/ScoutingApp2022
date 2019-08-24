@@ -10,4 +10,6 @@ object StaticResources {
     lateinit var radioIds: TypedArray
 
     lateinit var filesDir: File
+
+    var dialogTextSize: Float = 0F
 }

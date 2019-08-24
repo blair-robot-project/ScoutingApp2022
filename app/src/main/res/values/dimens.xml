@@ -5,6 +5,7 @@
   <dimen name="verticalFieldSpacing">30dp</dimen>
   <dimen name="horizontalFieldSpacing">40dp</dimen>
   <dimen name="radioButtonSpacing">25dp</dimen>
+  <dimen name="tabDotSpacing">15dp</dimen>
 
   <!--Text-->
   <dimen name="primaryTextSize">34sp</dimen>
@@ -19,6 +20,10 @@
   <dimen name="spinnerWidth">200dp</dimen>
   <dimen name="arrowSize">36dp</dimen>
   <dimen name="textBoxMaxLines">3</dimen>
+
+  <!--Popup-->
+  <dimen name="alertDialogBodyTextSize">22sp</dimen>
+  <dimen name="alertDialogTitleTextSize">28sp</dimen>
 
   <!--Elevation-->
   <dimen name="bottomNavElev">8dp</dimen>

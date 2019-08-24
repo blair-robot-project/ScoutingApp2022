@@ -6,8 +6,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import team449.frc.scoutingappbase.helpers.info
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.helpers.submitMatch
 import team449.frc.scoutingappbase.managers.DataManager
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         StaticResources.matches = resources.getStringArray(R.array.matches)
         StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
         StaticResources.filesDir = filesDir
+        StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
 
         hideNav()
     }
@@ -61,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
         R.id.action_bluetooth -> {
+            info(this,"Title","body")
             AsyncTask.execute {
                 BluetoothManager.initializeConnection("essuomelpmap")
             }
