@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.NumberPicker
-import team449.frc.scoutingappbase.MainActivity
+import team449.frc.scoutingappbase.main.MainActivity
 
 
 // Hide keyboard when user clicks outside edit text

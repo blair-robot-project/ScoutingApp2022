@@ -11,5 +11,5 @@ object StaticResources {
 
     lateinit var filesDir: File
 
-    var dialogTextSize: Float = 0F
+    var dialogTextSize = 0F
 }

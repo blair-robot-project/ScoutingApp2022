@@ -1,23 +1,24 @@
-package team449.frc.scoutingappbase
+package team449.frc.scoutingappbase.main
 
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
-import team449.frc.scoutingappbase.helpers.info
-import team449.frc.scoutingappbase.managers.BluetoothManager
-import team449.frc.scoutingappbase.helpers.submitMatch
-import team449.frc.scoutingappbase.managers.DataManager
+import team449.frc.scoutingappbase.R
+import team449.frc.scoutingappbase.StaticResources
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val mainPresenter = MainPresenter(this)
+
+    val matchViewModel: MatchViewModel
+        get() = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        hideNav()
+        mainPresenter.onWindowFocusChange()
     }
 
     fun hideNav() {
@@ -55,35 +56,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_help -> {
-//            AsyncTask.execute {
-//                BluetoothManager.receive()
-//            }
-            DataManager.logSerialized()
-            DataManager.load()
-            DataManager.logSerialized()
-            true
-        }
-        R.id.action_bluetooth -> {
-            info(this,"Title","body")
-            AsyncTask.execute {
-                BluetoothManager.initializeConnection("essuomelpmap")
-            }
-            true
-        }
-        R.id.action_settings -> {
-            submitMatch(matchViewModel, Runnable { Log.i("mainactivity","submitted data") })
-            true
-        }
+        R.id.action_help -> {mainPresenter.globalHelp(); true}
+        R.id.action_bluetooth -> {mainPresenter.bluetooth(); true}
+        R.id.action_settings -> {mainPresenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
     }
 
-
-    private val matchViewModel: MatchViewModel
-        get() = ViewModelProviders.of(this).get(MatchViewModel::class.java)
-
-
-    override fun onBackPressed() {}
+    override fun onBackPressed() {
+        mainPresenter.onBackPressed()
+    }
 
 //    override fun onSupportNavigateUp() =
 //        findNavController(R.id.navhost).navigateUp()

@@ -3,11 +3,10 @@ package team449.frc.scoutingappbase.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.google.android.material.tabs.TabLayout
-import team449.frc.scoutingappbase.MatchPagerAdapter
+import team449.frc.scoutingappbase.adapters.MatchPagerAdapter
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.databinding.FragmentMatchContainerBinding
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment

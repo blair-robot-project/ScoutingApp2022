@@ -32,6 +32,8 @@
 
 
   <!--Help-->
+  <string name="help_title">Help</string>
+  <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nThis is a help popup.</string>
 
 
   <!--Menu-->
