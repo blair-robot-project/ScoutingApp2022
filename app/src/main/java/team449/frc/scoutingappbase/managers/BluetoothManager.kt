@@ -3,9 +3,17 @@ package team449.frc.scoutingappbase.managers
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothSocket
 import android.util.Log
+import com.google.gson.JsonSyntaxException
+import team449.frc.scoutingappbase.MessageHandler
+import team449.frc.scoutingappbase.helpers.deserialize
+import team449.frc.scoutingappbase.helpers.deserializeMessage
+import team449.frc.scoutingappbase.model.Message
+import team449.frc.scoutingappbase.model.MessageType
+import team449.frc.scoutingappbase.model.makeSerializedMessage
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.lang.ClassCastException
 import java.lang.Exception
 import java.lang.reflect.InvocationTargetException
 
@@ -40,16 +48,16 @@ object BluetoothManager {
                         paired.add(device.name)
                     }
                 } else {
-                    Log.e("BTH.pairedDevices", "Bluetooth is disabled.")
+                    Log.e("BtM.pairedDevices", "Bluetooth is disabled.")
                 }
             } else
-                Log.e("BTH.pairedDevices", "blueAdapter is null")
+                Log.e("BtM.pairedDevices", "blueAdapter is null")
             return paired
         }
 
 //    @Throws(IOException::class)
     @JvmOverloads //get rid of the overload to only connect to master set in settings
-    fun initializeConnection(targetMasterName: String? = defaultMaster) {
+    fun connect(targetMasterName: String? = defaultMaster): Boolean {
         defaultMaster = targetMasterName
         if (blueAdapter != null) {
             if (blueAdapter.isEnabled) {
@@ -58,13 +66,13 @@ object BluetoothManager {
                     val device = blueAdapter.bondedDevices.single { it.name == targetMasterName }
 
                     if (isConnected){
-                        Log.i("BTH.initConnection", "Closing old socket ...")
+                        Log.i("BtM.initConnection", "Closing old socket ...")
                         socket?.close()
                         socket = null
                         Thread.sleep(500) // Wait for it to disconnect
                     }
 
-                    Log.i("BTH.initConnection", "Attempting to connect to " + device.name)
+                    Log.i("BtM.initConnection", "Attempting to connect to " + device.name)
 
                     //val uuids = device.uuids
                     //device.createRfcommSocketToServiceRecord(uuids[0].uuid)
@@ -79,35 +87,36 @@ object BluetoothManager {
                         socket?.connect()
                         outputStream = socket?.outputStream
                         inputStream = socket?.inputStream
-                        if (socket != null) Log.i("BTH.initConnection", "Connected to " + device.name)
+                        if (socket != null) Log.i("BtM.initConnection", "Connected to " + device.name)
+                        receive()
+                        return true
 
                     } catch (e: InvocationTargetException) { // This raps another error from an invoke, I think it won't catch and the wrapped error is what would
                         e.printStackTrace()
-                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (InvocationTargetException)")
+                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (InvocationTargetException)")
                     } catch (e: IllegalArgumentException) { // not seen yet
                         e.printStackTrace()
-                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (IllegalArgumentException)")
+                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (IllegalArgumentException)")
                     } catch (e: NoSuchElementException) { // not seen yet
                         e.printStackTrace()
-                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (NoSuchElementException)")
+                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (NoSuchElementException)")
                     } catch (e: IOException) {
-                        e.printStackTrace()
-                        Log.e("BTH.initConnection", "Error connecting to " + device.name + " (IOException)")
+                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (IOException)")
                     }
-
                 } catch (e: NoSuchElementException) {
-                    Log.i("BTH.initConnection", "Target master device not found in paired devices")
+                    Log.i("BtM.initConnection", "Target master device not found in paired devices")
                 } catch (e: IllegalArgumentException) {
-                    Log.i("BTH.initConnection", "Multiple instances of target master devices found in paire devices")
+                    Log.i("BtM.initConnection", "Multiple instances of target master devices found in paire devices")
                 }
             } else {
-                Log.e("BTH.initConnection", "Bluetooth is disabled.")
+                Log.e("BtM.initConnection", "Bluetooth is disabled.")
                 /*Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBluetooth, 0);*/
             }
         } else {
-            Log.e("BTH.initConnection", "blueAdapter is null")
+            Log.e("BtM.initConnection", "blueAdapter is null")
         }
+        return false
     }
 
     fun write(str: String): Boolean {
@@ -120,44 +129,38 @@ object BluetoothManager {
                 }
                 return true
             } catch (e: NullPointerException) {
-                e.printStackTrace()
-                Log.e("BTH.write", "Socket closed while writing (outputStream is null)")
+                Log.e("BtM.write", "Socket closed while writing (outputStream is null)")
                 socket?.close()
             } catch (e: IOException) {
-                e.printStackTrace()
-                Log.e("BTH.write", "Socket closed while writing (IOException)")
+                Log.e("BtM.write", "Socket closed while writing (IOException)")
                 socket?.close()
             }
         } else {
-            Log.e("BTH.write", "Not connected to a device.")
+            Log.e("BtM.write", "Not connected to a device.")
         }
         return false
     }
 
     fun receive() {
         if (isConnected) {
-            Log.i("BTH.receive", "Receiving")
+            Log.i("BtM.receive", "Receiving")
             val buffer = ByteArray(BUFFER_SIZE)
             var bytes: Int
             var reading = true
-
             while (reading) {
                 try {
                     bytes = inputStream!!.read(buffer, 0, BUFFER_SIZE - 0)
-                    Log.i("num bytes", bytes.toString())
-                    Log.i("buffer", String(buffer.copyOfRange(0, bytes)))
+                    MessageHandler.handleRawMessage(String(buffer.copyOfRange(0, bytes)))
                 } catch (e: IOException) {
                     reading = false
-                    e.printStackTrace()
-                    Log.e("BTH.receive", "Socket disconnected while listening (IOE)")
+                    Log.e("BtM.receive", "Socket disconnected while listening (IOE)")
                 } catch (e: NullPointerException) {
                     reading = false
-                    e.printStackTrace()
-                    Log.e("BTH.receive", "Socket disconnected while listening (NPE)")
+                    Log.e("BtM.receive", "Socket disconnected while listening (NPE)")
                 }
             }
         } else {
-            Log.e("BTH.receive", "Bluetooth not connected")
+            Log.e("BtM.receive", "Bluetooth not connected")
         }
     }
 }

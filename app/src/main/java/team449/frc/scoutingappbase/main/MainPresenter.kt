@@ -15,7 +15,13 @@ class MainPresenter(private val mainActivity: MainActivity) {
 
     fun bluetooth() {
         AsyncTask.execute {
-            BluetoothManager.initializeConnection("essuomelpmap")
+            BluetoothManager.connect("essuomelpmap")
+        }
+    }
+
+    fun sync() {
+        AsyncTask.execute {
+            BluetoothManager.receive()
         }
     }
 
@@ -27,7 +33,7 @@ class MainPresenter(private val mainActivity: MainActivity) {
         info(mainActivity, mainActivity.getString(R.string.help_title), mainActivity.getString(messageId))
     }
 
-    fun onWindowFocusChange(){
+    fun onWindowFocusChange() {
         mainActivity.hideNav()
     }
 

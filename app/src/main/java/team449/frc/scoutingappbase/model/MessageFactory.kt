@@ -5,7 +5,7 @@ import java.math.BigInteger
 import java.security.MessageDigest
 
 enum class MessageType {
-    DATA, SUMMARY
+    DATA, SUMMARY, ERROR
 }
 
 data class Message(val type: String, val body: String, val checksum: String)
@@ -22,3 +22,5 @@ fun makeSerializedMessage(type: MessageType, body: String): String =
     serialize(Message(type.name, body, genChecksum(body)))
 
 fun makeMatchDataMessage(model: MatchShadow) = makeSerializedMessage(MessageType.DATA, serialize(model))
+
+fun makeErrorMessage(error: String) = makeSerializedMessage(MessageType.ERROR, error)

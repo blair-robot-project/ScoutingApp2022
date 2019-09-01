@@ -12,6 +12,11 @@
     android:title="@string/action_bluetooth"
     app:showAsAction="ifRoom" />
 
+  <item android:id="@+id/action_sync"
+    android:icon="@drawable/ic_sync"
+    android:title="@string/action_sync"
+    app:showAsAction="ifRoom" />
+
   <item android:id="@+id/action_settings"
     android:icon="@drawable/ic_settings"
     android:title="@string/action_settings"

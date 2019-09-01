@@ -39,5 +39,6 @@
   <!--Menu-->
   <string name="action_help">Help</string>
   <string name="action_bluetooth">Bluetooth</string>
+  <string name="action_sync">Sync</string>
   <string name="action_settings">Settings</string>
 </resources>

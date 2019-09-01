@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_help -> {mainPresenter.globalHelp(); true}
         R.id.action_bluetooth -> {mainPresenter.bluetooth(); true}
+        R.id.action_sync -> {mainPresenter.sync(); true}
         R.id.action_settings -> {mainPresenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
     }

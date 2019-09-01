@@ -25,6 +25,7 @@
   <color name="primaryTextColor">@color/onDark</color>
   <color name="darkTextColor">@color/onLight</color>
   <color name="hintText">#9fff</color>
+  <color name="titleTextColor">@color/primaryLightColor</color>
 
   <!--Elements-->
   <color name="bottomNavColor">@color/elevated</color>
