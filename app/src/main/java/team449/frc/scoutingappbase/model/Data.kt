@@ -1,3 +1,5 @@
 package team449.frc.scoutingappbase.model
 
-data class Data(val submitted: MutableMap<Long, MutableMap<Int, MatchShadow>>, val partial: List<MatchShadow>)
+import java.util.*
+
+data class Data(val submitted: MutableMap<Long, MutableList<MatchShadow>>, val partial: Stack<MatchShadow>)

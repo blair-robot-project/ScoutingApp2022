@@ -2,6 +2,7 @@ package team449.frc.scoutingappbase.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import team449.frc.scoutingappbase.StaticResources
 
 fun <T: Any?> mutableLiveData(initialValue: T) = MutableLiveData<T>().apply { postValue(initialValue) }
 
@@ -9,20 +10,15 @@ class MatchViewModel : ViewModel() {
     var timestamp = System.currentTimeMillis()
     var revision = 0
 
-    // Prematch
     val scoutName by lazy { mutableLiveData("") }
     val teamId by lazy { mutableLiveData(0) }
     val matchId by lazy { mutableLiveData(0) }
     val alliance by lazy { mutableLiveData(-1) }
     val noShow by lazy { mutableLiveData(false) }
     val preload by lazy { mutableLiveData(-1) }
-    // Auto
     val autoMove by lazy { mutableLiveData(false) }
-    // Teleop
     val placedAThing by lazy { mutableLiveData(false) }
-    // Endgame
     val climbed by lazy { mutableLiveData(false) }
-    // General
     val comments by lazy { mutableLiveData("") }
 
 
@@ -30,19 +26,31 @@ class MatchViewModel : ViewModel() {
         timestamp = System.currentTimeMillis()
         revision = 0
 
-        // Prematch
         teamId.value = 0
-        matchId.value = matchId.value?.plus(1)
+        // If numeric add one, otherwise it's playoffs, don't increment
+        matchId.value = matchId.value?.plus(if (StaticResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
         noShow.value = false
         preload.value = -1
-        // Auto
         autoMove.value = false
-        // Teleop
         placedAThing.value = false
-        // Endgame
         climbed.value = false
-        // General
         comments.value = ""
+    }
+
+    fun load(shadow: MatchShadow) {
+        timestamp = shadow.timestamp
+        revision = shadow.revision + 1
+
+        scoutName.value = shadow.scoutName
+        teamId.value = shadow.teamId
+        matchId.value = shadow.matchId
+        alliance.value = shadow.alliance
+        noShow.value = shadow.noShow
+        preload.value = shadow.preload
+        autoMove.value = shadow.autoMove
+        placedAThing.value = shadow.placedAThing
+        climbed.value = shadow.climbed
+        comments.value = shadow.comments
     }
 }
 

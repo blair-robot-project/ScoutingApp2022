@@ -4,11 +4,19 @@ import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.R
+import team449.frc.scoutingappbase.helpers.editDialog
 import team449.frc.scoutingappbase.helpers.info
 import team449.frc.scoutingappbase.helpers.submitMatch
 import team449.frc.scoutingappbase.managers.BluetoothManager
+import team449.frc.scoutingappbase.managers.DataManager
+import team449.frc.scoutingappbase.model.MatchShadow
 
-class MainPresenter(private val mainActivity: MainActivity) {
+
+interface Editor {
+    fun edit(id: Long)
+}
+
+class MainPresenter(private val mainActivity: MainActivity): Editor {
 
     fun globalHelp() {
         help(R.string.help_global)
@@ -17,6 +25,18 @@ class MainPresenter(private val mainActivity: MainActivity) {
     fun bluetooth() {
         GlobalScope.launch {
             BluetoothManager.connect("essuomelpmap")
+        }
+    }
+
+    fun edit() {
+        editDialog(mainActivity, DataManager.matchNames, this)
+    }
+
+    override fun edit(id: Long) {
+        val mVM = mainActivity.matchViewModel
+        DataManager.retrieveMatch(id)?.let {
+            DataManager.stashCurrent(MatchShadow(mVM))
+            mVM.load(it)
         }
     }
 
@@ -31,7 +51,12 @@ class MainPresenter(private val mainActivity: MainActivity) {
     }
 
     fun submit() {
-        submitMatch(mainActivity.matchViewModel, Runnable { mainActivity.moveToPrematch() })
+        submitMatch(mainActivity.matchViewModel, Runnable{ postSubmit() })
+    }
+
+    private fun postSubmit() {
+        DataManager.recoverMatch()?.let { mainActivity.matchViewModel.load(it) } ?: mainActivity.matchViewModel.reset()
+        mainActivity.moveToPrematch()
     }
 
     fun help(messageId: Int) {

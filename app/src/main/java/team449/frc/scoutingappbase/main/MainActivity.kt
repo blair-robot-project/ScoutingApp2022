@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import team449.frc.scoutingappbase.R
@@ -46,12 +45,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hideNav() {
-        window.decorView.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                or SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                or SYSTEM_UI_FLAG_FULLSCREEN
-                or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+//        window.decorView.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                or SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                or SYSTEM_UI_FLAG_FULLSCREEN
+//                or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -62,6 +61,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_help -> {mainPresenter.globalHelp(); true}
         R.id.action_bluetooth -> {mainPresenter.bluetooth(); true}
+        R.id.action_edit -> {mainPresenter.edit(); true}
         R.id.action_sync -> {mainPresenter.sync(); true}
         R.id.action_settings -> {mainPresenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
