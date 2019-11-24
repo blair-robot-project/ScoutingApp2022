@@ -1,6 +1,7 @@
 package team449.frc.scoutingappbase.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.StaticResources
+import team449.frc.scoutingappbase.fragment.MatchContainerFragment
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
@@ -65,6 +67,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         mainPresenter.onBackPressed()
+    }
+
+    fun submitButtonPressed() {
+        Log.i("MainActivity","submitButtonPressed")
+        mainPresenter.submit()
+    }
+
+    fun moveToPrematch() {
+        supportFragmentManager.findFragmentById(R.id.navhost).let { navHost ->
+            navHost?.childFragmentManager?.primaryNavigationFragment?.let {fragment ->
+                (fragment as MatchContainerFragment).changePage(0)
+            }
+        }
     }
 
 //    override fun onSupportNavigateUp() =

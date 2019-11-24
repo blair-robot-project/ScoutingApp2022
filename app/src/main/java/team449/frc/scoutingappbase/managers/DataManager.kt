@@ -15,13 +15,13 @@ object DataManager {
     private var data = Data(HashMap(), ArrayList())
 
     fun submit(match: MatchShadow) {
-        val key = match.timestamp.toString()
+        val key = match.timestamp
         var revMap = data.submitted[key]
         if (revMap == null) {
             revMap = HashMap()
             data.submitted[key] = revMap
         }
-        revMap[match.revision.toString()] = match
+        revMap[match.revision] = match
         AsyncTask.execute(this::save)
     }
 

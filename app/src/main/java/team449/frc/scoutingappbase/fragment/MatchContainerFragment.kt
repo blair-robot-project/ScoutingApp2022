@@ -43,7 +43,7 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
         tabLayout.setupWithViewPager(viewPager, true)
     }
 
-    private fun changePage(page: Int) { viewPager.currentItem = page }
+    fun changePage(page: Int) { viewPager.currentItem = page }
     override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1)) }
     override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
 }

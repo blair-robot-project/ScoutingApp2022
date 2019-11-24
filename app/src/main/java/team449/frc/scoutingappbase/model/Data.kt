@@ -1,3 +1,3 @@
 package team449.frc.scoutingappbase.model
 
-data class Data(val submitted: MutableMap<String, MutableMap<String, MatchShadow>>, val partial: List<MatchShadow>)
+data class Data(val submitted: MutableMap<Long, MutableMap<Int, MatchShadow>>, val partial: List<MatchShadow>)

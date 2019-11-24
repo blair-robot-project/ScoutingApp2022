@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.databinding.*
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment
+import team449.frc.scoutingappbase.main.MainActivity
 
 class PrematchFragment: VMBaseFragment<FragmentPrematchBinding>() {
     override val layoutId: Int = R.layout.fragment_prematch
@@ -34,5 +35,5 @@ class GeneralFragment: VMBaseFragment<FragmentGeneralBinding>(), SubmitHandler {
         binding.handler = this
     }
 
-    override fun submit(view: View) { findNavController().navigate(R.id.action_mainContainerFragment_to_altFragment) }
+    override fun submit(view: View) { (activity as MainActivity).submitButtonPressed() }
 }
