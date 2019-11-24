@@ -6,10 +6,11 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.google.android.material.tabs.TabLayout
-import team449.frc.scoutingappbase.adapters.MatchPagerAdapter
 import team449.frc.scoutingappbase.R
+import team449.frc.scoutingappbase.adapters.MatchPagerAdapter
 import team449.frc.scoutingappbase.databinding.FragmentMatchContainerBinding
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment
+import team449.frc.scoutingappbase.main.MainActivity
 import kotlin.math.max
 import kotlin.math.min
 
@@ -18,7 +19,11 @@ interface MatchContainerFragmentClickHandler {
     fun prev(view: View)
 }
 
-class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), MatchContainerFragmentClickHandler {
+interface PageChanger {
+    fun changePage(page: Int)
+}
+
+class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), MatchContainerFragmentClickHandler, PageChanger {
     override val layoutId: Int = R.layout.fragment_match_container
 
     private lateinit var viewPagerAdapter: FragmentPagerAdapter
@@ -29,6 +34,7 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
 
         viewPager = view.findViewById(R.id.viewPager)
 
+        (activity as MainActivity).pageChanger = this
         binding.handler = this
 
         viewPagerAdapter = MatchPagerAdapter(childFragmentManager)
@@ -43,7 +49,7 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
         tabLayout.setupWithViewPager(viewPager, true)
     }
 
-    fun changePage(page: Int) { viewPager.currentItem = page }
+    override fun changePage(page: Int) { viewPager.currentItem = page }
     override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1)) }
     override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
 }

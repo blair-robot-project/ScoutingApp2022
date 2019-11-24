@@ -9,13 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.StaticResources
-import team449.frc.scoutingappbase.fragment.MatchContainerFragment
+import team449.frc.scoutingappbase.fragment.PageChanger
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
 class MainActivity : AppCompatActivity() {
 
     private val mainPresenter = MainPresenter(this)
+
+    var pageChanger: PageChanger? = null
 
     val matchViewModel: MatchViewModel
         get() = ViewModelProviders.of(this).get(MatchViewModel::class.java)
@@ -75,11 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun moveToPrematch() {
-        supportFragmentManager.findFragmentById(R.id.navhost).let { navHost ->
-            navHost?.childFragmentManager?.primaryNavigationFragment?.let {fragment ->
-                (fragment as MatchContainerFragment).changePage(0)
-            }
-        }
+        pageChanger?.changePage(0)
     }
 
 //    override fun onSupportNavigateUp() =

@@ -2,8 +2,6 @@ package team449.frc.scoutingappbase.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.databinding.*
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment

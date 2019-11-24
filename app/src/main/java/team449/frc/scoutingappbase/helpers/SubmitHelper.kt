@@ -24,8 +24,7 @@ class SubmissionTask(val match: MatchViewModel, val post: Runnable): AsyncTask<V
         val matchShadow = MatchShadow(match)
         if (validateHard(matchShadow)) {
             DataManager.submit(matchShadow)
-            val message = makeMatchDataMessage(matchShadow)
-            BluetoothManager.write(message)
+            BluetoothManager.write(makeMatchDataMessage(matchShadow))
             Log.i("SubmissionTask", "Match submitted")
             return true
         } else {

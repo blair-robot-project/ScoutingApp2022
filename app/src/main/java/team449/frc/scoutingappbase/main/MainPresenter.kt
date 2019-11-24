@@ -1,12 +1,9 @@
 package team449.frc.scoutingappbase.main
 
-import android.os.AsyncTask
-import android.util.Log
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.adapters.MatchPagerAdapter
 import team449.frc.scoutingappbase.helpers.info
 import team449.frc.scoutingappbase.helpers.submitMatch
 import team449.frc.scoutingappbase.managers.BluetoothManager
