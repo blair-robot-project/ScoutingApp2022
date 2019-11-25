@@ -1,7 +1,10 @@
 package team449.frc.scoutingappbase.helpers
 
+import android.app.Activity
 import android.content.Context
+import android.util.DisplayMetrics
 import android.view.ContextThemeWrapper
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import team449.frc.scoutingappbase.R
@@ -18,10 +21,18 @@ fun info(context: Context, title: String, body: String) {
         .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
 }
 
-fun editDialog(context: Context, matches: List<Pair<String,Long>>, editor: Editor) {
+fun editDialog(context: Activity, matches: List<Pair<String,Long>>, editor: Editor) {
+    val dm = DisplayMetrics()
+    context.windowManager.defaultDisplay.getMetrics(dm)
     AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
         .setTitle("Select a match to edit")
-        .setItems(matches.map { it.first }.toTypedArray()) { _,which -> editor.edit(matches[which].second)}
-        .create()
-        .show()
+        .setItems(matches.map { it.first }.toTypedArray()) { _, which -> editor.edit(matches[which].second) }
+        .create().let {
+            it.show()
+            val lp = WindowManager.LayoutParams()
+            lp.copyFrom(it.window?.attributes)
+            lp.width = (dm.widthPixels * 0.8).toInt()
+            if (matches.size > 10) lp.height = (dm.heightPixels * 0.55).toInt()
+            it.window?.attributes = lp
+    }
 }

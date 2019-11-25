@@ -3,7 +3,7 @@ package team449.frc.scoutingappbase.managers
 import android.os.AsyncTask
 import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
-import team449.frc.scoutingappbase.helpers.deserialize
+import team449.frc.scoutingappbase.helpers.deserializeData
 import team449.frc.scoutingappbase.helpers.readFromFile
 import team449.frc.scoutingappbase.helpers.serialize
 import team449.frc.scoutingappbase.helpers.writeToFile
@@ -17,6 +17,10 @@ import kotlin.collections.HashMap
 object DataManager {
     private const val saveFile = "data.json"
     private var data = Data(HashMap(), Stack())
+
+    init {
+        load()
+    }
 
     fun submit(match: MatchShadow) {
         val key = match.timestamp
@@ -47,6 +51,6 @@ object DataManager {
 
     fun load() {
         val f = readFromFile(saveFile)
-        if (f != null) data = deserialize(f)
+        if (f != null) data = deserializeData(f)
     }
 }

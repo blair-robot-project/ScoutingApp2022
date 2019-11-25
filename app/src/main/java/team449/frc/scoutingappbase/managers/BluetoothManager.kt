@@ -3,18 +3,10 @@ package team449.frc.scoutingappbase.managers
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothSocket
 import android.util.Log
-import com.google.gson.JsonSyntaxException
 import team449.frc.scoutingappbase.MessageHandler
-import team449.frc.scoutingappbase.helpers.deserialize
-import team449.frc.scoutingappbase.helpers.deserializeMessage
-import team449.frc.scoutingappbase.model.Message
-import team449.frc.scoutingappbase.model.MessageType
-import team449.frc.scoutingappbase.model.makeSerializedMessage
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.lang.ClassCastException
-import java.lang.Exception
 import java.lang.reflect.InvocationTargetException
 
 object BluetoothManager {
