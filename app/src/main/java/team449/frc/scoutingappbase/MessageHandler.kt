@@ -19,13 +19,8 @@ object MessageHandler {
         }
     }
 
-    //TODO: either do something meaningful here or get rid of it
     private fun handleMessage(message: Message) {
-        try {
-            Log.i("Message", message.body)
-        } catch (e: NullPointerException) {
-            handleJsonNonMessage(message.toString())
-        }
+        //TODO
     }
 
     private fun handleJsonNonMessage(message: String) {
@@ -41,7 +36,7 @@ object MessageHandler {
             val message = deserializeMessage(full)
             // Gson is able to break Kotlin's non-nullable types, and if the json isn't in the right format for message,
             //  it will just put nulls. Ignore the IDE warning, it's wrong.
-            if (message.type == null || message.body == null || message.checksum == null) throw ClassCastException()
+            if (message.type == null || message.body == null) throw ClassCastException()
             message
         } catch (e: JsonSyntaxException) {
             // Invalid json. Most likely, the message just isn't finished, but it could be that a corrupted message
