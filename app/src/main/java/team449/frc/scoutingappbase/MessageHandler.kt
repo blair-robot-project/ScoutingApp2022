@@ -13,13 +13,13 @@ object MessageHandler {
 
     fun handleRawMessage(string: String) {
         msgStrings += string
-        val message = messagesToValidMessage(msgStrings)
-        if (message != null) {
-            handleMessage(message)
+        messagesToValidMessage(msgStrings)?.let{
+            handleMessage(it)
             msgStrings.clear()
         }
     }
 
+    //TODO: either do something meaningful here or get rid of it
     private fun handleMessage(message: Message) {
         try {
             Log.i("Message", message.body)
@@ -51,7 +51,7 @@ object MessageHandler {
             // Valid json, but not a message. Could be that its an intermediate segment that just happened to be valid
             //  on its own, but if this is all there is in the stack, we know it's an error
             Log.e("BtM.receive","Json message received isn't a message (ClassCast)\n${msgStrings.last()}")
-            if (msgStrings.size == 1) {
+            if (this.msgStrings.size == 1) {
                 handleJsonNonMessage(msgStrings.last())
             }
             messagesToValidMessage(msgStrings.drop(1))

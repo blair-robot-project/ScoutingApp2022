@@ -41,5 +41,6 @@
   <string name="action_bluetooth">Bluetooth</string>
   <string name="action_sync">Sync</string>
   <string name="action_edit">Edit</string>
+  <string name="action_clear_data">Clear data</string>
   <string name="action_settings">Settings</string>
 </resources>

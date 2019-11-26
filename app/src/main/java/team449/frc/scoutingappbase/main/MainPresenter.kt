@@ -1,5 +1,6 @@
 package team449.frc.scoutingappbase.main
 
+import android.os.AsyncTask
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,8 +43,12 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
 
     fun sync() {
         GlobalScope.launch {
-            BluetoothManager.receive()
+            BluetoothManager.write("test")
         }
+    }
+
+    fun clearData() {
+        AsyncTask.execute{ DataManager.clear() }
     }
 
     fun settings() {

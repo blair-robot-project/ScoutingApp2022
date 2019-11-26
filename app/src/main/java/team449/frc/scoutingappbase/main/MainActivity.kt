@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         R.id.action_bluetooth -> {mainPresenter.bluetooth(); true}
         R.id.action_edit -> {mainPresenter.edit(); true}
         R.id.action_sync -> {mainPresenter.sync(); true}
+        R.id.action_clear_data -> {mainPresenter.clearData(); true}
         R.id.action_settings -> {mainPresenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
     }

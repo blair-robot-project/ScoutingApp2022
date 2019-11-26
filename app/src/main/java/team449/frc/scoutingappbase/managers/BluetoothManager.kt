@@ -3,6 +3,8 @@ package team449.frc.scoutingappbase.managers
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothSocket
 import android.util.Log
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.MessageHandler
 import java.io.IOException
 import java.io.InputStream
@@ -80,7 +82,8 @@ object BluetoothManager {
                         outputStream = socket?.outputStream
                         inputStream = socket?.inputStream
                         if (socket != null) Log.i("BtM.initConnection", "Connected to " + device.name)
-                        receive()
+
+                        GlobalScope.launch { receive() }
                         return true
 
                     } catch (e: InvocationTargetException) { // This raps another error from an invoke, I think it won't catch and the wrapped error is what would
@@ -114,11 +117,8 @@ object BluetoothManager {
     fun write(str: String): Boolean {
         if (socket != null && socket!!.isConnected) {
             try {
-                // Only submit one line at a time so it doesn't exceed the size and get cut off
-                for (s in str.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-                    outputStream!!.write((s + "\n").toByteArray())
-                    outputStream!!.flush()
-                }
+                outputStream!!.write(str.toByteArray())
+                outputStream!!.flush()
                 return true
             } catch (e: NullPointerException) {
                 Log.e("BtM.write", "Socket closed while writing (outputStream is null)")

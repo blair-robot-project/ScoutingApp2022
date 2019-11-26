@@ -1,12 +1,8 @@
 package team449.frc.scoutingappbase.managers
 
 import android.os.AsyncTask
-import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
-import team449.frc.scoutingappbase.helpers.deserializeData
-import team449.frc.scoutingappbase.helpers.readFromFile
-import team449.frc.scoutingappbase.helpers.serialize
-import team449.frc.scoutingappbase.helpers.writeToFile
+import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.Data
 import team449.frc.scoutingappbase.model.MatchShadow
 import java.util.*
@@ -41,16 +37,17 @@ object DataManager {
         get() = data.submitted.map { it.value.last() }.sortedByDescending { it.matchId }
                 .map { Pair("${Conversions.spinnerToMatch(it.matchId)}, ${Conversions.spinnerToTeam(it.teamId)}", it.timestamp) }
 
-    fun logSerialized() {
-        Log.i("submittedData", serialize(data))
-    }
-
-    fun save() {
+    private fun save() {
         writeToFile(saveFile, serialize(data))
     }
 
-    fun load() {
-        val f = readFromFile(saveFile)
-        if (f != null) data = deserializeData(f)
+    private fun load() {
+        readFromFile(saveFile)?.let{ data = deserializeData(it) }
+    }
+
+    fun clear() {
+        clearFile(saveFile)
+        data.submitted.clear()
+        data.partial.clear()
     }
 }
