@@ -6,7 +6,7 @@
   <data>
     <variable
       name="handler"
-      type="team449.frc.scoutingappbase.fragment.AltFragment.Handler" />
+      type="team449.frc.scoutingappbase.fragment.SettingsFragment.Handler" />
   </data>
 
   <LinearLayout
@@ -15,7 +15,7 @@
 
       <TextView
         style="@style/Text"
-        android:text="Alt frag"/>
+        android:text="Settings"/>
 
     <Button
       style="@style/Wrap"

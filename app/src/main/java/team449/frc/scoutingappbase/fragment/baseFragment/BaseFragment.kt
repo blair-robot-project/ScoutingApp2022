@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import team449.frc.scoutingappbase.main.MainActivity
 import team449.frc.scoutingappbase.helpers.setupKeyboard
+import team449.frc.scoutingappbase.main.MainActivity
 
 abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
 

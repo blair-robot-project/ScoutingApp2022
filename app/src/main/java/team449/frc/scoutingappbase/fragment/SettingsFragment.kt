@@ -5,11 +5,11 @@ import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.databinding.FragmentAltBinding
+import team449.frc.scoutingappbase.databinding.FragmentSettingsBinding
 import team449.frc.scoutingappbase.fragment.baseFragment.BaseFragment
 
-class AltFragment : BaseFragment<FragmentAltBinding>() {
-    override val layoutId: Int = R.layout.fragment_alt
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
+    override val layoutId: Int = R.layout.fragment_settings
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.handler = Handler(findNavController())
@@ -19,7 +19,7 @@ class AltFragment : BaseFragment<FragmentAltBinding>() {
         val navController = navController
 
         fun onClick(view: View) {
-            navController.navigate(R.id.action_altFragment_to_mainContainerFragment)
+            navController.navigate(R.id.action_settingsFragment_to_mainContainerFragment)
         }
     }
 }

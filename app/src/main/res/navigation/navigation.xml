@@ -8,16 +8,25 @@
     android:name="team449.frc.scoutingappbase.fragment.MatchContainerFragment"
     android:label="MainContainerFragment" >
     <action
-      android:id="@+id/action_mainContainerFragment_to_altFragment"
-      app:destination="@id/altFragment"
-      app:enterAnim="@anim/nav_default_pop_enter_anim" />
+      android:id="@+id/action_mainContainerFragment_to_settingsFragment"
+      app:destination="@id/settingsFragment"
+      app:exitAnim="@anim/hold"
+      app:enterAnim="@anim/slide_up" />
   </fragment>
+
   <fragment
-    android:id="@+id/altFragment"
-    android:name="team449.frc.scoutingappbase.fragment.AltFragment"
-    android:label="AltFragment" >
+    android:id="@+id/settingsFragment"
+    android:name="team449.frc.scoutingappbase.fragment.SettingsFragment"
+    android:label="SettingsFragment" >
+    <!--TODO: make the animations work (main gets put on top of settings so you cant see it)-->
     <action
-      android:id="@+id/action_altFragment_to_mainContainerFragment"
-      app:destination="@id/mainContainerFragment" />
+      android:id="@+id/action_settingsFragment_to_mainContainerFragment"
+      app:destination="@id/mainContainerFragment"
+      app:exitAnim="@anim/slide_down"
+      app:enterAnim="@anim/hold" />
+    <action
+      android:id="@+id/action_mainContainerFragment_to_settingsFragment"
+      app:destination="@id/settingsFragment"/>
   </fragment>
+
 </navigation>

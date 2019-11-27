@@ -53,7 +53,7 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
     }
 
     fun settings() {
-        findNavController(mainActivity, R.id.navhost).navigate(R.id.action_mainContainerFragment_to_altFragment)
+        findNavController(mainActivity, R.id.navhost).navigate(R.id.action_mainContainerFragment_to_settingsFragment)
     }
 
     fun submit() {
