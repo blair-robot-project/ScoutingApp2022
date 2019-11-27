@@ -11,7 +11,7 @@ class MatchViewModel : ViewModel() {
     var revision = 0
 
     val scoutName by lazy { mutableLiveData("") }
-    val teamId by lazy { mutableLiveData(0) }
+    val teamId by lazy { mutableLiveData(1) }
     val matchId by lazy { mutableLiveData(0) }
     val alliance by lazy { mutableLiveData(-1) }
     val noShow by lazy { mutableLiveData(false) }
@@ -27,7 +27,7 @@ class MatchViewModel : ViewModel() {
         revision = 0
 
         teamId.value = 0
-        // If numeric add one, otherwise it's playoffs, don't increment
+        // If numeric add one, otherwise it's playoffs so don't increment
         matchId.value = matchId.value?.plus(if (StaticResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
         noShow.value = false
         preload.value = -1
