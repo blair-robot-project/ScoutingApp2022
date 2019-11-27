@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothSocket
 import android.util.Log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import team449.frc.scoutingappbase.MessageHandler
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream

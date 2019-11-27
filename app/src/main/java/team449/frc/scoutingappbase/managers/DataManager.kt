@@ -1,6 +1,7 @@
 package team449.frc.scoutingappbase.managers
 
 import android.os.AsyncTask
+import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.Data
@@ -36,6 +37,10 @@ object DataManager {
     val matchNames: List<Pair<String,Long>>
         get() = data.submitted.map { it.value.last() }.sortedByDescending { it.matchId }
                 .map { Pair("${Conversions.spinnerToMatch(it.matchId)}, ${Conversions.spinnerToTeam(it.teamId)}", it.timestamp) }
+
+    fun sync(summary: Map<String,Double>): List<MatchShadow> =
+        data.submitted.filter { (id, revs) -> !summary.containsKey(id.toString()) || summary[id.toString()]?.toInt() ?: 0 < revs.size - 1}
+                      .map { (_, revs) -> revs.last() }
 
     private fun save() {
         writeToFile(saveFile, serialize(data))

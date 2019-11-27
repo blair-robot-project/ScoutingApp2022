@@ -11,6 +11,7 @@ import team449.frc.scoutingappbase.helpers.submitMatch
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.managers.DataManager
 import team449.frc.scoutingappbase.model.MatchShadow
+import team449.frc.scoutingappbase.model.makeSyncRequest
 
 
 interface Editor {
@@ -43,7 +44,7 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
 
     fun sync() {
         GlobalScope.launch {
-            BluetoothManager.write("test")
+            BluetoothManager.write(makeSyncRequest())
         }
     }
 

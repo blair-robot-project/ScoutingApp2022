@@ -13,6 +13,8 @@ fun makeSerializedMessage(type: MessageType, body: Any): String = serialize(Mess
 
 fun makeMatchDataMessage(model: MatchShadow) = makeSerializedMessage(MessageType.DATA, model)
 
+fun makeMultiMatchDataMessage(list: List<MatchShadow>) = makeSerializedMessage(MessageType.MULTI, list)
+
 fun makeErrorMessage(error: String) = makeSerializedMessage(MessageType.ERROR, error)
 
 fun makeSyncRequest() = makeSerializedMessage(MessageType.SYNC,"")

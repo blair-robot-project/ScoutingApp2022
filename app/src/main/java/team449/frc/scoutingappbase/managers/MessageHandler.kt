@@ -1,11 +1,14 @@
-package team449.frc.scoutingappbase
+package team449.frc.scoutingappbase.managers
 
 import android.util.Log
 import com.google.gson.JsonSyntaxException
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.helpers.deserializeMessage
-import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.model.Message
+import team449.frc.scoutingappbase.model.MessageType
 import team449.frc.scoutingappbase.model.makeErrorMessage
+import team449.frc.scoutingappbase.model.makeMultiMatchDataMessage
 import java.lang.ClassCastException
 
 object MessageHandler {
@@ -13,14 +16,27 @@ object MessageHandler {
 
     fun handleRawMessage(string: String) {
         msgStrings += string
-        messagesToValidMessage(msgStrings)?.let{
+        messagesToValidMessage(msgStrings)
+            ?.let{
             handleMessage(it)
             msgStrings.clear()
         }
     }
 
+    // TODO: standardize what happens with invalid messages
     private fun handleMessage(message: Message) {
-        //TODO
+        when (message.type) {
+            MessageType.SYNC_SUMMARY.name -> {
+                GlobalScope.launch {
+                    // TODO: find a way to make this cast safe
+                    DataManager.sync(message.body as Map<String, Double>).let {
+                        BluetoothManager.write(makeMultiMatchDataMessage(it))
+                    }
+                }
+            } else -> {
+                Log.e("MsgHandler","Invalid message type received: ${message.type}")
+            }
+        }
     }
 
     private fun handleJsonNonMessage(message: String) {
@@ -41,15 +57,23 @@ object MessageHandler {
         } catch (e: JsonSyntaxException) {
             // Invalid json. Most likely, the message just isn't finished, but it could be that a corrupted message
             //  preceded a full and valid message. We want to find that valid message
-            messagesToValidMessage(msgStrings.drop(1))
+            messagesToValidMessage(
+                msgStrings.drop(
+                    1
+                )
+            )
         } catch (e: ClassCastException) {
             // Valid json, but not a message. Could be that its an intermediate segment that just happened to be valid
             //  on its own, but if this is all there is in the stack, we know it's an error
             Log.e("BtM.receive","Json message received isn't a message (ClassCast)\n${msgStrings.last()}")
-            if (this.msgStrings.size == 1) {
+            if (MessageHandler.msgStrings.size == 1) {
                 handleJsonNonMessage(msgStrings.last())
             }
-            messagesToValidMessage(msgStrings.drop(1))
+            messagesToValidMessage(
+                msgStrings.drop(
+                    1
+                )
+            )
         }
     }
 }
