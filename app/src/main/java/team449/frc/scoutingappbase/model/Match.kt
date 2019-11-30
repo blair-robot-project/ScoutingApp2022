@@ -11,9 +11,9 @@ class MatchViewModel : ViewModel() {
     var revision = 0
 
     val scoutName by lazy { mutableLiveData("") }
-    val teamId by lazy { mutableLiveData(1) }
     val matchId by lazy { mutableLiveData(0) }
-    val alliance by lazy { mutableLiveData(-1) }
+    val teamId by lazy { mutableLiveData(0) }
+    val alliance by lazy { mutableLiveData(StaticResources.defaultAlliance) }
     val noShow by lazy { mutableLiveData(false) }
     val preload by lazy { mutableLiveData(-1) }
     val autoMove by lazy { mutableLiveData(false) }
@@ -21,14 +21,13 @@ class MatchViewModel : ViewModel() {
     val climbed by lazy { mutableLiveData(false) }
     val comments by lazy { mutableLiveData("") }
 
-
     fun reset() {
         timestamp = System.currentTimeMillis()
         revision = 0
 
-        teamId.value = 0
         // If numeric add one, otherwise it's playoffs so don't increment
         matchId.value = matchId.value?.plus(if (StaticResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
+        teamId.value = 0
         noShow.value = false
         preload.value = -1
         autoMove.value = false
@@ -42,8 +41,8 @@ class MatchViewModel : ViewModel() {
         revision = shadow.revision + 1
 
         scoutName.value = shadow.scoutName
-        teamId.value = shadow.teamId
         matchId.value = shadow.matchId
+        teamId.value = shadow.teamId
         alliance.value = shadow.alliance
         noShow.value = shadow.noShow
         preload.value = shadow.preload
@@ -61,8 +60,8 @@ class MatchShadow (match: MatchViewModel) {
     val revision = match.revision
 
     val scoutName = match.scoutName.value
-    val teamId = match.teamId.value
     val matchId = match.matchId.value
+    val teamId = match.teamId.value
     val alliance = match.alliance.value
     val noShow = match.noShow.value
     val preload = match.preload.value

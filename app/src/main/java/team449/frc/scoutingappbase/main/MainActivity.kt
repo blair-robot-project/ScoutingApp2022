@@ -1,9 +1,12 @@
 package team449.frc.scoutingappbase.main
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
@@ -36,8 +39,11 @@ class MainActivity : AppCompatActivity() {
         StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
         StaticResources.filesDir = filesDir
         StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
+        preferences?.getString("position", null)?.get(0)?.let {
+            StaticResources.defaultAlliance = if (it == 'R') 0 else if (it == 'B') 1 else -1
+        }
 
-        hideNav()
+        updateNavBarVisibility()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -45,13 +51,22 @@ class MainActivity : AppCompatActivity() {
         mainPresenter.onWindowFocusChange()
     }
 
-    fun hideNav() {
-//        window.decorView.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                or SYSTEM_UI_FLAG_HIDE_NAVIGATION
-//                or SYSTEM_UI_FLAG_FULLSCREEN
-//                or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    val preferences: SharedPreferences?
+        get() = PreferenceManager.getDefaultSharedPreferences(this)
+
+    fun updateNavBarVisibility() {
+        preferences?.getBoolean("hideNav", false)?.let {
+            if (it) {
+                window.decorView.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or SYSTEM_UI_FLAG_FULLSCREEN
+                        or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            } else {
+                window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_VISIBLE
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

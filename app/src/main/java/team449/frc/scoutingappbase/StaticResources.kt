@@ -12,4 +12,6 @@ object StaticResources {
     lateinit var filesDir: File
 
     var dialogTextSize = 0F
+
+    var defaultAlliance = -1
 }

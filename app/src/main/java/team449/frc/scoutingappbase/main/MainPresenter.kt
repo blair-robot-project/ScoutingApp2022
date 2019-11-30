@@ -6,6 +6,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.helpers.editDialog
+import team449.frc.scoutingappbase.helpers.hideSoftKeyboard
 import team449.frc.scoutingappbase.helpers.info
 import team449.frc.scoutingappbase.helpers.submitMatch
 import team449.frc.scoutingappbase.managers.BluetoothManager
@@ -26,7 +27,7 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
 
     fun bluetooth() {
         GlobalScope.launch {
-            BluetoothManager.connect("essuomelpmap")
+            mainActivity.preferences?.getString("master", null)?.let {BluetoothManager.connect(it)}
         }
     }
 
@@ -55,6 +56,7 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
     fun settings() {
         findNavController(mainActivity, R.id.navhost).let { navController ->
             if (navController.currentDestination?.id != R.id.settingsFragment) {
+                hideSoftKeyboard(mainActivity)
                 navController.navigate(R.id.action_mainContainerFragment_to_settingsFragment)
             }
         }
@@ -74,7 +76,7 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
     }
 
     fun onWindowFocusChange() {
-        mainActivity.hideNav()
+        mainActivity.updateNavBarVisibility()
     }
 
     fun onBackPressed() {

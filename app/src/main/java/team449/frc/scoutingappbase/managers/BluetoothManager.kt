@@ -19,8 +19,6 @@ object BluetoothManager {
     private var outputStream: OutputStream? = null
     private var inputStream: InputStream? = null
 
-    private var defaultMaster: String? = null //make this part of settings
-
     private val connectionTest: ByteArray = ByteArray(0) {0}
 
     val isConnected: Boolean
@@ -48,10 +46,7 @@ object BluetoothManager {
             return paired
         }
 
-//    @Throws(IOException::class)
-    @JvmOverloads //get rid of the overload to only connect to master set in settings
-    fun connect(targetMasterName: String? = defaultMaster): Boolean {
-        defaultMaster = targetMasterName
+    fun connect(targetMasterName: String): Boolean {
         if (blueAdapter != null) {
             if (blueAdapter.isEnabled) {
                 //These are the devices that the tablet is paired with
