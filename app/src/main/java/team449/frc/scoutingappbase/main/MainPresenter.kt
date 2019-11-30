@@ -53,7 +53,11 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
     }
 
     fun settings() {
-        findNavController(mainActivity, R.id.navhost).navigate(R.id.action_mainContainerFragment_to_settingsFragment)
+        findNavController(mainActivity, R.id.navhost).let { navController ->
+            if (navController.currentDestination?.id != R.id.settingsFragment) {
+                navController.navigate(R.id.action_mainContainerFragment_to_settingsFragment)
+            }
+        }
     }
 
     fun submit() {
@@ -73,5 +77,7 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
         mainActivity.hideNav()
     }
 
-    fun onBackPressed() {}
+    fun onBackPressed() {
+        mainActivity.onSupportNavigateUp()
+    }
 }

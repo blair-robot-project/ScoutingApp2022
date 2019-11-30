@@ -30,7 +30,6 @@
   <string name="submit_button">Submit</string>
 
 
-
   <!--Help-->
   <string name="help_title">Help</string>
   <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nThis is a help popup.</string>
@@ -43,4 +42,20 @@
   <string name="action_edit">Edit</string>
   <string name="action_clear_data">Clear data</string>
   <string name="action_settings">Settings</string>
+  <string name="title_activity_settings">Settings</string>
+
+  <!-- Preference Titles -->
+  <string name="messages_header">Messages</string>
+  <string name="sync_header">Sync</string>
+
+  <!-- Messages Preferences -->
+  <string name="signature_title">Your signature</string>
+  <string name="reply_title">Default reply action</string>
+
+  <!-- Sync Preferences -->
+  <string name="sync_title">Sync email periodically</string>
+  <string name="attachment_title">Download incoming attachments</string>
+  <string name="attachment_summary_on">Automatically download attachments for incoming emails
+  </string>
+  <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

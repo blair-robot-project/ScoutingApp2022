@@ -1,25 +1,23 @@
 package team449.frc.scoutingappbase.fragment
 
 import android.os.Bundle
-import android.view.View
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceFragmentCompat
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.databinding.FragmentSettingsBinding
-import team449.frc.scoutingappbase.fragment.baseFragment.BaseFragment
+import team449.frc.scoutingappbase.main.MainActivity
 
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
-    override val layoutId: Int = R.layout.fragment_settings
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.handler = Handler(findNavController())
+
+class SettingsFragment : PreferenceFragmentCompat() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(false)
     }
 
-    class Handler(navController: NavController) {
-        val navController = navController
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
+    }
 
-        fun onClick(view: View) {
-            navController.navigate(R.id.action_settingsFragment_to_mainContainerFragment)
-        }
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).showUpButton()
     }
 }

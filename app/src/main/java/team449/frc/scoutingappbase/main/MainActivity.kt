@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation.findNavController
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.StaticResources
 import team449.frc.scoutingappbase.fragment.PageChanger
@@ -81,6 +82,13 @@ class MainActivity : AppCompatActivity() {
         pageChanger?.changePage(0)
     }
 
-//    override fun onSupportNavigateUp() =
-//        findNavController(R.id.navhost).navigateUp()
+    override fun onSupportNavigateUp() = findNavController(this, R.id.navhost).navigateUp()
+
+    fun showUpButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun hideUpButton() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
 }

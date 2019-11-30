@@ -49,6 +49,11 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
         tabLayout.setupWithViewPager(viewPager, true)
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideUpButton()
+    }
+
     override fun changePage(page: Int) { viewPager.currentItem = page }
     override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1)) }
     override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
