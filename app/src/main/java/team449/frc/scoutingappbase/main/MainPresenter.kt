@@ -1,10 +1,12 @@
 package team449.frc.scoutingappbase.main
 
+import android.content.SharedPreferences
 import android.os.AsyncTask
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.R
+import team449.frc.scoutingappbase.StaticResources
 import team449.frc.scoutingappbase.helpers.editDialog
 import team449.frc.scoutingappbase.helpers.hideSoftKeyboard
 import team449.frc.scoutingappbase.helpers.info
@@ -73,6 +75,16 @@ class MainPresenter(private val mainActivity: MainActivity): Editor {
 
     fun help(messageId: Int) {
         info(mainActivity, mainActivity.getString(R.string.help_title), mainActivity.getString(messageId))
+    }
+
+    val preferencesChanged = SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
+        when (key) {
+            "hideNav" -> mainActivity.updateNavBarVisibility()
+            "position" -> preferences?.getString("position", null)?.get(0)?.let {
+                StaticResources.defaultAlliance = if (it == 'R') 0 else if (it == 'B') 1 else -1
+                mainActivity.matchViewModel.alliance.value = StaticResources.defaultAlliance
+            }
+        }
     }
 
     fun onWindowFocusChange() {

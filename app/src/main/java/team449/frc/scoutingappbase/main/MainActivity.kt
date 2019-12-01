@@ -2,6 +2,7 @@ package team449.frc.scoutingappbase.main
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceActivity
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.Menu
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         preferences?.getString("position", null)?.get(0)?.let {
             StaticResources.defaultAlliance = if (it == 'R') 0 else if (it == 'B') 1 else -1
         }
+
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(mainPresenter.preferencesChanged)
 
         updateNavBarVisibility()
     }
