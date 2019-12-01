@@ -35,6 +35,11 @@
   <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nThis is a help popup.</string>
 
 
+  <string name="clear_data_title">Clear data?</string>
+  <string name="clear_data_body">Are you sure you want to clear all data? This action cannot be undone</string>
+  <string name="clear_data_button">Clear Data</string>
+
+
   <!--Menu-->
   <string name="action_help">Help</string>
   <string name="action_bluetooth">Bluetooth</string>

@@ -2,9 +2,7 @@ package team449.frc.scoutingappbase.main
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceActivity
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
@@ -19,7 +17,7 @@ import team449.frc.scoutingappbase.model.MatchViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainPresenter = MainPresenter(this)
+    private val presenter = MainPresenter(this)
 
     var pageChanger: PageChanger? = null
 
@@ -44,14 +42,14 @@ class MainActivity : AppCompatActivity() {
             StaticResources.defaultAlliance = if (it == 'R') 0 else if (it == 'B') 1 else -1
         }
 
-        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(mainPresenter.preferencesChanged)
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
 
         updateNavBarVisibility()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        mainPresenter.onWindowFocusChange()
+        presenter.onWindowFocusChange()
     }
 
     val preferences: SharedPreferences?
@@ -78,22 +76,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_help -> {mainPresenter.globalHelp(); true}
-        R.id.action_bluetooth -> {mainPresenter.bluetooth(); true}
-        R.id.action_edit -> {mainPresenter.edit(); true}
-        R.id.action_sync -> {mainPresenter.sync(); true}
-        R.id.action_clear_data -> {mainPresenter.clearData(); true}
-        R.id.action_settings -> {mainPresenter.settings(); true}
+        R.id.action_help -> {presenter.globalHelp(); true}
+        R.id.action_bluetooth -> {presenter.bluetooth(); true}
+        R.id.action_edit -> {presenter.edit(); true}
+        R.id.action_sync -> {presenter.sync(); true}
+        R.id.action_clear_data -> {presenter.clearData(); true}
+        R.id.action_settings -> {presenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
-        mainPresenter.onBackPressed()
+        presenter.onBackPressed()
     }
 
     fun submitButtonPressed() {
-        Log.i("MainActivity","submitButtonPressed")
-        mainPresenter.submit()
+        presenter.submit()
     }
 
     fun moveToPrematch() {

@@ -2,6 +2,7 @@ package team449.frc.scoutingappbase.helpers
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.util.DisplayMetrics
 import android.view.ContextThemeWrapper
 import android.view.WindowManager
@@ -35,4 +36,14 @@ fun editDialog(context: Activity, matches: List<Pair<String,Long>>, editor: Edit
             if (matches.size > 10) lp.height = (dm.heightPixels * 0.55).toInt()
             it.window?.attributes = lp
     }
+}
+
+fun confirmationDialog(context: Activity, title: String, body: String, positiveButtonName: String, positiveAction: (dialog: DialogInterface, id: Int) -> Unit) {
+    AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
+        .setTitle(title)
+        .setMessage(body)
+        .setPositiveButton(positiveButtonName, positiveAction)
+        .setNegativeButton("Cancel", null)
+        .show()
+        .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
 }
