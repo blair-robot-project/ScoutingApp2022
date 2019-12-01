@@ -55,18 +55,21 @@ class MatchViewModel : ViewModel() {
 
 
 // For serialization
-class MatchShadow (match: MatchViewModel) {
-    val timestamp = match.timestamp
-    val revision = match.revision
+class MatchShadow (matchViewModel: MatchViewModel) {
+    val timestamp = matchViewModel.timestamp
+    val revision = matchViewModel.revision
 
-    val scoutName = match.scoutName.value
-    val matchId = match.matchId.value
-    val teamId = match.teamId.value
-    val alliance = match.alliance.value
-    val noShow = match.noShow.value
-    val preload = match.preload.value
-    val autoMove = match.autoMove.value
-    val placedAThing = match.placedAThing.value
-    val climbed = match.climbed.value
-    val comments = match.comments.value
+    val scoutName = matchViewModel.scoutName.value
+    val matchId = matchViewModel.matchId.value
+    val teamId = matchViewModel.teamId.value
+    val alliance = matchViewModel.alliance.value
+    val noShow = matchViewModel.noShow.value
+    val preload = matchViewModel.preload.value
+    val autoMove = matchViewModel.autoMove.value
+    val placedAThing = matchViewModel.placedAThing.value
+    val climbed = matchViewModel.climbed.value
+    val comments = matchViewModel.comments.value
+
+    val match: String = matchId?.let{StaticResources.matches[it]} ?:""
+    val team: String = teamId?.let{StaticResources.teams[it]} ?:""
 }
