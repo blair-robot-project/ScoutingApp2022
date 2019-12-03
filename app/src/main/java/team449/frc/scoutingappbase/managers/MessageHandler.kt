@@ -42,7 +42,7 @@ object MessageHandler {
             }
             MessageType.SCHEDULE.name -> {
                 try {
-                    StaticResources.matchSchedule = message.body as Map<String, Map<String, Array<String>>>
+                    StaticResources.matchSchedule = message.body as Map<String, Map<String, List<String>>>
                 } catch (e: ClassCastException) {
                     Log.i("MsgHandler","ClassCastException in schedule cast of:"+message.body.toString())
                 }

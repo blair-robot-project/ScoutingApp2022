@@ -9,10 +9,16 @@
       app:useSimpleSummaryProvider="true" />
 
     <ListPreference
-      app:key="position"
-      app:entries="@array/position_entries"
-      app:entryValues="@array/position_values"
-      app:title="Field position"
+      app:key="alliance"
+      app:entries="@array/alliance_entries"
+      app:entryValues="@array/alliance_values"
+      app:title="Alliance"
+      app:useSimpleSummaryProvider="true" />
+    <ListPreference
+      app:key="driver_station"
+      app:entries="@array/driver_station_entries"
+      app:entryValues="@array/driver_station_values"
+      app:title="Driver Station"
       app:useSimpleSummaryProvider="true" />
 
     <SwitchPreferenceCompat

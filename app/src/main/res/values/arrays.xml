@@ -14,21 +14,25 @@
     <item>@id/r2</item>
   </array>
 
-  <string-array name="position_entries">
-    <item>Red 1</item>
-    <item>Red 2</item>
-    <item>Red 3</item>
-    <item>Blue 1</item>
-    <item>Blue 2</item>
-    <item>Blue 3</item>
+  <string-array name="alliance_entries">
+    <item>Red</item>
+    <item>Blue</item>
   </string-array>
 
-  <string-array name="position_values">
-    <item>R1</item>
-    <item>R2</item>
-    <item>R3</item>
-    <item>B1</item>
-    <item>B2</item>
-    <item>B3</item>
+  <string-array name="alliance_values">
+    <item>red</item>
+    <item>blue</item>
+  </string-array>
+
+  <string-array name="driver_station_entries">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+  </string-array>
+
+  <string-array name="driver_station_values">
+    <item>0</item>
+    <item>1</item>
+    <item>2</item>
   </string-array>
 </resources>

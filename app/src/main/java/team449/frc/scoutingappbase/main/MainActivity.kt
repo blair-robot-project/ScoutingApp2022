@@ -3,10 +3,12 @@ package team449.frc.scoutingappbase.main
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import team449.frc.scoutingappbase.R
@@ -45,6 +47,31 @@ class MainActivity : AppCompatActivity() {
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
 
         updateNavBarVisibility()
+
+        // WTF have I done?????
+        val matchObserver = Observer<Int> { matchId ->
+            StaticResources.matches[matchId].let { match ->
+                StaticResources.matchSchedule?.let { schedule ->
+                    schedule[match]?.let { alliances ->
+                        preferences?.let { prefs ->
+                            prefs.getString("alliance", null)?.let { alliance_str ->
+                                alliances[alliance_str]?.let { alliance ->
+                                    prefs.getString("driver_station", null)?.let { station ->
+                                        alliance[station.toInt()].let { team ->
+                                            StaticResources.teams.indexOf(team).let { teamId ->
+                                                if (teamId >= 0) matchViewModel.teamId.value =
+                                                    teamId
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        matchViewModel.matchId.observe(this, matchObserver)
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
