@@ -5,8 +5,8 @@
 
   <!--Prematch-->
   <string name="name_hint">Scout Name</string>
-  <string name="team_prompt">Team:</string>
-  <string name="match_prompt">Match:</string>
+  <string name="match_prompt">Match</string>
+  <string name="team_prompt">Team</string>
   <string name="alliance_prompt">Alliance Color</string>
   <string name="alliance_red">RED</string>
   <string name="alliance_blue">BLUE</string>

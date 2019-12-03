@@ -3,7 +3,6 @@ package team449.frc.scoutingappbase.main
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
@@ -40,36 +39,16 @@ class MainActivity : AppCompatActivity() {
         StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
         StaticResources.filesDir = filesDir
         StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
-        preferences?.getString("position", null)?.get(0)?.let {
-            StaticResources.defaultAlliance = if (it == 'R') 0 else if (it == 'B') 1 else -1
+        preferences?.getString("alliance", null)?.let {
+            StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
 
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
 
         updateNavBarVisibility()
 
-        // WTF have I done?????
         val matchObserver = Observer<Int> { matchId ->
-            StaticResources.matches[matchId].let { match ->
-                StaticResources.matchSchedule?.let { schedule ->
-                    schedule[match]?.let { alliances ->
-                        preferences?.let { prefs ->
-                            prefs.getString("alliance", null)?.let { alliance_str ->
-                                alliances[alliance_str]?.let { alliance ->
-                                    prefs.getString("driver_station", null)?.let { station ->
-                                        alliance[station.toInt()].let { team ->
-                                            StaticResources.teams.indexOf(team).let { teamId ->
-                                                if (teamId >= 0) matchViewModel.teamId.value =
-                                                    teamId
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            presenter.matchChanged(matchId)
         }
         matchViewModel.matchId.observe(this, matchObserver)
     }

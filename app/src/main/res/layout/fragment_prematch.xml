@@ -30,35 +30,11 @@
       app:layout_constraintTop_toBottomOf="@id/scoutName"/>
 
     <TextView
-      android:id="@+id/teamText"
-      style="@style/Text"
-      android:text="@string/team_prompt"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/scoutNameDiv" />
-
-    <Spinner
-      android:id="@+id/team"
-      style="@style/SpinnerStyle"
-      android:entries="@array/teams"
-      android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
-      android:theme="@style/SpinnerTheme"
-      android:layout_marginStart="@dimen/horizontalFieldSpacing"
-      app:layout_constraintBottom_toBottomOf="@id/teamText"
-      app:layout_constraintTop_toTopOf="@id/teamText"
-      app:layout_constraintStart_toEndOf="@id/teamText"/>
-
-    <View
-      android:id="@+id/teamDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/teamText"/>
-
-    <TextView
       android:id="@+id/matchText"
       style="@style/Text"
       android:text="@string/match_prompt"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/teamDiv" />
+      app:layout_constraintTop_toBottomOf="@id/scoutNameDiv"  />
 
     <Spinner
       android:id="@+id/match"
@@ -66,8 +42,9 @@
       android:entries="@array/matches"
       android:selectedItemPosition="@={Conversions.unbox(vm.matchId)}"
       android:theme="@style/SpinnerTheme"
+      android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/matchText"
-      app:layout_constraintStart_toStartOf="@id/team"
+      app:layout_constraintStart_toEndOf="@id/matchText"
       app:layout_constraintTop_toTopOf="@id/matchText" />
 
     <View
@@ -77,11 +54,34 @@
       app:layout_constraintTop_toBottomOf="@id/matchText"/>
 
     <TextView
+      android:id="@+id/teamText"
+      style="@style/Text"
+      android:text="@string/team_prompt"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/matchDiv"/>
+
+    <Spinner
+      android:id="@+id/team"
+      style="@style/SpinnerStyle"
+      android:entries="@array/teams"
+      android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
+      android:theme="@style/SpinnerTheme"
+      app:layout_constraintBottom_toBottomOf="@id/teamText"
+      app:layout_constraintTop_toTopOf="@id/teamText"
+      app:layout_constraintStart_toStartOf="@id/match"/>
+
+    <View
+      android:id="@+id/teamDiv"
+      style="@style/Divider"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/teamText"/>
+
+    <TextView
       android:id="@+id/allianceColorText"
       style="@style/Text"
       android:text="@string/alliance_prompt"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/matchDiv" />
+      app:layout_constraintTop_toBottomOf="@id/teamDiv" />
 
     <RadioGroup
       android:id="@+id/allianceColor"

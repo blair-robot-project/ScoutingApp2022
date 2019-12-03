@@ -20,6 +20,8 @@ interface Editor {
 
 class MainPresenter(private val activity: MainActivity): Editor {
 
+    var prevMatchId = -1
+
     fun globalHelp() {
         help(R.string.help_global)
     }
@@ -49,7 +51,6 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun clearData() {
-        //TODO: use string resources
         confirmationDialog(activity, activity.getString(R.string.clear_data_title), activity.getString(R.string.clear_data_body), activity.getString(R.string.clear_data_button))
             {_,_ -> AsyncTask.execute{ DataManager.clear() } }
     }
@@ -76,13 +77,35 @@ class MainPresenter(private val activity: MainActivity): Editor {
         info(activity, activity.getString(R.string.help_title), activity.getString(messageId))
     }
 
+    fun matchChanged(matchId: Int) {
+        //TODO: This doesn't work if it was reselected but not changed. Think about forcing team, unless schedule can't find it or force_team setting is overridden
+        if (matchId != prevMatchId) {
+            prevMatchId = matchId
+            StaticResources.matchSchedule?.let { schedule ->
+                schedule[StaticResources.matches[matchId]]?.let { alliances ->
+                    activity.preferences?.let { prefs ->
+                        prefs.getString("driver_station", null)?.toInt()?.let { station ->
+                            StaticResources.teams.indexOf(
+                                alliances[prefs.getString("alliance", null) ?: ""]?.get(station)
+                            ).let { teamId ->
+                                if (teamId >= 0) activity.matchViewModel.teamId.value = teamId
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     val preferencesChanged = SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
         when (key) {
             "hideNav" -> activity.updateNavBarVisibility()
-            "position" -> preferences?.getString("position", null)?.get(0)?.let {
-                StaticResources.defaultAlliance = if (it == 'R') 0 else if (it == 'B') 1 else -1
+            "alliance" -> preferences?.getString("alliance", null)?.let {
+                StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
                 activity.matchViewModel.alliance.value = StaticResources.defaultAlliance
+                matchChanged(++prevMatchId - 1)
             }
+            "driver_sation" -> matchChanged(++prevMatchId - 1)
         }
     }
 
