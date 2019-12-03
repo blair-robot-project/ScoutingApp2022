@@ -20,7 +20,7 @@ object DataManager {
     }
 
     fun submit(match: MatchShadow) {
-        val key = match.timestamp
+        val key = match.timestamp.toString()
         if (!data.submitted.containsKey(key)) {
             data.submitted[key] = ArrayList()
         }
@@ -30,13 +30,13 @@ object DataManager {
 
     fun stashCurrent(match: MatchShadow) { data.partial.push(match) }
 
-    fun retrieveMatch(id: Long) = data.submitted[id]?.last()
+    fun retrieveMatch(id: String) = data.submitted[id]?.last()
 
     fun recoverMatch() = if (data.partial.empty()) null else data.partial.pop()
 
-    val matchNames: List<Pair<String,Long>>
+    val matchNames: List<Pair<String,String>>
         get() = data.submitted.map { it.value.last() }.sortedByDescending { it.matchId }
-                .map { Pair("${Conversions.spinnerToMatch(it.matchId)}, ${Conversions.spinnerToTeam(it.teamId)}", it.timestamp) }
+                .map { Pair("${Conversions.spinnerToMatch(it.matchId)}, ${Conversions.spinnerToTeam(it.teamId)}", it.timestamp.toString()) }
 
     fun sync(summary: Map<String,Double>): List<MatchShadow> =
         data.submitted.filter { (id, revs) -> !summary.containsKey(id.toString()) || summary[id.toString()]?.toInt() ?: 0 < revs.size - 1}

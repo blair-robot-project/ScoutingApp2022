@@ -2,8 +2,10 @@ package team449.frc.scoutingappbase.managers
 
 import android.util.Log
 import com.google.gson.JsonSyntaxException
+import com.google.gson.internal.LinkedTreeMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import team449.frc.scoutingappbase.StaticResources
 import team449.frc.scoutingappbase.helpers.deserializeMessage
 import team449.frc.scoutingappbase.model.Message
 import team449.frc.scoutingappbase.model.MessageType
@@ -26,14 +28,26 @@ object MessageHandler {
     // TODO: standardize what happens with invalid messages
     private fun handleMessage(message: Message) {
         when (message.type) {
+            // TODO: find a better way to handle casting
             MessageType.SYNC_SUMMARY.name -> {
                 GlobalScope.launch {
-                    // TODO: find a way to make this cast safe
-                    DataManager.sync(message.body as Map<String, Double>).let {
-                        BluetoothManager.write(makeMultiMatchDataMessage(it))
+                    try {
+                        DataManager.sync(message.body as Map<String, Double>).let {
+                            BluetoothManager.write(makeMultiMatchDataMessage(it))
+                        }
+                    } catch (e: ClassCastException) {
+                        Log.i("MsgHandler","ClassCastException in sync summary cast of:"+message.body.toString())
                     }
                 }
-            } else -> {
+            }
+            MessageType.SCHEDULE.name -> {
+                try {
+                    StaticResources.matchSchedule = message.body as Map<String, Map<String, Array<String>>>
+                } catch (e: ClassCastException) {
+                    Log.i("MsgHandler","ClassCastException in schedule cast of:"+message.body.toString())
+                }
+            }
+            else -> {
                 Log.e("MsgHandler","Invalid message type received: ${message.type}")
             }
         }

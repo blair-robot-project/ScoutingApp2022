@@ -22,7 +22,7 @@ fun info(context: Context, title: String, body: String) {
         .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
 }
 
-fun editDialog(context: Activity, matches: List<Pair<String,Long>>, editor: Editor) {
+fun editDialog(context: Activity, matches: List<Pair<String,String>>, editor: Editor) {
     val dm = DisplayMetrics()
     context.windowManager.defaultDisplay.getMetrics(dm)
     AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))

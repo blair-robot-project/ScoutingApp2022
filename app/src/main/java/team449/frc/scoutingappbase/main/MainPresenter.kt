@@ -15,7 +15,7 @@ import team449.frc.scoutingappbase.model.makeSyncRequest
 
 
 interface Editor {
-    fun edit(id: Long)
+    fun edit(id: String)
 }
 
 class MainPresenter(private val activity: MainActivity): Editor {
@@ -34,7 +34,7 @@ class MainPresenter(private val activity: MainActivity): Editor {
         editDialog(activity, DataManager.matchNames, this)
     }
 
-    override fun edit(id: Long) {
+    override fun edit(id: String) {
         val mVM = activity.matchViewModel
         DataManager.retrieveMatch(id)?.let {
             DataManager.stashCurrent(MatchShadow(mVM))
