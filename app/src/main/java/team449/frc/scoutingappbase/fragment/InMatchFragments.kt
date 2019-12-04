@@ -10,12 +10,12 @@ import team449.frc.scoutingappbase.main.MainActivity
 
 class PrematchFragment: VMBaseFragment<FragmentPrematchBinding>() {
     override val layoutId: Int = R.layout.fragment_prematch
+
     override fun onStart() {
         super.onStart()
-
-        // Spinners don't update and end up overriding the viewmodel with the old selection
-        activity?.findViewById<Spinner>(R.id.team)?.setSelection(Conversions.unbox(viewModel.teamId.value))
         activity?.findViewById<Spinner>(R.id.match)?.setSelection(Conversions.unbox(viewModel.matchId.value))
+        activity?.findViewById<Spinner>(R.id.team)?.setSelection(Conversions.unbox(viewModel.teamId.value))
+        (activity as MainActivity?)?.fixSpinners()
     }
 }
 

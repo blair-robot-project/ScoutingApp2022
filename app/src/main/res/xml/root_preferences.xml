@@ -1,12 +1,15 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-  <PreferenceCategory app:title="Settings">
+  <PreferenceCategory app:title="General">
 
     <ListPreference
       app:key="master"
       app:defaultValue="none"
       app:title="Bluetooth server name"
       app:useSimpleSummaryProvider="true" />
+
+  </PreferenceCategory>
+  <PreferenceCategory app:title="Field Position">
 
     <ListPreference
       app:key="alliance"
@@ -21,12 +24,22 @@
       app:title="Driver Station"
       app:useSimpleSummaryProvider="true" />
 
+  </PreferenceCategory>
+  <PreferenceCategory app:title="Developer Options">
+
     <SwitchPreferenceCompat
       app:key="hideNav"
-      app:title="Hide Nav Bar"
+      app:title="Hide nav bar"
       app:summaryOff="Show bottom navigation and status bar"
       app:summaryOn="Hide bottom navigation and status bar"
       app:defaultValue="false" />
+
+    <SwitchPreferenceCompat
+      app:key="lockTeamSpinner"
+      app:title="Lock team selection"
+      app:summaryOff="Allow user to override match schedule"
+      app:summaryOn="Force team selection to follow match schedule (if available)"
+      app:defaultValue="true" />
 
   </PreferenceCategory>
 

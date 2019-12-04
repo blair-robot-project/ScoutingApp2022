@@ -78,24 +78,33 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun matchChanged(matchId: Int) {
-        //TODO: This doesn't work if it was reselected but not changed. Think about forcing team, unless schedule can't find it or force_team setting is overridden
         if (matchId != prevMatchId) {
             prevMatchId = matchId
-            StaticResources.matchSchedule?.let { schedule ->
-                schedule[StaticResources.matches[matchId]]?.let { alliances ->
-                    activity.preferences?.let { prefs ->
-                        prefs.getString("driver_station", null)?.toInt()?.let { station ->
-                            StaticResources.teams.indexOf(
-                                alliances[prefs.getString("alliance", null) ?: ""]?.get(station)
-                            ).let { teamId ->
-                                if (teamId >= 0) activity.matchViewModel.teamId.value = teamId
-                            }
+            teamIdForMatchId(matchId)?.let { activity.matchViewModel.teamId.value = it }
+            activity.fixSpinners()
+        }
+    }
+
+    fun teamIdForMatchId(matchId: Int): Int? {
+        StaticResources.matchSchedule?.let { schedule ->
+            schedule[StaticResources.matches[matchId]]?.let { alliances ->
+                activity.preferences?.let { prefs ->
+                    prefs.getString("driver_station", null)?.toInt()?.let { station ->
+                        StaticResources.teams.indexOf(
+                            alliances[prefs.getString("alliance", null) ?: ""]?.get(station)
+                        ).let { teamId ->
+                            if (teamId >= 0) return teamId
                         }
                     }
                 }
             }
         }
+        return null
     }
+
+    val teamSpinnerEnabled: Boolean
+        get() = !(activity.preferences?.getBoolean("lockTeamSpinner", false)?: false &&
+                teamIdForMatchId(activity.matchViewModel.matchId.value?:0) == activity.matchViewModel.teamId.value?:-1)
 
     val preferencesChanged = SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
         when (key) {
@@ -105,7 +114,8 @@ class MainPresenter(private val activity: MainActivity): Editor {
                 activity.matchViewModel.alliance.value = StaticResources.defaultAlliance
                 matchChanged(++prevMatchId - 1)
             }
-            "driver_sation" -> matchChanged(++prevMatchId - 1)
+            "driver_staion" -> matchChanged(++prevMatchId - 1)
+            "lockTeamSpinner" -> if (preferences.getBoolean(key, false)) { matchChanged(++prevMatchId - 1) }
         }
     }
 

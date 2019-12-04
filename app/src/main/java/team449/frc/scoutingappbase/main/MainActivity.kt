@@ -6,6 +6,7 @@ import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.*
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -43,7 +44,10 @@ class MainActivity : AppCompatActivity() {
             StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
 
-        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
+        PreferenceManager.getDefaultSharedPreferences(this)
+            .registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
+
+        presenter.bluetooth()
 
         updateNavBarVisibility()
 
@@ -89,6 +93,10 @@ class MainActivity : AppCompatActivity() {
         R.id.action_clear_data -> {presenter.clearData(); true}
         R.id.action_settings -> {presenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
+    }
+
+    fun fixSpinners() {
+        findViewById<Spinner>(R.id.team)?.isEnabled = presenter.teamSpinnerEnabled
     }
 
     override fun onBackPressed() {
