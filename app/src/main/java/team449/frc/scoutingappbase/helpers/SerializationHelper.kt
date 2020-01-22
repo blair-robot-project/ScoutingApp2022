@@ -8,7 +8,7 @@ import team449.frc.scoutingappbase.model.Message
 
 fun serialize(data: Any) = Gson().toJson(data)
 
-// fun <T> deserialize(json: String): T = Gson().fromJson(json, object : TypeToken<T>() { }.type)
+fun <T> deserialize(json: String): T = Gson().fromJson(json, object : TypeToken<T>() { }.type)
 
 // Generic deserialize isn't working, not sure why
 fun deserializeData(json: String): Data = Gson().fromJson(json, object : TypeToken<Data>() { }.type)

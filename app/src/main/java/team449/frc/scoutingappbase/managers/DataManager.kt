@@ -1,7 +1,6 @@
 package team449.frc.scoutingappbase.managers
 
 import android.os.AsyncTask
-import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.Data
@@ -12,7 +11,6 @@ import kotlin.collections.HashMap
 
 
 object DataManager {
-    private const val saveFile = "data.json"
     private var data = Data(HashMap(), Stack())
 
     init {
@@ -43,15 +41,15 @@ object DataManager {
                       .map { (_, revs) -> revs.last() }
 
     private fun save() {
-        writeToFile(saveFile, serialize(data))
+        writeToFile(dataFile, serialize(data))
     }
 
     private fun load() {
-        readFromFile(saveFile)?.let{ data = deserializeData(it) }
+        readFromFile(dataFile)?.let{ data = deserializeData(it) }
     }
 
     fun clear() {
-        clearFile(saveFile)
+        clearFile(dataFile)
         data.submitted.clear()
         data.partial.clear()
     }

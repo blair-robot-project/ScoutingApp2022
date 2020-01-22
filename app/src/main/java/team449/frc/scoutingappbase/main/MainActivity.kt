@@ -14,6 +14,10 @@ import androidx.navigation.Navigation.findNavController
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.StaticResources
 import team449.frc.scoutingappbase.fragment.PageChanger
+import team449.frc.scoutingappbase.helpers.deserialize
+import team449.frc.scoutingappbase.helpers.deserializeData
+import team449.frc.scoutingappbase.helpers.readFromFile
+import team449.frc.scoutingappbase.helpers.teamsFile
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
@@ -33,16 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.appbar))
 
-        // Hand out resources
-        StaticResources.pages = resources.getStringArray(R.array.pages)
-        StaticResources.teams = resources.getStringArray(R.array.teams)
-        StaticResources.matches = resources.getStringArray(R.array.matches)
-        StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
-        StaticResources.filesDir = filesDir
-        StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
-        preferences?.getString("alliance", null)?.let {
-            StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
-        }
+        setupStaticResources()
 
         PreferenceManager.getDefaultSharedPreferences(this)
             .registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
@@ -55,6 +50,24 @@ class MainActivity : AppCompatActivity() {
             presenter.matchChanged(matchId)
         }
         matchViewModel.matchId.observe(this, matchObserver)
+    }
+
+    private fun setupStaticResources() {
+        // Hand out resources
+        StaticResources.pages = resources.getStringArray(R.array.pages)
+        StaticResources.teams = resources.getStringArray(R.array.teams)
+        StaticResources.matches = resources.getStringArray(R.array.matches)
+        StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
+        StaticResources.filesDir = filesDir
+        StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
+        preferences?.getString("alliance", null)?.let {
+            StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
+        }
+
+        readFromFile(teamsFile)?.let{
+            StaticResources.teamLists = deserialize(it)
+        }
+
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

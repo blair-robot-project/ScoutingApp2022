@@ -6,6 +6,11 @@ import java.io.File
 import java.io.IOException
 
 
+const val dataFile = "data.json"
+const val teamsFile = "teams.json"
+const val matchScheduleFile = "matches.json"
+
+
 fun writeToFile(filename: String, data: String) {
     try {
         File(StaticResources.filesDir, filename).writeText(data)

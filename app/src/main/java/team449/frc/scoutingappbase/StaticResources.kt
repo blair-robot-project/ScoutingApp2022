@@ -12,6 +12,9 @@ object StaticResources {
 
     var matchSchedule: Map<String,Map<String,List<String>>>? = null
 
+    var matchSchedules: Map<String,Map<String,Map<String,List<String>>>>? = null
+    var teamLists: Map<String,List<String>>? = null
+
     var dialogTextSize = 0F
 
     var defaultAlliance = -1
