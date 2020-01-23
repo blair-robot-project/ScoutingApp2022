@@ -1,9 +1,11 @@
-# Scouting App Base
-Android scouting app for FRC. Has underlying structure, Bluetooth communication, and game independent fields, but does not have game specific fields. A fork will be made for Infinite Recharge when it is released.
+# FRC Team 449: Scouting App
+Android scouting app for FRC with Bluetooth data transfer. Designed for use on 7" Kindle fires.
 
-<b>This app is in early stages of development. It is not ready for use.</b>
+Development for Infinite Recharge specific data fields is underway (but not ready for use).
 
-This is version 2 of our 2019 scouting app: https://github.com/carter-wilson/DeepSpaceScoutingApp / https://github.com/carter-wilson/ScoutingServer
+__To be used with the Python server:__ https://github.com/carter-wilson/ScoutingServer
+
+This is version 2 of our 2019 scouting app: https://github.com/carter-wilson/DeepSpaceScoutingApp
 
 ### Contact the developer
 If you need any help setting up and using this app, developing a scouting app of your own (or a derivative of this one), or anything else, I am more than happy to help.
@@ -12,7 +14,7 @@ You can email me at <carter47w@gmai.com>, or find me (Carter|449) on the FRC or 
 
 ### Copyright and License
 
-Copyright (C) 2019 FRC Team 449: The Blair Robot Project
+Copyright (C) 2020 FRC Team 449: The Blair Robot Project
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
