@@ -12,12 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.StaticResources
+import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.fragment.PageChanger
-import team449.frc.scoutingappbase.helpers.deserialize
-import team449.frc.scoutingappbase.helpers.deserializeData
-import team449.frc.scoutingappbase.helpers.readFromFile
-import team449.frc.scoutingappbase.helpers.teamsFile
+import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
@@ -54,20 +51,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupStaticResources() {
         // Hand out resources
-        StaticResources.pages = resources.getStringArray(R.array.pages)
-        StaticResources.teams = resources.getStringArray(R.array.teams)
-        StaticResources.matches = resources.getStringArray(R.array.matches)
-        StaticResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
-        StaticResources.filesDir = filesDir
-        StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
+        GlobalResources.pages = resources.getStringArray(R.array.pages)
+        GlobalResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
+        GlobalResources.filesDir = filesDir
+        GlobalResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
         preferences?.getString("alliance", null)?.let {
-            StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
+            GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
+        GlobalResources.event = preferences?.getString("event", null)
 
+        readFromFile(matchScheduleFile)?.let{
+            GlobalResources.matchSchedules = deserialize(it)
+        }
         readFromFile(teamsFile)?.let{
-            StaticResources.teamLists = deserialize(it)
+            GlobalResources.teamLists = deserialize(it)
         }
-
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

@@ -9,7 +9,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.StaticResources
+import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.main.Editor
 
 
@@ -19,7 +19,7 @@ fun info(context: Context, title: String, body: String) {
         .setMessage(body)
         .setPositiveButton("Okay", null)
         .show()
-        .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
+        .findViewById<TextView>(android.R.id.message)?.textSize = GlobalResources.dialogTextSize
 }
 
 fun editDialog(context: Activity, matches: List<Pair<String,String>>, editor: Editor) {
@@ -45,5 +45,5 @@ fun confirmationDialog(context: Activity, title: String, body: String, positiveB
         .setPositiveButton(positiveButtonName, positiveAction)
         .setNegativeButton("Cancel", null)
         .show()
-        .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
+        .findViewById<TextView>(android.R.id.message)?.textSize = GlobalResources.dialogTextSize
 }

@@ -2,11 +2,11 @@ package team449.frc.scoutingappbase.managers
 
 import android.util.Log
 import com.google.gson.JsonSyntaxException
-import com.google.gson.internal.LinkedTreeMap
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import team449.frc.scoutingappbase.StaticResources
+import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.helpers.deserializeMessage
+import team449.frc.scoutingappbase.helpers.saveMatchSchedules
 import team449.frc.scoutingappbase.model.Message
 import team449.frc.scoutingappbase.model.MessageType
 import team449.frc.scoutingappbase.model.makeErrorMessage
@@ -42,7 +42,9 @@ object MessageHandler {
             }
             MessageType.SCHEDULE.name -> {
                 try {
-                    StaticResources.matchSchedule = message.body as Map<String, Map<String, List<String>>>
+                    val schedule = message.body as Pair<String, Map<String, Map<String, List<String>>>>
+                    GlobalResources.matchSchedules?.set(schedule.first, schedule.second)
+                    saveMatchSchedules()
                 } catch (e: ClassCastException) {
                     Log.i("MsgHandler","ClassCastException in schedule cast of:"+message.body.toString())
                 }

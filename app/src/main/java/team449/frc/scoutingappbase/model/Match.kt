@@ -2,7 +2,7 @@ package team449.frc.scoutingappbase.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import team449.frc.scoutingappbase.StaticResources
+import team449.frc.scoutingappbase.GlobalResources
 
 fun <T: Any?> mutableLiveData(initialValue: T) = MutableLiveData<T>().apply { postValue(initialValue) }
 
@@ -13,7 +13,7 @@ class MatchViewModel : ViewModel() {
     val scoutName by lazy { mutableLiveData("") }
     val matchId by lazy { mutableLiveData(0) }
     val teamId by lazy { mutableLiveData(0) }
-    val alliance by lazy { mutableLiveData(StaticResources.defaultAlliance) }
+    val alliance by lazy { mutableLiveData(GlobalResources.defaultAlliance) }
     val noShow by lazy { mutableLiveData(false) }
     val preload by lazy { mutableLiveData(-1) }
     val autoMove by lazy { mutableLiveData(false) }
@@ -26,7 +26,7 @@ class MatchViewModel : ViewModel() {
         revision = 0
 
         // If numeric add one, otherwise it's playoffs so don't increment
-        matchId.value = matchId.value?.plus(if (StaticResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
+        matchId.value = matchId.value?.plus(if (GlobalResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
         teamId.value = 0
         noShow.value = false
         preload.value = -1
@@ -70,6 +70,6 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val climbed = matchViewModel.climbed.value
     val comments = matchViewModel.comments.value
 
-    val match: String = matchId?.let{StaticResources.matches[it]} ?:""
-    val team: String = teamId?.let{StaticResources.teams[it]} ?:""
+    val match: String = matchId?.let{GlobalResources.matches[it]} ?:""
+    val team: String = teamId?.let{GlobalResources.teams[it]} ?:""
 }

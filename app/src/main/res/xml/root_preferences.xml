@@ -8,6 +8,12 @@
       app:title="Bluetooth server name"
       app:useSimpleSummaryProvider="true" />
 
+    <ListPreference
+      app:key="event"
+      app:title="Event"
+      app:defaultValue="none"
+      app:useSimpleSummaryProvider="true"/>
+
   </PreferenceCategory>
   <PreferenceCategory app:title="Field Position">
 

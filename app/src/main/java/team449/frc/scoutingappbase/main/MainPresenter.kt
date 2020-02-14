@@ -6,7 +6,7 @@ import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.StaticResources
+import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.managers.DataManager
@@ -86,11 +86,11 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun teamIdForMatchId(matchId: Int): Int? {
-        StaticResources.matchSchedule?.let { schedule ->
-            schedule[StaticResources.matches[matchId]]?.let { alliances ->
+        GlobalResources.matchSchedule?.let { schedule ->
+            schedule[GlobalResources.matches[matchId]]?.let { alliances ->
                 activity.preferences?.let { prefs ->
                     prefs.getString("driver_station", null)?.toInt()?.let { station ->
-                        StaticResources.teams.indexOf(
+                        GlobalResources.teams.indexOf(
                             alliances[prefs.getString("alliance", null) ?: ""]?.get(station)
                         ).let { teamId ->
                             if (teamId >= 0) return teamId
@@ -110,8 +110,8 @@ class MainPresenter(private val activity: MainActivity): Editor {
         when (key) {
             "hideNav" -> activity.updateNavBarVisibility()
             "alliance" -> preferences?.getString("alliance", null)?.let {
-                StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
-                activity.matchViewModel.alliance.value = StaticResources.defaultAlliance
+                GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
+                activity.matchViewModel.alliance.value = GlobalResources.defaultAlliance
                 matchChanged(++prevMatchId - 1)
             }
             "driver_staion" -> matchChanged(++prevMatchId - 1)
