@@ -59,6 +59,7 @@ public class Conversions {
         return spinnerToLabel(ind, GlobalResources.matches, "Match ");
     }
 
+    //TODO: This should be somewhere else (but it has to be java for databinding to access it)
     public static String[] getTeams() {
         return GlobalResources.teams;
     }

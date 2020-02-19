@@ -36,8 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         setupStaticResources()
 
-        PreferenceManager.getDefaultSharedPreferences(this)
-            .registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
+        preferences?.registerOnSharedPreferenceChangeListener(presenter.preferencesChanged)
 
         presenter.bluetooth()
 
