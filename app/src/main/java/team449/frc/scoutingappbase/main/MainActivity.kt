@@ -3,8 +3,10 @@ package team449.frc.scoutingappbase.main
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.View.*
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
@@ -103,6 +105,13 @@ class MainActivity : AppCompatActivity() {
         R.id.action_clear_data -> {presenter.clearData(); true}
         R.id.action_settings -> {presenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
+    }
+
+    fun help(view: View) {
+        Log.i("!!!!!!!!","help")
+        when (view.id) {
+            R.id.noShowHelp -> Log.i("help","noshow")
+        }
     }
 
     fun fixSpinners() {
