@@ -18,6 +18,8 @@
 
   <!--Auto-->
   <string name="moved_prompt">Leave the Initiation Zone\ \ \ </string>
+  <string name="hit_partner_prompt">Hit partner\ \ \ </string>
+  <string name="auto_intake_prompt">Intake balls\ \ \ </string>
 
   <!--Teleop-->
   <string name="placed_prompt">Placed a piece?</string>

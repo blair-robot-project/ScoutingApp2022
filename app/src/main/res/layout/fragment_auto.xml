@@ -36,5 +36,65 @@
       app:layout_constraintTop_toBottomOf="@id/autoMove"/>
 
 
+    <CheckBox
+      android:id="@+id/hitPartner"
+      style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.hitPartner)}"
+      android:text="@string/hit_partner_prompt"
+      app:layout_constraintStart_toEndOf="@id/hitPartnerHelp"
+      app:layout_constraintTop_toBottomOf="@id/autoMoveDiv" />
+    <ImageButton
+      android:id="@+id/hitPartnerHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/hitPartner"
+      app:layout_constraintBottom_toBottomOf="@id/hitPartner" />
+
+
+    <View
+      android:id="@+id/hitPartnerDiv"
+      style="@style/Divider"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/hitPartner"/>
+
+
+    <!--Layout for goal graphic and shot counts-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/goal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toBottomOf="@id/hitPartnerDiv"
+      app:layout_constraintStart_toStartOf="parent">
+
+      <TextView
+        style="@style/Text"
+        android:text="todo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <View
+      android:id="@+id/goalDiv"
+      style="@style/Divider"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/goal"/>
+
+    <CheckBox
+      android:id="@+id/autoIntake"
+      style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.autoIntake)}"
+      android:text="@string/auto_intake_prompt"
+      app:layout_constraintStart_toEndOf="@id/autoIntakeHelp"
+      app:layout_constraintTop_toBottomOf="@id/goalDiv" />
+    <ImageButton
+      android:id="@+id/autoIntakeHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/autoIntake"
+      app:layout_constraintBottom_toBottomOf="@id/autoIntake" />
+
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
