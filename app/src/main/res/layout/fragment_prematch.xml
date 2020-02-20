@@ -83,6 +83,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/teamDiv" />
 
+    <!--TODO: remove, replace with a simple indicator (because it's set in the settings anyway-->
     <RadioGroup
       android:id="@+id/allianceColor"
       style="@style/RadioGroup"
@@ -116,13 +117,12 @@
       style="@style/Checkbox"
       android:checked="@={Conversions.unbox(vm.noShow)}"
       android:text="@string/noshow_prompt"
-      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintStart_toEndOf="@id/noShowHelp"
       app:layout_constraintTop_toBottomOf="@id/allianceColorDiv" />
-
     <ImageButton
       android:id="@+id/noShowHelp"
-      style="@style/Help"
-      app:layout_constraintStart_toEndOf="@id/noShow"
+      style="@style/Help.Checkbox"
+      app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="@id/noShow"
       app:layout_constraintBottom_toBottomOf="@id/noShow" />
 
@@ -132,36 +132,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/noShow"/>
 
-    <TextView
-      android:id="@+id/preloadText"
-      style="@style/Text"
-      android:text="@string/preload_prompt"
-      app:layout_constraintTop_toBottomOf="@id/noShowDiv"
-      app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-      style="@style/RadioGroup"
-      android:id="@+id/preload"
-      android:checkedButton="@={Conversions.radioIndexToId(vm.preload)}"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/preloadText">
-
-      <RadioButton
-        style="@style/RadioButton"
-        android:id="@id/r0"
-        android:text="@string/preload_none" />
-
-      <RadioButton
-        style="@style/RadioButton"
-        android:id="@id/r1"
-        android:text="@string/preload_A" />
-
-      <RadioButton
-        style="@style/RadioButton"
-        android:id="@+id/r2"
-        android:text="@string/preload_B" />
-    </RadioGroup>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

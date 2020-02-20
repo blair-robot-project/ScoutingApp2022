@@ -54,11 +54,10 @@
     <!--Elements-->
     <style name="Checkbox" parent="Text">
         <item name="android:buttonTint">@color/fieldsColor</item>
-    </style>
-
-    <style name="Checkbox.LongHitbox" parent="Checkbox">
-        <item name="android:text">----------------------------------------</item>
-        <item name="android:textColor">@color/background</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableEnd">?android:attr/listChoiceIndicatorMultiple</item>
+        <item name="android:paddingEnd">@dimen/checkboxEndPadding</item>
     </style>
 
     <style name="RadioGroup" parent="Wrap">
@@ -109,9 +108,12 @@
     <style name="Help" parent="Wrap">
         <item name="android:padding">@dimen/helpPadding</item>
         <item name="android:src">@drawable/ic_help</item>
-        <item name="android:contentDescription">\?</item>
+        <item name="android:contentDescription">Help</item>
         <item name="android:onClick">help</item>
         <item name="android:background">@color/transparent</item>
+    </style>
+    <style name="Help.Checkbox" parent="Help">
+        <item name="android:paddingStart">0dp</item>
     </style>
 
     <style name="AlertDialogCustom" parent="AlertDialog.AppCompat">

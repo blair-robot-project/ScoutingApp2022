@@ -10,14 +10,14 @@
   <string name="alliance_prompt">Alliance Color</string>
   <string name="alliance_red">RED</string>
   <string name="alliance_blue">BLUE</string>
-  <string name="noshow_prompt">\ \ No show?\ \ \ \ \ \ </string>
+  <string name="noshow_prompt">No show?\ \ \ </string>
   <string name="preload_prompt">Preloaded Piece</string>
   <string name="preload_none">None</string>
   <string name="preload_A">Piece A</string>
   <string name="preload_B">Piece B</string>
 
   <!--Auto-->
-  <string name="moved_prompt">Moved forward?</string>
+  <string name="moved_prompt">Leave the Initiation Zone\ \ \ </string>
 
   <!--Teleop-->
   <string name="placed_prompt">Placed a piece?</string>

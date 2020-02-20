@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   tools:context=".fragment.AutoFragment">
 
   <data>
@@ -10,13 +11,30 @@
       type="team449.frc.scoutingappbase.model.MatchViewModel" />
   </data>
 
-  <LinearLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
     style="@style/PageContainer">
 
     <CheckBox
+      android:id="@+id/autoMove"
       style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.autoMove)}"
       android:text="@string/moved_prompt"
-      android:checked="@={Conversions.unbox(vm.autoMove)}"/>
+      app:layout_constraintStart_toEndOf="@id/autoMoveHelp"
+      app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+      android:id="@+id/autoMoveHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/autoMove"
+      app:layout_constraintBottom_toBottomOf="@id/autoMove" />
 
-  </LinearLayout>
+
+    <View
+      android:id="@+id/autoMoveDiv"
+      style="@style/Divider"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/autoMove"/>
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

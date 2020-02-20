@@ -16,7 +16,8 @@
   <dimen name="bottomNavHeight">65dp</dimen>
 
   <!--Elements-->
-  <dimen name="helpPadding">13dp</dimen>
+  <dimen name="helpPadding">8dp</dimen>
+  <dimen name="checkboxEndPadding">100dp</dimen>
   <dimen name="editTextWidth">400dp</dimen>
   <dimen name="spinnerWidth">200dp</dimen>
   <dimen name="arrowSize">36dp</dimen>
