@@ -11,35 +11,24 @@ object GlobalResources {
     lateinit var radioIds: TypedArray
     lateinit var filesDir: File
 
-    var matchSchedule: Map<String, Map<String, List<String>>>? = null
-    lateinit var matches: Array<String>
-    lateinit var teams: Array<String>
+    private var elimsMatches = arrayOf("Quarters", "Semis", "Finals")
+    private var defaultMatches = (1..99).map { it.toString() }.toTypedArray() + elimsMatches
+    private var defaultTeams = arrayOf("No team data") + (1..6).map{ "testteam$it" }.toTypedArray()
 
     var dialogTextSize = 0F
 
     var defaultAlliance = -1
 
-    var event: String? = null
-
-    private var matchSchedulesRaw: MutableMap<String,Map<String,Map<String,List<String>>>>? = null
-    var matchSchedules: MutableMap<String,Map<String,Map<String,List<String>>>>?
-        get() = matchSchedulesRaw
+    var matchSchedule: Map<String, Map<String, List<String>>>? = null
         set(value) {
-            matchSchedulesRaw = value
-            matchSchedule = event?.let{ matchSchedules?.get(it) }
-            matches = matchSchedule?.keys?.toTypedArray() ?: arrayOf("No match data")
+            field = value
+            matches = (value?.keys?.filter{ it.matches("-?\\d+(\\.\\d+)?".toRegex()) }?.sortedBy { it.toInt() }?.toTypedArray()?.plus(elimsMatches))?: defaultMatches
         }
-
-    private var teamListsRaw: Map<String,List<String>>? = null
-    var teamLists: Map<String,List<String>>?
-        get() = teamListsRaw
-        set(value) {
-            teamListsRaw = value
-            teams = event?.let{teamLists?.get(it)}?.toTypedArray() ?: arrayOf("No team data")
-        }
+    lateinit var matches: Array<String>
+    lateinit var teams: Array<String>
 
     init {
-        matches = arrayOf("No match data")
-        teams = arrayOf("No team data")
+        matches = defaultMatches
+        teams = defaultTeams
     }
 }

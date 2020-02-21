@@ -34,9 +34,9 @@ fun clearFile(filename: String) {
     writeToFile(filename,"")
 }
 
-fun saveMatchSchedules() {
-    GlobalResources.matchSchedules?.let { writeToFile(matchScheduleFile, serialize(it)) }
+fun saveMatchSchedule() {
+    GlobalResources.matchSchedule?.let { writeToFile(matchScheduleFile, serialize(it)) }
 }
-fun saveTeamLists() {
-    GlobalResources.teamLists?.let { writeToFile(teamsFile, serialize(it)) }
+fun saveTeams() {
+    GlobalResources.teams.let { writeToFile(teamsFile, serialize(it)) }
 }

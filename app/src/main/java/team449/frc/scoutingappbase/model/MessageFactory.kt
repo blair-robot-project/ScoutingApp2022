@@ -3,7 +3,7 @@ package team449.frc.scoutingappbase.model
 import team449.frc.scoutingappbase.helpers.serialize
 
 enum class MessageType {
-    DATA, MULTI, SYNC, ERROR, SYNC_SUMMARY, SCHEDULE
+    DATA, MULTI, SYNC, ERROR, SYNC_SUMMARY, SCHEDULE, TEAM_LIST
 }
 
 data class Message(val type: String, val body: Any)

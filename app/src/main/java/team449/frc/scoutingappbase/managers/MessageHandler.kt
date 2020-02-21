@@ -6,12 +6,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.helpers.deserializeMessage
-import team449.frc.scoutingappbase.helpers.saveMatchSchedules
+import team449.frc.scoutingappbase.helpers.saveMatchSchedule
+import team449.frc.scoutingappbase.helpers.saveTeams
 import team449.frc.scoutingappbase.model.Message
 import team449.frc.scoutingappbase.model.MessageType
 import team449.frc.scoutingappbase.model.makeErrorMessage
 import team449.frc.scoutingappbase.model.makeMultiMatchDataMessage
-import java.lang.ClassCastException
 
 object MessageHandler {
     private val msgStrings = mutableListOf<String>()
@@ -25,32 +25,27 @@ object MessageHandler {
         }
     }
 
-    // TODO: standardize what happens with invalid messages
+    // TODO: find a better way to handle casting
     private fun handleMessage(message: Message) {
-        when (message.type) {
-            // TODO: find a better way to handle casting
-            MessageType.SYNC_SUMMARY.name -> {
-                GlobalScope.launch {
-                    try {
-                        DataManager.sync(message.body as Map<String, Double>).let {
-                            BluetoothManager.write(makeMultiMatchDataMessage(it))
-                        }
-                    } catch (e: ClassCastException) {
-                        Log.i("MsgHandler","ClassCastException in sync summary cast of:"+message.body.toString())
+        GlobalScope.launch {
+            try {
+                when (message.type) {
+                    MessageType.SYNC_SUMMARY.name -> DataManager.sync(message.body as Map<String, Double>).let {
+                        BluetoothManager.write(makeMultiMatchDataMessage(it))
                     }
+                    MessageType.SCHEDULE.name -> {
+                        GlobalResources.matchSchedule =
+                            message.body as Map<String, Map<String, List<String>>>
+                        saveMatchSchedule()
+                    }
+                    MessageType.TEAM_LIST.name -> {
+                        GlobalResources.teams = (message.body as List<String>).sortedBy { it.toInt() }.toTypedArray()
+                        saveTeams()
+                    }
+                    else -> Log.e("MsgHandler","Invalid message type received: ${message.type}")
                 }
-            }
-            MessageType.SCHEDULE.name -> {
-                try {
-                    val schedule = message.body as Pair<String, Map<String, Map<String, List<String>>>>
-                    GlobalResources.matchSchedules?.set(schedule.first, schedule.second)
-                    saveMatchSchedules()
-                } catch (e: ClassCastException) {
-                    Log.i("MsgHandler","ClassCastException in schedule cast of:"+message.body.toString())
-                }
-            }
-            else -> {
-                Log.e("MsgHandler","Invalid message type received: ${message.type}")
+            } catch (e: ClassCastException) {
+                Log.i("MsgHandler","ClassCastException in ${message.type} cast of: ${message.body}")
             }
         }
     }

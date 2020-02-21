@@ -13,10 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
-import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.GlobalResources
+import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.fragment.PageChanger
-import team449.frc.scoutingappbase.helpers.*
+import team449.frc.scoutingappbase.helpers.deserialize
+import team449.frc.scoutingappbase.helpers.matchScheduleFile
+import team449.frc.scoutingappbase.helpers.readFromFile
+import team449.frc.scoutingappbase.helpers.teamsFile
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
@@ -59,13 +62,12 @@ class MainActivity : AppCompatActivity() {
         preferences?.getString("alliance", null)?.let {
             GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
-        GlobalResources.event = preferences?.getString("event", null)
 
         readFromFile(matchScheduleFile)?.let{
-            GlobalResources.matchSchedules = deserialize(it)
+            GlobalResources.matchSchedule = deserialize(it)
         }
         readFromFile(teamsFile)?.let{
-            GlobalResources.teamLists = deserialize(it)
+            GlobalResources.teams = (deserialize(it) as List<String>).toTypedArray()
         }
     }
 
