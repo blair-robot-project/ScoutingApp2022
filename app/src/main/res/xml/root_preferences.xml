@@ -8,12 +8,6 @@
       app:title="Bluetooth server name"
       app:useSimpleSummaryProvider="true" />
 
-    <ListPreference
-      app:key="event"
-      app:title="Event"
-      app:defaultValue="none"
-      app:useSimpleSummaryProvider="true"/>
-
   </PreferenceCategory>
   <PreferenceCategory app:title="Field Position">
 
@@ -31,14 +25,7 @@
       app:useSimpleSummaryProvider="true" />
 
   </PreferenceCategory>
-  <PreferenceCategory app:title="Developer Options">
-
-    <SwitchPreferenceCompat
-      app:key="hideNav"
-      app:title="Hide nav bar"
-      app:summaryOff="Show bottom navigation and status bar"
-      app:summaryOn="Hide bottom navigation and status bar"
-      app:defaultValue="false" />
+  <PreferenceCategory app:title="Advanced Options">
 
     <SwitchPreferenceCompat
       app:key="lockTeamSpinner"
@@ -46,6 +33,13 @@
       app:summaryOff="Allow user to override match schedule"
       app:summaryOn="Force team selection to follow match schedule (if available)"
       app:defaultValue="true" />
+
+    <SwitchPreferenceCompat
+      app:key="hideNav"
+      app:title="Hide nav bar"
+      app:summaryOff="Show bottom navigation and status bar"
+      app:summaryOn="Hide bottom navigation and status bar"
+      app:defaultValue="false" />
 
   </PreferenceCategory>
 

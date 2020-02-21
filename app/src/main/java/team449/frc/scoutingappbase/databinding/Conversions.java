@@ -2,6 +2,8 @@ package team449.frc.scoutingappbase.databinding;
 
 import android.view.View;
 import androidx.databinding.InverseMethod;
+import androidx.lifecycle.MutableLiveData;
+
 import team449.frc.scoutingappbase.GlobalResources;
 
 public class Conversions {
@@ -59,7 +61,7 @@ public class Conversions {
         return spinnerToLabel(ind, GlobalResources.matches, "Match ");
     }
 
-    //TODO: This should be somewhere else (but it has to be java for databinding to access it)
+    //TODO: This should be somewhere else and be mutable live data
     public static String[] getTeams() {
         return GlobalResources.teams;
     }
