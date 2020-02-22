@@ -11,6 +11,8 @@
   <array name="radioIds">
     <item>@id/r0</item>
     <item>@id/r1</item>
+    <item>@id/r2</item>
+    <item>@id/r3</item>
   </array>
 
   <string-array name="alliance_entries">
