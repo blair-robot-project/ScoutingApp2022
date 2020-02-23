@@ -87,20 +87,20 @@
     <RadioGroup
       android:id="@+id/allianceColor"
       style="@style/RadioGroup"
-      android:checkedButton="@={Conversions.radioIndexToId(vm.alliance)}"
+      android:checkedButton="@={Conversions.radioIndexToIdAlliance(vm.alliance)}"
       android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
       app:layout_constraintStart_toEndOf="@id/allianceColorText"
       app:layout_constraintTop_toTopOf="@id/allianceColorText">
 
       <RadioButton
-        android:id="@+id/r0"
+        android:id="@+id/rred0"
         style="@style/RadioButton"
         android:text="@string/alliance_red"
         android:textColor="@color/red" />
 
       <RadioButton
-        android:id="@+id/r1"
+        android:id="@+id/rblue1"
         style="@style/RadioButton"
         android:text="@string/alliance_blue"
         android:textColor="@color/blue" />

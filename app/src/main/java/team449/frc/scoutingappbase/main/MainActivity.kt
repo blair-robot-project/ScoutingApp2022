@@ -56,9 +56,19 @@ class MainActivity : AppCompatActivity() {
     private fun setupStaticResources() {
         // Hand out resources
         GlobalResources.pages = resources.getStringArray(R.array.pages)
-        GlobalResources.radioIds = resources.obtainTypedArray(R.array.radioIds)
         GlobalResources.filesDir = filesDir
         GlobalResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
+
+        var ri = resources.obtainTypedArray(R.array.radioIdsAlliance)
+        GlobalResources.radioIdsAlliance = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        ri.recycle()
+        ri = resources.obtainTypedArray(R.array.radioIdsDead)
+        GlobalResources.radioIdsDead = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        ri.recycle()
+        ri = resources.obtainTypedArray(R.array.radioIdsDefense)
+        GlobalResources.radioIdsDefense = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        ri.recycle()
+
         preferences?.getString("alliance", null)?.let {
             GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
@@ -76,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         presenter.onWindowFocusChange()
     }
 
+    // TODO: deal with this and all the other stuff that just got deprecated in API29
     val preferences: SharedPreferences?
         get() = PreferenceManager.getDefaultSharedPreferences(this)
 

@@ -8,11 +8,20 @@
     <item>General</item>
   </string-array>
 
-  <array name="radioIds">
-    <item>@id/r0</item>
-    <item>@id/r1</item>
-    <item>@id/r2</item>
-    <item>@id/r3</item>
+  <array name="radioIdsAlliance">
+    <item>@id/rred0</item>
+    <item>@id/rblue1</item>
+  </array>
+  <array name="radioIdsDead">
+    <item>@id/ralive0</item>
+    <item>@id/rbroken1</item>
+    <item>@id/rsometimes2</item>
+    <item>@id/rdead3</item>
+  </array>
+  <array name="radioIdsDefense">
+    <item>@id/rnodef0</item>
+    <item>@id/rsomedef1</item>
+    <item>@id/rdefense2</item>
   </array>
 
   <string-array name="alliance_entries">

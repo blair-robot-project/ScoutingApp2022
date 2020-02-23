@@ -21,6 +21,8 @@ class MatchViewModel : ViewModel() {
     val autoIntake by lazy { mutableLiveData(false) }
     val placedAThing by lazy { mutableLiveData(false) }
     val climbed by lazy { mutableLiveData(false) }
+    val dead by lazy { mutableLiveData(-1) }
+    val defense by lazy { mutableLiveData(-1) }
     val comments by lazy { mutableLiveData("") }
 
     fun reset() {
