@@ -9,33 +9,33 @@ class MatchViewModel : ViewModel() {
     var timestamp = System.currentTimeMillis()
     var revision = 0
 
-    val scoutName by lazy { mutableLiveData("") }
-    val matchId by lazy { mutableLiveData(0) }
-    val teamId by lazy { mutableLiveData(0) }
-    val alliance by lazy { mutableLiveData(GlobalResources.defaultAlliance) }
-    val noShow by lazy { mutableLiveData(false) }
-    val autoMove by lazy { mutableLiveData(false) }
-    val hitPartner by lazy { mutableLiveData(false) }
-    val autoIntake by lazy { mutableLiveData(false) }
-    val autoHigh by lazy { mutableLiveData(0) }
-    val autoCenter by lazy { mutableLiveData(0) }
-    val autoLow by lazy { mutableLiveData(0) }
-    val autoMiss by lazy { mutableLiveData(0) }
-    val high by lazy { mutableLiveData(0) }
-    val center by lazy { mutableLiveData(0) }
-    val low by lazy { mutableLiveData(0) }
-    val miss by lazy { mutableLiveData(0) }
-    val spinnerRot by lazy { mutableLiveData(false) }
-    val spinnerPos by lazy { mutableLiveData(false) }
-    val attemptedClimb by lazy { mutableLiveData(-1) }
-    val park by lazy { mutableLiveData(false) }
-    val soloClimb by lazy { mutableLiveData(false) }
-    val doubleClimb by lazy { mutableLiveData(false) }
-    val wasLifted by lazy { mutableLiveData(false) }
-    val climbTime by lazy { mutableLiveData(0) }
-    val dead by lazy { mutableLiveData(-1) }
-    val defense by lazy { mutableLiveData(-1) }
-    val comments by lazy { mutableLiveData("") }
+    val scoutName = mutableLiveData("")
+    val matchId = mutableLiveData(0)
+    val teamId = mutableLiveData(0)
+    val alliance = mutableLiveData(GlobalResources.defaultAlliance)
+    val noShow = mutableLiveData(false)
+    val autoMove = mutableLiveData(false)
+    val hitPartner = mutableLiveData(false)
+    val autoIntake = mutableLiveData(false)
+    val autoHigh = mutableLiveData(0)
+    val autoCenter = mutableLiveData(0)
+    val autoLow = mutableLiveData(0)
+    val autoMiss = mutableLiveData(0)
+    val high = mutableLiveData(0)
+    val center = mutableLiveData(0)
+    val low = mutableLiveData(0)
+    val miss = mutableLiveData(0)
+    val spinnerRot = mutableLiveData(false)
+    val spinnerPos = mutableLiveData(false)
+    val attemptedClimb = mutableLiveData(-1)
+    val park = mutableLiveData(false)
+    val soloClimb = mutableLiveData(false)
+    val doubleClimb = mutableLiveData(false)
+    val wasLifted = mutableLiveData(false)
+    val climbTime = mutableLiveData(0)
+    val dead = mutableLiveData(-1)
+    val defense = mutableLiveData(-1)
+    val comments = mutableLiveData("")
 
     fun reset() {
         timestamp = System.currentTimeMillis()
@@ -139,13 +139,13 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val spinnerPos = matchViewModel.spinnerPos.value
      
     val attemptedClimb = matchViewModel.attemptedClimb.value
-    val park = matchViewModel.park.value
     val soloClimb = matchViewModel.soloClimb.value
     val doubleClimb = matchViewModel.doubleClimb.value
     val wasLifted = matchViewModel.wasLifted.value
+    val park = if (attemptedClimb==1 && soloClimb==true || attemptedClimb==2 && (doubleClimb==true || soloClimb==true) || attemptedClimb==3 && wasLifted==true) false else matchViewModel.park.value
     val climbTime = matchViewModel.climbTime.value
      
-    val dead = matchViewModel.dead.value
+        val dead = matchViewModel.dead.value
     val defense = matchViewModel.defense.value
     val comments = matchViewModel.comments.value
 
