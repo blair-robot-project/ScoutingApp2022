@@ -26,7 +26,16 @@
   <string name="spinner_position_prompt">Completed Stage 3 Spinner\ \ </string>
 
   <!--Endgame-->
-  <string name="climbed_prompt">Climbed?</string>
+  <string name="attempted_climb_prompt">Attempted climb?</string>
+  <string name="attempted_no_prompt">No climb attempted\ \ \ </string>
+  <string name="attempted_solo_prompt">Solo climb\ \ \ \ </string>
+  <string name="attempted_double_prompt">Lifted another robot\ \ \ </string>
+  <string name="attempted_carried_prompt">Was lifted by another robot</string>
+  <string name="parked_prompt">Parked\ \ \ </string>
+  <string name="solo_prompt">Solo climbed successfully?\ \ \ </string>
+  <string name="double_prompt">Lifted another successfully?\ \ \ </string>
+  <string name="carried_prompt">Was lifted successfully?\ \ \ </string>
+  <string name="solo_failed_double_prompt">If failed, did the robot still solo climb successfully?\ \ \ </string>
 
   <!--General-->
   <string name="comments_hint">Comments</string>
@@ -38,7 +47,7 @@
   <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nThis is a help popup.</string>
 
 
-  <string name="clear_data_title">Clear data?</string>
+  <string name="clear_data_title">Clear data</string>
   <string name="clear_data_body">Are you sure you want to clear all data? This action cannot be undone</string>
   <string name="clear_data_button">Clear Data</string>
 

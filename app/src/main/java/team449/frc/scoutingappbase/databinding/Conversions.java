@@ -82,6 +82,13 @@ public class Conversions {
     public static Integer radioIdToIndexDefense(int id) {
         return radioIdToIndex(GlobalResources.radioIdsDefense, id);
     }
+    @InverseMethod("radioIdToIndexClimb")
+    public static int radioIndexToIdClimb(Integer ind) {
+        return radioIndexToId(GlobalResources.radioIdsClimb, ind);
+    }
+    public static Integer radioIdToIndexClimb(int id) {
+        return radioIdToIndex(GlobalResources.radioIdsClimb, id);
+    }
 
 
     //TODO: This should be somewhere else and be mutable live data

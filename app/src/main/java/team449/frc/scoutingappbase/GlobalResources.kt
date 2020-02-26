@@ -17,6 +17,7 @@ object GlobalResources {
     lateinit var radioIdsAlliance: List<Int>
     lateinit var radioIdsDead: List<Int>
     lateinit var radioIdsDefense: List<Int>
+    lateinit var radioIdsClimb: List<Int>
 
     private var elimsMatches = arrayOf("Quarters", "Semis", "Finals")
     private var defaultMatches = (1..99).map { it.toString() }.toTypedArray() + elimsMatches

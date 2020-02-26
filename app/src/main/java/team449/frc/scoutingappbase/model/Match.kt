@@ -29,7 +29,11 @@ class MatchViewModel : ViewModel() {
     val miss by lazy { mutableLiveData(0) }
     val spinnerRot by lazy { mutableLiveData(false) }
     val spinnerPos by lazy { mutableLiveData(false) }
-    val climbed by lazy { mutableLiveData(false) }
+    val attemptedClimb by lazy { mutableLiveData(-1) }
+    val park by lazy { mutableLiveData(false) }
+    val soloClimb by lazy { mutableLiveData(false) }
+    val doubleClimb by lazy { mutableLiveData(false) }
+    val wasLifted by lazy { mutableLiveData(false) }
     val dead by lazy { mutableLiveData(-1) }
     val defense by lazy { mutableLiveData(-1) }
     val comments by lazy { mutableLiveData("") }
@@ -43,7 +47,6 @@ class MatchViewModel : ViewModel() {
         teamId.value = 0
         noShow.value = false
         autoMove.value = false
-        climbed.value = false
         comments.value = ""
     }
 
@@ -57,7 +60,6 @@ class MatchViewModel : ViewModel() {
         alliance.value = shadow.alliance
         noShow.value = shadow.noShow
         autoMove.value = shadow.autoMove
-        climbed.value = shadow.climbed
         comments.value = shadow.comments
     }
 }
@@ -74,7 +76,6 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val alliance = matchViewModel.alliance.value
     val noShow = matchViewModel.noShow.value
     val autoMove = matchViewModel.autoMove.value
-    val climbed = matchViewModel.climbed.value
     val comments = matchViewModel.comments.value
 
     val match: String = matchId?.let{GlobalResources.matches[it]} ?:""

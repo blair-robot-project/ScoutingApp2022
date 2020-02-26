@@ -68,6 +68,9 @@ class MainActivity : AppCompatActivity() {
         ri = resources.obtainTypedArray(R.array.radioIdsDefense)
         GlobalResources.radioIdsDefense = (0..ri.length()).map { ri.getResourceId(it, 0) }
         ri.recycle()
+        ri = resources.obtainTypedArray(R.array.radioIdsClimb)
+        GlobalResources.radioIdsClimb = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        ri.recycle()
 
         preferences?.getString("alliance", null)?.let {
             GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1

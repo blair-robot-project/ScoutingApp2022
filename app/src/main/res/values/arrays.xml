@@ -23,6 +23,12 @@
     <item>@id/rsomedef1</item>
     <item>@id/rdefense2</item>
   </array>
+  <array name="radioIdsClimb">
+    <item>@id/rno0</item>
+    <item>@id/rsolo1</item>
+    <item>@id/rdouble2</item>
+    <item>@id/rcarried3</item>
+  </array>
 
   <string-array name="alliance_entries">
     <item>Red</item>
