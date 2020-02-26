@@ -16,7 +16,6 @@ class MatchViewModel : ViewModel() {
     val teamId by lazy { mutableLiveData(0) }
     val alliance by lazy { mutableLiveData(GlobalResources.defaultAlliance) }
     val noShow by lazy { mutableLiveData(false) }
-    val preload by lazy { mutableLiveData(-1) }
     val autoMove by lazy { mutableLiveData(false) }
     val hitPartner by lazy { mutableLiveData(false) }
     val autoIntake by lazy { mutableLiveData(false) }
@@ -28,6 +27,8 @@ class MatchViewModel : ViewModel() {
     val center by lazy { mutableLiveData(0) }
     val low by lazy { mutableLiveData(0) }
     val miss by lazy { mutableLiveData(0) }
+    val spinnerRot by lazy { mutableLiveData(false) }
+    val spinnerPos by lazy { mutableLiveData(false) }
     val climbed by lazy { mutableLiveData(false) }
     val dead by lazy { mutableLiveData(-1) }
     val defense by lazy { mutableLiveData(-1) }
@@ -41,7 +42,6 @@ class MatchViewModel : ViewModel() {
         matchId.value = matchId.value?.plus(if (GlobalResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
         teamId.value = 0
         noShow.value = false
-        preload.value = -1
         autoMove.value = false
         climbed.value = false
         comments.value = ""
@@ -56,7 +56,6 @@ class MatchViewModel : ViewModel() {
         teamId.value = shadow.teamId
         alliance.value = shadow.alliance
         noShow.value = shadow.noShow
-        preload.value = shadow.preload
         autoMove.value = shadow.autoMove
         climbed.value = shadow.climbed
         comments.value = shadow.comments
@@ -74,7 +73,6 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val teamId = matchViewModel.teamId.value
     val alliance = matchViewModel.alliance.value
     val noShow = matchViewModel.noShow.value
-    val preload = matchViewModel.preload.value
     val autoMove = matchViewModel.autoMove.value
     val climbed = matchViewModel.climbed.value
     val comments = matchViewModel.comments.value

@@ -22,7 +22,8 @@
   <string name="auto_intake_prompt">Intake balls\ \ \ </string>
 
   <!--Teleop-->
-  <string name="placed_prompt">Placed a piece?</string>
+  <string name="spinner_rotation_prompt">Completed Stage 2 Spinner\ \ </string>
+  <string name="spinner_position_prompt">Completed Stage 3 Spinner\ \ </string>
 
   <!--Endgame-->
   <string name="climbed_prompt">Climbed?</string>

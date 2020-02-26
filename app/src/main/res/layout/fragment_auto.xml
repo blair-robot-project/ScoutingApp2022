@@ -50,10 +50,26 @@
       app:layout_constraintTop_toTopOf="@id/hitPartner"
       app:layout_constraintBottom_toBottomOf="@id/hitPartner" />
 
+    <CheckBox
+      android:id="@+id/autoIntake"
+      style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.autoIntake)}"
+      android:text="@string/auto_intake_prompt"
+      android:paddingEnd="2dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/autoMoveDiv"/>
+    <ImageButton
+      android:id="@+id/autoIntakeHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintEnd_toStartOf="@id/autoIntake"
+      app:layout_constraintTop_toTopOf="@id/autoIntake"
+      app:layout_constraintBottom_toBottomOf="@id/autoIntake" />
+
 
     <View
       android:id="@+id/hitPartnerDiv"
       style="@style/Divider"
+      android:layout_height="6dp"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/hitPartner"/>
 
@@ -65,6 +81,18 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@id/hitPartnerDiv"/>
+
+    <!--TODO: make it blink-->
+    <TextView
+      style="@style/Text.Title"
+      android:text="AUTO"
+      android:textStyle="bold"
+      android:textSize="50sp"
+      android:layout_marginTop="16dp"
+      android:layout_marginStart="50dp"
+      android:rotation="18"
+      app:layout_constraintTop_toTopOf="@id/goal"
+      app:layout_constraintStart_toStartOf="@id/goal"/>
 
     <Button
       android:id="@+id/ahighInc"
@@ -142,25 +170,25 @@
       app:layout_constraintEnd_toEndOf="@id/amissInc"/>
 
 
-    <View
-      android:id="@+id/goalDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/goal"/>
+<!--    <View-->
+<!--      android:id="@+id/goalDiv"-->
+<!--      style="@style/Divider"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toBottomOf="@id/goal"/>-->
 
-    <CheckBox
-      android:id="@+id/autoIntake"
-      style="@style/Checkbox"
-      android:checked="@={Conversions.unbox(vm.autoIntake)}"
-      android:text="@string/auto_intake_prompt"
-      app:layout_constraintStart_toEndOf="@id/autoIntakeHelp"
-      app:layout_constraintTop_toBottomOf="@id/goalDiv" />
-    <ImageButton
-      android:id="@+id/autoIntakeHelp"
-      style="@style/Help.Checkbox"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@id/autoIntake"
-      app:layout_constraintBottom_toBottomOf="@id/autoIntake" />
+<!--    <CheckBox-->
+<!--      android:id="@+id/autoIntake"-->
+<!--      style="@style/Checkbox"-->
+<!--      android:checked="@={Conversions.unbox(vm.autoIntake)}"-->
+<!--      android:text="@string/auto_intake_prompt"-->
+<!--      app:layout_constraintStart_toEndOf="@id/autoIntakeHelp"-->
+<!--      app:layout_constraintTop_toBottomOf="@id/goalDiv" />-->
+<!--    <ImageButton-->
+<!--      android:id="@+id/autoIntakeHelp"-->
+<!--      style="@style/Help.Checkbox"-->
+<!--      app:layout_constraintStart_toStartOf="parent"-->
+<!--      app:layout_constraintTop_toTopOf="@id/autoIntake"-->
+<!--      app:layout_constraintBottom_toBottomOf="@id/autoIntake" />-->
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>

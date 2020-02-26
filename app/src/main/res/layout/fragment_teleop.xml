@@ -97,5 +97,42 @@
       app:layout_constraintStart_toStartOf="@id/missInc"
       app:layout_constraintEnd_toEndOf="@id/missInc"/>
 
+    <CheckBox
+      android:id="@+id/spinnerRotation"
+      style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.spinnerRot)}"
+      android:text="@string/spinner_rotation_prompt"
+      android:layout_marginTop="6dp"
+      app:layout_constraintStart_toEndOf="@id/spinnerRotationHelp"
+      app:layout_constraintTop_toBottomOf="@id/goal" />
+    <ImageButton
+      android:id="@+id/spinnerRotationHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/spinnerRotation"
+      app:layout_constraintBottom_toBottomOf="@id/spinnerRotation" />
+
+
+    <View
+      android:id="@+id/spinnerDiv"
+      style="@style/Divider"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/spinnerRotation"/>
+
+
+    <CheckBox
+      android:id="@+id/spinnerPosition"
+      style="@style/Checkbox"
+      android:checked="@={Conversions.unbox(vm.spinnerPos)}"
+      android:text="@string/spinner_position_prompt"
+      app:layout_constraintStart_toEndOf="@id/spinnerPositionHelp"
+      app:layout_constraintTop_toBottomOf="@id/spinnerDiv" />
+    <ImageButton
+      android:id="@+id/spinnerPositionHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@id/spinnerPosition"
+      app:layout_constraintBottom_toBottomOf="@id/spinnerPosition" />
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
