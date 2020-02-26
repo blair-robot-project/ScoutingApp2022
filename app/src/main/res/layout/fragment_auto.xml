@@ -58,21 +58,88 @@
       app:layout_constraintTop_toBottomOf="@id/hitPartner"/>
 
 
-    <!--Layout for goal graphic and shot counts-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
       android:id="@+id/goal"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintTop_toBottomOf="@id/hitPartnerDiv"
-      app:layout_constraintStart_toStartOf="parent">
+      style="@style/Wrap"
+      android:src="@drawable/goal"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/hitPartnerDiv"/>
 
-      <TextView
-        style="@style/Text"
-        android:text="todo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <Button
+      android:id="@+id/ahighInc"
+      style="@style/BallButton"
+      android:text="@{vm.autoHigh.toString()}"
+      android:layout_marginStart="48dp"
+      android:layout_marginTop="128dp"
+      app:layout_constraintTop_toTopOf="@+id/goal"
+      app:layout_constraintStart_toStartOf="@id/goal"/>
+    <ImageButton
+      android:id="@+id/ahighDec"
+      style="@style/BallDecButton"
+      android:layout_marginTop="50dp"
+      app:layout_constraintTop_toBottomOf="@id/ahighInc"
+      app:layout_constraintStart_toStartOf="@id/ahighInc"
+      app:layout_constraintEnd_toEndOf="@id/ahighInc"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+      android:id="@+id/acenterInc"
+      style="@style/BallButton"
+      android:text="@{vm.autoCenter.toString()}"
+      android:layout_marginEnd="43dp"
+      android:layout_marginTop="95dp"
+      app:layout_constraintTop_toTopOf="@+id/goal"
+      app:layout_constraintEnd_toEndOf="@id/goal"/>
+    <ImageButton
+      android:id="@+id/acenterDec"
+      style="@style/BallDecButton"
+      android:layout_marginTop="20dp"
+      app:layout_constraintTop_toBottomOf="@id/acenterInc"
+      app:layout_constraintStart_toStartOf="@id/acenterInc"
+      app:layout_constraintEnd_toEndOf="@id/acenterInc"/>
+
+
+    <Button
+      android:id="@+id/alowInc"
+      style="@style/BallButton"
+      android:text="@{vm.autoLow.toString()}"
+      android:layout_marginStart="48dp"
+      android:layout_marginBottom="115dp"
+      app:layout_constraintBottom_toBottomOf="@id/goal"
+      app:layout_constraintStart_toStartOf="@id/goal"/>
+    <ImageButton
+      android:id="@+id/alowDec"
+      style="@style/BallDecButton"
+      android:layout_marginTop="24dp"
+      app:layout_constraintTop_toBottomOf="@id/alowInc"
+      app:layout_constraintStart_toStartOf="@id/alowInc"
+      app:layout_constraintEnd_toEndOf="@id/alowInc"/>
+
+
+    <TextView
+      android:id="@+id/missedText"
+      style="@style/Text"
+      android:text="Missed"
+      android:layout_marginBottom="16dp"
+      app:layout_constraintBottom_toTopOf="@id/amissInc"
+      app:layout_constraintStart_toStartOf="@id/amissInc"
+      app:layout_constraintEnd_toEndOf="@id/amissInc"/>
+    <Button
+      android:id="@+id/amissInc"
+      style="@style/BallButton"
+      android:text="@{vm.autoMiss.toString()}"
+      android:layout_marginEnd="40dp"
+      android:layout_marginBottom="120dp"
+      app:layout_constraintBottom_toBottomOf="@id/goal"
+      app:layout_constraintEnd_toEndOf="@id/goal"/>
+    <ImageButton
+      android:id="@+id/amissDec"
+      style="@style/BallDecButton"
+      android:layout_marginTop="24dp"
+      app:layout_constraintTop_toBottomOf="@id/amissInc"
+      app:layout_constraintStart_toStartOf="@id/amissInc"
+      app:layout_constraintEnd_toEndOf="@id/amissInc"/>
 
 
     <View

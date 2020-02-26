@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -124,15 +125,29 @@ class MainPresenter(private val activity: MainActivity): Editor {
     fun incrementValue(view: View) {
         val vm = activity.matchViewModel
         when (view.id) {
-            R.id.highInc -> vm.high.value = vm.high.value?.plus(1)
-            R.id.highDec -> vm.high.value = vm.high.value?.plus(-1)
-            R.id.centerInc -> vm.center.value = vm.center.value?.plus(1)
-            R.id.centerDec -> vm.center.value = vm.center.value?.plus(-1)
-            R.id.lowInc -> vm.low.value = vm.low.value?.plus(1)
-            R.id.lowDec -> vm.low.value = vm.low.value?.plus(-1)
-            R.id.missInc -> vm.miss.value = vm.miss.value?.plus(1)
-            R.id.missDec -> vm.miss.value = vm.miss.value?.plus(-1)
+            R.id.ahighInc -> inc(vm.autoHigh)
+            R.id.ahighDec -> dec(vm.autoHigh)
+            R.id.acenterInc -> inc(vm.autoCenter)
+            R.id.acenterDec -> dec(vm.autoCenter)
+            R.id.alowInc -> inc(vm.autoLow)
+            R.id.alowDec -> dec(vm.autoLow)
+            R.id.amissInc -> inc(vm.autoMiss)
+            R.id.amissDec -> dec(vm.autoMiss)
+            R.id.highInc -> inc(vm.high)
+            R.id.highDec -> dec(vm.high)
+            R.id.centerInc -> inc(vm.center)
+            R.id.centerDec -> dec(vm.center)
+            R.id.lowInc -> inc(vm.low)
+            R.id.lowDec -> dec(vm.low)
+            R.id.missInc -> inc(vm.miss)
+            R.id.missDec -> dec(vm.miss)
         }
+    }
+    private fun inc(mld: MutableLiveData<Int>) {
+        mld.value = mld.value?.plus(1)
+    }
+    private fun dec(mld: MutableLiveData<Int>) {
+        mld.value = if ((mld.value?: 0) > 0) mld.value?.plus(-1) else 0
     }
 
     fun onWindowFocusChange() {

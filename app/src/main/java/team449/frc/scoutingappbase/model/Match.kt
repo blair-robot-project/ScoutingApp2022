@@ -20,6 +20,10 @@ class MatchViewModel : ViewModel() {
     val autoMove by lazy { mutableLiveData(false) }
     val hitPartner by lazy { mutableLiveData(false) }
     val autoIntake by lazy { mutableLiveData(false) }
+    val autoHigh by lazy { mutableLiveData(0) }
+    val autoCenter by lazy { mutableLiveData(0) }
+    val autoLow by lazy { mutableLiveData(0) }
+    val autoMiss by lazy { mutableLiveData(0) }
     val high by lazy { mutableLiveData(0) }
     val center by lazy { mutableLiveData(0) }
     val low by lazy { mutableLiveData(0) }
