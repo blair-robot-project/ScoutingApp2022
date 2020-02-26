@@ -83,28 +83,15 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/teamDiv" />
 
-    <!--TODO: remove, replace with a simple indicator (because it's set in the settings anyway-->
-    <RadioGroup
+    <TextView
       android:id="@+id/allianceColor"
-      style="@style/RadioGroup"
-      android:checkedButton="@={Conversions.radioIndexToIdAlliance(vm.alliance)}"
+      style="@style/Text"
+      android:textColor="@{(vm.alliance == 0)? @color/red : @color/blue}"
+      android:text="@{(vm.alliance == 0)? @string/alliance_red : @string/alliance_blue}"
       android:layout_marginStart="@dimen/horizontalFieldSpacing"
       app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
       app:layout_constraintStart_toEndOf="@id/allianceColorText"
-      app:layout_constraintTop_toTopOf="@id/allianceColorText">
-
-      <RadioButton
-        android:id="@+id/rred0"
-        style="@style/RadioButton"
-        android:text="@string/alliance_red"
-        android:textColor="@color/red" />
-
-      <RadioButton
-        android:id="@+id/rblue1"
-        style="@style/RadioButton"
-        android:text="@string/alliance_blue"
-        android:textColor="@color/blue" />
-    </RadioGroup>
+      app:layout_constraintTop_toTopOf="@id/allianceColorText" />
 
     <View
       android:id="@+id/allianceColorDiv"

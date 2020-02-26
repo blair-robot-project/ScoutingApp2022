@@ -14,7 +14,6 @@ object GlobalResources {
 
     var defaultAlliance = -1
 
-    lateinit var radioIdsAlliance: List<Int>
     lateinit var radioIdsDead: List<Int>
     lateinit var radioIdsDefense: List<Int>
     lateinit var radioIdsClimb: List<Int>

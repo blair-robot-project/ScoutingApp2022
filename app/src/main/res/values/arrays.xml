@@ -8,10 +8,6 @@
     <item>General</item>
   </string-array>
 
-  <array name="radioIdsAlliance">
-    <item>@id/rred0</item>
-    <item>@id/rblue1</item>
-  </array>
   <array name="radioIdsDead">
     <item>@id/ralive0</item>
     <item>@id/rbroken1</item>

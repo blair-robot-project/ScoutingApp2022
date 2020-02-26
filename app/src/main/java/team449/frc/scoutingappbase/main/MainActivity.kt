@@ -59,10 +59,7 @@ class MainActivity : AppCompatActivity() {
         GlobalResources.filesDir = filesDir
         GlobalResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
 
-        var ri = resources.obtainTypedArray(R.array.radioIdsAlliance)
-        GlobalResources.radioIdsAlliance = (0..ri.length()).map { ri.getResourceId(it, 0) }
-        ri.recycle()
-        ri = resources.obtainTypedArray(R.array.radioIdsDead)
+        var ri = resources.obtainTypedArray(R.array.radioIdsDead)
         GlobalResources.radioIdsDead = (0..ri.length()).map { ri.getResourceId(it, 0) }
         ri.recycle()
         ri = resources.obtainTypedArray(R.array.radioIdsDefense)

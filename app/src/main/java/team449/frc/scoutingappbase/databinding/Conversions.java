@@ -61,13 +61,6 @@ public class Conversions {
         return (ids.contains(id)) ? ids.indexOf(id) : -1;
     }
 
-    @InverseMethod("radioIdToIndexAlliance")
-    public static int radioIndexToIdAlliance(Integer ind) {
-        return radioIndexToId(GlobalResources.radioIdsAlliance, ind);
-    }
-    public static Integer radioIdToIndexAlliance(int id) {
-        return radioIdToIndex(GlobalResources.radioIdsAlliance, id);
-    }
     @InverseMethod("radioIdToIndexDead")
     public static int radioIndexToIdDead(Integer ind) {
         return radioIndexToId(GlobalResources.radioIdsDead, ind);
