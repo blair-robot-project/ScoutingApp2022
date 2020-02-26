@@ -1,6 +1,7 @@
 package team449.frc.scoutingappbase.managers
 
 import android.os.AsyncTask
+import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.Data
@@ -45,7 +46,7 @@ object DataManager {
     }
 
     private fun load() {
-        readFromFile(dataFile)?.let{ data = deserializeData(it) }
+        readFromFile(dataFile)?.let{ if (it.isNotEmpty()) data = deserializeData(it) }
     }
 
     fun clear() {

@@ -38,5 +38,5 @@ fun saveMatchSchedule() {
     GlobalResources.matchSchedule?.let { writeToFile(matchScheduleFile, serialize(it)) }
 }
 fun saveTeams() {
-    GlobalResources.teams.let { writeToFile(teamsFile, serialize(it)) }
+    writeToFile(teamsFile, serialize(GlobalResources.teams))
 }
