@@ -1,5 +1,6 @@
 package team449.frc.scoutingappbase.model
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import team449.frc.scoutingappbase.GlobalResources
@@ -19,7 +20,10 @@ class MatchViewModel : ViewModel() {
     val autoMove by lazy { mutableLiveData(false) }
     val hitPartner by lazy { mutableLiveData(false) }
     val autoIntake by lazy { mutableLiveData(false) }
-    val placedAThing by lazy { mutableLiveData(false) }
+    val high by lazy { mutableLiveData(0) }
+    val center by lazy { mutableLiveData(0) }
+    val low by lazy { mutableLiveData(0) }
+    val miss by lazy { mutableLiveData(0) }
     val climbed by lazy { mutableLiveData(false) }
     val dead by lazy { mutableLiveData(-1) }
     val defense by lazy { mutableLiveData(-1) }
@@ -35,7 +39,6 @@ class MatchViewModel : ViewModel() {
         noShow.value = false
         preload.value = -1
         autoMove.value = false
-        placedAThing.value = false
         climbed.value = false
         comments.value = ""
     }
@@ -51,7 +54,6 @@ class MatchViewModel : ViewModel() {
         noShow.value = shadow.noShow
         preload.value = shadow.preload
         autoMove.value = shadow.autoMove
-        placedAThing.value = shadow.placedAThing
         climbed.value = shadow.climbed
         comments.value = shadow.comments
     }
@@ -70,7 +72,6 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val noShow = matchViewModel.noShow.value
     val preload = matchViewModel.preload.value
     val autoMove = matchViewModel.autoMove.value
-    val placedAThing = matchViewModel.placedAThing.value
     val climbed = matchViewModel.climbed.value
     val comments = matchViewModel.comments.value
 

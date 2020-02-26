@@ -2,6 +2,8 @@ package team449.frc.scoutingappbase.main
 
 import android.content.SharedPreferences
 import android.os.AsyncTask
+import android.util.Log
+import android.view.View
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -116,6 +118,20 @@ class MainPresenter(private val activity: MainActivity): Editor {
             }
             "driver_staion" -> matchChanged(++prevMatchId - 1)
             "lockTeamSpinner" -> if (preferences.getBoolean(key, false)) { matchChanged(++prevMatchId - 1) }
+        }
+    }
+
+    fun incrementValue(view: View) {
+        val vm = activity.matchViewModel
+        when (view.id) {
+            R.id.highInc -> vm.high.value = vm.high.value?.plus(1)
+            R.id.highDec -> vm.high.value = vm.high.value?.plus(-1)
+            R.id.centerInc -> vm.center.value = vm.center.value?.plus(1)
+            R.id.centerDec -> vm.center.value = vm.center.value?.plus(-1)
+            R.id.lowInc -> vm.low.value = vm.low.value?.plus(1)
+            R.id.lowDec -> vm.low.value = vm.low.value?.plus(-1)
+            R.id.missInc -> vm.miss.value = vm.miss.value?.plus(1)
+            R.id.missDec -> vm.miss.value = vm.miss.value?.plus(-1)
         }
     }
 

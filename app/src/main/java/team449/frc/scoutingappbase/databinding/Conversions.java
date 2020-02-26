@@ -84,7 +84,6 @@ public class Conversions {
     }
 
 
-
     //TODO: This should be somewhere else and be mutable live data
     public static String[] getTeams() {
         return GlobalResources.teams;

@@ -23,6 +23,8 @@
   <dimen name="arrowSize">36dp</dimen>
   <dimen name="textBoxMaxLines">3</dimen>
 
+  <dimen name="ballImageSize">75dp</dimen>
+
   <!--Popup-->
   <dimen name="alertDialogBodyTextSize">22sp</dimen>
   <dimen name="alertDialogTitleTextSize">28sp</dimen>

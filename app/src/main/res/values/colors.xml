@@ -34,6 +34,8 @@
   <color name="icColor">@color/white</color>
   <color name="spinnerBg">@color/elevated</color>
   <color name="spinnerArrow">@color/secondaryColor</color>
+  <color name="goalColor">#151515</color>
+  <color name="goalStroke">#555</color>
 
   <!--Named colors-->
   <color name="white">#fff</color>

@@ -127,6 +127,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun incrementValue(view: View) {
+        presenter.incrementValue(view)
+    }
+
     fun fixSpinners() {
         findViewById<Spinner>(R.id.team)?.isEnabled = presenter.teamSpinnerEnabled
     }
