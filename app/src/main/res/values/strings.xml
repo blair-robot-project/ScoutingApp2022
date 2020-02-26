@@ -17,7 +17,7 @@
   <string name="preload_B">Piece B</string>
 
   <!--Auto-->
-  <string name="moved_prompt">Leave the Initiation Zone\ \ \ </string>
+  <string name="moved_prompt">Leave the Initiation Line\ \ \ </string>
   <string name="hit_partner_prompt">Hit partner\ \ \ </string>
   <string name="auto_intake_prompt">Intake balls\ \ \ </string>
 
@@ -46,6 +46,19 @@
   <!--Help-->
   <string name="help_title">Help</string>
   <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nThis is a help popup.</string>
+  <string name="help_noshow">Select if the robot was not on the field at all for this match</string>
+  <string name="help_initiation">Select if the robot crossed over the white line that is started on during auto</string>
+  <string name="help_hitpartner">Select if the robot ran into another robot on its alliance during its auto routine</string>
+  <string name="help_autointake">Select if the robot picked up balls off the ground during the autonomous period</string>
+  <string name="help_spinnertwo">Select if the robot spun the color wheel 3 \- 5 times to complete stage two</string>
+  <string name="help_spinnerthree">Select if the robot spun the color wheel to a particular color to complete stage three</string>
+  <string name="help_attemptedclimb">Select what the robot attempted to do in the endgame, even if they did not succeed.\n\nSolo climb: robot tries to lift itself onto the bar \n\nLifted: robot lifts itself and carries another robot up with it \n\nWas lifted: the robot does not climb itself, but is carried up by another robot</string>
+  <string name="help_parked">Select if the robot ended the match touching the carpet fully within the colored rectangle under the climbing rungs.</string>
+  <string name="help_doublefailsolo">Select if the robot attempted and failed to lift another robot, but was still successful in getting itself up. For example, a robot might grasp onto another robot, lift them both up, then drop the robot it grabbed.</string>
+  <string name="help_climbtime">About how long did it take the robot to climb, from the time it starts deploying its hook to grab the rung to the time it is fully off the ground?</string>
+  <string name="help_dead">ALIVE: the robot was enabled, moving, and mostly functional for most of the match.\n\nBROKEN: robot was moving, but something is wrong. There are parts of their robot that are clearly broken.\n\nSOMETIMES DEAD: dead for a significant portion of the match (around 35–70%).\n\nDEAD: the robot is just sitting on the field unable to move.</string>
+  <string name="help_defense">Did the robot play any defense?\n\nThis refers to the robot attempting to stop the opposing alliance from scoring, or slow them down, even if it was ineffective.\n\nNONE: the robot never played defense\n\nPART: the robot played defense for part of the match, but also spend some time not trying to block the opponent (though not necessarily scoring points).\n\nALL: the robot played defense for all or nearly all of the Teleop period (not necessarily Auto or Endgame)</string>
+
 
 
   <string name="clear_data_title">Clear data</string>

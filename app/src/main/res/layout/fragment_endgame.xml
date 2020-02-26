@@ -63,10 +63,10 @@
      android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toBottomOf="@id/attemptedClimb">
-     <ImageButton
-       android:id="@+id/doubleHelp"
-       style="@style/Help.Checkbox"
-       android:layout_gravity="center"/>
+<!--     <ImageButton-->
+<!--       android:id="@+id/doubleHelp"-->
+<!--       style="@style/Help.Checkbox"-->
+<!--       android:layout_gravity="center"/>-->
      <CheckBox
        android:id="@+id/doubleClimb"
        style="@style/Checkbox"
@@ -86,7 +86,8 @@
      <ImageButton
        android:id="@+id/soloHelp"
        style="@style/Help.Checkbox"
-       android:layout_gravity="center"/>
+       android:layout_gravity="center"
+       android:visibility="@{(vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? View.VISIBLE : View.GONE}"/>
      <CheckBox
        android:id="@+id/solo"
        style="@style/Checkbox"
@@ -102,10 +103,10 @@
      android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toBottomOf="@id/soloContainer">
-     <ImageButton
-       android:id="@+id/carriedHelp"
-       style="@style/Help.Checkbox"
-       android:layout_gravity="center"/>
+<!--     <ImageButton-->
+<!--       android:id="@+id/carriedHelp"-->
+<!--       style="@style/Help.Checkbox"-->
+<!--       android:layout_gravity="center"/>-->
      <CheckBox
        android:id="@+id/carried"
        style="@style/Checkbox"

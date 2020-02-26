@@ -121,9 +121,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun help(view: View) {
-        Log.i("!!!!!!!!","help")
         when (view.id) {
-            R.id.noShowHelp -> Log.i("help","noshow")
+            R.id.noShowHelp -> presenter.help(R.string.help_noshow)
+            R.id.autoMoveHelp -> presenter.help(R.string.help_initiation)
+            R.id.hitPartnerHelp -> presenter.help(R.string.help_hitpartner)
+            R.id.autoIntakeHelp -> presenter.help(R.string.help_autointake)
+            R.id.spinnerRotationHelp -> presenter.help(R.string.help_spinnertwo)
+            R.id.spinnerPositionHelp -> presenter.help(R.string.help_spinnerthree)
+            R.id.attemptedClimbHelp -> presenter.help(R.string.help_attemptedclimb)
+            R.id.soloHelp -> presenter.help(R.string.help_doublefailsolo)
+            R.id.parkedHelp -> presenter.help(R.string.help_parked)
+            R.id.climbTimeHelp -> presenter.help(R.string.help_climbtime)
+            R.id.deadHelp -> presenter.help(R.string.help_dead)
+            R.id.defenseHelp -> presenter.help(R.string.help_defense)
         }
     }
 
