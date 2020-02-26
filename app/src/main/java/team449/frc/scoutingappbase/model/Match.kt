@@ -34,6 +34,7 @@ class MatchViewModel : ViewModel() {
     val soloClimb by lazy { mutableLiveData(false) }
     val doubleClimb by lazy { mutableLiveData(false) }
     val wasLifted by lazy { mutableLiveData(false) }
+    val climbTime by lazy { mutableLiveData(0) }
     val dead by lazy { mutableLiveData(-1) }
     val defense by lazy { mutableLiveData(-1) }
     val comments by lazy { mutableLiveData("") }

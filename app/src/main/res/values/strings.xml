@@ -36,6 +36,7 @@
   <string name="double_prompt">Lifted another successfully?\ \ \ </string>
   <string name="carried_prompt">Was lifted successfully?\ \ \ </string>
   <string name="solo_failed_double_prompt">If failed, did the robot still solo climb successfully?\ \ \ </string>
+  <string name="climb_time_prompt">Approximate time to climb:</string>
 
   <!--General-->
   <string name="comments_hint">Comments</string>

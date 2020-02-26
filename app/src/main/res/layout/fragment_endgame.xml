@@ -54,73 +54,105 @@
        android:text="@string/attempted_carried_prompt"/>
    </RadioGroup>
 
-   <CheckBox
-     android:id="@+id/doubleClimb"
-     style="@style/Checkbox"
-     android:checked="@={Conversions.unbox(vm.doubleClimb)}"
-     android:text="@string/double_prompt"
+
+   <LinearLayout
+     style="@style/Wrap"
+     android:id="@+id/doubleContainer"
      android:visibility="@{(vm.attemptedClimb==2)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
-     app:layout_constraintStart_toEndOf="@+id/doubleHelp"
-     app:layout_constraintTop_toBottomOf="@id/attemptedClimb" />
-   <ImageButton
-     android:id="@+id/doubleHelp"
-     style="@style/Help.Checkbox"
-     android:visibility="@{(vm.attemptedClimb==2)? View.VISIBLE : View.GONE}"
+     android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="@id/doubleClimb"
-     app:layout_constraintBottom_toBottomOf="@id/doubleClimb" />
+     app:layout_constraintTop_toBottomOf="@id/attemptedClimb">
+     <ImageButton
+       android:id="@+id/doubleHelp"
+       style="@style/Help.Checkbox"
+       android:layout_gravity="center"/>
+     <CheckBox
+       android:id="@+id/doubleClimb"
+       style="@style/Checkbox"
+       android:checked="@={Conversions.unbox(vm.doubleClimb)}"
+       android:text="@string/double_prompt"
+       android:paddingEnd="30dp"/>
+   </LinearLayout>
 
-   <CheckBox
-     android:id="@+id/solo"
-     style="@style/Checkbox"
-     android:checked="@={Conversions.unbox(vm.soloClimb)}"
-     android:text="@{(vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? @string/solo_failed_double_prompt : @string/solo_prompt}"
+   <LinearLayout
+     style="@style/Wrap"
+     android:id="@+id/soloContainer"
      android:visibility="@{(vm.attemptedClimb==1 || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
-     app:layout_constraintStart_toEndOf="@+id/soloHelp"
-     app:layout_constraintTop_toBottomOf="@id/doubleClimb" />
-   <ImageButton
-     android:id="@+id/soloHelp"
-     style="@style/Help.Checkbox"
-     android:visibility="@{(vm.attemptedClimb==1 || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? View.VISIBLE : View.GONE}"
+     android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="@id/solo"
-     app:layout_constraintBottom_toBottomOf="@id/solo" />
+     app:layout_constraintTop_toBottomOf="@id/doubleContainer">
+     <ImageButton
+       android:id="@+id/soloHelp"
+       style="@style/Help.Checkbox"
+       android:layout_gravity="center"/>
+     <CheckBox
+       android:id="@+id/solo"
+       style="@style/Checkbox"
+       android:text="@{(vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? @string/solo_failed_double_prompt : @string/solo_prompt}"
+       android:checked="@={Conversions.unbox(vm.soloClimb)}"/>
+   </LinearLayout>
 
-   <CheckBox
-     android:id="@+id/carried"
-     style="@style/Checkbox"
-     android:checked="@={Conversions.unbox(vm.wasLifted)}"
-     android:text="@string/carried_prompt"
+   <LinearLayout
+     style="@style/Wrap"
+     android:id="@+id/carriedContainer"
      android:visibility="@{(vm.attemptedClimb==3)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
-     app:layout_constraintStart_toEndOf="@+id/carriedHelp"
-     app:layout_constraintTop_toBottomOf="@id/solo" />
-   <ImageButton
-     android:id="@+id/carriedHelp"
-     style="@style/Help.Checkbox"
-     android:visibility="@{(vm.attemptedClimb==3)? View.VISIBLE : View.GONE}"
+     android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="@id/carried"
-     app:layout_constraintBottom_toBottomOf="@id/carried" />
+     app:layout_constraintTop_toBottomOf="@id/soloContainer">
+     <ImageButton
+       android:id="@+id/carriedHelp"
+       style="@style/Help.Checkbox"
+       android:layout_gravity="center"/>
+     <CheckBox
+       android:id="@+id/carried"
+       style="@style/Checkbox"
+       android:checked="@={Conversions.unbox(vm.wasLifted)}"
+       android:text="@string/carried_prompt"/>
+   </LinearLayout>
 
-   <CheckBox
-     android:id="@+id/parked"
-     style="@style/Checkbox"
-     android:checked="@={Conversions.unbox(vm.park)}"
-     android:text="@string/parked_prompt"
+   <LinearLayout
+     style="@style/Wrap"
      android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
-     app:layout_constraintStart_toEndOf="@+id/parkedHelp"
-     app:layout_constraintTop_toBottomOf="@id/carried" />
-   <ImageButton
-     android:id="@+id/parkedHelp"
-     style="@style/Help.Checkbox"
-     android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.VISIBLE : View.GONE}"
+     android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="@id/parked"
-     app:layout_constraintBottom_toBottomOf="@id/parked" />
+     app:layout_constraintTop_toBottomOf="@id/carriedContainer">
+     <ImageButton
+       android:id="@+id/parkedHelp"
+       style="@style/Help.Checkbox"
+       android:layout_gravity="center"/>
+     <CheckBox
+       android:id="@+id/parked"
+       style="@style/Checkbox"
+       android:checked="@={Conversions.unbox(vm.park)}"
+       android:text="@string/parked_prompt"/>
+   </LinearLayout>
+
+   <LinearLayout
+     style="@style/Wrap"
+     android:orientation="horizontal"
+     android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.GONE : View.VISIBLE}"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintStart_toStartOf="parent">
+     <TextView
+       style="@style/Text"
+       android:text="@string/climb_time_prompt"
+       android:layout_gravity="center"/>
+     <ImageButton
+       android:id="@+id/climbTimeHelp"
+       style="@style/Help"
+       android:layout_gravity="center"/>
+     <team449.frc.scoutingappbase.ui.NumberPickerWithXml
+       android:id="@+id/climbTime"
+       android:layout_marginStart="16dp"
+       style="@style/Wrap"
+       android:value="@={vm.climbTime}"
+       app:minValue="0"
+       app:maxValue="30"/>
+   </LinearLayout>
 
  </androidx.constraintlayout.widget.ConstraintLayout>
 
