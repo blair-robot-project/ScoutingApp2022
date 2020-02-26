@@ -73,9 +73,9 @@ class MatchViewModel : ViewModel() {
         comments.value = ""
     }
 
-    fun load(shadow: MatchShadow) {
+    fun load(shadow: MatchShadow, edit: Boolean) {
         timestamp = shadow.timestamp
-        revision = shadow.revision + 1
+        revision = shadow.revision + if (edit) 1 else 0
 
         scoutName.value = shadow.scoutName
         matchId.value = shadow.matchId

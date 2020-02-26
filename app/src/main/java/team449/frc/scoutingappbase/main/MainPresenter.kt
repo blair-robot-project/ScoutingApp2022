@@ -42,7 +42,7 @@ class MainPresenter(private val activity: MainActivity): Editor {
         val mVM = activity.matchViewModel
         DataManager.retrieveMatch(id)?.let {
             DataManager.stashCurrent(MatchShadow(mVM))
-            mVM.load(it)
+            mVM.load(it, true)
         }
     }
 
@@ -71,7 +71,7 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     private fun postSubmit() {
-        DataManager.recoverMatch()?.let { activity.matchViewModel.load(it) } ?: activity.matchViewModel.reset()
+        DataManager.recoverMatch()?.let { activity.matchViewModel.load(it, false) } ?: activity.matchViewModel.reset()
         activity.moveToPrematch()
     }
 
