@@ -1,6 +1,5 @@
-package team449.frc.scoutingappbase
+package team449.frc.scoutingappbase.model
 
-import android.content.res.TypedArray
 import java.io.File
 
 // Java can't see things if they aren't lateinit, and matches & teams are needed for Conversions.java
@@ -25,13 +24,17 @@ object GlobalResources {
     var matchSchedule: Map<String, Map<String, List<String>>>? = null
         set(value) {
             field = value
-            matches = (value?.keys?.filter{ it.matches("-?\\d+(\\.\\d+)?".toRegex()) }?.sortedBy { it.toInt() }?.toTypedArray()?.plus(elimsMatches))?: defaultMatches
+            matches = (value?.keys?.filter{ it.matches("-?\\d+(\\.\\d+)?".toRegex()) }?.sortedBy { it.toInt() }?.toTypedArray()?.plus(
+                elimsMatches
+            ))?: defaultMatches
         }
     lateinit var matches: Array<String>
     lateinit var teams: Array<String>
 
     init {
-        matches = defaultMatches
-        teams = defaultTeams
+        matches =
+            defaultMatches
+        teams =
+            defaultTeams
     }
 }

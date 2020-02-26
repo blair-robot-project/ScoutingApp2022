@@ -9,8 +9,8 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.main.Editor
+import team449.frc.scoutingappbase.model.GlobalResources
 
 
 fun info(context: Context, title: String, body: String) {

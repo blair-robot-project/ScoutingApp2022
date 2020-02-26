@@ -3,7 +3,6 @@ package team449.frc.scoutingappbase.main
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,13 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation.findNavController
-import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.fragment.PageChanger
 import team449.frc.scoutingappbase.helpers.deserialize
 import team449.frc.scoutingappbase.helpers.matchScheduleFile
 import team449.frc.scoutingappbase.helpers.readFromFile
 import team449.frc.scoutingappbase.helpers.teamsFile
+import team449.frc.scoutingappbase.model.GlobalResources
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 

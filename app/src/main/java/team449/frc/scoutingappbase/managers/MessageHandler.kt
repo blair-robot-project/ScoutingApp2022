@@ -4,14 +4,10 @@ import android.util.Log
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.helpers.deserializeMessage
 import team449.frc.scoutingappbase.helpers.saveMatchSchedule
 import team449.frc.scoutingappbase.helpers.saveTeams
-import team449.frc.scoutingappbase.model.Message
-import team449.frc.scoutingappbase.model.MessageType
-import team449.frc.scoutingappbase.model.makeErrorMessage
-import team449.frc.scoutingappbase.model.makeMultiMatchDataMessage
+import team449.frc.scoutingappbase.model.*
 
 object MessageHandler {
     private val msgStrings = mutableListOf<String>()

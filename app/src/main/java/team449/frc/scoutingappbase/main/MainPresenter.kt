@@ -2,17 +2,16 @@ package team449.frc.scoutingappbase.main
 
 import android.content.SharedPreferences
 import android.os.AsyncTask
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.GlobalResources
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.managers.DataManager
+import team449.frc.scoutingappbase.model.GlobalResources
 import team449.frc.scoutingappbase.model.MatchShadow
 import team449.frc.scoutingappbase.model.makeSyncRequest
 

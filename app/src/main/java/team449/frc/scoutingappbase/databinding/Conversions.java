@@ -1,13 +1,11 @@
 package team449.frc.scoutingappbase.databinding;
 
-import android.util.Log;
 import android.view.View;
 import androidx.databinding.InverseMethod;
-import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import team449.frc.scoutingappbase.GlobalResources;
+import team449.frc.scoutingappbase.model.GlobalResources;
 
 public class Conversions {
     @InverseMethod("box")

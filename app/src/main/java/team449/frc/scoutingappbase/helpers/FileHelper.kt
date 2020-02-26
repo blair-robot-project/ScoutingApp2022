@@ -1,7 +1,7 @@
 package team449.frc.scoutingappbase.helpers
 
 import android.util.Log
-import team449.frc.scoutingappbase.GlobalResources
+import team449.frc.scoutingappbase.model.GlobalResources
 import java.io.File
 import java.io.IOException
 

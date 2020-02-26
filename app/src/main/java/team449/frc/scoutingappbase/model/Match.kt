@@ -1,9 +1,7 @@
 package team449.frc.scoutingappbase.model
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import team449.frc.scoutingappbase.GlobalResources
 
 fun <T: Any?> mutableLiveData(initialValue: T) = MutableLiveData<T>().apply { postValue(initialValue) }
 
@@ -79,6 +77,6 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val autoMove = matchViewModel.autoMove.value
     val comments = matchViewModel.comments.value
 
-    val match: String = matchId?.let{GlobalResources.matches[it]} ?:""
-    val team: String = teamId?.let{GlobalResources.teams[it]} ?:""
+    val match: String = matchId?.let{ GlobalResources.matches[it]} ?:""
+    val team: String = teamId?.let{ GlobalResources.teams[it]} ?:""
 }
