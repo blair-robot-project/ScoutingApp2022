@@ -135,7 +135,7 @@
    <LinearLayout
      style="@style/Wrap"
      android:orientation="horizontal"
-     android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.GONE : View.VISIBLE}"
+     android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==3 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.GONE : View.VISIBLE}"
      app:layout_constraintBottom_toBottomOf="parent"
      app:layout_constraintStart_toStartOf="parent">
      <TextView
