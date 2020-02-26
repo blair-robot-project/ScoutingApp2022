@@ -46,9 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         updateNavBarVisibility()
 
-        val matchObserver = Observer<Int> { matchId ->
-            presenter.matchChanged(matchId)
-        }
+        val matchObserver = Observer<Int> { _ -> presenter.matchChanged() }
         matchViewModel.matchId.observe(this, matchObserver)
     }
 

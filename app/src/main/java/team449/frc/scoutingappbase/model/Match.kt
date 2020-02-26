@@ -1,9 +1,10 @@
 package team449.frc.scoutingappbase.model
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-fun <T: Any?> mutableLiveData(initialValue: T) = MutableLiveData<T>().apply { postValue(initialValue) }
+fun <T: Any?> mutableLiveData(initialValue: T) = MutableLiveData<T>().apply { value = initialValue }
 
 class MatchViewModel : ViewModel() {
     var timestamp = System.currentTimeMillis()

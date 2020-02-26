@@ -2,6 +2,7 @@ package team449.frc.scoutingappbase.main
 
 import android.content.SharedPreferences
 import android.os.AsyncTask
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
@@ -21,8 +22,6 @@ interface Editor {
 }
 
 class MainPresenter(private val activity: MainActivity): Editor {
-
-    var prevMatchId = -1
 
     fun globalHelp() {
         help(R.string.help_global)
@@ -76,18 +75,19 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun help(messageId: Int) {
+        Log.i("sldkfjsdlkj",activity.matchViewModel.teamId.value.toString())
         info(activity, activity.getString(R.string.help_title), activity.getString(messageId))
     }
 
-    fun matchChanged(matchId: Int) {
-        if (matchId != prevMatchId) {
-            prevMatchId = matchId
-            teamIdForMatchId(matchId)?.let { activity.matchViewModel.teamId.value = it }
-            activity.fixSpinners()
+    fun matchChanged() {
+        Log.i("==========", "match changed")
+        activity.matchViewModel.matchId.value?.let {matchId ->
+            teamIdForMatchId(matchId)?.let { teamId ->activity.matchViewModel.teamId.value = teamId }
         }
+        activity.fixSpinners()
     }
 
-    fun teamIdForMatchId(matchId: Int): Int? {
+    private fun teamIdForMatchId(matchId: Int): Int? {
         GlobalResources.matchSchedule?.let { schedule ->
             schedule[GlobalResources.matches[matchId]]?.let { alliances ->
                 activity.preferences?.let { prefs ->
@@ -114,10 +114,10 @@ class MainPresenter(private val activity: MainActivity): Editor {
             "alliance" -> preferences?.getString("alliance", null)?.let {
                 GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
                 activity.matchViewModel.alliance.value = GlobalResources.defaultAlliance
-                matchChanged(++prevMatchId - 1)
+                matchChanged()
             }
-            "driver_staion" -> matchChanged(++prevMatchId - 1)
-            "lockTeamSpinner" -> if (preferences.getBoolean(key, false)) { matchChanged(++prevMatchId - 1) }
+            "driver_station" -> matchChanged()
+            "lockTeamSpinner" -> if (preferences.getBoolean(key, false)) { matchChanged() }
         }
     }
 
