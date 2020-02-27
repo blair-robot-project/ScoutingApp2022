@@ -118,44 +118,44 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val timestamp = matchViewModel.timestamp
     val revision = matchViewModel.revision
 
-    val scoutName = matchViewModel.scoutName.value
+    val scoutName = matchViewModel.scoutName.value?:""
     val matchId = matchViewModel.matchId.value
     val teamId = matchViewModel.teamId.value
-    val alliance = matchViewModel.alliance.value
-    val noShow = matchViewModel.noShow.value
+    val alliance = matchViewModel.alliance.value?:-1
+    val noShow = matchViewModel.noShow.value?: false
     
-    val autoMove = matchViewModel.autoMove.value
-    val hitPartner = matchViewModel.hitPartner.value
-    val autoIntake = matchViewModel.autoIntake.value
-    val autoHigh = matchViewModel.autoHigh.value
-    val autoCenter = matchViewModel.autoCenter.value
-    val autoLow = matchViewModel.autoLow.value
-    val autoMiss = matchViewModel.autoMiss.value
+    val autoMove = matchViewModel.autoMove.value?: false
+    val hitPartner = matchViewModel.hitPartner.value?: false
+    val autoIntake = matchViewModel.autoIntake.value?: false
+    val autoHigh = matchViewModel.autoHigh.value?: 0
+    val autoCenter = matchViewModel.autoCenter.value?: 0
+    val autoLow = matchViewModel.autoLow.value?: 0
+    val autoMiss = matchViewModel.autoMiss.value?: 0
     
-    val high = matchViewModel.high.value
-    val center = matchViewModel.center.value
-    val low = matchViewModel.low.value
-    val miss = matchViewModel.miss.value
-    val spinnerRot = matchViewModel.spinnerRot.value
-    val spinnerPos = matchViewModel.spinnerPos.value
+    val high = matchViewModel.high.value?: 0
+    val center = matchViewModel.center.value?: 0
+    val low = matchViewModel.low.value?: 0
+    val miss = matchViewModel.miss.value?: 0
+    val spinnerRot = matchViewModel.spinnerRot.value?: false
+    val spinnerPos = matchViewModel.spinnerPos.value?: false
      
-    val attemptedClimb = matchViewModel.attemptedClimb.value
-    val soloClimb = matchViewModel.soloClimb.value
-    val doubleClimb = matchViewModel.doubleClimb.value
-    val wasLifted = matchViewModel.wasLifted.value
-    val park = if (attemptedClimb==1 && soloClimb==true || attemptedClimb==2 && (doubleClimb==true || soloClimb==true) || attemptedClimb==3 && wasLifted==true) false else matchViewModel.park.value
-    val climbTime = matchViewModel.climbTime.value
+    var attemptedClimb = matchViewModel.attemptedClimb.value?: 0
+    val doubleClimb = matchViewModel.doubleClimb.value?: false && attemptedClimb==2
+    val soloClimb = matchViewModel.soloClimb.value?: false && (attemptedClimb==1 || attemptedClimb==2 && !doubleClimb)
+    val wasLifted = matchViewModel.wasLifted.value?: false && attemptedClimb==3
+    val park = if (soloClimb || doubleClimb || wasLifted) false else matchViewModel.park.value?: false
+    var climbTime = matchViewModel.climbTime.value?: 0
      
-        val dead = matchViewModel.dead.value
-    val defense = matchViewModel.defense.value
-    val comments = matchViewModel.comments.value
+    var dead = matchViewModel.dead.value?: -1
+    var defense = matchViewModel.defense.value?: -1
+    val comments = matchViewModel.comments.value?: ""
 
     val match: String = matchId?.let{ GlobalResources.matches[it] } ?:""
     val team: String = teamId?.let{ GlobalResources.teams[it] } ?:""
 
     private val Boolean?.int
         get() = if (this==true) 1 else 0
-    val soloClimbNYF = if (attemptedClimb==1 || attemptedClimb==2 && doubleClimb==false && soloClimb==true) 2 - soloClimb.int else 0
+    val soloClimbNYF = if (attemptedClimb==1 || attemptedClimb==2 && !doubleClimb && soloClimb) 2 - soloClimb.int else 0
     val doubleClimbNYF = if (attemptedClimb==2) 2 - doubleClimb.int else 0
     val wasLiftedNYF = if (attemptedClimb==3) 2 - wasLifted.int else 0
 }
