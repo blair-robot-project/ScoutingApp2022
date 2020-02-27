@@ -9,8 +9,10 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import team449.frc.scoutingappbase.R
+import team449.frc.scoutingappbase.fragment.PageChanger
 import team449.frc.scoutingappbase.main.Editor
 import team449.frc.scoutingappbase.model.GlobalResources
+import team449.frc.scoutingappbase.model.MatchShadow
 
 
 fun info(context: Context, title: String, body: String) {
@@ -44,6 +46,25 @@ fun confirmationDialog(context: Activity, title: String, body: String, positiveB
         .setMessage(body)
         .setPositiveButton(positiveButtonName, positiveAction)
         .setNegativeButton("Cancel", null)
+        .show()
+        .findViewById<TextView>(android.R.id.message)?.textSize = GlobalResources.dialogTextSize
+}
+
+fun hardValidationDialog(context: Activity, body: String, pageChanger: PageChanger?, page: Int) {
+    AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
+        .setTitle("Data validation failed")
+        .setMessage(body)
+        .setPositiveButton("Fix errors") { _, _ -> pageChanger?.changePage(page) }
+        .show()
+        .findViewById<TextView>(android.R.id.message)?.textSize = GlobalResources.dialogTextSize
+}
+
+fun softValidationDialog(context: Activity, body: String, pageChanger: PageChanger?, page: Int, submit: SubmissionTask, match: MatchShadow) {
+    AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
+        .setTitle("Data validation failed")
+        .setMessage(body)
+        .setPositiveButton("Submit anyway") { _, _ -> submit.execute(match) }
+        .setNegativeButton("Fix errors") { _, _ -> pageChanger?.changePage(page) }
         .show()
         .findViewById<TextView>(android.R.id.message)?.textSize = GlobalResources.dialogTextSize
 }

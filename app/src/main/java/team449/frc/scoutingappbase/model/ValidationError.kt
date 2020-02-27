@@ -1,12 +1,13 @@
 package team449.frc.scoutingappbase.model
 
 class ValidationError {
-    var errorString = ""
-        get() = field.trim()
+    private var errorStringRaw = ""
+    val errorString
+        get() = errorStringRaw.trim()
     var lowestPage = 4
 
     fun addError(string: String, page: Int) {
-        errorString += string + "\n"
+        errorStringRaw += string + "\n"
         if (page < lowestPage) lowestPage = page
     }
 
