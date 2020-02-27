@@ -1,11 +1,13 @@
 package team449.frc.scoutingappbase.databinding;
 
 import android.view.View;
+
 import androidx.databinding.InverseMethod;
 
 import java.util.List;
 
-import team449.frc.scoutingappbase.model.GlobalResources;
+import team449.frc.scoutingappbase.model.EventData;
+import team449.frc.scoutingappbase.model.StaticResources;
 
 public class Conversions {
     @InverseMethod("box")
@@ -27,10 +29,10 @@ public class Conversions {
     }
 
     public static String prevPage(int currPage) {
-        return currPage > 0 ? GlobalResources.pages[currPage - 1] : "";
+        return currPage > 0 ? StaticResources.pages[currPage - 1] : "";
     }
     public static String nextPage(int currPage) {
-        return currPage < GlobalResources.pages.length - 1 ? GlobalResources.pages[currPage + 1] : "";
+        return currPage < StaticResources.pages.length - 1 ? StaticResources.pages[currPage + 1] : "";
     }
 
     public static int visibliltyByString(String s) {
@@ -44,10 +46,10 @@ public class Conversions {
     }
 
     public static String spinnerToTeam(Integer ind) {
-        return spinnerToLabel(ind, GlobalResources.teams, "Team ");
+        return spinnerToLabel(ind, EventData.teams, "Team ");
     }
     public static String spinnerToMatch(Integer ind) {
-        return spinnerToLabel(ind, GlobalResources.matches, "Match ");
+        return spinnerToLabel(ind, EventData.matches, "Match ");
     }
 
 
@@ -61,32 +63,32 @@ public class Conversions {
 
     @InverseMethod("radioIdToIndexDead")
     public static int radioIndexToIdDead(Integer ind) {
-        return radioIndexToId(GlobalResources.radioIdsDead, ind);
+        return radioIndexToId(StaticResources.radioIdsDead, ind);
     }
     public static Integer radioIdToIndexDead(int id) {
-        return radioIdToIndex(GlobalResources.radioIdsDead, id);
+        return radioIdToIndex(StaticResources.radioIdsDead, id);
     }
     @InverseMethod("radioIdToIndexDefense")
     public static int radioIndexToIdDefense(Integer ind) {
-        return radioIndexToId(GlobalResources.radioIdsDefense, ind);
+        return radioIndexToId(StaticResources.radioIdsDefense, ind);
     }
     public static Integer radioIdToIndexDefense(int id) {
-        return radioIdToIndex(GlobalResources.radioIdsDefense, id);
+        return radioIdToIndex(StaticResources.radioIdsDefense, id);
     }
     @InverseMethod("radioIdToIndexClimb")
     public static int radioIndexToIdClimb(Integer ind) {
-        return radioIndexToId(GlobalResources.radioIdsClimb, ind);
+        return radioIndexToId(StaticResources.radioIdsClimb, ind);
     }
     public static Integer radioIdToIndexClimb(int id) {
-        return radioIdToIndex(GlobalResources.radioIdsClimb, id);
+        return radioIdToIndex(StaticResources.radioIdsClimb, id);
     }
 
 
     //TODO: This should be somewhere else and be mutable live data
     public static String[] getTeams() {
-        return GlobalResources.teams;
+        return EventData.teams;
     }
     public static String[] getMatches() {
-        return GlobalResources.matches;
+        return EventData.matches;
     }
 }

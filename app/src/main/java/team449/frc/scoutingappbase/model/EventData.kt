@@ -1,21 +1,8 @@
 package team449.frc.scoutingappbase.model
 
-import java.io.File
+import androidx.lifecycle.MutableLiveData
 
-// Java can't see things if they aren't lateinit, and matches & teams are needed for Conversions.java
-//TODO: Figure out what's actually wrong and find a better solution
-@Suppress("UNNECESSARY_LATEINIT")
-object GlobalResources {
-    lateinit var pages: Array<String>
-    lateinit var filesDir: File
-
-    var dialogTextSize = 0F
-
-    var defaultAlliance = -1
-
-    lateinit var radioIdsDead: List<Int>
-    lateinit var radioIdsDefense: List<Int>
-    lateinit var radioIdsClimb: List<Int>
+object EventData {
 
     private var elimsMatches = arrayOf("Quarters", "Semis", "Finals")
     private var defaultMatches = (1..99).map { it.toString() }.toTypedArray() + elimsMatches

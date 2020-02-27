@@ -18,7 +18,8 @@ import team449.frc.scoutingappbase.helpers.deserialize
 import team449.frc.scoutingappbase.helpers.matchScheduleFile
 import team449.frc.scoutingappbase.helpers.readFromFile
 import team449.frc.scoutingappbase.helpers.teamsFile
-import team449.frc.scoutingappbase.model.GlobalResources
+import team449.frc.scoutingappbase.model.EventData
+import team449.frc.scoutingappbase.model.StaticResources
 import team449.frc.scoutingappbase.model.MatchViewModel
 
 
@@ -52,29 +53,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupStaticResources() {
         // Hand out resources
-        GlobalResources.pages = resources.getStringArray(R.array.pages)
-        GlobalResources.filesDir = filesDir
-        GlobalResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
+        StaticResources.pages = resources.getStringArray(R.array.pages)
+        StaticResources.filesDir = filesDir
+        StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
 
         var ri = resources.obtainTypedArray(R.array.radioIdsDead)
-        GlobalResources.radioIdsDead = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        StaticResources.radioIdsDead = (0..ri.length()).map { ri.getResourceId(it, 0) }
         ri.recycle()
         ri = resources.obtainTypedArray(R.array.radioIdsDefense)
-        GlobalResources.radioIdsDefense = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        StaticResources.radioIdsDefense = (0..ri.length()).map { ri.getResourceId(it, 0) }
         ri.recycle()
         ri = resources.obtainTypedArray(R.array.radioIdsClimb)
-        GlobalResources.radioIdsClimb = (0..ri.length()).map { ri.getResourceId(it, 0) }
+        StaticResources.radioIdsClimb = (0..ri.length()).map { ri.getResourceId(it, 0) }
         ri.recycle()
 
         preferences?.getString("alliance", null)?.let {
-            GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
+            StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
 
         readFromFile(matchScheduleFile)?.let{
-            GlobalResources.matchSchedule = deserialize(it)
+            if (it.isNotEmpty()) EventData.matchSchedule = deserialize(it)
         }
         readFromFile(teamsFile)?.let{
-            GlobalResources.teams = (deserialize(it) as List<String>).toTypedArray()
+            if (it.isNotEmpty()) EventData.teams = (deserialize(it) as List<String>).toTypedArray()
         }
     }
 

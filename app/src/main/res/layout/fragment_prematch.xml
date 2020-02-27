@@ -6,6 +6,7 @@
 
   <data>
     <import type="team449.frc.scoutingappbase.databinding.Conversions" />
+    <import type="team449.frc.scoutingappbase.model.EventData" />
     <variable
       name="vm"
       type="team449.frc.scoutingappbase.model.MatchViewModel"/>
@@ -39,7 +40,7 @@
     <Spinner
       android:id="@+id/match"
       style="@style/SpinnerStyle"
-      android:entries="@{Conversions.matches}"
+      android:entries="@{EventData.matches}"
       android:selectedItemPosition="@={Conversions.unbox(vm.matchId)}"
       android:theme="@style/SpinnerTheme"
       android:layout_marginStart="@dimen/horizontalFieldSpacing"
@@ -63,7 +64,7 @@
     <Spinner
       android:id="@+id/team"
       style="@style/SpinnerStyle"
-      android:entries="@{Conversions.teams}"
+      android:entries="@{EventData.teamsMLD}"
       android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
       android:theme="@style/SpinnerTheme"
       app:layout_constraintBottom_toBottomOf="@id/teamText"

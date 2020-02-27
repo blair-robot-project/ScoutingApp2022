@@ -1,6 +1,5 @@
 package team449.frc.scoutingappbase.model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -13,7 +12,7 @@ class MatchViewModel : ViewModel() {
     val scoutName = mutableLiveData("")
     val matchId = mutableLiveData(0)
     val teamId = mutableLiveData(0)
-    val alliance = mutableLiveData(GlobalResources.defaultAlliance)
+    val alliance = mutableLiveData(StaticResources.defaultAlliance)
     val noShow = mutableLiveData(false)
     val autoMove = mutableLiveData(false)
     val hitPartner = mutableLiveData(false)
@@ -43,7 +42,7 @@ class MatchViewModel : ViewModel() {
         revision = 0
 
         // If numeric add one, otherwise it's playoffs so don't increment
-        matchId.value = matchId.value?.plus(if (GlobalResources.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
+        matchId.value = matchId.value?.plus(if (EventData.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
         teamId.value = 0
         noShow.value = false
 
@@ -150,8 +149,8 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     var defense = matchViewModel.defense.value?: -1
     val comments = matchViewModel.comments.value?: ""
 
-    val match: String = matchId?.let{ GlobalResources.matches[it] } ?:""
-    val team: String = teamId?.let{ GlobalResources.teams[it] } ?:""
+    val match: String = matchId?.let{ EventData.matches[it] } ?:""
+    val team: String = teamId?.let{ EventData.teams[it] } ?:""
 
     private val Boolean?.int
         get() = if (this==true) 1 else 0

@@ -11,7 +11,8 @@ import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.managers.DataManager
-import team449.frc.scoutingappbase.model.GlobalResources
+import team449.frc.scoutingappbase.model.EventData
+import team449.frc.scoutingappbase.model.StaticResources
 import team449.frc.scoutingappbase.model.MatchShadow
 import team449.frc.scoutingappbase.model.makeSyncRequest
 
@@ -89,11 +90,11 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     private fun teamIdForMatchId(matchId: Int): Int? {
-        GlobalResources.matchSchedule?.let { schedule ->
-            schedule[GlobalResources.matches[matchId]]?.let { alliances ->
+        EventData.matchSchedule?.let { schedule ->
+            schedule[EventData.matches[matchId]]?.let { alliances ->
                 activity.preferences?.let { prefs ->
                     prefs.getString("driver_station", null)?.toInt()?.let { station ->
-                        GlobalResources.teams.indexOf(
+                        EventData.teams.indexOf(
                             alliances[prefs.getString("alliance", null) ?: ""]?.get(station)
                         ).let { teamId ->
                             if (teamId >= 0) return teamId
@@ -113,8 +114,8 @@ class MainPresenter(private val activity: MainActivity): Editor {
         when (key) {
             "hideNav" -> activity.updateNavBarVisibility()
             "alliance" -> preferences?.getString("alliance", null)?.let {
-                GlobalResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
-                activity.matchViewModel.alliance.value = GlobalResources.defaultAlliance
+                StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
+                activity.matchViewModel.alliance.value = StaticResources.defaultAlliance
                 matchChanged()
             }
             "driver_station" -> matchChanged()

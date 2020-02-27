@@ -30,12 +30,12 @@ object MessageHandler {
                         BluetoothManager.write(makeMultiMatchDataMessage(it))
                     }
                     MessageType.SCHEDULE.name -> {
-                        GlobalResources.matchSchedule =
+                        EventData.matchSchedule =
                             message.body as Map<String, Map<String, List<String>>>
                         saveMatchSchedule()
                     }
                     MessageType.TEAM_LIST.name -> {
-                        GlobalResources.teams = (message.body as List<String>).sortedBy { it.toInt() }.toTypedArray()
+                        EventData.teams = (message.body as List<String>).sortedBy { it.toInt() }.toTypedArray()
                         saveTeams()
                     }
                     else -> Log.e("MsgHandler","Invalid message type received: ${message.type}")
