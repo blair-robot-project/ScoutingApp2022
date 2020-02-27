@@ -5,6 +5,7 @@ import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.Data
+import team449.frc.scoutingappbase.model.GlobalResources
 import team449.frc.scoutingappbase.model.MatchShadow
 import java.util.*
 import kotlin.collections.ArrayList
@@ -54,4 +55,10 @@ object DataManager {
         data.submitted.clear()
         data.partial.clear()
     }
+    fun clearEvent() {
+        clearFile(teamsFile)
+        clearFile(matchScheduleFile)
+        GlobalResources.resetEventData()
+    }
+
 }

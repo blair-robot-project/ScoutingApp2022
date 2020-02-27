@@ -2,7 +2,6 @@ package team449.frc.scoutingappbase.main
 
 import android.content.SharedPreferences
 import android.os.AsyncTask
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
@@ -55,6 +54,10 @@ class MainPresenter(private val activity: MainActivity): Editor {
         confirmationDialog(activity, activity.getString(R.string.clear_data_title), activity.getString(R.string.clear_data_body), activity.getString(R.string.clear_data_button))
             {_,_ -> AsyncTask.execute{ DataManager.clear() } }
     }
+    fun clearEventData() {
+        confirmationDialog(activity, activity.getString(R.string.clear_event_data_title), activity.getString(R.string.clear_event_data_body), activity.getString(R.string.clear_event_data_button))
+            {_,_ -> AsyncTask.execute{ DataManager.clearEvent() } }
+    }
 
     fun settings() {
         findNavController(activity, R.id.navhost).let { navController ->
@@ -75,12 +78,10 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun help(messageId: Int) {
-        Log.i("sldkfjsdlkj",activity.matchViewModel.teamId.value.toString())
         info(activity, activity.getString(R.string.help_title), activity.getString(messageId))
     }
 
     fun matchChanged() {
-        Log.i("==========", "match changed")
         activity.matchViewModel.matchId.value?.let {matchId ->
             teamIdForMatchId(matchId)?.let { teamId ->activity.matchViewModel.teamId.value = teamId }
         }

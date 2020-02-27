@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity() {
         R.id.action_edit -> {presenter.edit(); true}
         R.id.action_sync -> {presenter.sync(); true}
         R.id.action_clear_data -> {presenter.clearData(); true}
+        R.id.action_clear_event_data -> {presenter.clearEventData(); true}
         R.id.action_settings -> {presenter.settings(); true}
         else -> super.onOptionsItemSelected(item)
     }

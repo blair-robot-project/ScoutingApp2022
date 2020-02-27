@@ -31,10 +31,12 @@ object GlobalResources {
     lateinit var matches: Array<String>
     lateinit var teams: Array<String>
 
+    fun resetEventData() {
+        matches = defaultMatches
+        teams = defaultTeams
+    }
+
     init {
-        matches =
-            defaultMatches
-        teams =
-            defaultTeams
+        resetEventData()
     }
 }
