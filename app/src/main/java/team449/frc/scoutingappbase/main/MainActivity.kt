@@ -3,7 +3,6 @@ package team449.frc.scoutingappbase.main
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -20,8 +19,8 @@ import team449.frc.scoutingappbase.helpers.matchScheduleFile
 import team449.frc.scoutingappbase.helpers.readFromFile
 import team449.frc.scoutingappbase.helpers.teamsFile
 import team449.frc.scoutingappbase.model.EventData
-import team449.frc.scoutingappbase.model.StaticResources
 import team449.frc.scoutingappbase.model.MatchViewModel
+import team449.frc.scoutingappbase.model.StaticResources
 
 
 class MainActivity : AppCompatActivity() {
@@ -78,8 +77,6 @@ class MainActivity : AppCompatActivity() {
             if (it.isNotEmpty()) EventData.matchSchedule = deserialize(it)
         }
         readFromFile(teamsFile)?.let{
-            Log.i("/////////","setup found it")
-            Log.i("/////////",it)
             if (it.isNotEmpty()) EventData.teams.postValue((deserialize(it) as List<String>).toTypedArray())
         }
     }

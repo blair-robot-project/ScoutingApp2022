@@ -1,11 +1,9 @@
 package team449.frc.scoutingappbase.managers
 
 import android.os.AsyncTask
-import android.util.Log
 import team449.frc.scoutingappbase.databinding.Conversions
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.model.Data
-import team449.frc.scoutingappbase.model.EventData
 import team449.frc.scoutingappbase.model.MatchShadow
 import java.util.*
 import kotlin.collections.ArrayList
