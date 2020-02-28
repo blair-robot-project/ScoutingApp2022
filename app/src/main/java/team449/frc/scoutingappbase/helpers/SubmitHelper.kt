@@ -45,6 +45,13 @@ private fun validateHard(match: MatchShadow): ValidationError {
         } else {
             match.climbTime = 0
         }
+        // Note on the commented lines: while valid, these are situations where we don't care what the endgame score is, and it isn't offered as an option to the user (it will be 0)
+//        if (match.park && match.endgameScore < 5 ) error.addError("The endgame score can't have been ${match.endgameScore} if the robot parked.",3)
+        if (match.soloClimb && match.endgameScore < 25 ) error.addError("The endgame score can't have been ${match.endgameScore} if the robot climbed.",3)
+        if (match.doubleClimb && match.endgameScore < 50 ) error.addError("The endgame score can't have been ${match.endgameScore} if the robot climbed with a partner.",3)
+//        if (match.wasLifted && match.endgameScore < 50 ) error.addError("The endgame score can't have been ${match.endgameScore} if the robot was lifted by a partner.",3)
+//        if (!match.park && !match.soloClimb && !match.doubleClimb && !match.wasLifted && match.endgameScore > 65 ) error.addError("The endgame score can't have been ${match.endgameScore} if the robot didn't climb or park.",3)
+//        else if (!match.soloClimb && !match.doubleClimb && !match.wasLifted && match.endgameScore > 70 ) error.addError("The endgame score can't have been ${match.endgameScore} if the robot didn't climb.",3)
     }
     if (!error.errorsp) {
         if (match.attemptedClimb == -1) match.attemptedClimb = 0
@@ -80,21 +87,4 @@ private fun submit(postSumbit: Runnable, match: MatchShadow) {
     }
     postSumbit.run()
 }
-//
-//class SubmissionTask(private val post: Runnable, pageChanger: PageChanger?): AsyncTask<MatchShadow, Void, Void>() {
-//    override fun doInBackground(vararg match: MatchShadow): Void? {
-//        match.first().let {
-//            DataManager.submit(it)
-//            val submitted = BluetoothManager.write(makeMatchDataMessage(it))
-//            if (!submitted) {
-//                BluetoothManager.connect()
-//            }
-//            Log.i("SubmissionTask", "Match submitted")
-//        }
-//        return null
-//    }
-//
-//    override fun onPostExecute(result: Void?) {
-//        post.run()
-//    }
-//}
+
