@@ -39,5 +39,9 @@ fun saveMatchSchedule() {
     EventData.matchSchedule?.let { writeToFile(matchScheduleFile, serialize(it)) }
 }
 fun saveTeams() {
-    EventData.teams.value?.let { writeToFile(teamsFile, serialize(it)) }
+    Log.i("++++++++","saving")
+    EventData.teams.value?.let {
+        Log.i("=========","saving, ms !null")
+        writeToFile(teamsFile, serialize(it))
+    }
 }
