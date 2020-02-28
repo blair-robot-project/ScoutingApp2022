@@ -2,4 +2,5 @@
 <resources>
   <integer name="climb_time_stepsize">5</integer>
   <integer name="climb_time_max">30</integer>
+  <integer name="endgame_scores_max_index">13</integer>
 </resources>

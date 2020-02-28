@@ -36,7 +36,8 @@
   <string name="double_prompt">Lifted another successfully?\ \ \ </string>
   <string name="carried_prompt">Was lifted successfully?\ \ \ </string>
   <string name="solo_failed_double_prompt">If failed, did the robot still solo climb successfully?\ \ \ </string>
-  <string name="climb_time_prompt">Approximate time to climb:</string>
+  <string name="climb_time_prompt">Climb time</string>
+  <string name="endgame_score_prompt">Endgame score</string>
 
   <!--General-->
   <string name="comments_hint">Comments</string>
@@ -57,6 +58,7 @@
   <string name="help_parked">Select if the robot ended the match touching the carpet fully within the colored rectangle under the climbing rungs.</string>
   <string name="help_doublefailsolo">Select if the robot attempted and failed to lift another robot, but was still successful in getting itself up. For example, a robot might grasp onto another robot, lift them both up, then drop the robot it grabbed.</string>
   <string name="help_climbtime">About how long did it take the robot to climb, from the time it starts deploying its hook to grab the rung to the time it is fully off the ground?</string>
+  <string name="help_endgamescore">What was the final score in the \"endgame\" category for the entire alliance? You will have to wait until after the match when the scores are posted.</string>
   <string name="help_dead">ALIVE: the robot was enabled, moving, and mostly functional for most of the match.\n\nBROKEN: robot was moving, but something is wrong. There are parts of their robot that are clearly broken.\n\nSOMETIMES DEAD: dead for a significant portion of the match (around 35–70%).\n\nDEAD: the robot is just sitting on the field unable to move.</string>
   <string name="help_defense">Did the robot play any defense?\n\nThis refers to the robot attempting to stop the opposing alliance from scoring, or slow them down, even if it was ineffective.\n\nNONE: the robot never played defense\n\nPART: the robot played defense for part of the match, but also spend some time not trying to block the opponent (though not necessarily scoring points).\n\nALL: the robot played defense for all or nearly all of the Teleop period (not necessarily Auto or Endgame)</string>
 

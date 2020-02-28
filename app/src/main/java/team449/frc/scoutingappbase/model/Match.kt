@@ -32,7 +32,8 @@ class MatchViewModel : ViewModel() {
     val soloClimb by lazy { mutableLiveData(false) }
     val doubleClimb by lazy { mutableLiveData(false) }
     val wasLifted by lazy { mutableLiveData(false) }
-    val climbTime by lazy { mutableLiveData( 0) }
+    val climbTime by lazy { mutableLiveData(0) }
+    val endgameScore by lazy { mutableLiveData(0) }
     val dead by lazy { mutableLiveData(-1) }
     val defense by lazy { mutableLiveData(-1) }
     val comments by lazy { mutableLiveData("") }
@@ -67,6 +68,7 @@ class MatchViewModel : ViewModel() {
         doubleClimb.value = false
         wasLifted.value = false
         climbTime.value = 0
+        endgameScore.value = 0
 
         dead.value = -1
         defense.value = -1
@@ -104,6 +106,7 @@ class MatchViewModel : ViewModel() {
         doubleClimb.value = shadow.doubleClimb
         wasLifted.value = shadow.wasLifted
         climbTime.value = shadow.climbTime / StaticResources.climbTimeStepSize
+        endgameScore.value = shadow.endgameScore
 
         dead.value = shadow.dead
         defense.value = shadow.defense
@@ -144,7 +147,10 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val wasLifted = matchViewModel.wasLifted.value?: false && attemptedClimb==3
     val park = if (soloClimb || doubleClimb || wasLifted) false else matchViewModel.park.value?: false
     var climbTime = StaticResources.climbTimeStepSize * (matchViewModel.climbTime.value?: 0)
-     
+    val endgameScore = StaticResources.endgameScoreOptions[matchViewModel.endgameScore.value?: 0].toInt()
+    // 50 and a solo climb is ambiguous, could be 1 level + 2 park or 2 unlevel + 0 park
+    val level = endgameScore in arrayOf(40,45,50,65,70,95) && soloClimb || endgameScore in arrayOf(65,70,95) && doubleClimb
+
     var dead = matchViewModel.dead.value?: -1
     var defense = matchViewModel.defense.value?: -1
     val comments = matchViewModel.comments.value?: ""

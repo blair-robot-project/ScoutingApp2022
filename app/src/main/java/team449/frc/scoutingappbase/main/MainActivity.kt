@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         StaticResources.filesDir = filesDir
         StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
         StaticResources.climbTimeStepSize = resources.getInteger(R.integer.climb_time_stepsize)
+        StaticResources.endgameScoreOptions = resources.getStringArray(R.array.endgame_score_values)
 
         var ri = resources.obtainTypedArray(R.array.radioIdsDead)
         StaticResources.radioIdsDead = (0..ri.length()).map { ri.getResourceId(it, 0) }
@@ -133,6 +134,7 @@ class MainActivity : AppCompatActivity() {
             R.id.soloHelp -> presenter.help(R.string.help_doublefailsolo)
             R.id.parkedHelp -> presenter.help(R.string.help_parked)
             R.id.climbTimeHelp -> presenter.help(R.string.help_climbtime)
+            R.id.endgameScore -> presenter.help(R.string.help_endgamescore)
             R.id.deadHelp -> presenter.help(R.string.help_dead)
             R.id.defenseHelp -> presenter.help(R.string.help_defense)
         }
