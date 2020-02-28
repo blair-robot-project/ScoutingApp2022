@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         StaticResources.pages = resources.getStringArray(R.array.pages)
         StaticResources.filesDir = filesDir
         StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
+        StaticResources.climbTimeStepSize = resources.getInteger(R.integer.climb_time_stepsize)
 
         var ri = resources.obtainTypedArray(R.array.radioIdsDead)
         StaticResources.radioIdsDead = (0..ri.length()).map { ri.getResourceId(it, 0) }

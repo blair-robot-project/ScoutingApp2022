@@ -2,6 +2,7 @@ package team449.frc.scoutingappbase.ui
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.NumberPicker
 import team449.frc.scoutingappbase.R
 
@@ -28,7 +29,15 @@ class NumberPickerWithXml : NumberPicker {
         try {
             this.minValue = attributes.getInt(R.styleable.NumberPickerWithXml_minValue, 0)
             this.maxValue = attributes.getInt(R.styleable.NumberPickerWithXml_maxValue, 0)
-//            this.value = attributes.getInt(R.styleable.NumberPickerWithXml_defaultValue, 0)
+            val values = attributes.getTextArray(R.styleable.NumberPickerWithXml_displayedValues)
+            val formatter = Formatter {
+                if (values == null){
+                    (it*attributes.getInt(R.styleable.NumberPickerWithXml_stepSize, 1)).toString()
+                } else {
+                    values[it].toString()
+                }
+            }
+            this.setFormatter(formatter)
         } finally {
             attributes.recycle()
         }

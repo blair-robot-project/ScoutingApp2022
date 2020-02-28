@@ -5,7 +5,8 @@
   <declare-styleable name="NumberPickerWithXml">
     <attr name="maxValue" format="integer" />
     <attr name="minValue" format="integer" />
-    <!--<attr name="defaultValue" format="integer" />-->
+    <attr name="stepSize" format="integer" />
+    <attr name="displayedValues" />
   </declare-styleable>
 
 </resources>

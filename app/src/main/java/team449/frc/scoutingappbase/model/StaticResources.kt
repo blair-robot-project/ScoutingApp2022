@@ -8,6 +8,9 @@ object StaticResources {
 
     var dialogTextSize = 0F
 
+    lateinit var endgameScoreOptions: Array<String>
+    var climbTimeStepSize = 0
+
     var defaultAlliance = -1
 
     lateinit var radioIdsDead: List<Int>

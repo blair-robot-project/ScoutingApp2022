@@ -152,7 +152,8 @@
        style="@style/Wrap"
        android:value="@={vm.climbTime}"
        app:minValue="0"
-       app:maxValue="30"/>
+       app:maxValue="@{@integer/climb_time_max/@integer/climb_time_stepsize}"
+       app:stepSize="@integer/climb_time_stepsize"/>
    </LinearLayout>
 
  </androidx.constraintlayout.widget.ConstraintLayout>

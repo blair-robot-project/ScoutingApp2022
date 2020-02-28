@@ -103,7 +103,7 @@ class MatchViewModel : ViewModel() {
         soloClimb.value = shadow.soloClimb
         doubleClimb.value = shadow.doubleClimb
         wasLifted.value = shadow.wasLifted
-        climbTime.value = shadow.climbTime
+        climbTime.value = shadow.climbTime / StaticResources.climbTimeStepSize
 
         dead.value = shadow.dead
         defense.value = shadow.defense
@@ -143,7 +143,7 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val soloClimb = matchViewModel.soloClimb.value?: false && (attemptedClimb==1 || attemptedClimb==2 && !doubleClimb)
     val wasLifted = matchViewModel.wasLifted.value?: false && attemptedClimb==3
     val park = if (soloClimb || doubleClimb || wasLifted) false else matchViewModel.park.value?: false
-    var climbTime = matchViewModel.climbTime.value?: 0
+    var climbTime = StaticResources.climbTimeStepSize * (matchViewModel.climbTime.value?: 0)
      
     var dead = matchViewModel.dead.value?: -1
     var defense = matchViewModel.defense.value?: -1
