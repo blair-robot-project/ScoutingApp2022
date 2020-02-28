@@ -40,7 +40,7 @@ public class Conversions {
     }
 
     private static String spinnerToLabel(Integer ind, String[] arr, String ifNumeric){
-        if (arr == null) {
+        if (arr == null || ind >= arr.length) {
             return "Error";
         }
         String label = arr[unbox(ind)];
