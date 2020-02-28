@@ -82,6 +82,7 @@
         <item name="android:layout_height">@dimen/ballImageSize</item>
         <item name="android:background">@drawable/ball</item>
         <item name="android:textColor">@color/onLight</item>
+        <item name="android:textSize">@dimen/ballCounterTextSize</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:onClick">incrementValue</item>
     </style>

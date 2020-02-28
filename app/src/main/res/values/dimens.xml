@@ -9,6 +9,7 @@
 
   <!--Text-->
   <dimen name="primaryTextSize">34sp</dimen>
+  <dimen name="ballCounterTextSize">40sp</dimen>
   <dimen name="settingsTextSize">26sp</dimen>
   <dimen name="titleTextSize">36sp</dimen>
 

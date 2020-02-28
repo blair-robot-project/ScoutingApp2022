@@ -125,6 +125,7 @@ class MainActivity : AppCompatActivity() {
             R.id.autoMoveHelp -> presenter.help(R.string.help_initiation)
             R.id.hitPartnerHelp -> presenter.help(R.string.help_hitpartner)
             R.id.autoIntakeHelp -> presenter.help(R.string.help_autointake)
+            R.id.goalHelp -> presenter.help(R.string.help_goal)
             R.id.spinnerRotationHelp -> presenter.help(R.string.help_spinnertwo)
             R.id.spinnerPositionHelp -> presenter.help(R.string.help_spinnerthree)
             R.id.attemptedClimbHelp -> presenter.help(R.string.help_attemptedclimb)
