@@ -9,33 +9,33 @@ class MatchViewModel : ViewModel() {
     var timestamp = System.currentTimeMillis()
     var revision = 0
 
-    val scoutName = mutableLiveData("")
-    val matchId = mutableLiveData(0)
-    val teamId = mutableLiveData(0)
-    val alliance = mutableLiveData(StaticResources.defaultAlliance)
-    val noShow = mutableLiveData(false)
-    val autoMove = mutableLiveData(false)
-    val hitPartner = mutableLiveData(false)
-    val autoIntake = mutableLiveData(false)
-    val autoHigh = mutableLiveData(0)
-    val autoCenter = mutableLiveData(0)
-    val autoLow = mutableLiveData(0)
-    val autoMiss = mutableLiveData(0)
-    val high = mutableLiveData(0)
-    val center = mutableLiveData(0)
-    val low = mutableLiveData(0)
-    val miss = mutableLiveData(0)
-    val spinnerRot = mutableLiveData(false)
-    val spinnerPos = mutableLiveData(false)
-    val attemptedClimb = mutableLiveData(-1)
-    val park = mutableLiveData(false)
-    val soloClimb = mutableLiveData(false)
-    val doubleClimb = mutableLiveData(false)
-    val wasLifted = mutableLiveData(false)
-    val climbTime = mutableLiveData(0)
-    val dead = mutableLiveData(-1)
-    val defense = mutableLiveData(-1)
-    val comments = mutableLiveData("")
+    val scoutName by lazy { mutableLiveData("") }
+    val matchId by lazy { mutableLiveData(0) }
+    val teamId by lazy { mutableLiveData(0) }
+    val alliance by lazy { mutableLiveData(StaticResources.defaultAlliance) }
+    val noShow by lazy { mutableLiveData(false) }
+    val autoMove by lazy { mutableLiveData(false) }
+    val hitPartner by lazy { mutableLiveData(false) }
+    val autoIntake by lazy { mutableLiveData(false) }
+    val autoHigh by lazy { mutableLiveData(0) }
+    val autoCenter by lazy { mutableLiveData(0) }
+    val autoLow by lazy { mutableLiveData(0) }
+    val autoMiss by lazy { mutableLiveData(0) }
+    val high by lazy { mutableLiveData(0) }
+    val center by lazy { mutableLiveData(0) }
+    val low by lazy { mutableLiveData(0) }
+    val miss by lazy { mutableLiveData(0) }
+    val spinnerRot by lazy { mutableLiveData(false)  }
+    val spinnerPos by lazy { mutableLiveData(false)  }
+    val attemptedClimb by lazy { mutableLiveData(-1) }
+    val park by lazy { mutableLiveData(false) }
+    val soloClimb by lazy { mutableLiveData(false) }
+    val doubleClimb by lazy { mutableLiveData(false) }
+    val wasLifted by lazy { mutableLiveData(false) }
+    val climbTime by lazy { mutableLiveData( 0) }
+    val dead by lazy { mutableLiveData(-1) }
+    val defense by lazy { mutableLiveData(-1) }
+    val comments by lazy { mutableLiveData("") }
 
     fun reset() {
         timestamp = System.currentTimeMillis()
