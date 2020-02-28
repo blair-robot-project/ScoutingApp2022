@@ -47,7 +47,13 @@ class MainPresenter(private val activity: MainActivity): Editor {
 
     fun sync() {
         GlobalScope.launch {
-            BluetoothManager.write(makeSyncRequest())
+            val written = BluetoothManager.write(makeSyncRequest())
+            if (!written) {
+                activity.preferences?.getString("master", null)?.let {
+                    BluetoothManager.connect(it)
+                    BluetoothManager.write(makeSyncRequest())
+                }
+            }
         }
     }
 
