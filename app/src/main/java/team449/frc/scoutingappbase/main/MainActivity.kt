@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             if (it.isNotEmpty()) EventData.matchSchedule = deserialize(it)
         }
         readFromFile(teamsFile)?.let{
-            if (it.isNotEmpty()) EventData.teams = (deserialize(it) as List<String>).toTypedArray()
+            if (it.isNotEmpty()) EventData.teams.value = (deserialize(it) as List<String>).toTypedArray()
         }
     }
 

@@ -42,7 +42,7 @@ class MatchViewModel : ViewModel() {
         revision = 0
 
         // If numeric add one, otherwise it's playoffs so don't increment
-        matchId.value = matchId.value?.plus(if (EventData.matches[matchId.value as Int].matches(Regex("\\d+(?:\\.\\d+)?"))) 1 else 0)
+        matchId.value = matchId.value?.plus(if (EventData.matches.value?.get(matchId.value as Int)?.matches(Regex("\\d+(?:\\.\\d+)?")) == true) 1 else 0)
         teamId.value = 0
         noShow.value = false
 
@@ -149,8 +149,8 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     var defense = matchViewModel.defense.value?: -1
     val comments = matchViewModel.comments.value?: ""
 
-    val match: String = matchId?.let{ EventData.matches[it] } ?:""
-    val team: String = teamId?.let{ EventData.teams[it] } ?:""
+    val match: String = matchId?.let{ EventData.matches.value?.get(it) } ?:""
+    val team: String = teamId?.let{ EventData.teams.value?.get(it) } ?:""
 
     private val Boolean?.int
         get() = if (this==true) 1 else 0

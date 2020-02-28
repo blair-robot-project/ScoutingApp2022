@@ -35,7 +35,7 @@ object MessageHandler {
                         saveMatchSchedule()
                     }
                     MessageType.TEAM_LIST.name -> {
-                        EventData.teams = (message.body as List<String>).sortedBy { it.toInt() }.toTypedArray()
+                        EventData.teams.postValue((message.body as List<String>).sortedBy { it.toInt() }.toTypedArray())
                         saveTeams()
                     }
                     else -> Log.e("MsgHandler","Invalid message type received: ${message.type}")

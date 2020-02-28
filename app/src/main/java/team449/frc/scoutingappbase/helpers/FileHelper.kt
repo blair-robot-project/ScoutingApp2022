@@ -39,5 +39,5 @@ fun saveMatchSchedule() {
     EventData.matchSchedule?.let { writeToFile(matchScheduleFile, serialize(it)) }
 }
 fun saveTeams() {
-    writeToFile(teamsFile, serialize(EventData.teams))
+    EventData.teams.value?.let { writeToFile(teamsFile, serialize(it)) }
 }

@@ -40,24 +40,27 @@ public class Conversions {
     }
 
     private static String spinnerToLabel(Integer ind, String[] arr, String ifNumeric){
+        if (arr == null) {
+            return "Error";
+        }
         String label = arr[unbox(ind)];
         if (label.matches("\\d+(?:\\.\\d+)?")) return ifNumeric + label;
         return label;
     }
 
     public static String spinnerToTeam(Integer ind) {
-        return spinnerToLabel(ind, EventData.teams, "Team ");
+        return spinnerToLabel(ind, EventData.teams.getValue(), "Team ");
     }
     public static String spinnerToMatch(Integer ind) {
-        return spinnerToLabel(ind, EventData.matches, "Match ");
+        return spinnerToLabel(ind, EventData.matches.getValue(), "Match ");
     }
 
 
     // TODO: find a less horrible way to do this
-    public static int radioIndexToId(List<Integer> ids, Integer ind) {
+    static int radioIndexToId(List<Integer> ids, Integer ind) {
         return (ind == null || ind == -1 || ind >= ids.size())? 0 : ids.get(ind);
     }
-    public static Integer radioIdToIndex(List<Integer> ids, int id) {
+    static Integer radioIdToIndex(List<Integer> ids, int id) {
         return (ids.contains(id)) ? ids.indexOf(id) : -1;
     }
 
@@ -81,14 +84,5 @@ public class Conversions {
     }
     public static Integer radioIdToIndexClimb(int id) {
         return radioIdToIndex(StaticResources.radioIdsClimb, id);
-    }
-
-
-    //TODO: This should be somewhere else and be mutable live data
-    public static String[] getTeams() {
-        return EventData.teams;
-    }
-    public static String[] getMatches() {
-        return EventData.matches;
     }
 }

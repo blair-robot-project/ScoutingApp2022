@@ -11,16 +11,16 @@ object EventData {
     var matchSchedule: Map<String, Map<String, List<String>>>? = null
         set(value) {
             field = value
-            matches = (value?.keys?.filter{ it.matches("-?\\d+(\\.\\d+)?".toRegex()) }?.sortedBy { it.toInt() }?.toTypedArray()?.plus(
+            matches.postValue((value?.keys?.filter{ it.matches("-?\\d+(\\.\\d+)?".toRegex()) }?.sortedBy { it.toInt() }?.toTypedArray()?.plus(
                 elimsMatches
-            ))?: defaultMatches
+            ))?: defaultMatches)
         }
-    lateinit var matches: Array<String>
-    lateinit var teams: Array<String>
+    lateinit var matches: MutableLiveData<Array<String>>
+    lateinit var teams: MutableLiveData<Array<String>>
 
     fun resetEventData() {
-        matches = defaultMatches
-        teams = defaultTeams
+        matches = MutableLiveData<Array<String>>().apply { postValue(defaultMatches) }
+        teams = MutableLiveData<Array<String>>().apply { postValue(defaultTeams) }
     }
 
     init {

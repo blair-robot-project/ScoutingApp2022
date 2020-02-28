@@ -64,7 +64,7 @@
     <Spinner
       android:id="@+id/team"
       style="@style/SpinnerStyle"
-      android:entries="@{EventData.teamsMLD}"
+      android:entries="@{EventData.teams}"
       android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
       android:theme="@style/SpinnerTheme"
       app:layout_constraintBottom_toBottomOf="@id/teamText"

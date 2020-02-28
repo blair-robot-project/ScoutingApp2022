@@ -91,12 +91,12 @@ class MainPresenter(private val activity: MainActivity): Editor {
 
     private fun teamIdForMatchId(matchId: Int): Int? {
         EventData.matchSchedule?.let { schedule ->
-            schedule[EventData.matches[matchId]]?.let { alliances ->
+            schedule[EventData.matches.value?.get(matchId)]?.let { alliances ->
                 activity.preferences?.let { prefs ->
                     prefs.getString("driver_station", null)?.toInt()?.let { station ->
-                        EventData.teams.indexOf(
+                        EventData.teams.value?.indexOf(
                             alliances[prefs.getString("alliance", null) ?: ""]?.get(station)
-                        ).let { teamId ->
+                        )?.let { teamId ->
                             if (teamId >= 0) return teamId
                         }
                     }
