@@ -98,8 +98,8 @@
       android:textStyle="bold"
       android:textSize="48sp"
       android:layout_marginTop="290dp"
-      android:layout_marginStart="22dp"
-      android:rotation="16"
+      android:layout_marginStart="25dp"
+      android:rotation="18"
       app:layout_constraintTop_toTopOf="@id/goal"
       app:layout_constraintStart_toStartOf="@id/goal"/>
 
