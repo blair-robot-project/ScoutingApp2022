@@ -3,13 +3,20 @@ package team449.frc.scoutingappbase.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.Spinner
+import team449.frc.scoutingappbase.BR
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.databinding.*
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment
 import team449.frc.scoutingappbase.main.MainActivity
+import team449.frc.scoutingappbase.model.EventData
 
 class PrematchFragment: VMBaseFragment<FragmentPrematchBinding>() {
     override val layoutId: Int = R.layout.fragment_prematch
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        binding.setVariable(BR.eventData, EventData)
+    }
 
     override fun onStart() {
         super.onStart()

@@ -53,7 +53,11 @@ class MainPresenter(private val activity: MainActivity): Editor {
 
     fun clearData() {
         confirmationDialog(activity, activity.getString(R.string.clear_data_title), activity.getString(R.string.clear_data_body), activity.getString(R.string.clear_data_button))
-            {_,_ -> AsyncTask.execute{ DataManager.clear() } }
+            {_,_ -> AsyncTask.execute{
+                DataManager.clear()
+                activity.matchViewModel.matchId.postValue(0)
+                activity.matchViewModel.teamId.postValue(0)
+            } }
     }
     fun clearEventData() {
         confirmationDialog(activity, activity.getString(R.string.clear_event_data_title), activity.getString(R.string.clear_event_data_body), activity.getString(R.string.clear_event_data_button))
