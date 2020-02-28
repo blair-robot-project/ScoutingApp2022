@@ -3,13 +3,12 @@ package team449.frc.scoutingappbase.helpers
 import android.app.Activity
 import android.os.AsyncTask
 import android.util.Log
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import team449.frc.scoutingappbase.fragment.PageChanger
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.managers.DataManager
-import team449.frc.scoutingappbase.model.MatchShadow
-import team449.frc.scoutingappbase.model.MatchViewModel
-import team449.frc.scoutingappbase.model.ValidationError
-import team449.frc.scoutingappbase.model.makeMatchDataMessage
+import team449.frc.scoutingappbase.model.*
 
 
 fun submitMatch(context: Activity, match: MatchViewModel, postSumbit: Runnable, pageChanger: PageChanger?) {
@@ -20,9 +19,9 @@ fun submitMatch(context: Activity, match: MatchViewModel, postSumbit: Runnable, 
     } else {
         val soft = validateSoft(ms)
         if (soft.errorsp) {
-            softValidationDialog(context, soft.errorString, pageChanger, soft.lowestPage, SubmissionTask(postSumbit, pageChanger), ms)
+            softValidationDialog(context, soft.errorString, pageChanger, soft.lowestPage) { submit(postSumbit, ms) }
         } else {
-            SubmissionTask(postSumbit, pageChanger).execute(ms)
+            submit(postSumbit, ms)
         }
     }
 }
@@ -69,18 +68,33 @@ private fun validateSoft(match: MatchShadow): ValidationError {
     return error
 }
 
-
-class SubmissionTask(private val post: Runnable, pageChanger: PageChanger?): AsyncTask<MatchShadow, Void, Void>() {
-    override fun doInBackground(vararg match: MatchShadow): Void? {
-        match.first().let {
-            DataManager.submit(it)
-            BluetoothManager.write(makeMatchDataMessage(it))
-            Log.i("SubmissionTask", "Match submitted")
+private fun submit(postSumbit: Runnable, match: MatchShadow) {
+    GlobalScope.launch {
+        DataManager.submit(match)
+        val submitted = BluetoothManager.write(makeMatchDataMessage(match))
+        if (!submitted) {
+            BluetoothManager.connect()
+            BluetoothManager.write(makeSyncRequest())
         }
-        return null
+        Log.i("SubmissionTask", "Match submitted")
     }
-
-    override fun onPostExecute(result: Void?) {
-        post.run()
-    }
+    postSumbit.run()
 }
+//
+//class SubmissionTask(private val post: Runnable, pageChanger: PageChanger?): AsyncTask<MatchShadow, Void, Void>() {
+//    override fun doInBackground(vararg match: MatchShadow): Void? {
+//        match.first().let {
+//            DataManager.submit(it)
+//            val submitted = BluetoothManager.write(makeMatchDataMessage(it))
+//            if (!submitted) {
+//                BluetoothManager.connect()
+//            }
+//            Log.i("SubmissionTask", "Match submitted")
+//        }
+//        return null
+//    }
+//
+//    override fun onPostExecute(result: Void?) {
+//        post.run()
+//    }
+//}

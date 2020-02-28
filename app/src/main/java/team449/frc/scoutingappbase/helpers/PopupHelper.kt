@@ -59,11 +59,11 @@ fun hardValidationDialog(context: Activity, body: String, pageChanger: PageChang
         .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
 }
 
-fun softValidationDialog(context: Activity, body: String, pageChanger: PageChanger?, page: Int, submit: SubmissionTask, match: MatchShadow) {
+fun softValidationDialog(context: Activity, body: String, pageChanger: PageChanger?, page: Int, submit: () -> Unit) {
     AlertDialog.Builder(ContextThemeWrapper(context, R.style.AlertDialogCustom))
         .setTitle("Data validation failed")
         .setMessage(body)
-        .setPositiveButton("Submit anyway") { _, _ -> submit.execute(match) }
+        .setPositiveButton("Submit anyway") { _, _ -> submit() }
         .setNegativeButton("Fix errors") { _, _ -> pageChanger?.changePage(page) }
         .show()
         .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize

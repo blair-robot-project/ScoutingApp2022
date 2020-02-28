@@ -21,6 +21,8 @@ object BluetoothManager {
 
     private val connectionTest: ByteArray = ByteArray(0) {0}
 
+    var master: String? = null
+
     val isConnected: Boolean
         get() = try {
             outputStream!!.write(connectionTest)
@@ -46,12 +48,17 @@ object BluetoothManager {
             return paired
         }
 
+    fun connect(): Boolean =
+        if (master.isNullOrEmpty()) false
+        else master?.let { connect(it) }?: false
+
     fun connect(targetMasterName: String): Boolean {
+        master = targetMasterName
         if (blueAdapter != null) {
             if (blueAdapter.isEnabled) {
                 //These are the devices that the tablet is paired with
                 try {
-                    val device = blueAdapter.bondedDevices.single { it.name == targetMasterName }
+                    val device = blueAdapter.bondedDevices.single { it.name == master }
 
                     if (isConnected){
                         Log.i("BtM.initConnection", "Closing old socket ...")
