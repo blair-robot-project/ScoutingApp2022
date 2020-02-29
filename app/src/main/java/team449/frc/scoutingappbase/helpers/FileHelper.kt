@@ -38,8 +38,7 @@ fun clearFile(filename: String) {
 fun saveMatchSchedule() {
     EventData.matchSchedule?.let { writeToFile(matchScheduleFile, serialize(it)) }
 }
-fun saveTeams() {
-    EventData.teams.value?.let {
-        writeToFile(teamsFile, serialize(it))
-    }
+fun saveTeams(teams: Array<String>) {
+    // Cannot save teams based on the value from EventData because postValue is threaded, so it might save the old data
+    writeToFile(teamsFile, serialize(teams))
 }

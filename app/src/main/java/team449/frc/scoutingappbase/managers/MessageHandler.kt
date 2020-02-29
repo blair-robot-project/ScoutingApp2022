@@ -35,8 +35,10 @@ object MessageHandler {
                         saveMatchSchedule()
                     }
                     MessageType.TEAM_LIST.name -> {
-                        EventData.teams.postValue((message.body as List<String>).sortedBy { it.toInt() }.toTypedArray())
-                        saveTeams()
+                        val teams = (message.body as List<String>).sortedBy { it.toInt() }.toTypedArray()
+                        EventData.teams.postValue(teams)
+                        // Cannot save teams based on the value from EventData because postValue is threaded, so it might save the old data
+                        saveTeams(teams)
                     }
                     else -> Log.e("MsgHandler","Invalid message type received: ${message.type}")
                 }
