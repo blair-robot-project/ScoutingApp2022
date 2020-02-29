@@ -1,7 +1,5 @@
 # FRC Team 449: Scouting App
-Android scouting app for FRC with Bluetooth data transfer. Designed for use on 7" Kindle fires.
-
-Development for Infinite Recharge specific data fields is underway (but not ready for use).
+Android scouting app for FRC 2020 Infinite Recharge with Bluetooth data transfer. Designed for use on 7" Kindle fires.
 
 __To be used with the Python server:__ https://github.com/carter-wilson/ScoutingServer
 

@@ -46,7 +46,7 @@
 
   <!--Help-->
   <string name="help_title">Help</string>
-  <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nThis is a help popup.</string>
+  <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nFor each match, you will be assigned a team to scout. Watch this robot closely throughout the match, and record what they do.\nOn each page, fill out the fields, and then move on by swiping or with the navigation buttons at the bottom.\n\nWhen you are done, hit the submit button.\nIf you realise you entered something wrong after submitting, you can edit it. Hit the edit icon at the top of the screen and select the match you want to edit. Any data you entered for the next match will be preserved for when you finish editing.\n\nOn many questions you will see a ? icon. Click this to get more information about that field\nIf you need more help with something, don\'t hesitate to ask a scouting leader.</string>
   <string name="help_noshow">Select if the robot was not on the field at all for this match</string>
   <string name="help_initiation">Select if the robot crossed over the white line that is started on during auto</string>
   <string name="help_hitpartner">Select if the robot ran into another robot on its alliance during its auto routine</string>
