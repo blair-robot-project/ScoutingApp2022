@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.View.*
+import android.view.WindowManager
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -105,6 +106,7 @@ class MainActivity : AppCompatActivity() {
                 window.decorView.systemUiVisibility = SYSTEM_UI_FLAG_VISIBLE
             }
         }
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
