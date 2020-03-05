@@ -29,9 +29,10 @@ class MatchViewModel : ViewModel() {
     val spinnerPos by lazy { mutableLiveData(false)  }
     val attemptedClimb by lazy { mutableLiveData(-1) }
     val park by lazy { mutableLiveData(false) }
-    val soloClimb by lazy { mutableLiveData(false) }
-    val doubleClimb by lazy { mutableLiveData(false) }
+    val soloClimb by lazy { mutableLiveData(-1) }
+    val doubleClimb by lazy { mutableLiveData(-1) }
     val wasLifted by lazy { mutableLiveData(false) }
+    val level by lazy { mutableLiveData(false) }
     val climbTime by lazy { mutableLiveData(0) }
     val endgameScore by lazy { mutableLiveData(0) }
     val dead by lazy { mutableLiveData(-1) }
@@ -64,9 +65,10 @@ class MatchViewModel : ViewModel() {
 
         attemptedClimb.value = -1
         park.value = false
-        soloClimb.value = false
-        doubleClimb.value = false
+        soloClimb.value = -1
+        doubleClimb.value = -1
         wasLifted.value = false
+        level.value = false
         climbTime.value = 0
         endgameScore.value = 0
 
@@ -105,6 +107,7 @@ class MatchViewModel : ViewModel() {
         soloClimb.value = shadow.soloClimb
         doubleClimb.value = shadow.doubleClimb
         wasLifted.value = shadow.wasLifted
+        level.value = shadow.levelCheckbox
         climbTime.value = shadow.climbTime / StaticResources.climbTimeStepSize
         endgameScore.value = shadow.endgameScore
 
@@ -142,14 +145,15 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val spinnerPos = matchViewModel.spinnerPos.value?: false
      
     var attemptedClimb = matchViewModel.attemptedClimb.value?: 0
-    val doubleClimb = matchViewModel.doubleClimb.value?: false && attemptedClimb==2
-    val soloClimb = matchViewModel.soloClimb.value?: false && (attemptedClimb==1 || attemptedClimb==2 && !doubleClimb)
+    val doubleClimb = if (attemptedClimb==2) matchViewModel.doubleClimb.value?: 0 else 0
+    val soloClimb = if (attemptedClimb==1 || attemptedClimb==2 && doubleClimb!=1) matchViewModel.soloClimb.value?: 0 else 0
     val wasLifted = matchViewModel.wasLifted.value?: false && attemptedClimb==3
-    val park = if (soloClimb || doubleClimb || wasLifted) false else matchViewModel.park.value?: false
+    val park = if (soloClimb==1 || doubleClimb==1 || wasLifted) false else matchViewModel.park.value?: false
     var climbTime = StaticResources.climbTimeStepSize * (matchViewModel.climbTime.value?: 0)
     val endgameScore = StaticResources.endgameScoreOptions[matchViewModel.endgameScore.value?: 0].toInt()
     // 50 and a solo climb is ambiguous, could be 1 level + 2 park or 2 unlevel + 0 park
-    val level = endgameScore in arrayOf(40,45,50,65,70,95) && soloClimb || endgameScore in arrayOf(65,70,95) && doubleClimb
+    val levelCheckbox = matchViewModel.level.value?: false
+    var level = levelCheckbox || endgameScore in arrayOf(40,45,65,70,95) && soloClimb==1 || endgameScore in arrayOf(65,70,95) && doubleClimb==1
 
     var dead = matchViewModel.dead.value?: -1
     var defense = matchViewModel.defense.value?: -1
@@ -158,9 +162,7 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val match: String = matchId?.let{ EventData.matches.value?.get(it) } ?:""
     val team: String = teamId?.let{ EventData.teams.value?.get(it) } ?:""
 
-    private val Boolean?.int
-        get() = if (this==true) 1 else 0
-    val soloClimbNYF = if (attemptedClimb==1 || attemptedClimb==2 && !doubleClimb && soloClimb) 2 - soloClimb.int else 0
-    val doubleClimbNYF = if (attemptedClimb==2) 2 - doubleClimb.int else 0
-    val wasLiftedNYF = if (attemptedClimb==3) 2 - wasLifted.int else 0
+    val soloClimbNYF = if (attemptedClimb==1 || attemptedClimb==2 && doubleClimb!=1 && soloClimb==1) 2 - soloClimb else 0
+    val doubleClimbNYF = if (attemptedClimb==2) 2 - doubleClimb else 0
+    val wasLiftedNYF = if (attemptedClimb==3) 2 - (if (wasLifted) 1 else 0) else 0
 }

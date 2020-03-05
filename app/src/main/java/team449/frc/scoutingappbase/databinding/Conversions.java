@@ -85,4 +85,18 @@ public class Conversions {
     public static Integer radioIdToIndexClimb(int id) {
         return radioIdToIndex(StaticResources.radioIdsClimb, id);
     }
+    @InverseMethod("radioIdToIndexDoubleClimb")
+    public static int radioIndexToIdDoubleClimb(Integer ind) {
+        return radioIndexToId(StaticResources.radioIdsDoubleClimb, ind);
+    }
+    public static Integer radioIdToIndexDoubleClimb(int id) {
+        return radioIdToIndex(StaticResources.radioIdsDoubleClimb, id);
+    }
+    @InverseMethod("radioIdToIndexSoloClimb")
+    public static int radioIndexToIdSoloClimb(Integer ind) {
+        return radioIndexToId(StaticResources.radioIdsSoloClimb, ind);
+    }
+    public static Integer radioIdToIndexSoloClimb(int id) {
+        return radioIdToIndex(StaticResources.radioIdsSoloClimb, id);
+    }
 }

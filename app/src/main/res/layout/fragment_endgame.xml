@@ -60,39 +60,76 @@
      android:id="@+id/doubleContainer"
      android:visibility="@{(vm.attemptedClimb==2)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
-     android:orientation="horizontal"
+     android:orientation="vertical"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toBottomOf="@id/attemptedClimb">
+
+     <TextView
+       style="@style/Text"
+       android:text="@string/double_prompt"/>
 <!--     <ImageButton-->
 <!--       android:id="@+id/doubleHelp"-->
 <!--       style="@style/Help.Checkbox"-->
 <!--       android:layout_gravity="center"/>-->
-     <CheckBox
+     <RadioGroup
        android:id="@+id/doubleClimb"
-       style="@style/Checkbox"
-       android:checked="@={Conversions.unbox(vm.doubleClimb)}"
-       android:text="@string/double_prompt"
-       android:paddingEnd="30dp"/>
+       style="@style/RadioGroup"
+       android:orientation="horizontal"
+       android:checkedButton="@={Conversions.radioIndexToIdDoubleClimb(vm.doubleClimb)}"
+       android:paddingEnd="30dp">
+
+       <RadioButton
+         style="@style/RadioButton"
+         android:id="@+id/rcdf0"
+         android:text="@string/climb_fail" />
+       <RadioButton
+         style="@style/RadioButton"
+         android:id="@+id/rcds1"
+         android:text="@string/climb_success" />
+
+     </RadioGroup>
    </LinearLayout>
 
    <LinearLayout
      style="@style/Wrap"
      android:id="@+id/soloContainer"
-     android:visibility="@{(vm.attemptedClimb==1 || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? View.VISIBLE : View.GONE}"
+     android:visibility="@{(vm.attemptedClimb==1 || vm.attemptedClimb==2 &amp;&amp; vm.doubleClimb==0)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
-     android:orientation="horizontal"
+     android:orientation="vertical"
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toBottomOf="@id/doubleContainer">
-     <ImageButton
-       android:id="@+id/soloHelp"
-       style="@style/Help.Checkbox"
-       android:layout_gravity="center"
-       android:visibility="@{(vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? View.VISIBLE : View.GONE}"/>
-     <CheckBox
+
+     <LinearLayout
+       style="@style/Wrap"
+       android:orientation="horizontal">
+
+       <TextView
+         style="@style/Text"
+         android:text="@{(vm.attemptedClimb==2 &amp;&amp; vm.doubleClimb==0)? @string/solo_failed_double_prompt : @string/solo_prompt}" />
+       <ImageButton
+         android:id="@+id/soloHelp"
+         style="@style/Help.Checkbox"
+         android:layout_gravity="center"
+         android:visibility="@{(vm.attemptedClimb==2 &amp;&amp; vm.doubleClimb==0)? View.VISIBLE : View.GONE}"/>
+
+     </LinearLayout>
+
+     <RadioGroup
        android:id="@+id/solo"
        style="@style/Checkbox"
-       android:text="@{(vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb)? @string/solo_failed_double_prompt : @string/solo_prompt}"
-       android:checked="@={Conversions.unbox(vm.soloClimb)}"/>
+       android:orientation="horizontal"
+       android:checkedButton="@={Conversions.radioIndexToIdSoloClimb(vm.soloClimb)}">
+
+       <RadioButton
+         style="@style/RadioButton"
+         android:id="@+id/rcsf0"
+         android:text="@string/climb_fail" />
+       <RadioButton
+         style="@style/RadioButton"
+         android:id="@+id/rcss1"
+         android:text="@string/climb_success" />
+
+     </RadioGroup>
    </LinearLayout>
 
    <LinearLayout
@@ -116,7 +153,7 @@
 
    <LinearLayout
      style="@style/Wrap"
-     android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.VISIBLE : View.GONE}"
+     android:visibility="@{(vm.attemptedClimb==0 || vm.attemptedClimb==1 &amp;&amp; vm.soloClimb==0 || vm.attemptedClimb==2 &amp;&amp; vm.doubleClimb==0 &amp;&amp; vm.soloClimb==0 || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.VISIBLE : View.GONE}"
      android:layout_marginTop="@dimen/verticalFieldSpacing"
      android:orientation="horizontal"
      app:layout_constraintStart_toStartOf="parent"
@@ -135,9 +172,24 @@
    <androidx.constraintlayout.widget.ConstraintLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
-     android:visibility="@{(vm.attemptedClimb==-1 || vm.attemptedClimb==0 || vm.attemptedClimb==3 || vm.attemptedClimb==1 &amp;&amp; !vm.soloClimb || vm.attemptedClimb==2 &amp;&amp; !vm.doubleClimb &amp;&amp; !vm.soloClimb || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.GONE : View.VISIBLE}"
+     android:visibility="@{(vm.attemptedClimb==-1 || vm.attemptedClimb==0 || vm.attemptedClimb==3 || vm.attemptedClimb==1 &amp;&amp; vm.soloClimb==0 || vm.attemptedClimb==2 &amp;&amp; vm.doubleClimb==0 &amp;&amp; vm.soloClimb==0 || vm.attemptedClimb==3 &amp;&amp; !vm.wasLifted)? View.GONE : View.VISIBLE}"
      app:layout_constraintBottom_toBottomOf="parent"
      app:layout_constraintStart_toStartOf="parent">
+
+
+     <CheckBox
+       style="@style/Checkbox"
+       android:id="@+id/level"
+       android:text="@string/level_prompt"
+       android:checked="@={Conversions.unbox(vm.level)}"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toEndOf="@id/levelHelp"/>
+     <ImageButton
+       android:id="@+id/levelHelp"
+       style="@style/Help.Checkbox"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="@id/level"
+       app:layout_constraintBottom_toBottomOf="@id/level"/>
 
      <TextView
        style="@style/Text"
@@ -160,7 +212,7 @@
        app:minValue="0"
        app:maxValue="@{@integer/climb_time_max/@integer/climb_time_stepsize}"
        app:stepSize="@integer/climb_time_stepsize"
-       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/level"
        app:layout_constraintStart_toEndOf="@id/climbTimePrompt"/>
 
 

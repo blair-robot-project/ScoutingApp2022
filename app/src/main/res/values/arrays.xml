@@ -25,6 +25,14 @@
     <item>@id/rdouble2</item>
     <item>@id/rcarried3</item>
   </array>
+  <array name="radioIdsDoubleClimb">
+    <item>@id/rcdf0</item>
+    <item>@id/rcds1</item>
+  </array>
+  <array name="radioIdsSoloClimb">
+    <item>@id/rcsf0</item>
+    <item>@id/rcss1</item>
+  </array>
 
   <string-array name="alliance_entries">
     <item>Red</item>

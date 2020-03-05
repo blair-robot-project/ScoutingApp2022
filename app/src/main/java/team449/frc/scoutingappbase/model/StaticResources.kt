@@ -16,4 +16,6 @@ object StaticResources {
     lateinit var radioIdsDead: List<Int>
     lateinit var radioIdsDefense: List<Int>
     lateinit var radioIdsClimb: List<Int>
+    lateinit var radioIdsDoubleClimb: List<Int>
+    lateinit var radioIdsSoloClimb: List<Int>
 }
