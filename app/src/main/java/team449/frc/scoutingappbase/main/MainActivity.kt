@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
             R.id.soloHelp -> presenter.help(R.string.help_doublefailsolo)
             R.id.parkedHelp -> presenter.help(R.string.help_parked)
             R.id.climbTimeHelp -> presenter.help(R.string.help_climbtime)
-            R.id.endgameScore -> presenter.help(R.string.help_endgamescore)
+            R.id.endgameScoreHelp -> presenter.help(R.string.help_endgamescore)
             R.id.deadHelp -> presenter.help(R.string.help_dead)
             R.id.defenseHelp -> presenter.help(R.string.help_defense)
         }
