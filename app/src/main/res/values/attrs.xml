@@ -6,7 +6,7 @@
     <attr name="maxValue" format="integer" />
     <attr name="minValue" format="integer" />
     <attr name="stepSize" format="integer" />
-    <attr name="displayedValues" />
+    <attr name="android:entries"/>
   </declare-styleable>
 
 </resources>

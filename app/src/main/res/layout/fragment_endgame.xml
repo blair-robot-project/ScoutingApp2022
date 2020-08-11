@@ -236,7 +236,7 @@
        android:value="@={vm.endgameScore}"
        app:minValue="0"
        app:maxValue="@integer/endgame_scores_max_index"
-       app:displayedValues="@array/endgame_score_values"
+       android:entries="@array/endgame_score_values"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintTop_toTopOf="@id/climbTime"/>
    </androidx.constraintlayout.widget.ConstraintLayout>

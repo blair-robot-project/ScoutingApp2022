@@ -29,7 +29,7 @@ class NumberPickerWithXml : NumberPicker {
         try {
             this.minValue = attributes.getInt(R.styleable.NumberPickerWithXml_minValue, 0)
             this.maxValue = attributes.getInt(R.styleable.NumberPickerWithXml_maxValue, 0)
-            val values = attributes.getTextArray(R.styleable.NumberPickerWithXml_displayedValues)
+            val values = attributes.getTextArray(R.styleable.NumberPickerWithXml_android_entries)
             val step = attributes.getInt(R.styleable.NumberPickerWithXml_stepSize, 1)
             val formatter = Formatter {
                 if (values == null){
