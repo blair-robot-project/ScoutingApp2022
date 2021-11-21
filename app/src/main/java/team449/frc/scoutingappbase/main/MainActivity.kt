@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     var pageChanger: PageChanger? = null
 
     val matchViewModel: MatchViewModel
-        get() = ViewModelProviders.of(this).get(MatchViewModel::class.java)
+        get() = ViewModelProviders.of(this)[MatchViewModel::class.java]
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         updateNavBarVisibility()
 
-        val matchObserver = Observer<Int> { _ -> presenter.matchChanged() }
+        val matchObserver = Observer<Int> { presenter.matchChanged() }
         matchViewModel.matchId.observe(this, matchObserver)
     }
 

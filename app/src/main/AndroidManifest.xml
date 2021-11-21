@@ -15,10 +15,11 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning"
-    android:windowSoftInputMode="adjustPan" >
+    android:windowSoftInputMode="adjustPan"
+    android:fullBackupContent="@xml/backup_descriptor">
     <activity
       android:name=".main.MainActivity"
-      android:screenOrientation="portrait"
+      android:screenOrientation="fullSensor"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

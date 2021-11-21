@@ -14,7 +14,7 @@
     android:elevation="4dp"
     android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
 
-  <fragment
+  <androidx.fragment.app.FragmentContainerView
     android:id="@+id/navhost"
     android:layout_height="match_parent"
     android:layout_width="match_parent"

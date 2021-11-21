@@ -37,7 +37,7 @@ object DataManager {
                 .map { Pair("${Conversions.spinnerToMatch(it.matchId)}, ${Conversions.spinnerToTeam(it.teamId)}", it.timestamp.toString()) }
 
     fun sync(summary: Map<String,Double>): List<MatchShadow> =
-        data.submitted.filter { (id, revs) -> !summary.containsKey(id.toString()) || summary[id.toString()]?.toInt() ?: 0 < revs.size - 1}
+        data.submitted.filter { (id, revs) -> !summary.containsKey(id) || summary[id]?.toInt() ?: 0 < revs.size - 1}
                       .map { (_, revs) -> revs.last() }
 
     private fun save() {

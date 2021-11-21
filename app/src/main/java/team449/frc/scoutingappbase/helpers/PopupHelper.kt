@@ -12,7 +12,6 @@ import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.fragment.PageChanger
 import team449.frc.scoutingappbase.main.Editor
 import team449.frc.scoutingappbase.model.StaticResources
-import team449.frc.scoutingappbase.model.MatchShadow
 
 
 fun info(context: Context, title: String, body: String) {

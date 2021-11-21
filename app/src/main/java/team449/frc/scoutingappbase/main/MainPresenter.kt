@@ -84,7 +84,7 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun submit() {
-        submitMatch(activity, activity.matchViewModel, Runnable{ postSubmit() }, activity.pageChanger)
+        submitMatch(activity, activity.matchViewModel, { postSubmit() }, activity.pageChanger)
     }
 
     private fun postSubmit() {

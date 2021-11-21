@@ -1,4 +1,4 @@
-package team449.frc.scoutingappbase.adapters;
+package team449.frc.scoutingappbase.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

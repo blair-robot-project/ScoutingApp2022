@@ -2,8 +2,8 @@ package team449.frc.scoutingappbase.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.NumberPicker
+import android.widget.NumberPicker.Formatter
 import team449.frc.scoutingappbase.R
 
 // From https://stackoverflow.com/a/48219853

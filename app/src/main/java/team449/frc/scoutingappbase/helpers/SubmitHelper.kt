@@ -1,7 +1,6 @@
 package team449.frc.scoutingappbase.helpers
 
 import android.app.Activity
-import android.os.AsyncTask
 import android.util.Log
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

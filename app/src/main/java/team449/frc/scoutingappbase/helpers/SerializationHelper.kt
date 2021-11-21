@@ -6,7 +6,7 @@ import team449.frc.scoutingappbase.model.Data
 import team449.frc.scoutingappbase.model.Message
 
 
-fun serialize(data: Any) = Gson().toJson(data)
+fun serialize(data: Any): String = Gson().toJson(data)
 
 fun <T> deserialize(json: String): T = Gson().fromJson(json, object : TypeToken<T>() { }.type)
 

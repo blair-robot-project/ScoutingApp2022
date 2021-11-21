@@ -172,7 +172,8 @@
       android:text="@={vm.comments}"
       android:inputType="text"
       app:layout_constraintTop_toBottomOf="@id/commentsText"
-      app:layout_constraintStart_toStartOf="parent"/>
+      app:layout_constraintStart_toStartOf="parent"
+      android:autofillHints="" />
 
     <Button
       style="@style/Button"

@@ -56,7 +56,8 @@
       android:elevation="@dimen/bottomNavElev"
       android:background="@color/bottomNavColor"
       android:gravity="center_vertical"
-      android:orientation="horizontal">
+      android:orientation="horizontal"
+      android:baselineAligned="false">
 
       <LinearLayout
         android:layout_height="wrap_content"
@@ -68,7 +69,7 @@
         <ImageView
           style="@style/Wrap"
           android:src="@drawable/ic_prev_arrow"
-          android:tint="@color/secondaryLightColor"/>
+          app:tint="@color/secondaryLightColor" />
         <TextView
           style="@style/Text"
           android:textColor="@color/secondaryLightColor"
@@ -100,7 +101,7 @@
         <ImageView
           style="@style/Wrap"
           android:src="@drawable/ic_next_arrow"
-          android:tint="@color/secondaryLightColor"/>
+          app:tint="@color/secondaryLightColor" />
       </LinearLayout>
     </LinearLayout>
 

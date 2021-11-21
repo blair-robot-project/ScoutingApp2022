@@ -4,23 +4,23 @@
   <item android:id="@+id/action_help"
     android:icon="@drawable/ic_help"
     android:title="@string/action_help"
-    app:showAsAction="always" />
+    app:showAsAction="ifRoom" />
 
   <item
     android:id="@+id/action_bluetooth"
     android:icon="@drawable/ic_bluetooth"
     android:title="@string/action_bluetooth"
-    app:showAsAction="always" />
+    app:showAsAction="ifRoom" />
 
   <item android:id="@+id/action_sync"
     android:icon="@drawable/ic_sync"
     android:title="@string/action_sync"
-    app:showAsAction="always" />
+    app:showAsAction="ifRoom" />
 
   <item android:id="@+id/action_edit"
     android:icon="@drawable/ic_edit"
     android:title="@string/action_edit"
-    app:showAsAction="always" />
+    app:showAsAction="ifRoom" />
 
 
   <item android:id="@+id/action_clear_data"
@@ -36,6 +36,6 @@
   <item android:id="@+id/action_settings"
     android:icon="@drawable/ic_settings"
     android:title="@string/action_settings"
-    app:showAsAction="always" />
+    app:showAsAction="ifRoom" />
 
 </menu>
