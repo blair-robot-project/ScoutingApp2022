@@ -21,7 +21,7 @@
     <TextView
       style="@style/Text"
       android:id="@+id/deadText"
-      android:text="Dead?"
+      android:text="@string/is_dead"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
     <ImageButton
@@ -42,22 +42,22 @@
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/ralive0"
-        android:text="Alive" />
+        android:text="@string/alive" />
 
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/rbroken1"
-        android:text="Broken" />
+        android:text="@string/broken" />
 
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/rsometimes2"
-        android:text="Sometimes Dead" />
+        android:text="@string/sometimes_dead" />
 
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/rdead3"
-        android:text="Dead" />
+        android:text="@string/dead" />
     </RadioGroup>
 
     <View
@@ -70,7 +70,7 @@
     <TextView
       style="@style/Text"
       android:id="@+id/defenseText"
-      android:text="Played Defense?"
+      android:text="@string/played_defense"
       app:layout_constraintTop_toBottomOf="@id/deadDiv"
       app:layout_constraintStart_toStartOf="parent"/>
     <ImageButton
@@ -92,17 +92,17 @@
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/rnodef0"
-        android:text="None" />
+        android:text="@string/none" />
 
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/rsomedef1"
-        android:text="Part"/>
+        android:text="@string/part"/>
 
       <RadioButton
         style="@style/RadioButton"
         android:id="@+id/rdefense2"
-        android:text="All"/>
+        android:text="@string/all"/>
 
     </RadioGroup>
 
@@ -160,7 +160,7 @@
 
     <TextView
       style="@style/Text"
-      android:text="Additional Comments"
+      android:text="@string/additional_comments"
       android:id="@+id/commentsText"
       app:layout_constraintTop_toBottomOf="@id/defenseDiv"
       app:layout_constraintStart_toStartOf="parent" />

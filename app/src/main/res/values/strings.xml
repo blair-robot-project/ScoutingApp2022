@@ -85,5 +85,16 @@
   <string name="action_clear_event_data">Clear event data</string>
   <string name="action_settings">Settings</string>
   <string name="title_activity_settings">Settings</string>
+  <string name="is_dead">Dead?</string>
+  <string name="alive">Alive</string>
+  <string name="broken">Broken</string>
+  <string name="sometimes_dead">Sometimes Dead</string>
+  <string name="dead">Dead</string>
+  <string name="played_defense">Played Defense?</string>
+  <string name="none">None</string>
+  <string name="part">Part</string>
+  <string name="all">All</string>
+  <string name="additional_comments">Additional Comments</string>
+  <string name="missed_nshots">Missed\nshots:</string>
 
 </resources>
