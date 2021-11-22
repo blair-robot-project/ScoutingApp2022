@@ -44,7 +44,7 @@
           Put this all in a constraint layout. Put the view pager first, constrain it to parent top and top of bottom nav
           Add enough paddingTop to clear the header
           Make custom ViewPager class that fixes onDraw to fake out padding so height calculations are accurate-->
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
       android:id="@+id/viewPager"
       android:layout_width="match_parent"
       android:layout_height="0dp"

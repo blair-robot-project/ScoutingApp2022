@@ -2,10 +2,10 @@ package team449.frc.scoutingappbase.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.adapters.MatchPagerAdapter
 import team449.frc.scoutingappbase.databinding.FragmentMatchContainerBinding
@@ -26,27 +26,30 @@ interface PageChanger {
 class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), MatchContainerFragmentClickHandler, PageChanger {
     override val layoutId: Int = R.layout.fragment_match_container
 
-    private lateinit var viewPagerAdapter: FragmentPagerAdapter
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPagerAdapter: FragmentStateAdapter
+    private lateinit var viewPager: ViewPager2
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewPager = view.findViewById(R.id.viewPager)
 
-        (activity as MainActivity).pageChanger = this
+        val mainActivity = activity as MainActivity
+        mainActivity.pageChanger = this
         binding.handler = this
 
-        viewPagerAdapter = MatchPagerAdapter(childFragmentManager)
+        viewPagerAdapter = MatchPagerAdapter(mainActivity)
         viewPager.adapter = viewPagerAdapter
-        viewPager.addOnPageChangeListener(object : OnPageChangeListener {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) { binding.page = position }
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
         val tabLayout = view.findViewById<TabLayout>(R.id.pageDots)
-        tabLayout.setupWithViewPager(viewPager, true)
+        TabLayoutMediator(tabLayout, viewPager) { tab, _position ->
+            tab.text = ""
+        }.attach()
     }
 
     override fun onResume() {
@@ -55,6 +58,6 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
     }
 
     override fun changePage(page: Int) { viewPager.currentItem = page }
-    override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.count ?: 1) - 1)) }
+    override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.itemCount ?: 1) - 1)) }
     override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
 }

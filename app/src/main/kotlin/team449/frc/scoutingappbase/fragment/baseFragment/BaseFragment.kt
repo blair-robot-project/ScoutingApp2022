@@ -21,7 +21,7 @@ abstract class BaseFragment<B: ViewDataBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
         val view: View = binding.root
 

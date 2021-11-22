@@ -21,9 +21,9 @@ object BluetoothManager {
 
     private val connectionTest: ByteArray = ByteArray(0) {0}
 
-    var master: String? = null
+    private var master: String? = null
 
-    val isConnected: Boolean
+    private val isConnected: Boolean
         get() = try {
             outputStream!!.write(connectionTest)
             true
@@ -134,7 +134,7 @@ object BluetoothManager {
         return false
     }
 
-    fun receive() {
+    private fun receive() {
         if (isConnected) {
             Log.i("BtM.receive", "Receiving")
             val buffer = ByteArray(BUFFER_SIZE)
