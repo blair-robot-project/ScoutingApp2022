@@ -8,6 +8,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yasht/StudioProjects/Bunnybots2021App/app/src/main/res/layout/fragment_auto.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yasht/StudioProjects/Bunnybots2021App/app/src/main/res/layout/fragment_endgame.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yasht/StudioProjects/Bunnybots2021App/app/src/main/res/layout/fragment_teleop.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/yasht/StudioProjects/RefApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yasht/StudioProjects/RefApp/app/src/main/res/layout/fragment_auto.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yasht/StudioProjects/RefApp/app/src/main/res/layout/fragment_endgame.xml" value="0.25416666666666665" />

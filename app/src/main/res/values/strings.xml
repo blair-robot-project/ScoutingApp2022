@@ -17,30 +17,14 @@
   <string name="preload_B">Piece B</string>
 
   <!--Auto-->
-  <string name="moved_prompt">Leave the Initiation Line\ \ \ </string>
-  <string name="hit_partner_prompt">Hit partner\ \ \ </string>
-  <string name="auto_intake_prompt">Intake balls\ \ \ </string>
+  <string name="moved_prompt">Crossed zone line\ \ \ </string>
 
   <!--Teleop-->
   <string name="spinner_rotation_prompt">Completed Stage 2 Spinner\ \ </string>
   <string name="spinner_position_prompt">Completed Stage 3 Spinner\ \ </string>
 
   <!--Endgame-->
-  <string name="attempted_climb_prompt">Attempted climb?</string>
-  <string name="attempted_no_prompt">No climb attempted\ \ \ </string>
-  <string name="attempted_solo_prompt">Solo climb\ \ \ \ </string>
-  <string name="attempted_double_prompt">Lifted another robot\ \ \ </string>
-  <string name="attempted_carried_prompt">Was lifted by another robot</string>
-  <string name="climb_fail">Fail</string>
-  <string name="climb_success">Success</string>
-  <string name="parked_prompt">Parked\ \ \ </string>
-  <string name="solo_prompt">Solo climbed successfully?\ \ \ </string>
-  <string name="double_prompt">Lifted another successfully?\ \ \ </string>
-  <string name="carried_prompt">Was lifted successfully?\ \ \ </string>
-  <string name="solo_failed_double_prompt">If failed, did the robot still solo climb?\ \ \ </string>
-  <string name="level_prompt">Level\ \ \ </string>
-  <string name="climb_time_prompt">Climb time</string>
-  <string name="endgame_score_prompt">Endgame score</string>
+  <string name="reached_alliance_prompt">Reached alliance zone?</string>
 
   <!--General-->
   <string name="comments_hint">Comments</string>
@@ -51,17 +35,11 @@
   <string name="help_title">Help</string>
   <string name="help_global">Welcome to the 449 Blair Robot Project Scouting App!\n\nFor each match, you will be assigned a team to scout. Watch this robot closely throughout the match, and record what they do.\nOn each page, fill out the fields, and then move on by swiping or with the navigation buttons at the bottom.\n\nWhen you are done, hit the submit button.\nIf you realise you entered something wrong after submitting, you can edit it. Hit the edit icon at the top of the screen and select the match you want to edit. Any data you entered for the next match will be preserved for when you finish editing.\n\nOn many questions you will see a ? icon. Click this to get more information about that field\nIf you need more help with something, don\'t hesitate to ask a scouting leader.</string>
   <string name="help_noshow">Select if the robot was not on the field at all for this match</string>
-  <string name="help_initiation">Select if the robot crossed over the white line that is started on during auto</string>
-  <string name="help_hitpartner">Select if the robot ran into another robot on its alliance during its auto routine</string>
-  <string name="help_autointake">Select if the robot picked up balls off the ground during the autonomous period</string>
+  <string name="help_initiation">Select if some portion of the bumper crossed the line formed by the edges of the 2 closest zones to the robot during auto</string>
   <string name="help_goal">This is a drawing of the goal, with counters for different places the ball can go. Every ball that the robot shoots should be marked once in one of the four counters. Click on the yellow circles to increment the ball count. If you made a mistake, you can use the -1 button underneath to decrement the counter.\n\nBottom left: this is the low goal, that looks like an elongated octagon. \n\nBottom right: count all balls that are shot but don\'t go into any goal here. \n\nTop left: this is the high goal (the hexagonal one). Only count balls here if they went out the sides of the goal, not if they went through the small centered hole behind the goal. \n\nTop right: this is the center goal, a small circle behind the main high goal. Some balls that make it into the high goal will then also make it into this center goal. These shouldn\'t be marked in the hexagonal goal, only here. Each ball should only be counted once.\n\nAs a scout lead if you need more help understanding this section.</string>
   <string name="help_spinnertwo">Select if the robot spun the color wheel 3 \- 5 times to complete stage two</string>
   <string name="help_spinnerthree">Select if the robot spun the color wheel to a particular color to complete stage three</string>
-  <string name="help_attemptedclimb">Select what the robot attempted to do in the endgame, even if they did not succeed.\n\nSolo climb: robot tries to lift itself onto the bar \n\nLifted: robot lifts itself and carries another robot up with it \n\nWas lifted: the robot does not climb itself, but is carried up by another robot</string>
-  <string name="help_parked">Select if the robot ended the match touching the carpet fully within the colored rectangle under the climbing rungs.</string>
-  <string name="help_doublefailsolo">Select if the robot attempted and failed to lift another robot, but was still successful in getting itself up. For example, a robot might grasp onto another robot, lift them both up, then drop the robot it grabbed.</string>
-  <string name="help_level">Is the climbing rung level (within 8 degrees) at the end of the match?</string>
-  <string name="help_climbtime">About how long did it take the robot to climb, from the time it starts deploying its hook to grab the rung to the time it is fully off the ground?</string>
+  <string name="help_reached_alliance">Whether or not the robot reached its alliance\'s alliance zone by the end of the endgame</string>
   <string name="help_endgamescore">What was the final score in the \"endgame\" category for the entire alliance? You will have to wait until after the match when the scores are posted.</string>
   <string name="help_dead">ALIVE: the robot was enabled, moving, and mostly functional for most of the match.\n\nBROKEN: robot was moving, but something is wrong. There are parts of their robot that are clearly broken.\n\nSOMETIMES DEAD: dead for a significant portion of the match (around 35–70%).\n\nDEAD: the robot is just sitting on the field unable to move.</string>
   <string name="help_defense">Did the robot play any defense?\n\nThis refers to the robot attempting to stop the opposing alliance from scoring, or slow them down, even if it was ineffective.\n\nNONE: the robot never played defense\n\nPART: the robot played defense for part of the match, but also spend some time not trying to block the opponent (though not necessarily scoring points).\n\nALL: the robot played defense for all or nearly all of the Teleop period (not necessarily Auto or Endgame)</string>

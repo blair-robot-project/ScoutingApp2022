@@ -27,6 +27,7 @@ class MatchViewModel : ViewModel() {
     val miss by lazy { mutableLiveData(0) }
     val spinnerRot by lazy { mutableLiveData(false)  }
     val spinnerPos by lazy { mutableLiveData(false)  }
+    val reachedAlliance by lazy { mutableLiveData(false) }
     val attemptedClimb by lazy { mutableLiveData(-1) }
     val park by lazy { mutableLiveData(false) }
     val soloClimb by lazy { mutableLiveData(-1) }
@@ -43,11 +44,13 @@ class MatchViewModel : ViewModel() {
         timestamp = System.currentTimeMillis()
         revision = 0
 
+        //Pre-match
         // If numeric add one, otherwise it's playoffs so don't increment
         matchId.value = matchId.value?.plus(if (EventData.matches.value?.get(matchId.value as Int)?.matches(Regex("\\d+(?:\\.\\d+)?")) == true) 1 else 0)
         teamId.value = 0
         noShow.value = false
 
+        //Auto
         autoMove.value = false
         hitPartner.value = false
         autoIntake.value = false
@@ -56,6 +59,7 @@ class MatchViewModel : ViewModel() {
         autoLow.value = 0
         autoMiss.value = 0
 
+        //Teleop
         high.value = 0
         center.value = 0
         low.value = 0
@@ -63,6 +67,8 @@ class MatchViewModel : ViewModel() {
         spinnerRot.value = false
         spinnerPos.value = false
 
+        //Endgame
+        reachedAlliance.value = false
         attemptedClimb.value = -1
         park.value = false
         soloClimb.value = -1
@@ -102,6 +108,7 @@ class MatchViewModel : ViewModel() {
         spinnerRot.value = shadow.spinnerRot
         spinnerPos.value = shadow.spinnerPos
 
+        reachedAlliance.value = shadow.reachedAlliance
         attemptedClimb.value = shadow.attemptedClimb
         park.value = shadow.park
         soloClimb.value = shadow.soloClimb
@@ -143,8 +150,9 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val miss = matchViewModel.miss.value?: 0
     val spinnerRot = matchViewModel.spinnerRot.value?: false
     val spinnerPos = matchViewModel.spinnerPos.value?: false
-     
-    var attemptedClimb = matchViewModel.attemptedClimb.value?: 0
+
+    var reachedAlliance = matchViewModel.reachedAlliance.value ?: false
+    var attemptedClimb = matchViewModel.attemptedClimb.value ?: 0
     val doubleClimb = if (attemptedClimb==2) matchViewModel.doubleClimb.value?: 0 else 0
     val soloClimb = if (attemptedClimb==1 || attemptedClimb==2 && doubleClimb!=1) matchViewModel.soloClimb.value?: 0 else 0
     val wasLifted = matchViewModel.wasLifted.value?: false && attemptedClimb==3
@@ -153,7 +161,6 @@ class MatchShadow (matchViewModel: MatchViewModel) {
     val endgameScore = StaticResources.endgameScoreOptions[matchViewModel.endgameScore.value?: 0].toInt()
     // 50 and a solo climb is ambiguous, could be 1 level + 2 park or 2 unlevel + 0 park
     val levelCheckbox = matchViewModel.level.value?: false
-    var level = levelCheckbox || endgameScore in arrayOf(40,45,65,70,95) && soloClimb==1 || endgameScore in arrayOf(65,70,95) && doubleClimb==1
 
     var dead = matchViewModel.dead.value?: -1
     var defense = matchViewModel.defense.value?: -1
@@ -161,8 +168,4 @@ class MatchShadow (matchViewModel: MatchViewModel) {
 
     val match: String = matchId?.let{ EventData.matches.value?.get(it) } ?:""
     val team: String = teamId?.let{ EventData.teams.value?.get(it) } ?:""
-
-    val soloClimbNYF = if (attemptedClimb==1 || attemptedClimb==2 && doubleClimb!=1 && soloClimb==1) 2 - soloClimb else 0
-    val doubleClimbNYF = if (attemptedClimb==2) 2 - doubleClimb else 0
-    val wasLiftedNYF = if (attemptedClimb==3) 2 - (if (wasLifted) 1 else 0) else 0
 }

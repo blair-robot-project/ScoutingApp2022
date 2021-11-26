@@ -67,15 +67,6 @@ class MainActivity : AppCompatActivity() {
         ri = resources.obtainTypedArray(R.array.radioIdsDefense)
         StaticResources.radioIdsDefense = (0..ri.length()).map { ri.getResourceId(it, 0) }
         ri.recycle()
-        ri = resources.obtainTypedArray(R.array.radioIdsClimb)
-        StaticResources.radioIdsClimb = (0..ri.length()).map { ri.getResourceId(it, 0) }
-        ri.recycle()
-        ri = resources.obtainTypedArray(R.array.radioIdsDoubleClimb)
-        StaticResources.radioIdsDoubleClimb = (0..ri.length()).map { ri.getResourceId(it, 0) }
-        ri.recycle()
-        ri = resources.obtainTypedArray(R.array.radioIdsSoloClimb)
-        StaticResources.radioIdsSoloClimb = (0..ri.length()).map { ri.getResourceId(it, 0) }
-        ri.recycle()
 
         preferences?.getString("alliance", null)?.let {
             StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
@@ -135,17 +126,10 @@ class MainActivity : AppCompatActivity() {
         when (view.id) {
             R.id.noShowHelp -> presenter.help(R.string.help_noshow)
             R.id.autoMoveHelp -> presenter.help(R.string.help_initiation)
-            R.id.hitPartnerHelp -> presenter.help(R.string.help_hitpartner)
-            R.id.autoIntakeHelp -> presenter.help(R.string.help_autointake)
             R.id.goalHelp -> presenter.help(R.string.help_goal)
             R.id.spinnerRotationHelp -> presenter.help(R.string.help_spinnertwo)
             R.id.spinnerPositionHelp -> presenter.help(R.string.help_spinnerthree)
-            R.id.attemptedClimbHelp -> presenter.help(R.string.help_attemptedclimb)
-            R.id.soloHelp -> presenter.help(R.string.help_doublefailsolo)
-            R.id.parkedHelp -> presenter.help(R.string.help_parked)
-            R.id.levelHelp -> presenter.help(R.string.help_level)
-            R.id.climbTimeHelp -> presenter.help(R.string.help_climbtime)
-            R.id.endgameScoreHelp -> presenter.help(R.string.help_endgamescore)
+            R.id.reachedAllianceHelp -> presenter.help(R.string.help_reached_alliance)
             R.id.deadHelp -> presenter.help(R.string.help_dead)
             R.id.defenseHelp -> presenter.help(R.string.help_defense)
         }
