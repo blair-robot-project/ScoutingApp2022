@@ -74,5 +74,6 @@
   <string name="all">All</string>
   <string name="additional_comments">Additional Comments</string>
   <string name="missed_nshots">Missed\nshots:</string>
+  <string name="game_field_desc">Game field</string>
 
 </resources>

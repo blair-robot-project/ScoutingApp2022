@@ -77,14 +77,20 @@
         <item name="android:textSize">@dimen/primaryTextSize</item>
     </style>
 
-    <style name="BallButton">
-        <item name="android:layout_width">@dimen/ballImageSize</item>
-        <item name="android:layout_height">@dimen/ballImageSize</item>
-        <item name="android:background">@drawable/ball</item>
-        <item name="android:textColor">@color/onLight</item>
-        <item name="android:textSize">@dimen/ballCounterTextSize</item>
+    <style name="PlusButton">
+        <item name="android:layout_width">@dimen/plusButtonWidth</item>
+        <item name="android:layout_height">@dimen/plusButtonWidth</item>
+        <item name="android:background">@drawable/ic_plusicon</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:onClick">incrementValue</item>
+        <item name="android:onClick">incrementDecrementValue</item>
+    </style>
+
+    <style name="MinusButton">
+        <item name="android:layout_width">@dimen/minusButtonWidth</item>
+        <item name="android:layout_height">@dimen/minusButtonHeight</item>
+        <item name="android:background">@drawable/ic_minusicon</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:onClick">incrementDecrementValue</item>
     </style>
 
     <style name="BallDecButton" parent="Widget.AppCompat.ImageButton">

@@ -137,25 +137,20 @@ class MainPresenter(private val activity: MainActivity): Editor {
         }
     }
 
-    fun incrementValue(view: View) {
+    /**
+     * Increment or decrement a value depending on the view
+     */
+    fun incrementDecrementValue(view: View) {
         val vm = activity.matchViewModel
         when (view.id) {
-            R.id.ahighInc -> inc(vm.autoHigh)
-            R.id.ahighDec -> dec(vm.autoHigh)
-            R.id.acenterInc -> inc(vm.autoCenter)
-            R.id.acenterDec -> dec(vm.autoCenter)
-            R.id.alowInc -> inc(vm.autoLow)
-            R.id.alowDec -> dec(vm.autoLow)
-            R.id.amissInc -> inc(vm.autoMiss)
-            R.id.amissDec -> dec(vm.autoMiss)
-            R.id.highInc -> inc(vm.high)
-            R.id.highDec -> dec(vm.high)
-            R.id.centerInc -> inc(vm.center)
-            R.id.centerDec -> dec(vm.center)
-            R.id.lowInc -> inc(vm.low)
-            R.id.lowDec -> dec(vm.low)
-            R.id.missInc -> inc(vm.miss)
-            R.id.missDec -> dec(vm.miss)
+            R.id.zone1Inc -> inc(vm.zone1Crates)
+            R.id.zone1Dec -> dec(vm.zone1Crates)
+            R.id.zone2Inc -> inc(vm.zone2Crates)
+            R.id.zone2Dec -> dec(vm.zone2Crates)
+            R.id.zone3Inc -> inc(vm.zone3Crates)
+            R.id.zone3Dec -> dec(vm.zone3Crates)
+            R.id.zone4Inc -> inc(vm.zone4Crates)
+            R.id.zone4Dec -> dec(vm.zone4Crates)
         }
     }
     private fun inc(mld: MutableLiveData<Int>) {

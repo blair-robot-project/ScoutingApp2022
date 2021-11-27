@@ -23,7 +23,8 @@ interface PageChanger {
     fun changePage(page: Int)
 }
 
-class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), MatchContainerFragmentClickHandler, PageChanger {
+class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(),
+    MatchContainerFragmentClickHandler, PageChanger {
     override val layoutId: Int = R.layout.fragment_match_container
 
     private lateinit var viewPagerAdapter: FragmentStateAdapter
@@ -41,8 +42,17 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
         viewPagerAdapter = MatchPagerAdapter(mainActivity)
         viewPager.adapter = viewPagerAdapter
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) { binding.page = position }
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageSelected(position: Int) {
+                binding.page = position
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
@@ -57,7 +67,15 @@ class MatchContainerFragment : VMBaseFragment<FragmentMatchContainerBinding>(), 
         (activity as MainActivity).hideUpButton()
     }
 
-    override fun changePage(page: Int) { viewPager.currentItem = page }
-    override fun next(view: View) { changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.itemCount ?: 1) - 1)) }
-    override fun prev(view: View) { changePage(max(viewPager.currentItem - 1, 0)) }
+    override fun changePage(page: Int) {
+        viewPager.currentItem = page
+    }
+
+    override fun next(view: View) {
+        changePage(min(viewPager.currentItem + 1, (viewPager.adapter?.itemCount ?: 1) - 1))
+    }
+
+    override fun prev(view: View) {
+        changePage(max(viewPager.currentItem - 1, 0))
+    }
 }

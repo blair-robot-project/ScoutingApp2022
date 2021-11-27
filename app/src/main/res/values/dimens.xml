@@ -24,7 +24,9 @@
   <dimen name="arrowSize">36dp</dimen>
   <dimen name="textBoxMaxLines">3</dimen>
 
-  <dimen name="ballImageSize">75dp</dimen>
+  <dimen name="plusButtonWidth">40dp</dimen>
+  <dimen name="minusButtonWidth">40dp</dimen>
+  <dimen name="minusButtonHeight">60dp</dimen>
 
   <!--Popup-->
   <dimen name="alertDialogBodyTextSize">22sp</dimen>

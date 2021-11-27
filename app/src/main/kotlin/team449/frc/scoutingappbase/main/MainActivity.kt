@@ -126,17 +126,14 @@ class MainActivity : AppCompatActivity() {
         when (view.id) {
             R.id.noShowHelp -> presenter.help(R.string.help_noshow)
             R.id.autoMoveHelp -> presenter.help(R.string.help_initiation)
-            R.id.goalHelp -> presenter.help(R.string.help_goal)
-            R.id.spinnerRotationHelp -> presenter.help(R.string.help_spinnertwo)
-            R.id.spinnerPositionHelp -> presenter.help(R.string.help_spinnerthree)
             R.id.reachedAllianceHelp -> presenter.help(R.string.help_reached_alliance)
             R.id.deadHelp -> presenter.help(R.string.help_dead)
             R.id.defenseHelp -> presenter.help(R.string.help_defense)
         }
     }
 
-    fun incrementValue(view: View) {
-        presenter.incrementValue(view)
+    fun incrementDecrementValue(view: View) {
+        presenter.incrementDecrementValue(view)
     }
 
     fun fixSpinners() {

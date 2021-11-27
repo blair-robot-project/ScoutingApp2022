@@ -69,7 +69,8 @@
         <ImageView
           style="@style/Wrap"
           android:src="@drawable/ic_prev_arrow"
-          app:tint="@color/secondaryLightColor" />
+          app:tint="@color/secondaryLightColor"
+          android:contentDescription="Previous page" />
         <TextView
           style="@style/Text"
           android:textColor="@color/secondaryLightColor"
@@ -101,7 +102,8 @@
         <ImageView
           style="@style/Wrap"
           android:src="@drawable/ic_next_arrow"
-          app:tint="@color/secondaryLightColor" />
+          app:tint="@color/secondaryLightColor"
+          android:contentDescription="Next page" />
       </LinearLayout>
     </LinearLayout>
 

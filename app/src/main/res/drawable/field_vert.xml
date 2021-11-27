@@ -1,7 +1,5 @@
 <!--An image of the field that's vertical-->
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-  android:drawable="@drawable/field_horiz"
+  android:drawable="@mipmap/field_horiz"
   android:fromDegrees="90"
-  android:pivotX="50%"
-  android:pivotY="50%"
   android:toDegrees="90" />
