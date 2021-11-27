@@ -30,12 +30,24 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="@id/autoMove" />
 
-
     <View
       android:id="@+id/autoMoveDiv"
       style="@style/Divider"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/autoMove" />
 
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="30dp"
+      app:layout_constraintTop_toBottomOf="@id/autoMoveDiv">
+
+      <include
+        layout="@layout/fragment_field"
+        app:vm="@{vm}" />
+    </LinearLayout>
+
+
   </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

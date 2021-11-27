@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?><!-- The layout for the field, put here so it can be reused -->
+<layout>
+
+  <data>
+
+    <import type="team449.frc.scoutingappbase.databinding.Conversions" />
+
+    <variable
+      name="vm"
+      type="team449.frc.scoutingappbase.model.MatchViewModel" />
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/PageContainer"
+    tools:showIn="@layout/fragment_teleop">
+
+    <ImageView
+      android:id="@+id/field_vert"
+      style="@style/Wrap"
+      android:layout_width="700dp"
+      android:layout_height="500dp"
+      android:contentDescription="@string/game_field_desc"
+      android:src="@drawable/field_vert"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+      android:id="@+id/zone1Text"
+      style="@style/Text"
+      android:layout_width="100dp"
+      android:layout_height="50dp"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginTop="80dp"
+      android:layout_marginEnd="120dp"
+      android:text="@{vm.zone1Crates.toString}"
+      android:textSize="30sp"
+      app:layout_constraintRight_toRightOf="@id/field_vert"
+      app:layout_constraintTop_toTopOf="@id/field_vert" />
+
+    <ImageButton
+      android:id="@+id/zone1Inc"
+      style="@style/PlusButton"
+      app:layout_constraintBottom_toTopOf="@id/zone1Text"
+      app:layout_constraintLeft_toLeftOf="@id/zone1Text" />
+
+    <ImageButton
+      android:id="@+id/zone1Dec"
+      style="@style/MinusButton"
+      android:layout_marginTop="-10dp"
+      app:layout_constraintLeft_toLeftOf="@id/zone1Text"
+      app:layout_constraintTop_toBottomOf="@id/zone1Text" />
+
+    <TextView
+      android:id="@+id/zone2Text"
+      style="@style/Text"
+      android:layout_width="100dp"
+      android:layout_height="50dp"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginStart="185dp"
+      android:layout_marginTop="80dp"
+      android:text="@{vm.zone2Crates.toString}"
+      android:textSize="30sp"
+      app:layout_constraintLeft_toLeftOf="@id/field_vert"
+      app:layout_constraintTop_toTopOf="@id/field_vert" />
+
+    <ImageButton
+      android:id="@+id/zone2Inc"
+      style="@style/PlusButton"
+      app:layout_constraintBottom_toTopOf="@id/zone2Text"
+      app:layout_constraintLeft_toLeftOf="@id/zone2Text" />
+
+    <ImageButton
+      android:id="@+id/zone2Dec"
+      style="@style/MinusButton"
+      android:layout_marginTop="-10dp"
+      app:layout_constraintLeft_toLeftOf="@id/zone2Text"
+      app:layout_constraintTop_toBottomOf="@id/zone2Text" />
+
+    <TextView
+      android:id="@+id/zone3Text"
+      style="@style/Text"
+      android:layout_width="100dp"
+      android:layout_height="50dp"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginStart="185dp"
+      android:layout_marginBottom="75dp"
+      android:text="@{vm.zone3Crates.toString}"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="@id/field_vert"
+      app:layout_constraintLeft_toLeftOf="@id/field_vert" />
+
+    <ImageButton
+      android:id="@+id/zone3Inc"
+      style="@style/PlusButton"
+      app:layout_constraintBottom_toTopOf="@id/zone3Text"
+      app:layout_constraintLeft_toLeftOf="@id/zone3Text" />
+
+    <ImageButton
+      android:id="@+id/zone3Dec"
+      style="@style/MinusButton"
+      android:layout_marginTop="-10dp"
+      app:layout_constraintLeft_toLeftOf="@id/zone3Text"
+      app:layout_constraintTop_toBottomOf="@id/zone3Text" />
+
+    <TextView
+      android:id="@+id/zone4Text"
+      style="@style/Text"
+      android:layout_width="100dp"
+      android:layout_height="50dp"
+      android:layout_marginHorizontal="30dp"
+      android:layout_marginEnd="120dp"
+      android:layout_marginBottom="75dp"
+      android:text="@{vm.zone4Crates.toString}"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="@id/field_vert"
+      app:layout_constraintRight_toRightOf="@id/field_vert" />
+
+    <ImageButton
+      android:id="@+id/zone4Inc"
+      style="@style/PlusButton"
+      app:layout_constraintBottom_toTopOf="@id/zone4Text"
+      app:layout_constraintLeft_toLeftOf="@id/zone4Text" />
+
+    <ImageButton
+      android:id="@+id/zone4Dec"
+      style="@style/MinusButton"
+      android:layout_marginTop="-10dp"
+      app:layout_constraintLeft_toLeftOf="@id/zone4Text"
+      app:layout_constraintTop_toBottomOf="@id/zone4Text" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
