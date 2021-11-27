@@ -1,5 +1,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:state_focused="true" android:drawable="@drawable/ic_pink_bunny"/>
-  <item android:state_pressed="true" android:drawable="@drawable/ic_pink_bunny" />
+  <item android:drawable="@drawable/ic_pink_bunny" android:state_pressed="true" />
+  <item android:drawable="@drawable/ic_pink_bunny" android:state_selected="true" />
+  <item android:drawable="@drawable/ic_grey_bunny" android:state_selected="false" />
   <item android:drawable="@drawable/ic_grey_bunny" />
 </selector>

@@ -1,10 +1,38 @@
 package team449.frc.scoutingappbase.model
 
+import android.view.View
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import team449.frc.scoutingappbase.R
+import team449.frc.scoutingappbase.main.MainActivity
+import java.lang.RuntimeException
 
 fun <T : Any?> mutableLiveData(initialValue: T) =
     MutableLiveData<T>().apply { value = initialValue }
+
+/**
+ * Find the id of the bunny button in the corresponding zone given the zone's quadrant
+ */
+fun zoneToBunnyId(quadrant: Int) = when (quadrant) {
+    1 -> R.id.zone1Bunny
+    2 -> R.id.zone2Bunny
+    3 -> R.id.zone3Bunny
+    4 -> R.id.zone4Bunny
+    else -> throw RuntimeException("Quadrant $quadrant was not in range [1, 4]")
+}
+
+/**
+ * Find the quadrant of the zone a bunny button is in, given that button's id
+ */
+fun bunnyIdToZone(bunnyId: Int) = when (bunnyId) {
+    R.id.zone1Bunny -> 1
+    R.id.zone2Bunny -> 2
+    R.id.zone3Bunny -> 3
+    R.id.zone4Bunny -> 4
+    else -> throw RuntimeException("Cannot convert id $bunnyId to quadrant, not a bunny")
+}
 
 class MatchViewModel : ViewModel() {
     var timestamp = System.currentTimeMillis()
@@ -91,6 +119,10 @@ class MatchViewModel : ViewModel() {
         defense.value = shadow.defense
         comments.value = shadow.comments
     }
+
+    fun bunnyDrawableFor(view: View) =
+        if (bunnyZone.value == view.id) view.setBackgroundResource(R.drawable.ic_pink_bunny)
+        else view.setBackgroundResource(R.drawable.ic_grey_bunny)
 }
 
 // For serialization

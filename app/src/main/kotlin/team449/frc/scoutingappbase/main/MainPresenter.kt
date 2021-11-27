@@ -12,17 +12,14 @@ import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.helpers.*
 import team449.frc.scoutingappbase.managers.BluetoothManager
 import team449.frc.scoutingappbase.managers.DataManager
-import team449.frc.scoutingappbase.model.EventData
-import team449.frc.scoutingappbase.model.StaticResources
-import team449.frc.scoutingappbase.model.MatchShadow
-import team449.frc.scoutingappbase.model.makeSyncRequest
+import team449.frc.scoutingappbase.model.*
 
 
 interface Editor {
     fun edit(id: String)
 }
 
-class MainPresenter(private val activity: MainActivity): Editor {
+class MainPresenter(private val activity: MainActivity) : Editor {
 
     fun globalHelp() {
         help(R.string.help_global)
@@ -30,7 +27,7 @@ class MainPresenter(private val activity: MainActivity): Editor {
 
     fun bluetooth() {
         GlobalScope.launch {
-            activity.preferences?.getString("master", null)?.let {BluetoothManager.connect(it)}
+            activity.preferences?.getString("master", null)?.let { BluetoothManager.connect(it) }
         }
     }
 
@@ -40,9 +37,10 @@ class MainPresenter(private val activity: MainActivity): Editor {
 
     override fun edit(id: String) {
         val mVM = activity.matchViewModel
-        DataManager.retrieveMatch(id)?.let {
+        println("Edit, bunny: ${mVM.bunnyZone.value}")
+        DataManager.retrieveMatch(id)?.let { shadow ->
             DataManager.stashCurrent(MatchShadow(mVM))
-            mVM.load(it, true)
+            mVM.load(shadow, true)
         }
     }
 
@@ -59,19 +57,32 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun clearData() {
-        confirmationDialog(activity, activity.getString(R.string.clear_data_title), activity.getString(R.string.clear_data_body), activity.getString(R.string.clear_data_button))
-            {_,_ -> AsyncTask.execute{ DataManager.clear() } }
+        confirmationDialog(
+            activity,
+            activity.getString(R.string.clear_data_title),
+            activity.getString(R.string.clear_data_body),
+            activity.getString(R.string.clear_data_button)
+        )
+        { _, _ -> AsyncTask.execute { DataManager.clear() } }
     }
+
     fun clearEventData() {
-        confirmationDialog(activity, activity.getString(R.string.clear_event_data_title), activity.getString(R.string.clear_event_data_body), activity.getString(R.string.clear_event_data_button))
-            {_,_ -> AsyncTask.execute {
-                Log.i("-------","clearing")
+        confirmationDialog(
+            activity,
+            activity.getString(R.string.clear_event_data_title),
+            activity.getString(R.string.clear_event_data_body),
+            activity.getString(R.string.clear_event_data_button)
+        )
+        { _, _ ->
+            AsyncTask.execute {
+                Log.i("-------", "clearing")
                 EventData.resetEventData()
                 activity.matchViewModel.matchId.postValue(0)
-                activity.matchViewModel.teamId.postValue(0) }
-                clearFile(teamsFile)
-                clearFile(matchScheduleFile)
+                activity.matchViewModel.teamId.postValue(0)
             }
+            clearFile(teamsFile)
+            clearFile(matchScheduleFile)
+        }
     }
 
     fun settings() {
@@ -88,7 +99,8 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     private fun postSubmit() {
-        DataManager.recoverMatch()?.let { activity.matchViewModel.load(it, false) } ?: activity.matchViewModel.reset()
+        DataManager.recoverMatch()?.let { activity.matchViewModel.load(it, false) }
+            ?: activity.matchViewModel.reset()
         activity.moveToPrematch()
     }
 
@@ -97,8 +109,10 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     fun matchChanged() {
-        activity.matchViewModel.matchId.value?.let {matchId ->
-            teamIdForMatchId(matchId)?.let { teamId ->activity.matchViewModel.teamId.value = teamId }
+        activity.matchViewModel.matchId.value?.let { matchId ->
+            teamIdForMatchId(matchId)?.let { teamId ->
+                activity.matchViewModel.teamId.value = teamId
+            }
         }
         activity.fixSpinners()
     }
@@ -121,21 +135,27 @@ class MainPresenter(private val activity: MainActivity): Editor {
     }
 
     val teamSpinnerEnabled: Boolean
-        get() = !(activity.preferences?.getBoolean("lockTeamSpinner", false)?: false &&
-                teamIdForMatchId(activity.matchViewModel.matchId.value?:0) == activity.matchViewModel.teamId.value?:-1)
+        get() = !(activity.preferences?.getBoolean("lockTeamSpinner", false) ?: false &&
+                teamIdForMatchId(
+                    activity.matchViewModel.matchId.value ?: 0
+                ) == activity.matchViewModel.teamId.value ?: -1)
 
-    val preferencesChanged = SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
-        when (key) {
-            "hideNav" -> activity.updateNavBarVisibility()
-            "alliance" -> preferences?.getString("alliance", null)?.let {
-                StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
-                activity.matchViewModel.alliance.value = StaticResources.defaultAlliance
-                matchChanged()
+    val preferencesChanged =
+        SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
+            when (key) {
+                "hideNav" -> activity.updateNavBarVisibility()
+                "alliance" -> preferences?.getString("alliance", null)?.let {
+                    StaticResources.defaultAlliance =
+                        if (it == "red") 0 else if (it == "blue") 1 else -1
+                    activity.matchViewModel.alliance.value = StaticResources.defaultAlliance
+                    matchChanged()
+                }
+                "driver_station" -> matchChanged()
+                "lockTeamSpinner" -> if (preferences.getBoolean(key, false)) {
+                    matchChanged()
+                }
             }
-            "driver_station" -> matchChanged()
-            "lockTeamSpinner" -> if (preferences.getBoolean(key, false)) { matchChanged() }
         }
-    }
 
     /**
      * Increment or decrement a value depending on the view
@@ -153,16 +173,46 @@ class MainPresenter(private val activity: MainActivity): Editor {
             R.id.zone4Dec -> dec(vm.zone4Crates)
         }
     }
+
     private fun inc(mld: MutableLiveData<Int>) {
         mld.value = mld.value?.plus(1)
     }
+
     private fun dec(mld: MutableLiveData<Int>) {
-        mld.value = if ((mld.value?: 0) > 0) mld.value?.plus(-1) else 0
+        mld.value = if ((mld.value ?: 0) > 0) mld.value?.plus(-1) else 0
     }
 
+    /**
+     * Sets the zone in which the bunny is given the ImageButton for the bunny in that zone. If
+     * the bunny was already selected, it unselects the bunny and sets `bunnyZone` to -1, otherwise
+     * it sets `bunnyZone` to the new zone's value and deselects the previous zone.
+     */
     fun setBunnyZone(view: View) {
         val vm = activity.matchViewModel
-        //todo asdf
+        println("Old bunny value: ${vm.bunnyZone.value}")
+        if (!view.isSelected) {
+            val oldZone = vm.bunnyZone.value
+            if (oldZone != null && oldZone != -1) {
+                val oldBunny: View =
+                    (view.parent as View).findViewById(zoneToBunnyId(oldZone))
+                oldBunny.isSelected = false
+            }
+            vm.bunnyZone.value = bunnyIdToZone(view.id)
+            view.isSelected = true
+        } else {
+            //This bunny was previously selected, so unselect it
+            vm.bunnyZone.value = -1
+            view.isSelected = false
+        }
+    }
+
+    fun setupBunny(view: View) {
+        val vm = activity.matchViewModel
+        vm.bunnyZone.value?.let { zone ->
+            //If the bunny was previously selected, select it again
+            if (zone != -1 && zoneToBunnyId(zone) == view.id)
+                view.isSelected = true
+        }
     }
 
     fun onWindowFocusChange() {

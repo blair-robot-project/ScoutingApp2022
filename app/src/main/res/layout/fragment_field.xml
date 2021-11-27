@@ -47,7 +47,15 @@
       style="@style/MinusButton"
       android:layout_marginTop="-10dp"
       app:layout_constraintLeft_toLeftOf="@id/zone1Text"
-      app:layout_constraintTop_toBottomOf="@id/zone1Text" />
+      app:layout_constraintTop_toBottomOf="@id/zone1Text"/>
+
+    <ImageButton
+      android:id="@+id/zone1Bunny"
+      style="@style/BunnyButton"
+      android:layout_width="@dimen/bunnyButtonWidth"
+      android:layout_height="@dimen/bunnyButtonHeight"
+      app:layout_constraintTop_toTopOf="@id/zone1Text"
+      app:layout_constraintEnd_toStartOf="@id/zone1Text"/>
 
     <TextView
       android:id="@+id/zone2Text"
@@ -71,6 +79,14 @@
       app:layout_constraintLeft_toLeftOf="@id/zone2Text"
       app:layout_constraintTop_toBottomOf="@id/zone2Text" />
 
+    <ImageButton
+      android:id="@+id/zone2Bunny"
+      style="@style/BunnyButton"
+      android:layout_width="@dimen/bunnyButtonWidth"
+      android:layout_height="@dimen/bunnyButtonHeight"
+      app:layout_constraintTop_toTopOf="@id/zone2Text"
+      app:layout_constraintStart_toEndOf="@id/zone2Text"/>
+
     <TextView
       android:id="@+id/zone3Text"
       style="@style/ZoneText"
@@ -93,6 +109,14 @@
       app:layout_constraintLeft_toLeftOf="@id/zone3Text"
       app:layout_constraintTop_toBottomOf="@id/zone3Text" />
 
+    <ImageButton
+      android:id="@+id/zone3Bunny"
+      style="@style/BunnyButton"
+      android:layout_width="@dimen/bunnyButtonWidth"
+      android:layout_height="@dimen/bunnyButtonHeight"
+      app:layout_constraintTop_toTopOf="@id/zone3Text"
+      app:layout_constraintStart_toEndOf="@id/zone3Text"/>
+
     <TextView
       android:id="@+id/zone4Text"
       style="@style/ZoneText"
@@ -114,6 +138,14 @@
       android:layout_marginTop="-10dp"
       app:layout_constraintLeft_toLeftOf="@id/zone4Text"
       app:layout_constraintTop_toBottomOf="@id/zone4Text" />
+
+    <ImageButton
+      android:id="@+id/zone4Bunny"
+      style="@style/BunnyButton"
+      android:layout_width="@dimen/bunnyButtonWidth"
+      android:layout_height="@dimen/bunnyButtonHeight"
+      app:layout_constraintTop_toTopOf="@id/zone4Text"
+      app:layout_constraintEnd_toStartOf="@id/zone4Text"/>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

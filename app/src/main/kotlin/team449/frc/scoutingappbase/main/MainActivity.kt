@@ -12,7 +12,7 @@ import android.view.WindowManager
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import team449.frc.scoutingappbase.R
 import team449.frc.scoutingappbase.fragment.PageChanger
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     var pageChanger: PageChanger? = null
 
     val matchViewModel: MatchViewModel
-        get() = ViewModelProviders.of(this)[MatchViewModel::class.java]
+        get() = ViewModelProvider(this)[MatchViewModel::class.java]
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,10 +72,10 @@ class MainActivity : AppCompatActivity() {
             StaticResources.defaultAlliance = if (it == "red") 0 else if (it == "blue") 1 else -1
         }
 
-        readFromFile(matchScheduleFile)?.let{
+        readFromFile(matchScheduleFile)?.let {
             if (it.isNotEmpty()) EventData.matchSchedule = deserialize(it)
         }
-        readFromFile(teamsFile)?.let{
+        readFromFile(teamsFile)?.let {
             Log.i("teams file", it)
             if (it.isNotEmpty()) EventData.teams.postValue((deserialize(it) as List<String>).toTypedArray())
         }
@@ -112,13 +112,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_help -> {presenter.globalHelp(); true}
-        R.id.action_bluetooth -> {presenter.bluetooth(); true}
-        R.id.action_edit -> {presenter.edit(); true}
-        R.id.action_sync -> {presenter.sync(); true}
-        R.id.action_clear_data -> {presenter.clearData(); true}
-        R.id.action_clear_event_data -> {presenter.clearEventData(); true}
-        R.id.action_settings -> {presenter.settings(); true}
+        R.id.action_help -> {
+            presenter.globalHelp(); true
+        }
+        R.id.action_bluetooth -> {
+            presenter.bluetooth(); true
+        }
+        R.id.action_edit -> {
+            presenter.edit(); true
+        }
+        R.id.action_sync -> {
+            presenter.sync(); true
+        }
+        R.id.action_clear_data -> {
+            presenter.clearData(); true
+        }
+        R.id.action_clear_event_data -> {
+            presenter.clearEventData(); true
+        }
+        R.id.action_settings -> {
+            presenter.settings(); true
+        }
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -132,33 +146,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun incrementDecrementValue(view: View) {
-        presenter.incrementDecrementValue(view)
-    }
+    fun incrementDecrementValue(view: View) = presenter.incrementDecrementValue(view)
+
+    fun setBunnyZone(view: View) = presenter.setBunnyZone(view)
+
+    fun setupBunny(view: View) = presenter.setupBunny(view)
 
     fun fixSpinners() {
         findViewById<Spinner>(R.id.team)?.isEnabled = presenter.teamSpinnerEnabled
     }
 
-    override fun onBackPressed() {
-        presenter.onBackPressed()
-    }
+    override fun onBackPressed() = presenter.onBackPressed()
 
-    fun submitButtonPressed() {
-        presenter.submit()
-    }
+    fun submitButtonPressed() = presenter.submit()
 
-    fun moveToPrematch() {
-        pageChanger?.changePage(0)
-    }
+    fun moveToPrematch() = pageChanger?.changePage(0)
 
     override fun onSupportNavigateUp() = findNavController(this, R.id.navhost).navigateUp()
 
-    fun showUpButton() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
+    fun showUpButton() = supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-    fun hideUpButton() {
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-    }
+    fun hideUpButton() = supportActionBar?.setDisplayHomeAsUpEnabled(false)
 }

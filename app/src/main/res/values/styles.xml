@@ -110,7 +110,7 @@
     </style>
 
     <style name="ZoneText" parent="Text">
-        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:textSize">30sp</item>
     </style>
