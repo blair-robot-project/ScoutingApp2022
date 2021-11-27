@@ -20,6 +20,8 @@ class MatchViewModel : ViewModel() {
     val zone2Crates by lazy { mutableLiveData(0) }
     val zone3Crates by lazy { mutableLiveData(0) }
     val zone4Crates by lazy { mutableLiveData(0) }
+    /** The zone in which the bunny was placed. If the bunny has not been placed yet, the value is -1. */
+    val bunnyZone by lazy { mutableLiveData(-1) }
     val reachedAlliance by lazy { mutableLiveData(false) }
     val endgameScore by lazy { mutableLiveData(0) }
     val dead by lazy { mutableLiveData(-1) }
@@ -39,6 +41,12 @@ class MatchViewModel : ViewModel() {
         )
         teamId.value = 0
         noShow.value = false
+
+        zone1Crates.value = 0
+        zone2Crates.value = 0
+        zone3Crates.value = 0
+        zone4Crates.value = 0
+        bunnyZone.value = -1
 
         //Auto
         autoMove.value = false
@@ -64,14 +72,16 @@ class MatchViewModel : ViewModel() {
         alliance.value = shadow.alliance
         noShow.value = shadow.noShow
 
-        //Auto
-        autoMove.value = shadow.autoMove
-
-        //Teleop
         zone1Crates.value = shadow.zone1Crates
         zone2Crates.value = shadow.zone2Crates
         zone3Crates.value = shadow.zone3Crates
         zone4Crates.value = shadow.zone4Crates
+        bunnyZone.value = shadow.bunnyZone
+
+        //Auto
+        autoMove.value = shadow.autoMove
+
+        //Teleop
 
         //Endgame
         reachedAlliance.value = shadow.reachedAlliance
@@ -82,7 +92,6 @@ class MatchViewModel : ViewModel() {
         comments.value = shadow.comments
     }
 }
-
 
 // For serialization
 class MatchShadow(matchViewModel: MatchViewModel) {
@@ -95,14 +104,16 @@ class MatchShadow(matchViewModel: MatchViewModel) {
     val alliance = matchViewModel.alliance.value ?: -1
     val noShow = matchViewModel.noShow.value ?: false
 
-    //Auto
-    val autoMove = matchViewModel.autoMove.value ?: false
-
-    //Teleop
     val zone1Crates = matchViewModel.zone1Crates.value ?: 0
     val zone2Crates = matchViewModel.zone1Crates.value ?: 0
     val zone3Crates = matchViewModel.zone1Crates.value ?: 0
     val zone4Crates = matchViewModel.zone1Crates.value ?: 0
+    val bunnyZone = matchViewModel.bunnyZone.value ?: -1
+
+    //Auto
+    val autoMove = matchViewModel.autoMove.value ?: false
+
+    //Teleop
 
     //Endgame
     var reachedAlliance = matchViewModel.reachedAlliance.value ?: false

@@ -160,6 +160,11 @@ class MainPresenter(private val activity: MainActivity): Editor {
         mld.value = if ((mld.value?: 0) > 0) mld.value?.plus(-1) else 0
     }
 
+    fun setBunnyZone(view: View) {
+        val vm = activity.matchViewModel
+        //todo asdf
+    }
+
     fun onWindowFocusChange() {
         activity.updateNavBarVisibility()
     }

@@ -29,14 +29,10 @@
 
     <TextView
       android:id="@+id/zone1Text"
-      style="@style/Text"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginHorizontal="30dp"
-      android:layout_marginTop="80dp"
-      android:layout_marginEnd="120dp"
+      style="@style/ZoneText"
+      android:layout_marginTop="@dimen/topZoneMargin"
+      android:layout_marginEnd="@dimen/rightZoneMargin"
       android:text="@{vm.zone1Crates.toString}"
-      android:textSize="30sp"
       app:layout_constraintRight_toRightOf="@id/field_vert"
       app:layout_constraintTop_toTopOf="@id/field_vert" />
 
@@ -55,14 +51,10 @@
 
     <TextView
       android:id="@+id/zone2Text"
-      style="@style/Text"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginHorizontal="30dp"
-      android:layout_marginStart="185dp"
-      android:layout_marginTop="80dp"
+      style="@style/ZoneText"
+      android:layout_marginStart="@dimen/leftZoneMargin"
+      android:layout_marginTop="@dimen/topZoneMargin"
       android:text="@{vm.zone2Crates.toString}"
-      android:textSize="30sp"
       app:layout_constraintLeft_toLeftOf="@id/field_vert"
       app:layout_constraintTop_toTopOf="@id/field_vert" />
 
@@ -81,14 +73,10 @@
 
     <TextView
       android:id="@+id/zone3Text"
-      style="@style/Text"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginHorizontal="30dp"
-      android:layout_marginStart="185dp"
-      android:layout_marginBottom="75dp"
+      style="@style/ZoneText"
+      android:layout_marginStart="@dimen/leftZoneMargin"
+      android:layout_marginBottom="@dimen/bottomZoneMargin"
       android:text="@{vm.zone3Crates.toString}"
-      android:textSize="30sp"
       app:layout_constraintBottom_toBottomOf="@id/field_vert"
       app:layout_constraintLeft_toLeftOf="@id/field_vert" />
 
@@ -107,14 +95,10 @@
 
     <TextView
       android:id="@+id/zone4Text"
-      style="@style/Text"
-      android:layout_width="100dp"
-      android:layout_height="50dp"
-      android:layout_marginHorizontal="30dp"
-      android:layout_marginEnd="120dp"
-      android:layout_marginBottom="75dp"
+      style="@style/ZoneText"
+      android:layout_marginEnd="@dimen/rightZoneMargin"
+      android:layout_marginBottom="@dimen/bottomZoneMargin"
       android:text="@{vm.zone4Crates.toString}"
-      android:textSize="30sp"
       app:layout_constraintBottom_toBottomOf="@id/field_vert"
       app:layout_constraintRight_toRightOf="@id/field_vert" />
 
