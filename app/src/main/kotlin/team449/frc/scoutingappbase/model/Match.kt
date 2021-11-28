@@ -1,13 +1,9 @@
 package team449.frc.scoutingappbase.model
 
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import team449.frc.scoutingappbase.R
-import team449.frc.scoutingappbase.main.MainActivity
-import java.lang.RuntimeException
 
 fun <T : Any?> mutableLiveData(initialValue: T) =
     MutableLiveData<T>().apply { value = initialValue }
@@ -34,6 +30,56 @@ fun bunnyIdToZone(bunnyId: Int) = when (bunnyId) {
     else -> throw RuntimeException("Cannot convert id $bunnyId to quadrant, not a bunny")
 }
 
+fun selectBunny(bunny: View) {
+    if (!bunny.isSelected) {
+        bunny.isSelected = true
+        bunny.setBackgroundResource(R.drawable.ic_pink_bunny)
+        bunny.invalidate()
+
+        for (bunnyId in listOf(
+            R.id.zone1Bunny,
+            R.id.zone2Bunny,
+            R.id.zone3Bunny,
+            R.id.zone4Bunny
+        )) {
+            //Ensure that this sibling bunny is deselected
+            if (bunnyId != bunny.id)
+                unselectBunny((bunny.parent as View).findViewById(bunnyId))
+        }
+    }
+}
+
+fun unselectBunny(bunny: View) {
+    if (bunny.isSelected) {
+        bunny.isSelected = false
+        bunny.setBackgroundResource(R.drawable.ic_grey_bunny)
+        bunny.invalidate()
+    }
+}
+
+/**
+ * Sets the zone in which the bunny is given the ImageButton for the bunny in that zone. If
+ * the bunny was already selected, it unselects the bunny and sets `bunnyZone` to -1, otherwise
+ * it sets `bunnyZone` to the new zone's value and deselects the previous zone.
+ */
+fun toggleBunny(bunny: View, vm: MatchViewModel) {
+    println("Old bunny value: ${vm.bunnyZone.value}")
+    if (!bunny.isSelected) {
+        val oldZone = vm.bunnyZone.value
+        if (oldZone != null && oldZone != -1) {
+            val oldBunny: View =
+                (bunny.parent as View).findViewById(zoneToBunnyId(oldZone))
+            unselectBunny(oldBunny)
+        }
+        vm.bunnyZone.value = bunnyIdToZone(bunny.id)
+        selectBunny(bunny)
+    } else {
+        //This bunny was previously selected, so unselect it
+        vm.bunnyZone.value = -1
+        unselectBunny(bunny)
+    }
+}
+
 class MatchViewModel : ViewModel() {
     var timestamp = System.currentTimeMillis()
     var revision = 0
@@ -48,6 +94,7 @@ class MatchViewModel : ViewModel() {
     val zone2Crates by lazy { mutableLiveData(0) }
     val zone3Crates by lazy { mutableLiveData(0) }
     val zone4Crates by lazy { mutableLiveData(0) }
+
     /** The zone in which the bunny was placed. If the bunny has not been placed yet, the value is -1. */
     val bunnyZone by lazy { mutableLiveData(-1) }
     val reachedAlliance by lazy { mutableLiveData(false) }
@@ -119,10 +166,6 @@ class MatchViewModel : ViewModel() {
         defense.value = shadow.defense
         comments.value = shadow.comments
     }
-
-    fun bunnyDrawableFor(view: View) =
-        if (bunnyZone.value == view.id) view.setBackgroundResource(R.drawable.ic_pink_bunny)
-        else view.setBackgroundResource(R.drawable.ic_grey_bunny)
 }
 
 // For serialization

@@ -37,7 +37,6 @@ class MainPresenter(private val activity: MainActivity) : Editor {
 
     override fun edit(id: String) {
         val mVM = activity.matchViewModel
-        println("Edit, bunny: ${mVM.bunnyZone.value}")
         DataManager.retrieveMatch(id)?.let { shadow ->
             DataManager.stashCurrent(MatchShadow(mVM))
             mVM.load(shadow, true)
@@ -182,38 +181,7 @@ class MainPresenter(private val activity: MainActivity) : Editor {
         mld.value = if ((mld.value ?: 0) > 0) mld.value?.plus(-1) else 0
     }
 
-    /**
-     * Sets the zone in which the bunny is given the ImageButton for the bunny in that zone. If
-     * the bunny was already selected, it unselects the bunny and sets `bunnyZone` to -1, otherwise
-     * it sets `bunnyZone` to the new zone's value and deselects the previous zone.
-     */
-    fun setBunnyZone(view: View) {
-        val vm = activity.matchViewModel
-        println("Old bunny value: ${vm.bunnyZone.value}")
-        if (!view.isSelected) {
-            val oldZone = vm.bunnyZone.value
-            if (oldZone != null && oldZone != -1) {
-                val oldBunny: View =
-                    (view.parent as View).findViewById(zoneToBunnyId(oldZone))
-                oldBunny.isSelected = false
-            }
-            vm.bunnyZone.value = bunnyIdToZone(view.id)
-            view.isSelected = true
-        } else {
-            //This bunny was previously selected, so unselect it
-            vm.bunnyZone.value = -1
-            view.isSelected = false
-        }
-    }
-
-    fun setupBunny(view: View) {
-        val vm = activity.matchViewModel
-        vm.bunnyZone.value?.let { zone ->
-            //If the bunny was previously selected, select it again
-            if (zone != -1 && zoneToBunnyId(zone) == view.id)
-                view.isSelected = true
-        }
-    }
+    fun setBunnyZone(bunny: View) = toggleBunny(bunny, activity.matchViewModel)
 
     fun onWindowFocusChange() {
         activity.updateNavBarVisibility()

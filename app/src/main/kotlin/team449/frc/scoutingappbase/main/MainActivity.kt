@@ -150,8 +150,6 @@ class MainActivity : AppCompatActivity() {
 
     fun setBunnyZone(view: View) = presenter.setBunnyZone(view)
 
-    fun setupBunny(view: View) = presenter.setupBunny(view)
-
     fun fixSpinners() {
         findViewById<Spinner>(R.id.team)?.isEnabled = presenter.teamSpinnerEnabled
     }
