@@ -23,7 +23,6 @@ fun writeToFile(filename: String, data: String) {
 
 fun readFromFile(filename: String): String? =
     try {
-        println("File at ${File("").absolutePath}")
         File(StaticResources.filesDir, filename).readText()
     } catch (e: IOException) {
         e.printStackTrace()

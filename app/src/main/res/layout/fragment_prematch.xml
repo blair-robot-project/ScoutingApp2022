@@ -1,129 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   tools:context=".fragment.PrematchFragment">
 
   <data>
+
     <import type="team449.frc.scoutingappbase.databinding.Conversions" />
-<!--    <import type="team449.frc.scoutingappbase.model.EventData" />-->
+    <!--    <import type="team449.frc.scoutingappbase.model.EventData" />-->
     <variable
       name="vm"
-      type="team449.frc.scoutingappbase.model.MatchViewModel"/>
+      type="team449.frc.scoutingappbase.model.MatchViewModel" />
+
     <variable
       name="eventData"
       type="team449.frc.scoutingappbase.model.EventData" />
   </data>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-    style="@style/PageContainer">
+  <!-- ScrollView from https://stackoverflow.com/a/21632417)-->
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <EditText
-      android:id="@+id/scoutName"
-      style="@style/EditText"
-      android:hint="@string/name_hint"
-      android:text="@={vm.scoutName}"
-      android:inputType="textPersonName"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      android:autofillHints="" />
+    <HorizontalScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
-    <View
-      android:id="@+id/scoutNameDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/scoutName"/>
+      <androidx.constraintlayout.widget.ConstraintLayout style="@style/PageContainer">
 
-    <TextView
-      android:id="@+id/matchText"
-      style="@style/Text"
-      android:text="@string/match_prompt"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/scoutNameDiv"  />
+        <EditText
+          android:id="@+id/scoutName"
+          style="@style/EditText"
+          android:autofillHints=""
+          android:hint="@string/name_hint"
+          android:inputType="textPersonName"
+          android:text="@={vm.scoutName}"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-      android:id="@+id/match"
-      style="@style/SpinnerStyle"
-      android:entries="@{eventData.matches}"
-      android:selectedItemPosition="@={Conversions.unbox(vm.matchId)}"
-      android:theme="@style/SpinnerTheme"
-      android:layout_marginStart="@dimen/horizontalFieldSpacing"
-      app:layout_constraintBottom_toBottomOf="@id/matchText"
-      app:layout_constraintStart_toEndOf="@id/matchText"
-      app:layout_constraintTop_toTopOf="@id/matchText" />
+        <View
+          android:id="@+id/scoutNameDiv"
+          style="@style/Divider"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/scoutName" />
 
-    <View
-      android:id="@+id/matchDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/matchText"/>
+        <TextView
+          android:id="@+id/matchText"
+          style="@style/Text"
+          android:text="@string/match_prompt"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/scoutNameDiv" />
 
-    <TextView
-      android:id="@+id/teamText"
-      style="@style/Text"
-      android:text="@string/team_prompt"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/matchDiv"/>
+        <Spinner
+          android:id="@+id/match"
+          style="@style/SpinnerStyle"
+          android:layout_marginStart="@dimen/horizontalFieldSpacing"
+          android:entries="@{eventData.matches}"
+          android:selectedItemPosition="@={Conversions.unbox(vm.matchId)}"
+          android:theme="@style/SpinnerTheme"
+          app:layout_constraintBottom_toBottomOf="@id/matchText"
+          app:layout_constraintStart_toEndOf="@id/matchText"
+          app:layout_constraintTop_toTopOf="@id/matchText" />
 
-    <Spinner
-      android:id="@+id/team"
-      style="@style/SpinnerStyle"
-      android:entries="@{eventData.teams}"
-      android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
-      android:theme="@style/SpinnerTheme"
-      app:layout_constraintBottom_toBottomOf="@id/teamText"
-      app:layout_constraintTop_toTopOf="@id/teamText"
-      app:layout_constraintStart_toStartOf="@id/match"/>
+        <View
+          android:id="@+id/matchDiv"
+          style="@style/Divider"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/matchText" />
 
-    <View
-      android:id="@+id/teamDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/teamText"/>
+        <TextView
+          android:id="@+id/teamText"
+          style="@style/Text"
+          android:text="@string/team_prompt"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/matchDiv" />
 
-    <TextView
-      android:id="@+id/allianceColorText"
-      style="@style/Text"
-      android:text="@string/alliance_prompt"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/teamDiv" />
+        <Spinner
+          android:id="@+id/team"
+          style="@style/SpinnerStyle"
+          android:entries="@{eventData.teams}"
+          android:selectedItemPosition="@={Conversions.unbox(vm.teamId)}"
+          android:theme="@style/SpinnerTheme"
+          app:layout_constraintBottom_toBottomOf="@id/teamText"
+          app:layout_constraintStart_toStartOf="@id/match"
+          app:layout_constraintTop_toTopOf="@id/teamText" />
 
-    <TextView
-      android:id="@+id/allianceColor"
-      style="@style/Text"
-      android:textColor="@{(vm.alliance == 0)? @color/red : @color/blue}"
-      android:text="@{(vm.alliance == 0)? @string/alliance_red : @string/alliance_blue}"
-      android:layout_marginStart="@dimen/horizontalFieldSpacing"
-      app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
-      app:layout_constraintStart_toEndOf="@id/allianceColorText"
-      app:layout_constraintTop_toTopOf="@id/allianceColorText" />
+        <View
+          android:id="@+id/teamDiv"
+          style="@style/Divider"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/teamText" />
 
-    <View
-      android:id="@+id/allianceColorDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/allianceColorText"/>
+        <TextView
+          android:id="@+id/allianceColorText"
+          style="@style/Text"
+          android:text="@string/alliance_prompt"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/teamDiv" />
 
-    <CheckBox
-      android:id="@+id/noShow"
-      style="@style/Checkbox"
-      android:checked="@={Conversions.unbox(vm.noShow)}"
-      android:text="@string/noshow_prompt"
-      app:layout_constraintStart_toEndOf="@id/noShowHelp"
-      app:layout_constraintTop_toBottomOf="@id/allianceColorDiv" />
-    <ImageButton
-      android:id="@+id/noShowHelp"
-      style="@style/Help.Checkbox"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@id/noShow"
-      app:layout_constraintBottom_toBottomOf="@id/noShow" />
+        <TextView
+          android:id="@+id/allianceColor"
+          style="@style/Text"
+          android:layout_marginStart="@dimen/horizontalFieldSpacing"
+          android:text="@{(vm.alliance == 0)? @string/alliance_red : @string/alliance_blue}"
+          android:textColor="@{(vm.alliance == 0)? @color/red : @color/blue}"
+          app:layout_constraintBottom_toBottomOf="@id/allianceColorText"
+          app:layout_constraintStart_toEndOf="@id/allianceColorText"
+          app:layout_constraintTop_toTopOf="@id/allianceColorText" />
 
-    <View
-      android:id="@+id/noShowDiv"
-      style="@style/Divider"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/noShow"/>
+        <View
+          android:id="@+id/allianceColorDiv"
+          style="@style/Divider"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/allianceColorText" />
+
+        <CheckBox
+          android:id="@+id/noShow"
+          style="@style/Checkbox"
+          android:checked="@={Conversions.unbox(vm.noShow)}"
+          android:text="@string/noshow_prompt"
+          app:layout_constraintStart_toEndOf="@id/noShowHelp"
+          app:layout_constraintTop_toBottomOf="@id/allianceColorDiv" />
+
+        <ImageButton
+          android:id="@+id/noShowHelp"
+          style="@style/Help.Checkbox"
+          app:layout_constraintBottom_toBottomOf="@id/noShow"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@id/noShow" />
+
+        <View
+          android:id="@+id/noShowDiv"
+          style="@style/Divider"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/noShow" />
 
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
+  </ScrollView>
 </layout>
