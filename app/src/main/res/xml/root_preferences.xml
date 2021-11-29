@@ -4,6 +4,8 @@
 
     <ListPreference
       app:key="master"
+      app:entries="@array/empty_entries"
+      app:entryValues="@array/empty_values"
       app:defaultValue="none"
       app:title="Bluetooth server name"
       app:useSimpleSummaryProvider="true" />

@@ -20,6 +20,10 @@
     <item>@id/rdefense2</item>
   </array>
 
+  <string-array name="empty_entries" />
+
+  <string-array name="empty_values" />
+
   <string-array name="alliance_entries">
     <item>Red</item>
     <item>Blue</item>

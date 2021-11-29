@@ -13,8 +13,6 @@ import team449.frc.scoutingappbase.adapters.MatchPagerAdapter
 import team449.frc.scoutingappbase.databinding.FragmentMatchContainerBinding
 import team449.frc.scoutingappbase.fragment.baseFragment.VMBaseFragment
 import team449.frc.scoutingappbase.main.MainActivity
-import team449.frc.scoutingappbase.model.selectBunny
-import team449.frc.scoutingappbase.model.zoneToBunnyId
 import kotlin.math.max
 import kotlin.math.min
 
