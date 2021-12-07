@@ -65,6 +65,13 @@ private fun validateHard(match: MatchShadow): ValidationError {
 private fun validateSoft(match: MatchShadow): ValidationError {
     val error = ValidationError()
 
+    val totalCrates = match.zone1Crates + match.zone2Crates + match.zone3Crates + match.zone4Crates
+    if (NUM_CRATES < totalCrates) {
+        error.addError(
+            "You said the robot put $totalCrates into the zones, but there are only $NUM_CRATES in all",
+            1
+        )
+    }
 
     return error
 }

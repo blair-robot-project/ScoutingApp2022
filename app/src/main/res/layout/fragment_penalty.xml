@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  tools:context=".fragment.PenaltyFragment">
+
+  <data>
+
+    <import type="team449.frc.scoutingappbase.databinding.Conversions" />
+
+    <variable
+      name="vm"
+      type="team449.frc.scoutingappbase.model.MatchViewModel" />
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout style="@style/PageContainer">
+
+    <ImageButton
+      android:id="@+id/incursionsHelp"
+      style="@style/Help.Checkbox"
+      app:layout_constraintBottom_toBottomOf="@id/incursions"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+      android:id="@+id/incursions"
+      android:text="@string/incursions_prompt"
+      app:layout_constraintStart_toEndOf="@id/incursionsHelp"
+      app:layout_constraintTop_toTopOf="@id/incursionsHelp"
+      android:layout_height="30sp"
+      android:layout_width="300sp"
+      android:layout_marginTop="20dp"/>
+
+    <View
+      android:id="@+id/incursionsDiv"
+      style="@style/Divider"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/incursions" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
