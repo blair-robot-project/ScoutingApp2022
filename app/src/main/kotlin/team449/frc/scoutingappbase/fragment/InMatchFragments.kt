@@ -72,6 +72,10 @@ class EndgameFragment : FieldFragment<FragmentEndgameBinding>() {
     override val layoutId: Int = R.layout.fragment_endgame
 }
 
+class PenaltyFragment : VMBaseFragment<FragmentPenaltyBinding>() {
+    override val layoutId: Int = R.layout.fragment_penalty
+}
+
 interface SubmitHandler {
     fun submit(view: View)
 }

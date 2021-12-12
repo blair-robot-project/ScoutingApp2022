@@ -26,6 +26,9 @@
   <!--Endgame-->
   <string name="reached_alliance_prompt">Reached alliance zone?</string>
 
+  <!--Penalty-->
+  <string name="incursions_prompt">Number of incursions</string>
+
   <!--General-->
   <string name="comments_hint">Comments</string>
   <string name="submit_button">Submit</string>

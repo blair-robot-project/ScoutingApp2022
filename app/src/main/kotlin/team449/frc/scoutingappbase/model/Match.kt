@@ -3,6 +3,11 @@ package team449.frc.scoutingappbase.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+/**
+ * The total number of crates per alliance
+ */
+const val NUM_CRATES = 20
+
 fun <T : Any?> mutableLiveData(initialValue: T) =
     MutableLiveData<T>().apply { value = initialValue }
 
@@ -20,12 +25,12 @@ class MatchViewModel : ViewModel() {
     val zone2Crates by lazy { mutableLiveData(0) }
     val zone3Crates by lazy { mutableLiveData(0) }
     val zone4Crates by lazy { mutableLiveData(0) }
-
     /** The zone in which the bunny was placed. If the bunny has not been placed yet, the value is -1. */
     val bunnyZone by lazy { mutableLiveData(-1) }
     val reachedAlliance by lazy { mutableLiveData(false) }
     val endgameScore by lazy { mutableLiveData(0) }
     val dead by lazy { mutableLiveData(-1) }
+    val incursions by lazy { mutableLiveData(0) }
     val defense by lazy { mutableLiveData(-1) }
     val comments by lazy { mutableLiveData("") }
 
@@ -59,6 +64,7 @@ class MatchViewModel : ViewModel() {
         endgameScore.value = 0
 
         dead.value = -1
+        incursions.value = 0
         defense.value = -1
         comments.value = ""
     }
@@ -89,6 +95,7 @@ class MatchViewModel : ViewModel() {
         endgameScore.value = shadow.endgameScore
 
         dead.value = shadow.dead
+        incursions.value = shadow.incursions
         defense.value = shadow.defense
         comments.value = shadow.comments
     }
@@ -122,6 +129,7 @@ class MatchShadow(matchViewModel: MatchViewModel) {
         StaticResources.endgameScoreOptions[matchViewModel.endgameScore.value ?: 0].toInt()
 
     var dead = matchViewModel.dead.value ?: -1
+    val incursions = matchViewModel.incursions.value ?: 0
     var defense = matchViewModel.defense.value ?: -1
     val comments = matchViewModel.comments.value ?: ""
 
