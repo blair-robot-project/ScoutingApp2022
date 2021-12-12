@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException
 object BluetoothManager {
 
     private const val BUFFER_SIZE = 1024
+    private const val PORT = 4
 
     private val blueAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
     private var socket: BluetoothSocket? = null
@@ -77,7 +78,7 @@ object BluetoothManager {
                     try {
                         socket = device.javaClass.getMethod("createRfcommSocket", Integer::class.javaPrimitiveType).invoke(
                             device,
-                            1
+                            PORT
                         ) as BluetoothSocket
                         socket?.connect()
                         outputStream = socket?.outputStream
