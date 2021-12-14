@@ -113,9 +113,9 @@ class MatchShadow(matchViewModel: MatchViewModel) {
     val noShow = matchViewModel.noShow.value ?: false
 
     val zone1Crates = matchViewModel.zone1Crates.value ?: 0
-    val zone2Crates = matchViewModel.zone1Crates.value ?: 0
-    val zone3Crates = matchViewModel.zone1Crates.value ?: 0
-    val zone4Crates = matchViewModel.zone1Crates.value ?: 0
+    val zone2Crates = matchViewModel.zone2Crates.value ?: 0
+    val zone3Crates = matchViewModel.zone3Crates.value ?: 0
+    val zone4Crates = matchViewModel.zone4Crates.value ?: 0
     val bunnyZone = matchViewModel.bunnyZone.value ?: -1
 
     //Auto

@@ -3,7 +3,10 @@ package team449.frc.scoutingappbase.main
 import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.View
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
@@ -171,14 +174,30 @@ class MainPresenter(private val activity: MainActivity) : Editor {
             R.id.zone4Inc -> inc(vm.zone4Crates)
             R.id.zone4Dec -> dec(vm.zone4Crates)
         }
+        checkForExcessCrates()
     }
 
-    private fun inc(mld: MutableLiveData<Int>) {
-        mld.value = mld.value?.plus(1)
+    fun checkForExcessCrates() {
+        val vm = activity.matchViewModel
+        val totalCrates =
+            (vm.zone1Crates.value ?: 0) + (vm.zone2Crates.value ?: 0) + (vm.zone3Crates.value
+                ?: 0) + (vm.zone4Crates.value ?: 0)
+        if (totalCrates > NUM_CRATES) {
+            AlertDialog.Builder(ContextThemeWrapper(activity, R.style.AlertDialogCustom))
+                .setTitle("Too many crates")
+                .setMessage("You can only have $NUM_CRATES crates, but your selections say the robot has stacked $totalCrates crates.")
+                .setNeutralButton("Ok"){_, _ -> }
+                .show()
+                .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
+        }
     }
 
-    private fun dec(mld: MutableLiveData<Int>) {
-        mld.value = if ((mld.value ?: 0) > 0) mld.value?.plus(-1) else 0
+    private fun inc(mld: MutableLiveData<Int>) = update(mld) { Math.min(it + 1, NUM_CRATES) }
+
+    private fun dec(mld: MutableLiveData<Int>) = update(mld) { Math.max(0, it - 1) }
+
+    private fun <T> update(mld: MutableLiveData<T>, fn: (T) -> T) {
+        mld.value = mld.value?.let(fn)
     }
 
     fun setBunnyZone(bunny: View) = toggleBunny(bunny, activity.matchViewModel)
