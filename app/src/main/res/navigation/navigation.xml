@@ -5,7 +5,7 @@
 
   <fragment
     android:id="@+id/mainContainerFragment"
-    android:name="team449.frc.scoutingappbase.fragment.MatchContainerFragment"
+    android:name="team449.frc.refereeappbase.fragment.MatchContainerFragment"
     android:label="MainContainerFragment" >
     <action
       android:id="@+id/action_mainContainerFragment_to_settingsFragment"
@@ -14,7 +14,7 @@
 
   <fragment
     android:id="@+id/settingsFragment"
-    android:name="team449.frc.scoutingappbase.fragment.SettingsFragment"
+    android:name="team449.frc.refereeappbase.fragment.SettingsFragment"
     android:label="SettingsFragment" >
     <action
       android:id="@+id/action_settingsFragment_to_mainContainerFragment"

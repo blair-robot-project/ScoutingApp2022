@@ -3,11 +3,11 @@
 
   <data>
 
-    <import type="team449.frc.scoutingappbase.databinding.Conversions" />
+    <import type="team449.frc.refereeappbase.databinding.Conversions" />
 
     <variable
       name="vm"
-      type="team449.frc.scoutingappbase.model.MatchViewModel" />
+      type="team449.frc.refereeappbase.model.MatchViewModel" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

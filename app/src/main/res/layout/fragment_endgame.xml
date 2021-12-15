@@ -6,13 +6,13 @@
 
   <data>
 
-    <import type="team449.frc.scoutingappbase.databinding.Conversions" />
+    <import type="team449.frc.refereeappbase.databinding.Conversions" />
 
     <import type="android.view.View" />
 
     <variable
       name="vm"
-      type="team449.frc.scoutingappbase.model.MatchViewModel" />
+      type="team449.frc.refereeappbase.model.MatchViewModel" />
   </data>
 
   <ScrollView

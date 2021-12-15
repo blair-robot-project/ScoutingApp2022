@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="team449.frc.scoutingappbase">
+  package="team449.frc.refereeappbase">
 
   <uses-permission android:name="android.permission.BLUETOOTH" />
 
@@ -18,7 +18,7 @@
     android:windowSoftInputMode="adjustPan"
     android:fullBackupContent="@xml/backup_descriptor">
     <activity
-      android:name=".main.MainActivity"
+      android:name="team449.frc.refereeappbase.main.MainActivity"
       android:screenOrientation="fullSensor"
       android:exported="true">
       <intent-filter>
