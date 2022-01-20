@@ -40,7 +40,7 @@ private fun validateHard(match: MatchShadow): ValidationError {
     val error = ValidationError()
     if (match.recorderName.isBlank()) error.addError("Please enter your name", 0)
     if (match.noShow) {
-        if (arrayOf(match.autoMove).any { it }
+        if (arrayOf(match.taxi).any { it }
             || arrayOf(match.dead, match.defense).any { it > 0 }) {
             error.addError(
                 "You have marked some fields true/non-zero, but also say the robot is a no show. These can't both be right.",
@@ -58,27 +58,12 @@ private fun validateHard(match: MatchShadow): ValidationError {
         if (match.dead == -1) match.dead = 0
         if (match.defense == -1) match.defense = 0
     }
-    val totalCrates = match.zone1Crates + match.zone2Crates + match.zone3Crates + match.zone4Crates
-    if (NUM_CRATES < totalCrates) {
-        error.addError(
-            "You said the robot put $totalCrates into the zones, but there are only $NUM_CRATES in all",
-            1
-        )
-    }
     return error
 }
 
 //TODO write bunnybot-specific stuff for this
 private fun validateSoft(match: MatchShadow): ValidationError {
     val error = ValidationError()
-
-    val totalCrates = match.zone1Crates + match.zone2Crates + match.zone3Crates + match.zone4Crates
-    if (NUM_CRATES < totalCrates) {
-        error.addError(
-            "You said the robot put $totalCrates into the zones, but there are only $NUM_CRATES in all",
-            1
-        )
-    }
 
     return error
 }

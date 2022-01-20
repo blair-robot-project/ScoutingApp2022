@@ -58,7 +58,7 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
             if (vmJavaLangObjectNull) {
 
 
-                vmAutoMove = vm.getAutoMove();
+                vmAutoMove = vm.getTaxi();
 
                 vmAutoMoveJavaLangObjectNull = (vmAutoMove) != (null);
                 if (vmAutoMoveJavaLangObjectNull) {
@@ -180,7 +180,7 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
 
                 if (vm != null) {
                     // read vm.autoMove
-                    vmAutoMove = vm.getAutoMove();
+                    vmAutoMove = vm.getTaxi();
                 }
                 updateLiveDataRegistration(0, vmAutoMove);
 

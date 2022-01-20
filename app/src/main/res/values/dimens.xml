@@ -27,8 +27,6 @@
   <dimen name="plusButtonWidth">40dp</dimen>
   <dimen name="minusButtonWidth">40dp</dimen>
   <dimen name="minusButtonHeight">60dp</dimen>
-  <dimen name="bunnyButtonWidth">50dp</dimen>
-  <dimen name="bunnyButtonHeight">50dp</dimen>
 
   <!--Zone margins-->
   <dimen name="leftZoneMargin">185dp</dimen>

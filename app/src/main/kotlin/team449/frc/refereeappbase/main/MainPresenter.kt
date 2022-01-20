@@ -164,32 +164,7 @@ class MainPresenter(private val activity: MainActivity) : Editor {
      */
     fun incrementDecrementValue(view: View) {
         val vm = activity.matchViewModel
-        when (view.id) {
-            R.id.zone1Inc -> inc(vm.zone1Crates)
-            R.id.zone1Dec -> dec(vm.zone1Crates)
-            R.id.zone2Inc -> inc(vm.zone2Crates)
-            R.id.zone2Dec -> dec(vm.zone2Crates)
-            R.id.zone3Inc -> inc(vm.zone3Crates)
-            R.id.zone3Dec -> dec(vm.zone3Crates)
-            R.id.zone4Inc -> inc(vm.zone4Crates)
-            R.id.zone4Dec -> dec(vm.zone4Crates)
-        }
-        checkForExcessCrates()
-    }
 
-    fun checkForExcessCrates() {
-        val vm = activity.matchViewModel
-        val totalCrates =
-            (vm.zone1Crates.value ?: 0) + (vm.zone2Crates.value ?: 0) + (vm.zone3Crates.value
-                ?: 0) + (vm.zone4Crates.value ?: 0)
-        if (totalCrates > NUM_CRATES) {
-            AlertDialog.Builder(ContextThemeWrapper(activity, R.style.AlertDialogCustom))
-                .setTitle("Too many crates")
-                .setMessage("You can only have $NUM_CRATES crates, but your selections say the robot has stacked $totalCrates crates.")
-                .setNeutralButton("Ok"){_, _ -> }
-                .show()
-                .findViewById<TextView>(android.R.id.message)?.textSize = StaticResources.dialogTextSize
-        }
     }
 
     private fun inc(mld: MutableLiveData<Int>) = update(mld) { Math.min(it + 1, NUM_CRATES) }
@@ -199,8 +174,6 @@ class MainPresenter(private val activity: MainActivity) : Editor {
     private fun <T> update(mld: MutableLiveData<T>, fn: (T) -> T) {
         mld.value = mld.value?.let(fn)
     }
-
-    fun setBunnyZone(bunny: View) = toggleBunny(bunny, activity.matchViewModel)
 
     fun onWindowFocusChange() {
         activity.updateNavBarVisibility()

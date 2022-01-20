@@ -8,10 +8,6 @@ import team449.frc.refereeappbase.BR
 import team449.frc.refereeappbase.R
 import team449.frc.refereeappbase.databinding.*
 import team449.frc.refereeappbase.fragment.baseFragment.VMBaseFragment
-import team449.frc.refereeappbase.helpers.bunnyIds
-import team449.frc.refereeappbase.helpers.selectBunny
-import team449.frc.refereeappbase.helpers.unselectBunny
-import team449.frc.refereeappbase.helpers.zoneToBunnyId
 import team449.frc.refereeappbase.main.MainActivity
 import team449.frc.refereeappbase.model.EventData
 
@@ -21,14 +17,7 @@ import team449.frc.refereeappbase.model.EventData
 sealed class FieldFragment<T : ViewDataBinding> : VMBaseFragment<T>() {
     private fun updateField() {
         val vm = (activity as MainActivity).matchViewModel
-        val bunnyZone = vm.bunnyZone.value
-        if (bunnyZone != null && bunnyZone != -1) {
-            view?.findViewById<View?>(zoneToBunnyId(bunnyZone))?.let { selectBunny(it, vm) }
-        } else {
-            //Deselect all the bunnies because the bunny isn't in any zone
-            for (bunnyId in bunnyIds)
-                view?.findViewById<View?>(bunnyId)?.let { unselectBunny(it, vm) }
-        }
+        //todo update for 2022
     }
 
     override fun onStart() {

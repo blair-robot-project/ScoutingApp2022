@@ -148,8 +148,6 @@ class MainActivity : AppCompatActivity() {
 
     fun incrementDecrementValue(view: View) = presenter.incrementDecrementValue(view)
 
-    fun setBunnyZone(view: View) = presenter.setBunnyZone(view)
-
     fun fixSpinners() {
         findViewById<Spinner>(R.id.team)?.isEnabled = presenter.teamSpinnerEnabled
     }

@@ -93,14 +93,6 @@
         <item name="android:onClick">incrementDecrementValue</item>
     </style>
 
-    <style name="BunnyButton">
-        <item name="android:layout_width">@dimen/bunnyButtonWidth</item>
-        <item name="android:layout_height">@dimen/bunnyButtonHeight</item>
-        <item name="android:background">@drawable/bunny_selector</item>
-        <item name="android:adjustViewBounds">true</item>
-        <item name="android:onClick">setBunnyZone</item>
-    </style>
-
     <style name="BallDecButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

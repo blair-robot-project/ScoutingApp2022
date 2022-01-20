@@ -1,11 +1,11 @@
 # FRC Team 449: Scouting App
-Android scouting app for FRC 2020 Infinite Recharge with Bluetooth data transfer. Designed for use on 7" Kindle fires.
+Android scouting app for FRC 2022 Rapid React with Bluetooth data transfer. Designed for use on 7" Kindle fires.
 
 Developer guide: https://docs.google.com/document/d/e/2PACX-1vQpE_YFEds7wYMVhjdKt83wotm8Ipkgs-GRpsbDIZcJ7YfAHh-yOWM-xYtVrYNQaZ4T-TNwSessGhNM/pub
 
-__To be used with the Python server:__ https://github.com/ashwsn/ScoutingServer
+__To be used with the Python server:__ https://github.com/blair-robot-project/ScoutingServer2022
 
-This is version 2 of our 2019 scouting app: https://github.com/ashwsn/DeepSpaceScoutingApp
+This is version 3 of our 2019 scouting app: https://github.com/ashwsn/DeepSpaceScoutingApp
 
 ### Copyright and License
 
