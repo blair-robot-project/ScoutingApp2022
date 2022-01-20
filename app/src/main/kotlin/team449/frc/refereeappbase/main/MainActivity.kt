@@ -140,7 +140,6 @@ class MainActivity : AppCompatActivity() {
         when (view.id) {
             R.id.noShowHelp -> presenter.help(R.string.help_noshow)
             R.id.autoMoveHelp -> presenter.help(R.string.help_initiation)
-            R.id.reachedAllianceHelp -> presenter.help(R.string.help_reached_alliance)
             R.id.deadHelp -> presenter.help(R.string.help_dead)
             R.id.defenseHelp -> presenter.help(R.string.help_defense)
         }

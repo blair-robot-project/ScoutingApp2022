@@ -116,20 +116,20 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
     private androidx.databinding.InverseBindingListener scoutNameandroidTextAttrChanged = new androidx.databinding.InverseBindingListener() {
         @Override
         public void onChange() {
-            // Inverse of vm.scoutName.getValue()
-            //         is vm.scoutName.setValue((java.lang.String) callbackArg_0)
+            // Inverse of vm.recorderName.getValue()
+            //         is vm.recorderName.setValue((java.lang.String) callbackArg_0)
             java.lang.String callbackArg_0 = androidx.databinding.adapters.TextViewBindingAdapter.getTextString(scoutName);
             // localize variables for thread safety
             // vm != null
             boolean vmJavaLangObjectNull = false;
-            // vm.scoutName
-            androidx.lifecycle.MutableLiveData<java.lang.String> vmScoutName = null;
             // vm
             team449.frc.refereeappbase.model.MatchViewModel vm = mVm;
-            // vm.scoutName.getValue()
-            java.lang.String vmScoutNameGetValue = null;
-            // vm.scoutName != null
-            boolean vmScoutNameJavaLangObjectNull = false;
+            // vm.recorderName.getValue()
+            java.lang.String vmRecorderNameGetValue = null;
+            // vm.recorderName != null
+            boolean vmRecorderNameJavaLangObjectNull = false;
+            // vm.recorderName
+            androidx.lifecycle.MutableLiveData<java.lang.String> vmRecorderName = null;
 
 
 
@@ -137,15 +137,15 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
             if (vmJavaLangObjectNull) {
 
 
-                vmScoutName = vm.getRecorderName();
+                vmRecorderName = vm.getRecorderName();
 
-                vmScoutNameJavaLangObjectNull = (vmScoutName) != (null);
-                if (vmScoutNameJavaLangObjectNull) {
-
-
+                vmRecorderNameJavaLangObjectNull = (vmRecorderName) != (null);
+                if (vmRecorderNameJavaLangObjectNull) {
 
 
-                    vmScoutName.setValue(((java.lang.String) (callbackArg_0)));
+
+
+                    vmRecorderName.setValue(((java.lang.String) (callbackArg_0)));
                 }
             }
         }
@@ -286,9 +286,9 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
             case 3 :
                 return onChangeVmMatchId((androidx.lifecycle.MutableLiveData<java.lang.Integer>) object, fieldId);
             case 4 :
-                return onChangeVmScoutName((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
-            case 5 :
                 return onChangeEventDataMatches((androidx.lifecycle.MutableLiveData<java.lang.String[]>) object, fieldId);
+            case 5 :
+                return onChangeVmRecorderName((androidx.lifecycle.MutableLiveData<java.lang.String>) object, fieldId);
             case 6 :
                 return onChangeVmTeamId((androidx.lifecycle.MutableLiveData<java.lang.Integer>) object, fieldId);
         }
@@ -330,7 +330,7 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
         }
         return false;
     }
-    private boolean onChangeVmScoutName(androidx.lifecycle.MutableLiveData<java.lang.String> VmScoutName, int fieldId) {
+    private boolean onChangeEventDataMatches(androidx.lifecycle.MutableLiveData<java.lang.String[]> EventDataMatches, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x10L;
@@ -339,7 +339,7 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
         }
         return false;
     }
-    private boolean onChangeEventDataMatches(androidx.lifecycle.MutableLiveData<java.lang.String[]> EventDataMatches, int fieldId) {
+    private boolean onChangeVmRecorderName(androidx.lifecycle.MutableLiveData<java.lang.String> VmRecorderName, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x20L;
@@ -369,7 +369,7 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
         androidx.lifecycle.MutableLiveData<java.lang.String[]> eventDataTeams = null;
         team449.frc.refereeappbase.model.MatchViewModel vm = mVm;
         androidx.lifecycle.MutableLiveData<java.lang.Boolean> vmNoShow = null;
-        java.lang.String vmScoutNameGetValue = null;
+        java.lang.String vmRecorderNameGetValue = null;
         androidx.lifecycle.MutableLiveData<java.lang.Integer> vmAlliance = null;
         java.lang.Integer vmAllianceGetValue = null;
         java.lang.String[] eventDataTeamsGetValue = null;
@@ -380,16 +380,16 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
         boolean conversionsUnboxVmNoShow = false;
         boolean vmAllianceInt0 = false;
         int conversionsUnboxVmMatchId = 0;
-        androidx.lifecycle.MutableLiveData<java.lang.String> vmScoutName = null;
         androidx.lifecycle.MutableLiveData<java.lang.String[]> eventDataMatches = null;
         java.lang.String[] eventDataMatchesGetValue = null;
         java.lang.Integer vmTeamIdGetValue = null;
+        androidx.lifecycle.MutableLiveData<java.lang.String> vmRecorderName = null;
         androidx.lifecycle.MutableLiveData<java.lang.Integer> vmTeamId = null;
         java.lang.String vmAllianceInt0AllianceColorAndroidStringAllianceRedAllianceColorAndroidStringAllianceBlue = null;
         int conversionsUnboxVmTeamId = 0;
         java.lang.Boolean vmNoShowGetValue = null;
 
-        if ((dirtyFlags & 0x2deL) != 0) {
+        if ((dirtyFlags & 0x2eeL) != 0) {
 
 
             if ((dirtyFlags & 0x282L) != 0) {
@@ -466,18 +466,18 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
                     // read Conversions.unbox(vm.matchId.getValue())
                     conversionsUnboxVmMatchId = team449.frc.refereeappbase.databinding.Conversions.unbox(vmMatchIdGetValue);
             }
-            if ((dirtyFlags & 0x290L) != 0) {
+            if ((dirtyFlags & 0x2a0L) != 0) {
 
                     if (vm != null) {
-                        // read vm.scoutName
-                        vmScoutName = vm.getRecorderName();
+                        // read vm.recorderName
+                        vmRecorderName = vm.getRecorderName();
                     }
-                    updateLiveDataRegistration(4, vmScoutName);
+                    updateLiveDataRegistration(5, vmRecorderName);
 
 
-                    if (vmScoutName != null) {
-                        // read vm.scoutName.getValue()
-                        vmScoutNameGetValue = vmScoutName.getValue();
+                    if (vmRecorderName != null) {
+                        // read vm.recorderName.getValue()
+                        vmRecorderNameGetValue = vmRecorderName.getValue();
                     }
             }
             if ((dirtyFlags & 0x2c0L) != 0) {
@@ -499,7 +499,7 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
                     conversionsUnboxVmTeamId = team449.frc.refereeappbase.databinding.Conversions.unbox(vmTeamIdGetValue);
             }
         }
-        if ((dirtyFlags & 0x321L) != 0) {
+        if ((dirtyFlags & 0x311L) != 0) {
 
 
             if ((dirtyFlags & 0x301L) != 0) {
@@ -516,13 +516,13 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
                         eventDataTeamsGetValue = eventDataTeams.getValue();
                     }
             }
-            if ((dirtyFlags & 0x320L) != 0) {
+            if ((dirtyFlags & 0x310L) != 0) {
 
                     if (eventData != null) {
                         // read eventData.matches
                         eventDataMatches = eventData.getMatches();
                     }
-                    updateLiveDataRegistration(5, eventDataMatches);
+                    updateLiveDataRegistration(4, eventDataMatches);
 
 
                     if (eventDataMatches != null) {
@@ -538,7 +538,7 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
             androidx.databinding.adapters.TextViewBindingAdapter.setText(this.allianceColor, vmAllianceInt0AllianceColorAndroidStringAllianceRedAllianceColorAndroidStringAllianceBlue);
             this.allianceColor.setTextColor(vmAllianceInt0AllianceColorAndroidColorRedAllianceColorAndroidColorBlue);
         }
-        if ((dirtyFlags & 0x320L) != 0) {
+        if ((dirtyFlags & 0x310L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.AbsSpinnerBindingAdapter.setEntries(this.match, eventDataMatchesGetValue);
@@ -561,10 +561,10 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
 
             androidx.databinding.adapters.CompoundButtonBindingAdapter.setChecked(this.noShow, conversionsUnboxVmNoShow);
         }
-        if ((dirtyFlags & 0x290L) != 0) {
+        if ((dirtyFlags & 0x2a0L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.scoutName, vmScoutNameGetValue);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.scoutName, vmRecorderNameGetValue);
         }
         if ((dirtyFlags & 0x301L) != 0) {
             // api target 1
@@ -586,8 +586,8 @@ public class FragmentPrematchBindingImpl extends FragmentPrematchBinding  {
         flag 1 (0x2L): vm.noShow
         flag 2 (0x3L): vm.alliance
         flag 3 (0x4L): vm.matchId
-        flag 4 (0x5L): vm.scoutName
-        flag 5 (0x6L): eventData.matches
+        flag 4 (0x5L): eventData.matches
+        flag 5 (0x6L): vm.recorderName
         flag 6 (0x7L): vm.teamId
         flag 7 (0x8L): vm
         flag 8 (0x9L): eventData

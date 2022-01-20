@@ -164,12 +164,7 @@ class MainPresenter(private val activity: MainActivity) : Editor {
      */
     fun incrementDecrementValue(view: View) {
         val vm = activity.matchViewModel
-
     }
-
-    private fun inc(mld: MutableLiveData<Int>) = update(mld) { Math.min(it + 1, NUM_CRATES) }
-
-    private fun dec(mld: MutableLiveData<Int>) = update(mld) { Math.max(0, it - 1) }
 
     private fun <T> update(mld: MutableLiveData<T>, fn: (T) -> T) {
         mld.value = mld.value?.let(fn)

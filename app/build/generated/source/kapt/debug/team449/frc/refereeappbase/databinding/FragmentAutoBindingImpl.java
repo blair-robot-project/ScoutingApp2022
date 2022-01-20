@@ -35,22 +35,22 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     private androidx.databinding.InverseBindingListener autoMoveandroidCheckedAttrChanged = new androidx.databinding.InverseBindingListener() {
         @Override
         public void onChange() {
-            // Inverse of Conversions.unbox(vm.autoMove.getValue())
-            //         is vm.autoMove.setValue((java.lang.Boolean) Conversions.box(callbackArg_0))
+            // Inverse of Conversions.unbox(vm.taxi.getValue())
+            //         is vm.taxi.setValue((java.lang.Boolean) Conversions.box(callbackArg_0))
             boolean callbackArg_0 = autoMove.isChecked();
             // localize variables for thread safety
             // vm != null
             boolean vmJavaLangObjectNull = false;
             // vm
             team449.frc.refereeappbase.model.MatchViewModel vm = mVm;
-            // vm.autoMove
-            androidx.lifecycle.MutableLiveData<java.lang.Boolean> vmAutoMove = null;
-            // vm.autoMove != null
-            boolean vmAutoMoveJavaLangObjectNull = false;
-            // Conversions.unbox(vm.autoMove.getValue())
-            boolean conversionsUnboxVmAutoMove = false;
-            // vm.autoMove.getValue()
-            java.lang.Boolean vmAutoMoveGetValue = null;
+            // vm.taxi != null
+            boolean vmTaxiJavaLangObjectNull = false;
+            // vm.taxi
+            androidx.lifecycle.MutableLiveData<java.lang.Boolean> vmTaxi = null;
+            // vm.taxi.getValue()
+            java.lang.Boolean vmTaxiGetValue = null;
+            // Conversions.unbox(vm.taxi.getValue())
+            boolean conversionsUnboxVmTaxi = false;
 
 
 
@@ -58,17 +58,17 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
             if (vmJavaLangObjectNull) {
 
 
-                vmAutoMove = vm.getTaxi();
+                vmTaxi = vm.getTaxi();
 
-                vmAutoMoveJavaLangObjectNull = (vmAutoMove) != (null);
-                if (vmAutoMoveJavaLangObjectNull) {
+                vmTaxiJavaLangObjectNull = (vmTaxi) != (null);
+                if (vmTaxiJavaLangObjectNull) {
 
 
 
                     team449.frc.refereeappbase.databinding.Conversions.box(callbackArg_0);
 
 
-                    vmAutoMove.setValue(((java.lang.Boolean) (team449.frc.refereeappbase.databinding.Conversions.box(callbackArg_0))));
+                    vmTaxi.setValue(((java.lang.Boolean) (team449.frc.refereeappbase.databinding.Conversions.box(callbackArg_0))));
                 }
             }
         }
@@ -148,11 +148,11 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     protected boolean onFieldChange(int localFieldId, Object object, int fieldId) {
         switch (localFieldId) {
             case 0 :
-                return onChangeVmAutoMove((androidx.lifecycle.MutableLiveData<java.lang.Boolean>) object, fieldId);
+                return onChangeVmTaxi((androidx.lifecycle.MutableLiveData<java.lang.Boolean>) object, fieldId);
         }
         return false;
     }
-    private boolean onChangeVmAutoMove(androidx.lifecycle.MutableLiveData<java.lang.Boolean> VmAutoMove, int fieldId) {
+    private boolean onChangeVmTaxi(androidx.lifecycle.MutableLiveData<java.lang.Boolean> VmTaxi, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
                     mDirtyFlags |= 0x1L;
@@ -170,35 +170,35 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
             mDirtyFlags = 0;
         }
         team449.frc.refereeappbase.model.MatchViewModel vm = mVm;
-        androidx.lifecycle.MutableLiveData<java.lang.Boolean> vmAutoMove = null;
-        boolean conversionsUnboxVmAutoMove = false;
-        java.lang.Boolean vmAutoMoveGetValue = null;
+        androidx.lifecycle.MutableLiveData<java.lang.Boolean> vmTaxi = null;
+        java.lang.Boolean vmTaxiGetValue = null;
+        boolean conversionsUnboxVmTaxi = false;
 
         if ((dirtyFlags & 0x7L) != 0) {
 
 
 
                 if (vm != null) {
-                    // read vm.autoMove
-                    vmAutoMove = vm.getTaxi();
+                    // read vm.taxi
+                    vmTaxi = vm.getTaxi();
                 }
-                updateLiveDataRegistration(0, vmAutoMove);
+                updateLiveDataRegistration(0, vmTaxi);
 
 
-                if (vmAutoMove != null) {
-                    // read vm.autoMove.getValue()
-                    vmAutoMoveGetValue = vmAutoMove.getValue();
+                if (vmTaxi != null) {
+                    // read vm.taxi.getValue()
+                    vmTaxiGetValue = vmTaxi.getValue();
                 }
 
 
-                // read Conversions.unbox(vm.autoMove.getValue())
-                conversionsUnboxVmAutoMove = team449.frc.refereeappbase.databinding.Conversions.unbox(vmAutoMoveGetValue);
+                // read Conversions.unbox(vm.taxi.getValue())
+                conversionsUnboxVmTaxi = team449.frc.refereeappbase.databinding.Conversions.unbox(vmTaxiGetValue);
         }
         // batch finished
         if ((dirtyFlags & 0x7L) != 0) {
             // api target 1
 
-            androidx.databinding.adapters.CompoundButtonBindingAdapter.setChecked(this.autoMove, conversionsUnboxVmAutoMove);
+            androidx.databinding.adapters.CompoundButtonBindingAdapter.setChecked(this.autoMove, conversionsUnboxVmTaxi);
         }
         if ((dirtyFlags & 0x4L) != 0) {
             // api target 1
@@ -217,7 +217,7 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): vm.autoMove
+        flag 0 (0x1L): vm.taxi
         flag 1 (0x2L): vm
         flag 2 (0x3L): null
     flag mapping end*/
