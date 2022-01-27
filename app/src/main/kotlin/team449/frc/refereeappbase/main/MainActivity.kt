@@ -4,11 +4,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.view.View.*
-import android.view.WindowManager
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -146,6 +143,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun incrementDecrementValue(view: View) = presenter.incrementDecrementValue(view)
+
+    fun padWithZeroes(i: Int, length: Int): String = "$i".padStart(length, '0')
 
     fun fixSpinners() {
         findViewById<Spinner>(R.id.team)?.isEnabled = presenter.teamSpinnerEnabled

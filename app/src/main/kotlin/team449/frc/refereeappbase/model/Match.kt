@@ -24,6 +24,7 @@ class MatchViewModel : ViewModel() {
     //Auto
     val autoLowerHub by lazy { mutableLiveData(0) }
     val autoUpperHub by lazy { mutableLiveData(0) }
+
     /** The 2 points for moving out of the starting zone in auto */
     val taxi by lazy { mutableLiveData(false) }
 
@@ -44,11 +45,10 @@ class MatchViewModel : ViewModel() {
 
         //Pre-match
         // If numeric add one, otherwise it's playoffs so don't increment
-        matchId.value = matchId.value?.plus(
-            if (EventData.matches.value?.get(matchId.value as Int)
-                    ?.matches(Regex("\\d+(?:\\.\\d+)?")) == true
-            ) 1 else 0
-        )
+        val numericRegex = Regex("\\d+(?:\\.\\d+)?")
+        if (EventData.matches.value?.get(matchId.value as Int)?.matches(numericRegex) == true) {
+            matchId.value?.let { it + 1 }
+        }
         teamId.value = 0
         noShow.value = false
 

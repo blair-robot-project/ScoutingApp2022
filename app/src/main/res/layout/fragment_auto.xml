@@ -8,56 +8,100 @@
 
     <import type="team449.frc.refereeappbase.databinding.Conversions" />
 
+    <import type="team449.frc.refereeappbase.helpers.FormattingHelper" />
+
     <variable
       name="vm"
       type="team449.frc.refereeappbase.model.MatchViewModel" />
   </data>
 
-  <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <HorizontalScrollView
+  <androidx.constraintlayout.widget.ConstraintLayout style="@style/PageContainer">
+
+    <LinearLayout
+      android:id="@+id/autoTaxi"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toTopOf="parent">
 
-      <androidx.constraintlayout.widget.ConstraintLayout style="@style/PageContainer">
+      <ImageButton
+        android:id="@+id/autoMoveHelp"
+        style="@style/Help.Checkbox" />
 
-        <CheckBox
-          android:id="@+id/autoMove"
-          style="@style/Checkbox"
-          android:checked="@={Conversions.unbox(vm.taxi)}"
-          android:text="@string/moved_prompt"
-          app:layout_constraintStart_toEndOf="@id/autoMoveHelp"
-          app:layout_constraintTop_toTopOf="parent" />
+      <CheckBox
+        android:id="@+id/autoMove"
+        style="@style/Checkbox"
+        android:layout_width="wrap_content"
+        android:checked="@={Conversions.unbox(vm.taxi)}"
+        android:text="@string/moved_prompt" />
+    </LinearLayout>
 
-        <ImageButton
-          android:id="@+id/autoMoveHelp"
-          style="@style/Help.Checkbox"
-          app:layout_constraintBottom_toBottomOf="@id/autoMove"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="@id/autoMove" />
+    <!-- The picture of the hubs -->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center_horizontal"
+      android:orientation="horizontal"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/autoTaxi">
 
-        <View
-          android:id="@+id/autoMoveDiv"
-          style="@style/Divider"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@id/autoMove" />
+      <ImageView
+        android:id="@+id/hubs"
+        android:layout_width="800dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/hubs_img_desc"
+        android:src="@drawable/hubs" />
+    </LinearLayout>
 
-        <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginTop="30dp"
-          app:layout_constraintTop_toBottomOf="@id/autoMoveDiv">
+    <!-- The buttons for the upper hub -->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal"
+      android:paddingStart="@dimen/hubMarginLeft"
+      android:paddingTop="@dimen/upperHubMarginTop">
 
-          <include
-            layout="@layout/fragment_field"
-            app:vm="@{vm}" />
-        </LinearLayout>
+      <ImageButton
+        android:id="@+id/autoUpperHubInc"
+        style="@style/PlusButton"
+        android:contentDescription="@string/upper_hub_inc_desc" />
 
+      <TextView
+        android:id="@+id/autoUpperHubText"
+        style="@style/HubScoreText"
+        android:text="@{FormattingHelper.padZeroes(vm.autoUpperHub)}" />
 
-      </androidx.constraintlayout.widget.ConstraintLayout>
+      <ImageButton
+        android:id="@+id/autoUpperHubDec"
+        style="@style/MinusButton"
+        android:contentDescription="@string/upper_hub_dec_desc" />
+    </LinearLayout>
 
-    </HorizontalScrollView>
-  </ScrollView>
+    <!-- The buttons for the lower hub -->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal"
+      android:paddingStart="@dimen/hubMarginLeft"
+      android:paddingTop="@dimen/lowerHubMarginTop">
+
+      <ImageButton
+        android:id="@+id/autoLowerHubInc"
+        style="@style/PlusButton"
+        android:contentDescription="@string/lower_hub_inc_desc" />
+
+      <TextView
+        android:id="@+id/autoLowerHubText"
+        style="@style/HubScoreText"
+        android:text="@{FormattingHelper.padZeroes(vm.autoLowerHub)}" />
+
+      <ImageButton
+        android:id="@+id/autoLowerHubDec"
+        style="@style/MinusButton"
+        android:contentDescription="@string/lower_hub_dec_desc" />
+    </LinearLayout>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

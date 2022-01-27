@@ -3,10 +3,7 @@ package team449.frc.refereeappbase.main
 import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.util.Log
-import android.view.ContextThemeWrapper
 import android.view.View
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
@@ -164,6 +161,25 @@ class MainPresenter(private val activity: MainActivity) : Editor {
      */
     fun incrementDecrementValue(view: View) {
         val vm = activity.matchViewModel
+        //todo do the same for teleop
+        when (view.id) {
+            R.id.autoUpperHubInc -> inc(vm.autoUpperHub)
+            R.id.autoUpperHubDec -> dec(vm.autoUpperHub)
+            R.id.autoLowerHubInc -> inc(vm.autoLowerHub)
+            R.id.autoLowerHubDec -> dec(vm.autoLowerHub)
+            R.id.teleopUpperHubInc -> inc(vm.teleopUpperHub)
+            R.id.teleopUpperHubDec -> dec(vm.teleopUpperHub)
+            R.id.teleopLowerHubInc -> inc(vm.teleopLowerHub)
+            R.id.teleopLowerHubDec -> dec(vm.teleopLowerHub)
+        }
+    }
+
+    private fun inc(hub: MutableLiveData<Int>) {
+        update(hub){ it + 1 }
+    }
+
+    private fun dec(hub: MutableLiveData<Int>) {
+        update(hub){ n -> if (n > 0) n - 1 else n }
     }
 
     private fun <T> update(mld: MutableLiveData<T>, fn: (T) -> T) {

@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import team449.frc.refereeappbase.databinding.FragmentAutoBindingImpl;
 import team449.frc.refereeappbase.databinding.FragmentEndgameBindingImpl;
-import team449.frc.refereeappbase.databinding.FragmentFieldBindingImpl;
 import team449.frc.refereeappbase.databinding.FragmentGeneralBindingImpl;
 import team449.frc.refereeappbase.databinding.FragmentMatchContainerBindingImpl;
 import team449.frc.refereeappbase.databinding.FragmentPenaltyBindingImpl;
@@ -29,24 +28,21 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
   private static final int LAYOUT_FRAGMENTENDGAME = 2;
 
-  private static final int LAYOUT_FRAGMENTFIELD = 3;
+  private static final int LAYOUT_FRAGMENTGENERAL = 3;
 
-  private static final int LAYOUT_FRAGMENTGENERAL = 4;
+  private static final int LAYOUT_FRAGMENTMATCHCONTAINER = 4;
 
-  private static final int LAYOUT_FRAGMENTMATCHCONTAINER = 5;
+  private static final int LAYOUT_FRAGMENTPENALTY = 5;
 
-  private static final int LAYOUT_FRAGMENTPENALTY = 6;
+  private static final int LAYOUT_FRAGMENTPREMATCH = 6;
 
-  private static final int LAYOUT_FRAGMENTPREMATCH = 7;
+  private static final int LAYOUT_FRAGMENTTELEOP = 7;
 
-  private static final int LAYOUT_FRAGMENTTELEOP = 8;
-
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(8);
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(7);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(team449.frc.refereeappbase.R.layout.fragment_auto, LAYOUT_FRAGMENTAUTO);
     INTERNAL_LAYOUT_ID_LOOKUP.put(team449.frc.refereeappbase.R.layout.fragment_endgame, LAYOUT_FRAGMENTENDGAME);
-    INTERNAL_LAYOUT_ID_LOOKUP.put(team449.frc.refereeappbase.R.layout.fragment_field, LAYOUT_FRAGMENTFIELD);
     INTERNAL_LAYOUT_ID_LOOKUP.put(team449.frc.refereeappbase.R.layout.fragment_general, LAYOUT_FRAGMENTGENERAL);
     INTERNAL_LAYOUT_ID_LOOKUP.put(team449.frc.refereeappbase.R.layout.fragment_match_container, LAYOUT_FRAGMENTMATCHCONTAINER);
     INTERNAL_LAYOUT_ID_LOOKUP.put(team449.frc.refereeappbase.R.layout.fragment_penalty, LAYOUT_FRAGMENTPENALTY);
@@ -74,12 +70,6 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new FragmentEndgameBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for fragment_endgame is invalid. Received: " + tag);
-        }
-        case  LAYOUT_FRAGMENTFIELD: {
-          if ("layout/fragment_field_0".equals(tag)) {
-            return new FragmentFieldBindingImpl(component, view);
-          }
-          throw new IllegalArgumentException("The tag for fragment_field is invalid. Received: " + tag);
         }
         case  LAYOUT_FRAGMENTGENERAL: {
           if ("layout/fragment_general_0".equals(tag)) {
@@ -168,12 +158,11 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(8);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(7);
 
     static {
       sKeys.put("layout/fragment_auto_0", team449.frc.refereeappbase.R.layout.fragment_auto);
       sKeys.put("layout/fragment_endgame_0", team449.frc.refereeappbase.R.layout.fragment_endgame);
-      sKeys.put("layout/fragment_field_0", team449.frc.refereeappbase.R.layout.fragment_field);
       sKeys.put("layout/fragment_general_0", team449.frc.refereeappbase.R.layout.fragment_general);
       sKeys.put("layout/fragment_match_container_0", team449.frc.refereeappbase.R.layout.fragment_match_container);
       sKeys.put("layout/fragment_penalty_0", team449.frc.refereeappbase.R.layout.fragment_penalty);

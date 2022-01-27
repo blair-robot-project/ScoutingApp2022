@@ -24,15 +24,14 @@
   <dimen name="arrowSize">36dp</dimen>
   <dimen name="textBoxMaxLines">3</dimen>
 
-  <dimen name="plusButtonWidth">40dp</dimen>
-  <dimen name="minusButtonWidth">40dp</dimen>
-  <dimen name="minusButtonHeight">60dp</dimen>
+  <dimen name="plusButtonWidth">50dp</dimen>
+  <dimen name="minusButtonWidth">50dp</dimen>
+  <dimen name="minusButtonHeight">50dp</dimen>
 
-  <!--Zone margins-->
-  <dimen name="leftZoneMargin">185dp</dimen>
-  <dimen name="rightZoneMargin">175dp</dimen>
-  <dimen name="topZoneMargin">80dp</dimen>
-  <dimen name="bottomZoneMargin">75dp</dimen>
+  <!--Hub text margins-->
+  <dimen name="hubMarginLeft">210dp</dimen>
+  <dimen name="upperHubMarginTop">120dp</dimen>
+  <dimen name="lowerHubMarginTop">400dp</dimen>
 
   <!--Popup-->
   <dimen name="alertDialogBodyTextSize">22sp</dimen>

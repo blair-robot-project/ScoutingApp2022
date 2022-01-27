@@ -17,11 +17,9 @@
   <string name="preload_B">Piece B</string>
 
   <!--Auto-->
-  <string name="moved_prompt">Crossed zone line\ \ \ </string>
+  <string name="moved_prompt">Left the tarmac\ \ \ </string>
 
   <!--Teleop-->
-  <string name="spinner_rotation_prompt">Completed Stage 2 Spinner\ \ </string>
-  <string name="spinner_position_prompt">Completed Stage 3 Spinner\ \ </string>
 
   <!--Endgame-->
   <string name="reached_alliance_prompt">Reached alliance zone?</string>
@@ -77,6 +75,11 @@
   <string name="all">All</string>
   <string name="additional_comments">Additional Comments</string>
   <string name="missed_nshots">Missed\nshots:</string>
-  <string name="game_field_desc">Game field</string>
+  <string name="hubs_img_desc">Hubs</string>
+  <string name="rungs_img_desc">Rungs</string>
+  <string name="upper_hub_inc_desc">Add 1 cargo to upper hub</string>
+  <string name="upper_hub_dec_desc">Remove 1 from upper hub</string>
+  <string name="lower_hub_inc_desc">Add 1 cargo to lower hub</string>
+  <string name="lower_hub_dec_desc">Remove 1 from lower hub</string>
 
 </resources>

@@ -12,22 +12,19 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     @Nullable
     private static final android.util.SparseIntArray sViewsWithIds;
     static {
-        sIncludes = new androidx.databinding.ViewDataBinding.IncludedLayouts(6);
-        sIncludes.setIncludes(2, 
-            new String[] {"fragment_field"},
-            new int[] {3},
-            new int[] {team449.frc.refereeappbase.R.layout.fragment_field});
+        sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.autoMoveHelp, 4);
-        sViewsWithIds.put(R.id.autoMoveDiv, 5);
+        sViewsWithIds.put(R.id.autoTaxi, 4);
+        sViewsWithIds.put(R.id.autoMoveHelp, 5);
+        sViewsWithIds.put(R.id.hubs, 6);
+        sViewsWithIds.put(R.id.autoUpperHubInc, 7);
+        sViewsWithIds.put(R.id.autoUpperHubDec, 8);
+        sViewsWithIds.put(R.id.autoLowerHubInc, 9);
+        sViewsWithIds.put(R.id.autoLowerHubDec, 10);
     }
     // views
     @NonNull
-    private final android.widget.ScrollView mboundView0;
-    @NonNull
-    private final android.widget.LinearLayout mboundView2;
-    @Nullable
-    private final team449.frc.refereeappbase.databinding.FragmentFieldBinding mboundView21;
+    private final androidx.constraintlayout.widget.ConstraintLayout mboundView0;
     // variables
     // values
     // listeners
@@ -75,21 +72,26 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     };
 
     public FragmentAutoBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 11, sIncludes, sViewsWithIds));
     }
     private FragmentAutoBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
-        super(bindingComponent, root, 1
+        super(bindingComponent, root, 3
+            , (android.widget.ImageButton) bindings[10]
+            , (android.widget.ImageButton) bindings[9]
+            , (android.widget.TextView) bindings[3]
             , (android.widget.CheckBox) bindings[1]
-            , (android.view.View) bindings[5]
-            , (android.widget.ImageButton) bindings[4]
+            , (android.widget.ImageButton) bindings[5]
+            , (android.widget.LinearLayout) bindings[4]
+            , (android.widget.ImageButton) bindings[8]
+            , (android.widget.ImageButton) bindings[7]
+            , (android.widget.TextView) bindings[2]
+            , (android.widget.ImageView) bindings[6]
             );
+        this.autoLowerHubText.setTag(null);
         this.autoMove.setTag(null);
-        this.mboundView0 = (android.widget.ScrollView) bindings[0];
+        this.autoUpperHubText.setTag(null);
+        this.mboundView0 = (androidx.constraintlayout.widget.ConstraintLayout) bindings[0];
         this.mboundView0.setTag(null);
-        this.mboundView2 = (android.widget.LinearLayout) bindings[2];
-        this.mboundView2.setTag(null);
-        this.mboundView21 = (team449.frc.refereeappbase.databinding.FragmentFieldBinding) bindings[3];
-        setContainedBinding(this.mboundView21);
         setRootTag(root);
         // listeners
         invalidateAll();
@@ -98,9 +100,8 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x4L;
+                mDirtyFlags = 0x10L;
         }
-        mboundView21.invalidateAll();
         requestRebind();
     }
 
@@ -110,9 +111,6 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
             if (mDirtyFlags != 0) {
                 return true;
             }
-        }
-        if (mboundView21.hasPendingBindings()) {
-            return true;
         }
         return false;
     }
@@ -132,30 +130,46 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
     public void setVm(@Nullable team449.frc.refereeappbase.model.MatchViewModel Vm) {
         this.mVm = Vm;
         synchronized(this) {
-            mDirtyFlags |= 0x2L;
+            mDirtyFlags |= 0x8L;
         }
         notifyPropertyChanged(BR.vm);
         super.requestRebind();
     }
 
     @Override
-    public void setLifecycleOwner(@Nullable androidx.lifecycle.LifecycleOwner lifecycleOwner) {
-        super.setLifecycleOwner(lifecycleOwner);
-        mboundView21.setLifecycleOwner(lifecycleOwner);
-    }
-
-    @Override
     protected boolean onFieldChange(int localFieldId, Object object, int fieldId) {
         switch (localFieldId) {
             case 0 :
+                return onChangeVmAutoLowerHub((androidx.lifecycle.MutableLiveData<java.lang.Integer>) object, fieldId);
+            case 1 :
+                return onChangeVmAutoUpperHub((androidx.lifecycle.MutableLiveData<java.lang.Integer>) object, fieldId);
+            case 2 :
                 return onChangeVmTaxi((androidx.lifecycle.MutableLiveData<java.lang.Boolean>) object, fieldId);
+        }
+        return false;
+    }
+    private boolean onChangeVmAutoLowerHub(androidx.lifecycle.MutableLiveData<java.lang.Integer> VmAutoLowerHub, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x1L;
+            }
+            return true;
+        }
+        return false;
+    }
+    private boolean onChangeVmAutoUpperHub(androidx.lifecycle.MutableLiveData<java.lang.Integer> VmAutoUpperHub, int fieldId) {
+        if (fieldId == BR._all) {
+            synchronized(this) {
+                    mDirtyFlags |= 0x2L;
+            }
+            return true;
         }
         return false;
     }
     private boolean onChangeVmTaxi(androidx.lifecycle.MutableLiveData<java.lang.Boolean> VmTaxi, int fieldId) {
         if (fieldId == BR._all) {
             synchronized(this) {
-                    mDirtyFlags |= 0x1L;
+                    mDirtyFlags |= 0x4L;
             }
             return true;
         }
@@ -169,57 +183,93 @@ public class FragmentAutoBindingImpl extends FragmentAutoBinding  {
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
+        androidx.lifecycle.MutableLiveData<java.lang.Integer> vmAutoLowerHub = null;
+        boolean conversionsUnboxVmTaxi = false;
+        java.lang.String formattingHelperPadZeroesVmAutoUpperHub = null;
+        java.lang.String formattingHelperPadZeroesVmAutoLowerHub = null;
         team449.frc.refereeappbase.model.MatchViewModel vm = mVm;
+        androidx.lifecycle.MutableLiveData<java.lang.Integer> vmAutoUpperHub = null;
         androidx.lifecycle.MutableLiveData<java.lang.Boolean> vmTaxi = null;
         java.lang.Boolean vmTaxiGetValue = null;
-        boolean conversionsUnboxVmTaxi = false;
 
-        if ((dirtyFlags & 0x7L) != 0) {
-
+        if ((dirtyFlags & 0x1fL) != 0) {
 
 
-                if (vm != null) {
-                    // read vm.taxi
-                    vmTaxi = vm.getTaxi();
-                }
-                updateLiveDataRegistration(0, vmTaxi);
+            if ((dirtyFlags & 0x19L) != 0) {
+
+                    if (vm != null) {
+                        // read vm.autoLowerHub
+                        vmAutoLowerHub = vm.getAutoLowerHub();
+                    }
+                    updateLiveDataRegistration(0, vmAutoLowerHub);
 
 
-                if (vmTaxi != null) {
-                    // read vm.taxi.getValue()
-                    vmTaxiGetValue = vmTaxi.getValue();
-                }
+                    // read FormattingHelper.padZeroes(vm.autoLowerHub)
+                    formattingHelperPadZeroesVmAutoLowerHub = team449.frc.refereeappbase.helpers.FormattingHelper.padZeroes(vmAutoLowerHub);
+            }
+            if ((dirtyFlags & 0x1aL) != 0) {
+
+                    if (vm != null) {
+                        // read vm.autoUpperHub
+                        vmAutoUpperHub = vm.getAutoUpperHub();
+                    }
+                    updateLiveDataRegistration(1, vmAutoUpperHub);
 
 
-                // read Conversions.unbox(vm.taxi.getValue())
-                conversionsUnboxVmTaxi = team449.frc.refereeappbase.databinding.Conversions.unbox(vmTaxiGetValue);
+                    // read FormattingHelper.padZeroes(vm.autoUpperHub)
+                    formattingHelperPadZeroesVmAutoUpperHub = team449.frc.refereeappbase.helpers.FormattingHelper.padZeroes(vmAutoUpperHub);
+            }
+            if ((dirtyFlags & 0x1cL) != 0) {
+
+                    if (vm != null) {
+                        // read vm.taxi
+                        vmTaxi = vm.getTaxi();
+                    }
+                    updateLiveDataRegistration(2, vmTaxi);
+
+
+                    if (vmTaxi != null) {
+                        // read vm.taxi.getValue()
+                        vmTaxiGetValue = vmTaxi.getValue();
+                    }
+
+
+                    // read Conversions.unbox(vm.taxi.getValue())
+                    conversionsUnboxVmTaxi = team449.frc.refereeappbase.databinding.Conversions.unbox(vmTaxiGetValue);
+            }
         }
         // batch finished
-        if ((dirtyFlags & 0x7L) != 0) {
+        if ((dirtyFlags & 0x19L) != 0) {
+            // api target 1
+
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.autoLowerHubText, formattingHelperPadZeroesVmAutoLowerHub);
+        }
+        if ((dirtyFlags & 0x1cL) != 0) {
             // api target 1
 
             androidx.databinding.adapters.CompoundButtonBindingAdapter.setChecked(this.autoMove, conversionsUnboxVmTaxi);
         }
-        if ((dirtyFlags & 0x4L) != 0) {
+        if ((dirtyFlags & 0x10L) != 0) {
             // api target 1
 
             androidx.databinding.adapters.CompoundButtonBindingAdapter.setListeners(this.autoMove, (android.widget.CompoundButton.OnCheckedChangeListener)null, autoMoveandroidCheckedAttrChanged);
         }
-        if ((dirtyFlags & 0x6L) != 0) {
+        if ((dirtyFlags & 0x1aL) != 0) {
             // api target 1
 
-            this.mboundView21.setVm(vm);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.autoUpperHubText, formattingHelperPadZeroesVmAutoUpperHub);
         }
-        executeBindingsOn(mboundView21);
     }
     // Listener Stub Implementations
     // callback impls
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): vm.taxi
-        flag 1 (0x2L): vm
-        flag 2 (0x3L): null
+        flag 0 (0x1L): vm.autoLowerHub
+        flag 1 (0x2L): vm.autoUpperHub
+        flag 2 (0x3L): vm.taxi
+        flag 3 (0x4L): vm
+        flag 4 (0x5L): null
     flag mapping end*/
     //end
 }

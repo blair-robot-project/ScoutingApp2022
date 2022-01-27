@@ -13,7 +13,8 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
     private static final android.util.SparseIntArray sViewsWithIds;
     static {
         sIncludes = null;
-        sViewsWithIds = null;
+        sViewsWithIds = new android.util.SparseIntArray();
+        sViewsWithIds.put(R.id.rungs, 1);
     }
     // views
     @NonNull
@@ -24,10 +25,11 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
     // Inverse Binding Event Handlers
 
     public FragmentEndgameBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 1, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
     }
     private FragmentEndgameBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (android.widget.ImageView) bindings[1]
             );
         this.mboundView0 = (android.widget.ScrollView) bindings[0];
         this.mboundView0.setTag(null);

@@ -1,27 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:app="http://schemas.android.com/apk/res-teleop"
   xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app1="http://schemas.android.com/apk/res-auto"
   tools:context=".fragment.TeleopFragment">
 
   <data>
 
     <import type="team449.frc.refereeappbase.databinding.Conversions" />
 
+    <import type="team449.frc.refereeappbase.helpers.FormattingHelper" />
+
     <variable
       name="vm"
       type="team449.frc.refereeappbase.model.MatchViewModel" />
   </data>
 
-  <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+  <androidx.constraintlayout.widget.ConstraintLayout style="@style/PageContainer">
 
-    <HorizontalScrollView
+    <!-- The picture of the hubs -->
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content"
+      android:gravity="center_horizontal"
+      android:orientation="horizontal"
+      app1:layout_constraintTop_toTopOf="parent">
 
-    </HorizontalScrollView>
-  </ScrollView>
+      <ImageView
+        android:id="@+id/hubs"
+        android:layout_width="800dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/hubs_img_desc"
+        android:src="@drawable/hubs" />
+    </LinearLayout>
 
+    <!-- The buttons for the upper hub -->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal"
+      android:paddingStart="@dimen/hubMarginLeft"
+      android:paddingTop="@dimen/upperHubMarginTop">
+
+      <ImageButton
+        android:id="@+id/teleopUpperHubInc"
+        style="@style/PlusButton"
+        android:contentDescription="@string/upper_hub_inc_desc" />
+
+      <TextView
+        android:id="@+id/teleopUpperHubText"
+        style="@style/HubScoreText"
+        android:text="@{FormattingHelper.padZeroes(vm.teleopUpperHub)}" />
+
+      <ImageButton
+        android:id="@+id/teleopUpperHubDec"
+        style="@style/MinusButton"
+        android:contentDescription="@string/upper_hub_dec_desc" />
+    </LinearLayout>
+
+    <!-- The buttons for the lower hub -->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal"
+      android:paddingStart="@dimen/hubMarginLeft"
+      android:paddingTop="@dimen/lowerHubMarginTop">
+
+      <ImageButton
+        android:id="@+id/teleopLowerHubInc"
+        style="@style/PlusButton"
+        android:contentDescription="@string/lower_hub_inc_desc" />
+
+      <TextView
+        android:id="@+id/teleopLowerHubText"
+        style="@style/HubScoreText"
+        android:text="@{FormattingHelper.padZeroes(vm.teleopLowerHub)}" />
+
+      <ImageButton
+        android:id="@+id/teleopLowerHubDec"
+        style="@style/MinusButton"
+        android:contentDescription="@string/lower_hub_dec_desc" />
+    </LinearLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

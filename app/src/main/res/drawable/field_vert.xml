@@ -1,5 +1,0 @@
-<!--An image of the field that's vertical-->
-<rotate xmlns:android="http://schemas.android.com/apk/res/android"
-  android:drawable="@mipmap/field_horiz"
-  android:fromDegrees="90"
-  android:toDegrees="90" />
