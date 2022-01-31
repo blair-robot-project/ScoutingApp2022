@@ -7,41 +7,75 @@
   <data>
 
     <import type="team449.frc.refereeappbase.databinding.Conversions" />
-
     <import type="android.view.View" />
+    <import type="team449.frc.refereeappbase._2022.Rung" />
 
     <variable
       name="vm"
       type="team449.frc.refereeappbase.model.MatchViewModel" />
+    <variable
+      name="handler"
+      type="team449.frc.refereeappbase.fragment.MatchContainerFragmentClickHandler" />
   </data>
 
-  <ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout style="@style/PageContainer">
 
-      <LinearLayout
-        android:layout_width="1500dp"
+    <ImageView
+      android:id="@+id/rungs"
+      android:layout_width="500dp"
+      android:layout_height="400dp"
+      android:layout_gravity="center"
+      android:contentDescription="@string/rungs_img_desc"
+      android:src="@drawable/rungs" />
+
+    <RadioGroup
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <RadioButton
+        android:id="@+id/radio_traversal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="-450dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:onClick="rungSelected"
+        android:text="Traversal" />
 
+      <RadioButton
+        android:id="@+id/radio_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rungSelected"
+        android:text="High" />
 
-        <ImageView
-          android:id="@+id/rungs"
-          style="@style/Wrap"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          android:contentDescription="@string/rungs_img_desc"
-          android:src="@drawable/rungs" />
-      </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+      <RadioButton
+        android:id="@+id/radio_mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rungSelected"
+        android:text="Mid" />
 
-  </ScrollView>
+      <RadioButton
+        android:id="@+id/radio_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rungSelected"
+        android:text="Low" />
+
+      <RadioButton
+        android:id="@+id/radio_none"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="rungSelected"
+        android:text="None" />
+    </RadioGroup>
+  </LinearLayout>
+
 </layout>

@@ -26,8 +26,7 @@ android {
     buildFeatures {
         viewBinding true
     }
-    lintOptions {
-        //Don't fail on linter warnings
+    lint {
         abortOnError false
     }
 }

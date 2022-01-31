@@ -15,23 +15,33 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.rungs, 1);
+        sViewsWithIds.put(R.id.radio_traversal, 2);
+        sViewsWithIds.put(R.id.radio_high, 3);
+        sViewsWithIds.put(R.id.radio_mid, 4);
+        sViewsWithIds.put(R.id.radio_low, 5);
+        sViewsWithIds.put(R.id.radio_none, 6);
     }
     // views
     @NonNull
-    private final android.widget.ScrollView mboundView0;
+    private final android.widget.LinearLayout mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public FragmentEndgameBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 7, sIncludes, sViewsWithIds));
     }
     private FragmentEndgameBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
+            , (android.widget.RadioButton) bindings[3]
+            , (android.widget.RadioButton) bindings[5]
+            , (android.widget.RadioButton) bindings[4]
+            , (android.widget.RadioButton) bindings[6]
+            , (android.widget.RadioButton) bindings[2]
             , (android.widget.ImageView) bindings[1]
             );
-        this.mboundView0 = (android.widget.ScrollView) bindings[0];
+        this.mboundView0 = (android.widget.LinearLayout) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners
@@ -41,7 +51,7 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x2L;
+                mDirtyFlags = 0x4L;
         }
         requestRebind();
     }
@@ -62,6 +72,9 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
         if (BR.vm == variableId) {
             setVm((team449.frc.refereeappbase.model.MatchViewModel) variable);
         }
+        else if (BR.handler == variableId) {
+            setHandler((team449.frc.refereeappbase.fragment.MatchContainerFragmentClickHandler) variable);
+        }
         else {
             variableSet = false;
         }
@@ -70,6 +83,9 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
 
     public void setVm(@Nullable team449.frc.refereeappbase.model.MatchViewModel Vm) {
         this.mVm = Vm;
+    }
+    public void setHandler(@Nullable team449.frc.refereeappbase.fragment.MatchContainerFragmentClickHandler Handler) {
+        this.mHandler = Handler;
     }
 
     @Override
@@ -94,7 +110,8 @@ public class FragmentEndgameBindingImpl extends FragmentEndgameBinding  {
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
         flag 0 (0x1L): vm
-        flag 1 (0x2L): null
+        flag 1 (0x2L): handler
+        flag 2 (0x3L): null
     flag mapping end*/
     //end
 }

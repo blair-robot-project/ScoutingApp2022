@@ -9,6 +9,7 @@ import androidx.navigation.Navigation.findNavController
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import team449.frc.refereeappbase.R
+import team449.frc.refereeappbase._2022.Rung
 import team449.frc.refereeappbase.helpers.*
 import team449.frc.refereeappbase.managers.BluetoothManager
 import team449.frc.refereeappbase.managers.DataManager
@@ -171,6 +172,17 @@ class MainPresenter(private val activity: MainActivity) : Editor {
             R.id.teleopUpperHubDec -> dec(vm.teleopUpperHub)
             R.id.teleopLowerHubInc -> inc(vm.teleopLowerHub)
             R.id.teleopLowerHubDec -> dec(vm.teleopLowerHub)
+        }
+    }
+
+    fun rungSelected(view: View) {
+        val vm = activity.matchViewModel
+        when (view.id) {
+            R.id.radio_traversal -> vm.rung.value = Rung.TRAVERSAL
+            R.id.radio_high -> vm.rung.value = Rung.HIGH
+            R.id.radio_mid -> vm.rung.value = Rung.MID
+            R.id.radio_low -> vm.rung.value = Rung.LOW
+            R.id.radio_none -> vm.rung.value = Rung.NONE
         }
     }
 

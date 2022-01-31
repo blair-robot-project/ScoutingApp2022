@@ -144,6 +144,8 @@ class MainActivity : AppCompatActivity() {
 
     fun incrementDecrementValue(view: View) = presenter.incrementDecrementValue(view)
 
+    fun rungSelected(view: View) = presenter.rungSelected(view)
+
     fun padWithZeroes(i: Int, length: Int): String = "$i".padStart(length, '0')
 
     fun fixSpinners() {
