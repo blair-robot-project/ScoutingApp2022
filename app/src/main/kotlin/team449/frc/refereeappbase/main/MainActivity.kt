@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         StaticResources.pages = resources.getStringArray(R.array.pages)
         StaticResources.filesDir = filesDir
         StaticResources.dialogTextSize = resources.getDimension(R.dimen.alertDialogBodyTextSize)
-        StaticResources.climbTimeStepSize = resources.getInteger(R.integer.climb_time_stepsize)
         StaticResources.endgameScoreOptions = resources.getStringArray(R.array.endgame_score_values)
 
         var ri = resources.obtainTypedArray(R.array.radioIdsDead)

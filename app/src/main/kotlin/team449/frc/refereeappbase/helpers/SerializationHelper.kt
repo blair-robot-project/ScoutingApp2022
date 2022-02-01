@@ -8,8 +8,4 @@ import team449.frc.refereeappbase.model.Message
 
 fun serialize(data: Any): String = Gson().toJson(data)
 
-fun <T> deserialize(json: String): T = Gson().fromJson(json, object : TypeToken<T>() { }.type)
-
-// Generic deserialize isn't working, not sure why
-fun deserializeData(json: String): Data = Gson().fromJson(json, object : TypeToken<Data>() { }.type)
-fun deserializeMessage(json: String): Message = Gson().fromJson(json, object : TypeToken<Message>() { }.type)
+inline fun <reified T> deserialize(json: String): T = Gson().fromJson(json, object : TypeToken<T>() { }.type)

@@ -4,7 +4,7 @@ import android.util.Log
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import team449.frc.refereeappbase.helpers.deserializeMessage
+import team449.frc.refereeappbase.helpers.deserialize
 import team449.frc.refereeappbase.helpers.saveMatchSchedule
 import team449.frc.refereeappbase.helpers.saveTeams
 import team449.frc.refereeappbase.model.*
@@ -58,10 +58,10 @@ object MessageHandler {
         if (msgStrings.isEmpty()) return null
         val full = msgStrings.joinToString(separator = "") { it }
         return try {
-            val message = deserializeMessage(full)
+            val message: Message = deserialize(full)
             // Gson is able to break Kotlin's non-nullable types, and if the json isn't in the right format for message,
             //  it will just put nulls. Ignore the IDE warning, it's wrong.
-            if (message.type == null || message.body == null) throw ClassCastException()
+            assert(message.type != null && message.body != null)
             message
         } catch (e: JsonSyntaxException) {
             // Invalid json. Most likely, the message just isn't finished, but it could be that a corrupted message

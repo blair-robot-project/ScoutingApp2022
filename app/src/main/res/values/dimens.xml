@@ -9,7 +9,6 @@
 
   <!--Text-->
   <dimen name="primaryTextSize">34sp</dimen>
-  <dimen name="ballCounterTextSize">40sp</dimen>
   <dimen name="settingsTextSize">26sp</dimen>
   <dimen name="titleTextSize">36sp</dimen>
 
@@ -21,7 +20,6 @@
   <dimen name="checkboxEndPadding">100dp</dimen>
   <dimen name="editTextWidth">400dp</dimen>
   <dimen name="spinnerWidth">200dp</dimen>
-  <dimen name="arrowSize">36dp</dimen>
   <dimen name="textBoxMaxLines">3</dimen>
 
   <dimen name="plusButtonWidth">50dp</dimen>

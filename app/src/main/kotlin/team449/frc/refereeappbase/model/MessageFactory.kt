@@ -8,7 +8,6 @@ enum class MessageType {
 
 data class Message(val type: String, val body: Any)
 
-
 fun makeSerializedMessage(type: MessageType, body: Any): String = serialize(Message(type.name, body))
 
 fun makeMatchDataMessage(model: MatchShadow) = makeSerializedMessage(MessageType.DATA, model)

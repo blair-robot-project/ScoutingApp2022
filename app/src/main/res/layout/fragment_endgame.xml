@@ -46,35 +46,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rungSelected"
-        android:text="Traversal" />
+        android:text="@string/traversal" />
 
       <RadioButton
         android:id="@+id/radio_high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rungSelected"
-        android:text="High" />
+        android:text="@string/high" />
 
       <RadioButton
         android:id="@+id/radio_mid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rungSelected"
-        android:text="Mid" />
+        android:text="@string/mid" />
 
       <RadioButton
         android:id="@+id/radio_low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rungSelected"
-        android:text="Low" />
+        android:text="@string/low" />
 
       <RadioButton
         android:id="@+id/radio_none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rungSelected"
-        android:text="None" />
+        android:text="@string/none_rung" />
     </RadioGroup>
   </LinearLayout>
 

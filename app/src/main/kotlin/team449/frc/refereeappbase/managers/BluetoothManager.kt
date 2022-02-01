@@ -20,7 +20,7 @@ object BluetoothManager {
     private var outputStream: OutputStream? = null
     private var inputStream: InputStream? = null
 
-    private val connectionTest: ByteArray = ByteArray(0) {0}
+    private val connectionTest: ByteArray = ByteArray(0) { 0 }
 
     private var master: String? = null
 
@@ -38,6 +38,8 @@ object BluetoothManager {
             val paired = ArrayList<String>()
             if (blueAdapter != null) {
                 if (blueAdapter.isEnabled) {
+                    //todo check if permission is granted for bluetooth
+                    //  and prompt for granting permission otherwise
                     for (device in blueAdapter.bondedDevices) {
                         paired.add(device.name)
                     }
@@ -51,7 +53,7 @@ object BluetoothManager {
 
     fun connect(): Boolean =
         if (master.isNullOrEmpty()) false
-        else master?.let { connect(it) }?: false
+        else master?.let { connect(it) } ?: false
 
     fun connect(targetMasterName: String): Boolean {
         master = targetMasterName
@@ -61,7 +63,7 @@ object BluetoothManager {
                 try {
                     val device = blueAdapter.bondedDevices.single { it.name == master }
 
-                    if (isConnected){
+                    if (isConnected) {
                         Log.i("BtM.initConnection", "Closing old socket ...")
                         socket?.close()
                         socket = null
@@ -76,34 +78,55 @@ object BluetoothManager {
                     //https://stackoverflow.com/questions/18657427/ioexception-read-failed-socket-might-closed-bluetooth-on-android-4-3
                     //See second answer
                     try {
-                        socket = device.javaClass.getMethod("createRfcommSocket", Integer::class.javaPrimitiveType).invoke(
+                        socket = device.javaClass.getMethod(
+                            "createRfcommSocket",
+                            Integer::class.javaPrimitiveType
+                        ).invoke(
                             device,
                             PORT
                         ) as BluetoothSocket
                         socket?.connect()
                         outputStream = socket?.outputStream
                         inputStream = socket?.inputStream
-                        if (socket != null) Log.i("BtM.initConnection", "Connected to " + device.name)
+                        if (socket != null) Log.i(
+                            "BtM.initConnection",
+                            "Connected to " + device.name
+                        )
 
                         GlobalScope.launch { receive() }
                         return true
 
                     } catch (e: InvocationTargetException) { // This raps another error from an invoke, I think it won't catch and the wrapped error is what would
                         e.printStackTrace()
-                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (InvocationTargetException)")
+                        Log.e(
+                            "BtM.initConnection",
+                            "Error connecting to " + device.name + " (InvocationTargetException)"
+                        )
                     } catch (e: IllegalArgumentException) { // not seen yet
                         e.printStackTrace()
-                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (IllegalArgumentException)")
+                        Log.e(
+                            "BtM.initConnection",
+                            "Error connecting to " + device.name + " (IllegalArgumentException)"
+                        )
                     } catch (e: NoSuchElementException) { // not seen yet
                         e.printStackTrace()
-                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (NoSuchElementException)")
+                        Log.e(
+                            "BtM.initConnection",
+                            "Error connecting to " + device.name + " (NoSuchElementException)"
+                        )
                     } catch (e: IOException) {
-                        Log.e("BtM.initConnection", "Error connecting to " + device.name + " (IOException)")
+                        Log.e(
+                            "BtM.initConnection",
+                            "Error connecting to " + device.name + " (IOException)"
+                        )
                     }
                 } catch (e: NoSuchElementException) {
                     Log.i("BtM.initConnection", "Target master device not found in paired devices")
                 } catch (e: IllegalArgumentException) {
-                    Log.i("BtM.initConnection", "Multiple instances of target master devices found in paire devices")
+                    Log.i(
+                        "BtM.initConnection",
+                        "Multiple instances of target master devices found in paire devices"
+                    )
                 }
             } else {
                 Log.e("BtM.initConnection", "Bluetooth is disabled.")

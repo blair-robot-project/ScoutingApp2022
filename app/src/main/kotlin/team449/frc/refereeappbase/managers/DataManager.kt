@@ -45,7 +45,7 @@ object DataManager {
     }
 
     private fun load() {
-        readFromFile(dataFile)?.let{ if (it.isNotEmpty()) data = deserializeData(it) }
+        readFromFile(dataFile)?.let{ if (it.isNotEmpty()) data = deserialize(it) }
     }
 
     fun clear() {

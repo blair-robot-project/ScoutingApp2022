@@ -34,6 +34,8 @@ class MatchViewModel : ViewModel() {
 
     //Endgame
     val rung by lazy { mutableLiveData(Rung.NONE) }
+
+    //Submission
     val dead by lazy { mutableLiveData(-1) }
     val incursions by lazy { mutableLiveData(0) }
     val defense by lazy { mutableLiveData(-1) }
