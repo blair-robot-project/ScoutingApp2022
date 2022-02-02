@@ -1,7 +1,6 @@
 package team449.frc.refereeappbase.main
 
 import android.content.SharedPreferences
-import android.os.AsyncTask
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +12,10 @@ import team449.frc.refereeappbase._2022.Rung
 import team449.frc.refereeappbase.helpers.*
 import team449.frc.refereeappbase.managers.BluetoothManager
 import team449.frc.refereeappbase.managers.DataManager
-import team449.frc.refereeappbase.model.*
+import team449.frc.refereeappbase.model.EventData
+import team449.frc.refereeappbase.model.MatchShadow
+import team449.frc.refereeappbase.model.StaticResources
+import team449.frc.refereeappbase.model.makeSyncRequest
 
 
 interface Editor {
@@ -62,8 +64,7 @@ class MainPresenter(private val activity: MainActivity) : Editor {
             activity.getString(R.string.clear_data_title),
             activity.getString(R.string.clear_data_body),
             activity.getString(R.string.clear_data_button)
-        )
-        { _, _ -> AsyncTask.execute { DataManager.clear() } }
+        ) { _, _ -> GlobalScope.launch { DataManager.clear() } }
     }
 
     fun clearEventData() {
@@ -72,9 +73,8 @@ class MainPresenter(private val activity: MainActivity) : Editor {
             activity.getString(R.string.clear_event_data_title),
             activity.getString(R.string.clear_event_data_body),
             activity.getString(R.string.clear_event_data_button)
-        )
-        { _, _ ->
-            AsyncTask.execute {
+        ) { _, _ ->
+            GlobalScope.launch {
                 Log.i("-------", "clearing")
                 EventData.resetEventData()
                 activity.matchViewModel.matchId.postValue(0)
@@ -187,11 +187,11 @@ class MainPresenter(private val activity: MainActivity) : Editor {
     }
 
     private fun inc(hub: MutableLiveData<Int>) {
-        update(hub){ it + 1 }
+        update(hub) { it + 1 }
     }
 
     private fun dec(hub: MutableLiveData<Int>) {
-        update(hub){ n -> if (n > 0) n - 1 else n }
+        update(hub) { n -> if (n > 0) n - 1 else n }
     }
 
     private fun <T> update(mld: MutableLiveData<T>, fn: (T) -> T) {
